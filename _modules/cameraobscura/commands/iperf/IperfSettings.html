@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cameraobscura.commands.iperf.IperfSettings &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for cameraobscura.commands.iperf.IperfSettings</h1><div class="highlight"><pre>
+<span></span>
+<span class="c1"># python standard library</span>
+<span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">IntType</span><span class="p">,</span> <span class="n">FloatType</span><span class="p">,</span> <span class="n">NoneType</span><span class="p">,</span> <span class="n">StringType</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">abstractproperty</span>
+
+<span class="c1"># this package</span>
+<span class="kn">from</span> <span class="nn">theape</span> <span class="kn">import</span> <span class="n">BaseClass</span>
+<span class="kn">from</span> <span class="nn">cameraobscura</span> <span class="kn">import</span> <span class="n">CameraobscuraError</span>
+
+<span class="n">STRING_START</span> <span class="o">=</span> <span class="s1">&#39;^&#39;</span>
+<span class="n">STRING_END</span> <span class="o">=</span> <span class="s1">&#39;$&#39;</span>
+<span class="n">SPACE</span> <span class="o">=</span> <span class="s1">r&#39;\s&#39;</span>
+<span class="n">NOT_SPACE</span> <span class="o">=</span> <span class="s1">r&#39;\S&#39;</span>
+<span class="n">DIGIT</span> <span class="o">=</span> <span class="s1">r&#39;\d&#39;</span>
+<span class="n">ZERO_OR_MORE</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
+<span class="n">ONE_OR_MORE</span> <span class="o">=</span> <span class="s1">&#39;+&#39;</span>
+<span class="n">ZERO_OR_ONE</span> <span class="o">=</span> <span class="s1">&#39;?&#39;</span>
+<span class="n">DOT</span> <span class="o">=</span> <span class="s1">r&#39;\.&#39;</span>
+<span class="n">SPACES</span> <span class="o">=</span> <span class="n">SPACE</span> <span class="o">+</span> <span class="n">ZERO_OR_MORE</span>
+<span class="n">NOT_SPACES</span> <span class="o">=</span> <span class="n">NOT_SPACE</span> <span class="o">+</span> <span class="n">ONE_OR_MORE</span>
+<span class="n">DIGITS</span> <span class="o">=</span> <span class="n">DIGIT</span> <span class="o">+</span> <span class="n">ONE_OR_MORE</span>
+<span class="n">OPTIONAL_DIGITS</span> <span class="o">=</span> <span class="n">DIGIT</span> <span class="o">+</span> <span class="n">ZERO_OR_MORE</span>
+<span class="n">EMPTY_STRING</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+<span class="k">class</span> <span class="nc">IperfConstants</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Holder of Iperf Constants</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="c1"># directions</span>
+    <span class="n">down</span> <span class="o">=</span> <span class="s1">&#39;downstream&#39;</span>
+    <span class="n">up</span> <span class="o">=</span> <span class="s1">&#39;upstream&#39;</span>
+    
+    <span class="n">port_lower_bound</span> <span class="o">=</span> <span class="mi">1024</span>
+    <span class="n">udp</span> <span class="o">=</span> <span class="s1">&#39;udp&#39;</span>
+    
+    <span class="c1"># validators</span>
+    <span class="n">number_types</span> <span class="o">=</span> <span class="p">(</span><span class="n">NoneType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">,</span> <span class="n">FloatType</span><span class="p">)</span>
+    
+    <span class="c1"># options</span>
+    <span class="n">general_options</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;format&quot;</span><span class="p">,</span> <span class="s1">&#39;interval&#39;</span><span class="p">,</span> <span class="s1">&#39;len&#39;</span><span class="p">,</span> <span class="s1">&#39;print_mss&#39;</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;port&#39;</span><span class="p">,</span> <span class="s1">&#39;window&#39;</span><span class="p">,</span> <span class="s1">&#39;compatibility&#39;</span><span class="p">,</span> <span class="s1">&#39;mss&#39;</span><span class="p">,</span> <span class="s1">&#39;nodelay&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;version&#39;</span><span class="p">,</span> <span class="s1">&#39;IPv6Version&#39;</span><span class="p">,</span> <span class="s1">&#39;reportexclude&#39;</span><span class="p">,</span> <span class="s1">&#39;reportstyle&#39;</span><span class="p">)</span>
+
+    <span class="n">server_options</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;udp&#39;</span><span class="p">,</span> <span class="s1">&#39;daemon&#39;</span><span class="p">,</span> <span class="s1">&#39;single_udp&#39;</span><span class="p">)</span>
+
+    <span class="c1"># expressions</span>
+    <span class="c1"># match &#39;n[KM] (iperf seems to ignore the case)</span>
+    <span class="n">value_expression</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">STRING_START</span> <span class="o">+</span> <span class="n">SPACES</span> <span class="o">+</span> <span class="n">DIGITS</span> <span class="o">+</span> <span class="n">DOT</span> <span class="o">+</span> <span class="n">ZERO_OR_ONE</span> <span class="o">+</span>
+                                  <span class="n">OPTIONAL_DIGITS</span> <span class="o">+</span> <span class="s1">&#39;[kKmM]&#39;</span> <span class="o">+</span> <span class="n">ZERO_OR_ONE</span> <span class="o">+</span> <span class="n">SPACES</span> <span class="o">+</span> <span class="n">STRING_END</span><span class="p">)</span>
+    <span class="n">no_whitespace_expression</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">STRING_START</span> <span class="o">+</span> <span class="n">NOT_SPACES</span> <span class="o">+</span> <span class="n">STRING_END</span><span class="p">)</span>
+    <span class="n">reportexclude_expression</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">STRING_START</span> <span class="o">+</span> <span class="s1">&#39;[cdmsvCDMSV]&#39;</span> <span class="o">+</span> <span class="n">ONE_OR_MORE</span> <span class="o">+</span> <span class="n">STRING_END</span><span class="p">)</span>
+
+<div class="viewcode-block" id="IperfBaseSettings"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfBaseSettings.html#cameraobscura.commands.iperf.IperfSettings.IperfBaseSettings">[docs]</a><span class="k">class</span> <span class="nc">IperfBaseSettings</span><span class="p">(</span><span class="n">BaseClass</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A base for the client and server settings to provide common methods</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="IperfBaseSettings.__init__"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfBaseSettings.html#cameraobscura.commands.iperf.IperfSettings.IperfBaseSettings.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        IperfBaseSettings constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `attributes`: list of class attributes (used by the __str__)</span>
+<span class="sd">         - `kwargs`: dict to build the IperfGeneralSettings</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">IperfBaseSettings</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+
+<div class="viewcode-block" id="IperfBaseSettings.set_boolean"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfBaseSettings.set_boolean.html#cameraobscura.commands.iperf.IperfSettings.IperfBaseSettings.set_boolean">[docs]</a>    <span class="k">def</span> <span class="nf">set_boolean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set&#39;s attributes to empty string or None, based on `turn_on` value.</span>
+
+<span class="sd">        Empty string is used to add flag to output string without adding a value.</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `attribute`: Name of this class&#39; attribute: self.&lt;attribute&gt;</span>
+<span class="sd">         - `turn_on`: Boolean which if True will set the attribute to empty string</span>
+
+<span class="sd">        :postcondition: self.&lt;attribute&gt; is empty string or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">turn_on</span><span class="p">:</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">EMPTY_STRING</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="IperfBaseSettings.set_number"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfBaseSettings.set_number.html#cameraobscura.commands.iperf.IperfSettings.IperfBaseSettings.set_number">[docs]</a>    <span class="k">def</span> <span class="nf">set_number</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">lower_bound</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">caster</span><span class="o">=</span><span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the attribute to the value</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `attribute`: attribute of self to set (self.&lt;attribute&gt; = value)</span>
+<span class="sd">         - `value`: value to set attribute to</span>
+<span class="sd">         - `lower_bound`: lowest allowed value</span>
+<span class="sd">         - `caster`: function to cast the value to a number if it&#39;s not one already</span>
+
+<span class="sd">        :postcondition: self.&lt;attribute&gt; set to value</span>
+<span class="sd">        :raises: CameraobscuraError if not a non-negative number</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span> <span class="p">)</span><span class="ow">in</span> <span class="n">IperfConstants</span><span class="o">.</span><span class="n">number_types</span><span class="p">:</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">caster</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s2">&quot;{0} must be number or castable to a {1}, not {2}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">attribute</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">),</span> <span class="n">caster</span><span class="p">,</span>
+                                                                                                <span class="n">value</span><span class="p">))</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">lower_bound</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">lower_bound</span> <span class="ow">and</span>
+            <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s2">&quot;{0} must be greater than {1}, not {2}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">attribute</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">),</span>
+                                                                                 <span class="n">lower_bound</span><span class="p">,</span>
+                                                                                 <span class="n">value</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;{0} set to {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="IperfBaseSettings.set_bytes"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfBaseSettings.set_bytes.html#cameraobscura.commands.iperf.IperfSettings.IperfBaseSettings.set_bytes">[docs]</a>    <span class="k">def</span> <span class="nf">set_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the attribute to the value</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `attribute`: Name of attribute to set (e.g. &#39;_len&#39; for self._len)</span>
+<span class="sd">         - `value`: value to set the attribute to</span>
+<span class="sd">        </span>
+<span class="sd">        :postcondition: attribute set to value</span>
+
+<span class="sd">        :raises: CameraobscuraError if value is a string and doesn&#39;t match the form &#39;n[KM]&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">IperfConstants</span><span class="o">.</span><span class="n">number_types</span><span class="p">)</span> <span class="ow">and</span>
+            <span class="ow">not</span> <span class="n">IperfConstants</span><span class="o">.</span><span class="n">value_expression</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">value</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s2">&quot;`{0}` must be of the form &#39;n[KM]&#39;, not {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">attribute</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">),</span>
+                                                                                      <span class="n">value</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;&#39;{0}&#39; set to {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">)))</span>
+        <span class="k">return</span></div></div>
+
+<span class="k">class</span> <span class="nc">IperfGeneralConstants</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Holder of constants for the IperfGeneralSettings</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">valid_formats</span> <span class="o">=</span> <span class="s1">&#39;bkmBKM&#39;</span>
+
+    <span class="c1"># attributes</span>
+    <span class="n">interval</span> <span class="o">=</span> <span class="s1">&#39;_interval&#39;</span>
+    <span class="nb">len</span> <span class="o">=</span> <span class="s1">&#39;_len&#39;</span>
+    <span class="n">print_mss</span> <span class="o">=</span> <span class="s1">&#39;_print_mss&#39;</span>
+    <span class="n">window</span> <span class="o">=</span> <span class="s1">&#39;_window&#39;</span>
+    <span class="n">compatibility</span> <span class="o">=</span> <span class="s1">&#39;_compatibility&#39;</span>
+    <span class="n">udp</span> <span class="o">=</span> <span class="s1">&#39;_udp&#39;</span>
+    <span class="n">port</span> <span class="o">=</span> <span class="s1">&#39;_port&#39;</span>
+    <span class="n">mss</span> <span class="o">=</span> <span class="s1">&#39;_mss&#39;</span>
+
+<div class="viewcode-block" id="IperfGeneralSettings"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfGeneralSettings.html#cameraobscura.commands.iperf.IperfSettings.IperfGeneralSettings">[docs]</a><span class="k">class</span> <span class="nc">IperfGeneralSettings</span><span class="p">(</span><span class="n">IperfBaseSettings</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A holder of iperf settings common to both client and server</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="IperfGeneralSettings.__init__"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfGeneralSettings.html#cameraobscura.commands.iperf.IperfSettings.IperfGeneralSettings.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">interval</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="nb">len</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">print_mss</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">output</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">port</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">window</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">compatibility</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">mss</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">nodelay</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">version</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">IPv6Version</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">reportexclude</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">reportstyle</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        IperfGeneralSettings constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `format`: the output format [bkmKM]</span>
+<span class="sd">         - `interval`: the reporting interval in seconds</span>
+<span class="sd">         - `len`: the read/write buffer size `n[KM]`</span>
+<span class="sd">         - `print_mss`: print TCP maximum segment size (pass in Boolean to turn on or off)</span>
+<span class="sd">         - `output`: filename to save output to</span>
+<span class="sd">         - `port`: server port</span>
+<span class="sd">         - `window`: TCP window size &#39;n[KM]&#39;</span>
+<span class="sd">         - `compatibility`: flag to use with older iperf versions</span>
+<span class="sd">         - `mss`: value to set for the TCP maximum segment size</span>
+<span class="sd">         - `nodelay`: boolean to turn the flag on or off</span>
+<span class="sd">         - `version`: boolean to turn the version flag on or off</span>
+<span class="sd">         - `IPv6Version`: boolean to turn the IP v6 flag on or off</span>
+<span class="sd">         - `reportexclude`: one of [CDMSV] to turn off Connection, Data, Multicast, Setting, or Server reporting</span>
+<span class="sd">         - `reportstyle`: C or c to turn on csv output</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">IperfGeneralSettings</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_format</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="n">format</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_interval</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="n">interval</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_len</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">len</span> <span class="o">=</span> <span class="nb">len</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_print_mss</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">print_mss</span> <span class="o">=</span> <span class="n">print_mss</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_output</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">output</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_port</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_window</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">window</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compatibility</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compatibility</span> <span class="o">=</span> <span class="n">compatibility</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mss</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mss</span> <span class="o">=</span> <span class="n">mss</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nodelay</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodelay</span> <span class="o">=</span> <span class="n">nodelay</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_version</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_IPv6Version</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">IPv6Version</span> <span class="o">=</span> <span class="n">IPv6Version</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reportexclude</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reportexclude</span> <span class="o">=</span> <span class="n">reportexclude</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reportstyle</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reportstyle</span> <span class="o">=</span> <span class="n">reportstyle</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        String for the output reporting (bits, kilobits, etc.)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format</span>
+
+    <span class="nd">@format.setter</span>
+    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_format</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        sets self._format</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `new_format`: character string in {b, k, m, B, K, M}</span>
+
+<span class="sd">        :raise: CameraobscuraError if format is unknown</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_format</span> <span class="o">=</span> <span class="n">new_format</span>
+        <span class="k">if</span> <span class="n">new_format</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">new_format</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">IperfGeneralConstants</span><span class="o">.</span><span class="n">valid_formats</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s2">&quot;Invalid Iperf Format : {f} needs to be one of {v}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="n">new_format</span><span class="p">,</span>
+                                                                                             <span class="n">v</span><span class="o">=</span><span class="n">IperfGeneralConstants</span><span class="o">.</span><span class="n">valid_formats</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;format set to &#39;{0}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">new_format</span><span class="p">))</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">interval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The interval between data reporting (in seconds)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interval</span>
+
+    <span class="nd">@interval.setter</span>
+    <span class="k">def</span> <span class="nf">interval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the interval attribute</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `interval`: non-negative number</span>
+
+<span class="sd">        :raise: CameraobscuraError if not castable to non-negative number</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_number</span><span class="p">(</span><span class="n">IperfGeneralConstants</span><span class="o">.</span><span class="n">interval</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">lower_bound</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        length of the read/write buffer</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_len</span>
+
+    <span class="nd">@len.setter</span>
+    <span class="k">def</span> <span class="nf">len</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_len</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the read-write buffer</span>
+
+<span class="sd">        :raise: Cameraobscura error of not a non-negative number or string of form n[KM]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_bytes</span><span class="p">(</span><span class="n">IperfGeneralConstants</span><span class="o">.</span><span class="n">len</span><span class="p">,</span> <span class="n">new_len</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">print_mss</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flag to print the TCP maximum segment size at the end of the output</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_print_mss</span>
+
+    <span class="nd">@print_mss.setter</span>
+    <span class="k">def</span> <span class="nf">print_mss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        turns on the print_mss option.</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `turn_on`: resolvable to False to turn off or resolvable to True to turn on</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_boolean</span><span class="p">(</span><span class="n">IperfGeneralConstants</span><span class="o">.</span><span class="n">print_mss</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flag to send output to a file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output</span>
+
+    <span class="nd">@output.setter</span>
+    <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        sets the output flag to save to the given filename</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `filename`: string for filename</span>
+
+<span class="sd">        :raise: CameraobscuraError if filename has white-space</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_output</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">IperfConstants</span><span class="o">.</span><span class="n">no_whitespace_expression</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">filename</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s2">&quot;filename must be string of non-whitespace characters, not {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;output set to &#39;{0}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_output</span><span class="p">))</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">port</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The server port flag</span>
+
+<span class="sd">        :return: &#39;--port &lt;port number&gt;&#39; or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_port</span>
+
+    <span class="nd">@port.setter</span>
+    <span class="k">def</span> <span class="nf">port</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_port</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the port flag (I tested it and iperf accepts negative ports and floats (but drops the fractional part))</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `new_port`: integer (or string castable to integer) or None</span>
+
+<span class="sd">        :raise: CameraobscuraError if new-port is not integer</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_number</span><span class="p">(</span><span class="n">IperfGeneralConstants</span><span class="o">.</span><span class="n">port</span><span class="p">,</span> <span class="n">new_port</span><span class="p">,</span>
+                        <span class="n">lower_bound</span><span class="o">=</span><span class="n">IperfConstants</span><span class="o">.</span><span class="n">port_lower_bound</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The TCP window-size flag</span>
+
+<span class="sd">        :return: &#39; --window n[KM]&#39; or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_window</span>
+
+    <span class="nd">@window.setter</span>
+    <span class="k">def</span> <span class="nf">window</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_window</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the window size</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `new_window`: n[KM] or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_bytes</span><span class="p">(</span><span class="n">IperfGeneralConstants</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="n">new_window</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">compatibility</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The compatibilty flag to use with older versions of iperf</span>
+
+<span class="sd">        :return: &#39; --compatibility &#39; or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compatibility</span>
+
+    <span class="nd">@compatibility.setter</span>
+    <span class="k">def</span> <span class="nf">compatibility</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the compatibility flag</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `turn_on`: resolvable to True to set the flag, resolvable to False to turn it off</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_boolean</span><span class="p">(</span><span class="n">IperfGeneralConstants</span><span class="o">.</span><span class="n">compatibility</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">)</span>
+        <span class="k">return</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mss</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The TCP Maximum Segment Size flag</span>
+
+<span class="sd">        :return: ` --mss &lt;n&gt;`  or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mss</span>
+
+    <span class="nd">@mss.setter</span>
+    <span class="k">def</span> <span class="nf">mss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_mss</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the mss flag</span>
+
+<span class="sd">        :param:</span>
+<span class="sd">         - `new_mss`: number or string castable to an Integer or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_number</span><span class="p">(</span><span class="n">IperfGeneralConstants</span><span class="o">.</span><span class="n">mss</span><span class="p">,</span> <span class="n">new_mss</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">nodelay</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        the flag to turn of Nagle&#39;s algorithm (for TCP)</span>
+
+<span class="sd">        :return: &#39; --nodelay &#39; or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodelay</span>
+
+    <span class="nd">@nodelay.setter</span>
+    <span class="k">def</span> <span class="nf">nodelay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the nodelay flag</span>
+
+<span class="sd">        :param:</span>
+<span class="sd">         - `turn_on`: resolvable to True to turn on, to False to turn off</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_boolean</span><span class="p">(</span><span class="s1">&#39;_nodelay&#39;</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        the flag to get the iperf version number</span>
+
+<span class="sd">        :return: &#39; --version &#39; or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_version</span>
+
+    <span class="nd">@version.setter</span>
+    <span class="k">def</span> <span class="nf">version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        turns the version flag on or off</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `turn_on`: True to turn on, False to turn off</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_boolean</span><span class="p">(</span><span class="s1">&#39;_version&#39;</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">IPv6Version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The flag to turn on IP v6 support</span>
+
+<span class="sd">        :return: &#39; --IPv6Version &#39; or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_IPv6Version</span>
+
+    <span class="nd">@IPv6Version.setter</span>
+    <span class="k">def</span> <span class="nf">IPv6Version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Turns the IP v6 support flag on or off</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `turn_on`: True to turn on, False to turn off</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_boolean</span><span class="p">(</span><span class="s1">&#39;_IPv6Version&#39;</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">reportexclude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        returns the flag to turn off parts of the output</span>
+
+<span class="sd">        :return: &#39; --reportexclude [CDMSV]&#39; or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reportexclude</span>
+
+    <span class="nd">@reportexclude.setter</span>
+    <span class="k">def</span> <span class="nf">reportexclude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exclusions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        sets flag to exclude parts of the output</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `exclusions`: string with some combination of values [CDMSV] or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reportexclude</span> <span class="o">=</span> <span class="n">exclusions</span>
+        <span class="k">if</span> <span class="n">exclusions</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">exclusions</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">StringType</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s2">&quot;reportexclude options must be a string, not &#39;{0}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exclusions</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">IperfConstants</span><span class="o">.</span><span class="n">reportexclude_expression</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">exclusions</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s2">&quot;reportexclude options can only be one of [CDMSV] (case-insensitive), not &#39;{0}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exclusions</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;reportexclude set to &#39;{0}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exclusions</span><span class="p">))</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">reportstyle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        the flag to turn on csv-formatting</span>
+
+<span class="sd">        :return: &#39; --reportstyle [Cc]&#39; or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reportstyle</span>
+
+    <span class="nd">@reportstyle.setter</span>
+    <span class="k">def</span> <span class="nf">reportstyle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c_or_C</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the csv-output flag</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">          - `c_or_C`: &#39;c&#39;, &#39;C&#39;, or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reportstyle</span> <span class="o">=</span> <span class="n">c_or_C</span>
+        <span class="k">if</span> <span class="n">c_or_C</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">c_or_C</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">StringType</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s2">&quot;reportstyle must be &#39;c&#39; or &#39;C&#39;, not {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c_or_C</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">c_or_C</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">c_or_C</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s1">&#39;Cc&#39;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s1">&#39;reportstyle must be &quot;c&quot; or &quot;C&quot;, not {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c_or_C</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;reportstyle set to &#39;{0}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c_or_C</span><span class="p">))</span>
+        <span class="k">return</span>
+
+<div class="viewcode-block" id="IperfGeneralSettings.update"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfGeneralSettings.update.html#cameraobscura.commands.iperf.IperfSettings.IperfGeneralSettings.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the values based on parameters (dictionary of attribute:value)</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `parameters`: dict whose keys are settings names and values are valid settings</span>
+
+<span class="sd">        :return: dict with used parameters removed </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">matches</span> <span class="o">=</span> <span class="p">[(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">parameters</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="k">del</span> <span class="n">parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">parameters</span></div>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        returns the options that have been set with their values formatted to pass to iperf</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot; --{o} {v}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">o</span><span class="o">=</span><span class="n">option</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">))</span>
+                          <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">IperfConstants</span><span class="o">.</span><span class="n">general_options</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">])</span>
+        <span class="c1">#for option in IperfConstants.general_options:</span>
+        <span class="c1">#    if getattr(self, option) is not None:</span>
+        <span class="c1">#        output += &quot; --{o} {v}&quot;.format(o=option,</span>
+        <span class="c1">#                                      v=getattr(self, option))</span>
+        <span class="k">return</span> <span class="n">output</span></div>
+
+<div class="viewcode-block" id="IperfCompositeBase"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfCompositeBase.html#cameraobscura.commands.iperf.IperfSettings.IperfCompositeBase">[docs]</a><span class="k">class</span> <span class="nc">IperfCompositeBase</span><span class="p">(</span><span class="n">IperfBaseSettings</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A base class for the client and server settings</span>
+<span class="sd">    (which compose the Iperf General settings)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="IperfCompositeBase.__init__"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfCompositeBase.html#cameraobscura.commands.iperf.IperfSettings.IperfCompositeBase.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attributes</span><span class="p">,</span> <span class="n">udp</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">IperfCompositeBase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attributes</span> <span class="o">=</span> <span class="n">attributes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_udp</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">udp</span> <span class="o">=</span> <span class="n">udp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">general_settings</span> <span class="o">=</span> <span class="n">IperfGeneralSettings</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">udp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The flag to turn on UDP</span>
+
+<span class="sd">        :return: &#39; --udp &#39; or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_udp</span>
+
+    <span class="nd">@udp.setter</span>
+    <span class="k">def</span> <span class="nf">udp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Turns the udp flag on or off</span>
+
+<span class="sd">        :param;</span>
+
+<span class="sd">         - `turn_on`: resolvable to True to turn on, to False to turn off</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_boolean</span><span class="p">(</span><span class="n">IperfGeneralConstants</span><span class="o">.</span><span class="n">udp</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@abstractproperty</span>
+    <span class="k">def</span> <span class="nf">prefix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        First part of string (e.g. --client &lt;server&gt; or --server)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="IperfCompositeBase.set"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfCompositeBase.set.html#cameraobscura.commands.iperf.IperfSettings.IperfCompositeBase.set">[docs]</a>    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        this class aggregates the IperfGeneralSettings so this will try general settings first then self.&lt;attribute&gt;</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `attribute`: name of attribute to set (either from this class or IperfGeneralSettings)</span>
+<span class="sd">         - `value`: value to set attribute</span>
+
+<span class="sd">        :raise: CameraobscuraError if this class or IperfGeneralSettings doesn&#39;t have attribute</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">general_settings</span><span class="p">,</span> <span class="n">attribute</span><span class="p">):</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">general_settings</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">):</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># setattr will create the attribute if it didn&#39;t exist so</span>
+            <span class="c1"># setting it will never raise an error </span>
+            <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s2">&quot;Unknown Attribute: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">attribute</span><span class="p">))</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="IperfCompositeBase.get"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfCompositeBase.get.html#cameraobscura.commands.iperf.IperfSettings.IperfCompositeBase.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the value associated with the attribute from the General Settings</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `attribute`: name of a property to get</span>
+
+<span class="sd">        :raise: CameraobscuraError if the attribute is unknown</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">general_settings</span><span class="p">,</span> <span class="n">attribute</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s2">&quot;Unknown attribute: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">attribute</span><span class="p">))</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="IperfCompositeBase.update"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfCompositeBase.update.html#cameraobscura.commands.iperf.IperfSettings.IperfCompositeBase.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Updates self and IperfGeneral settings using parameters dictionary</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `parameters`: Dict of &#39;attribute:value&#39; pairs</span>
+
+<span class="sd">        :postcondition: self.general_settings and self updated</span>
+
+<span class="sd">        :return: dict of leftover parameters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                <span class="k">del</span> <span class="n">parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">except</span> <span class="n">CameraobscuraError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">parameters</span>            </div>
+
+<div class="viewcode-block" id="IperfCompositeBase.__str__"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfCompositeBase.__str__.html#cameraobscura.commands.iperf.IperfSettings.IperfCompositeBase.__str__">[docs]</a>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Outputs the settings (everything to pass to the iperf command)</span>
+
+<span class="sd">        :precondition: self.prefix is a string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39; --{o} {v}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">o</span><span class="o">=</span><span class="n">option</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">))</span>
+                           <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">attributes</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">])</span>
+        <span class="k">return</span>  <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="n">options</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">general_settings</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="IperfServerSettings"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfServerSettings.html#cameraobscura.commands.iperf.IperfSettings.IperfServerSettings">[docs]</a><span class="k">class</span> <span class="nc">IperfServerSettings</span><span class="p">(</span><span class="n">IperfCompositeBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A holder of settings for Iperf Servers</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="IperfServerSettings.__init__"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfServerSettings.html#cameraobscura.commands.iperf.IperfSettings.IperfServerSettings.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">single_udp</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        IperfServerSettings constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `daemon`: Boolean to turn daemon mode on or off</span>
+<span class="sd">         - `single_udp`: Boolean to turn UDP single-threaded mode on or off</span>
+<span class="sd">         - `kwargs`: whatever IperfGeneralSettings takes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">IperfServerSettings</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">attributes</span><span class="o">=</span><span class="n">IperfConstants</span><span class="o">.</span><span class="n">server_options</span><span class="p">,</span>
+                                                  <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_daemon</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="n">daemon</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_single_udp</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">single_udp</span> <span class="o">=</span> <span class="n">single_udp</span>
+        <span class="c1">#self.general_settings = IperfGeneralSettings(**kwargs)</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">prefix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        the server flag</span>
+
+<span class="sd">        :return: ` --server `</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span> <span class="o">=</span> <span class="s1">&#39; --server&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">daemon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flag to turn on daemon mode</span>
+
+<span class="sd">        :return: &#39; --daemon&#39; or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_daemon</span>
+
+    <span class="nd">@daemon.setter</span>
+    <span class="k">def</span> <span class="nf">daemon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        sets or unsets the daemon flag</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `turn_on`: True to turn on, False to turn off</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_boolean</span><span class="p">(</span><span class="s1">&#39;_daemon&#39;</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">single_udp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The flag to turn on single-threaded UDP mode</span>
+
+<span class="sd">        :return: &#39;--single_udp&#39; or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_single_udp</span>
+
+    <span class="nd">@single_udp.setter</span>
+    <span class="k">def</span> <span class="nf">single_udp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        sets the flag to run in single-threaded UDP mode</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `turn_on`: True to turn on the flag, False to turn it off</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_boolean</span><span class="p">(</span><span class="s1">&#39;_single_udp&#39;</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">)</span>
+        <span class="k">return</span></div>
+<span class="c1"># end class IperfServerSettings</span>
+
+<span class="k">class</span> <span class="nc">IperfClientConstants</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constants for the IperfClientSettings</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;udp&#39;</span><span class="p">,</span> <span class="s1">&#39;bandwidth&#39;</span><span class="p">,</span> <span class="s1">&#39;dualtest&#39;</span><span class="p">,</span> <span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="s1">&#39;tradeoff&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;fileinput&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;stdin&#39;</span><span class="p">,</span> <span class="s1">&#39;listenport&#39;</span><span class="p">,</span> <span class="s1">&#39;parallel&#39;</span><span class="p">,</span> <span class="s1">&#39;ttl&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># attributes</span>
+    <span class="n">bandwidth</span> <span class="o">=</span> <span class="s1">&#39;_bandwidth&#39;</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="s1">&#39;_num&#39;</span>
+    <span class="n">tradeoff</span> <span class="o">=</span> <span class="s1">&#39;_tradeoff&#39;</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="s1">&#39;_time&#39;</span>
+    <span class="n">stdin</span> <span class="o">=</span> <span class="s1">&#39;_stdin&#39;</span>
+    <span class="n">listenport</span> <span class="o">=</span> <span class="s1">&#39;_listenport&#39;</span>
+    <span class="n">parallel</span> <span class="o">=</span> <span class="s1">&#39;_parallel&#39;</span>
+    <span class="n">ttl</span> <span class="o">=</span> <span class="s1">&#39;_ttl&#39;</span>
+
+<div class="viewcode-block" id="IperfClientSettings"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfClientSettings.html#cameraobscura.commands.iperf.IperfSettings.IperfClientSettings">[docs]</a><span class="k">class</span> <span class="nc">IperfClientSettings</span><span class="p">(</span><span class="n">IperfCompositeBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Settings for iperf clients</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="IperfClientSettings.__init__"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfClientSettings.html#cameraobscura.commands.iperf.IperfSettings.IperfClientSettings.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">server</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">dualtest</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">tradeoff</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">fileinput</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">listenport</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ttl</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">linux_congestion</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        IperfClientSettings constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `server`: hostname of the target iperf server</span>
+<span class="sd">         - `bandwidth`: UDP target bandwidth</span>
+<span class="sd">         - `dualtest`: Boolean to enable simultaneous bi-directional testing</span>
+<span class="sd">         - `num`: number of bytes to transmit before stopping</span>
+<span class="sd">         - `tradeoff`: Boolean to enable separate bi-directional testing</span>
+<span class="sd">         - `time`: number of seconds to run</span>
+<span class="sd">         - `fileinput`: Name of a file to provide data to transmit</span>
+<span class="sd">         - `stdin`: flag to take data from stdin</span>
+<span class="sd">         - `listenport`: port to listen on when running bi-directional traffic</span>
+<span class="sd">         - `parallel`: Number of threads to run</span>
+<span class="sd">         - `ttl`: Time-to-liver for multicast traffic</span>
+<span class="sd">         - `linux_congestion`: TCP control algorithm to use (Linux only)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">IperfClientSettings</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">attributes</span><span class="o">=</span><span class="n">IperfClientConstants</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_server</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">server</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bandwidth</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bandwidth</span> <span class="o">=</span> <span class="n">bandwidth</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dualtest</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dualtest</span> <span class="o">=</span> <span class="n">dualtest</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_num</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">num</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tradeoff</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tradeoff</span> <span class="o">=</span> <span class="n">tradeoff</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">time</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fileinput</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fileinput</span> <span class="o">=</span> <span class="n">fileinput</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stdin</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stdin</span> <span class="o">=</span> <span class="n">stdin</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_listenport</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listenport</span> <span class="o">=</span> <span class="n">listenport</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parallel</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parallel</span> <span class="o">=</span> <span class="n">parallel</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ttl</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ttl</span> <span class="o">=</span> <span class="n">ttl</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_linux_congestion</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linux_congestion</span> <span class="o">=</span> <span class="n">linux_congestion</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">prefix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prefix for options</span>
+
+<span class="sd">        :return: --client &lt;server address&gt;</span>
+<span class="sd">        :raise: CameraobscuraError if self._server is None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span> <span class="o">=</span> <span class="s2">&quot; --client &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span>
+            <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s2">&quot;server hostname must be set before use -- currently {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">server</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        hostname for the target server</span>
+
+<span class="sd">        :return: &lt;server address or None&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server</span>    
+        
+    <span class="nd">@server.setter</span>
+    <span class="k">def</span> <span class="nf">server</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the hostname for the target server</span>
+
+<span class="sd">        the server attribute was added because I kept forgetting what it was called when I wanted to change it</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `hostname`: address of the target iperf server</span>
+
+<span class="sd">        :postcondition: self._prefix is None, self._server = hostname</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_server</span> <span class="o">=</span> <span class="n">hostname</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bandwidth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The flag to set the udp bandwidith</span>
+
+<span class="sd">        :return: &#39; --bandwidth &lt;bits/sec&gt;&#39; or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bandwidth</span>
+
+    <span class="nd">@bandwidth.setter</span>
+    <span class="k">def</span> <span class="nf">bandwidth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_bandwidth</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the bandwidth flag (and the UDP flag)</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         -  `new_bandwidth`: n[KM] or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_bytes</span><span class="p">(</span><span class="n">IperfClientConstants</span><span class="o">.</span><span class="n">bandwidth</span><span class="p">,</span> <span class="n">new_bandwidth</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dualtest</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flag to enable simultaneous bi-directional testing</span>
+
+<span class="sd">        :return: ` --dualtest ` or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dualtest</span>
+
+    <span class="nd">@dualtest.setter</span>
+    <span class="k">def</span> <span class="nf">dualtest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        enables or disables the dualtest flag</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `turn_on`: Boolean which if True enables the flag</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_boolean</span><span class="p">(</span><span class="s1">&#39;_dualtest&#39;</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">num</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flag to set limit of bytes to send (instead of stopping after a certain amount of time)</span>
+
+<span class="sd">        :return: ` --num n[KM]` or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num</span>
+
+    <span class="nd">@num.setter</span>
+    <span class="k">def</span> <span class="nf">num</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_num</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the number of bytes to transmit</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `new_num`: n[KM] or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_bytes</span><span class="p">(</span><span class="n">IperfClientConstants</span><span class="o">.</span><span class="n">num</span><span class="p">,</span> <span class="n">new_num</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">tradeoff</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flag to enable separate bi-directional testing</span>
+
+<span class="sd">        :return: ` --tradeoff ` or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tradeoff</span>
+
+    <span class="nd">@tradeoff.setter</span>
+    <span class="k">def</span> <span class="nf">tradeoff</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        enables or disables the separate bi-directional flag</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `turn_on`: Boolean which if True sets flag</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_boolean</span><span class="p">(</span><span class="n">IperfClientConstants</span><span class="o">.</span><span class="n">tradeoff</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flag to set the number of seconds to transmit</span>
+
+<span class="sd">        :return: ` --time &lt;seconds&gt; ` or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time</span>
+
+    <span class="nd">@time.setter</span>
+    <span class="k">def</span> <span class="nf">time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_time</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the flag to set the number of seconds to run</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `new_time`: number or None (negative numbers will run infinitely (or at least until the apocalypse))</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_number</span><span class="p">(</span><span class="n">IperfClientConstants</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">new_time</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">fileinput</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flag to set filename to provide data to transmit instead of random bytes.</span>
+
+<span class="sd">        :return: ` --fileinput &lt;filename&gt;` or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fileinput</span>
+
+    <span class="nd">@fileinput.setter</span>
+    <span class="k">def</span> <span class="nf">fileinput</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the flag to use a file for data transmission instead of random bytes</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `filename`: name of file with data</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fileinput</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">stdin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flag to accept data from stdin</span>
+
+<span class="sd">        :return: ` --stdin` or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stdin</span>
+
+    <span class="nd">@stdin.setter</span>
+    <span class="k">def</span> <span class="nf">stdin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Enables or disables flag to take data from standard input.</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `turn_on`: Boolean to enable or disable the flag.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_boolean</span><span class="p">(</span><span class="n">IperfClientConstants</span><span class="o">.</span><span class="n">stdin</span><span class="p">,</span> <span class="n">turn_on</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">listenport</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The flag to set the port to listen to when running bi-directional traffic</span>
+
+<span class="sd">        :return: ` --listenport &lt;port&gt;` or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_listenport</span>
+
+    <span class="nd">@listenport.setter</span>
+    <span class="k">def</span> <span class="nf">listenport</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_port</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the port to listen to</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `new_port`: number for port</span>
+
+<span class="sd">        :raise: CameraobscuraError if not a number or less than 1024</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_number</span><span class="p">(</span><span class="n">IperfClientConstants</span><span class="o">.</span><span class="n">listenport</span><span class="p">,</span> <span class="n">new_port</span><span class="p">,</span>
+                        <span class="n">lower_bound</span><span class="o">=</span><span class="n">IperfConstants</span><span class="o">.</span><span class="n">port_lower_bound</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flag to set the number of parallel threads to run</span>
+
+<span class="sd">        :return: ` --parallel &lt;threads&gt;` or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parallel</span>
+
+    <span class="nd">@parallel.setter</span>
+    <span class="k">def</span> <span class="nf">parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threads</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the flag for the number of parallel threads to run</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `threads`: number of threads (anything non-numeric or &lt; 2 will be ignored)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_number</span><span class="p">(</span><span class="n">IperfClientConstants</span><span class="o">.</span><span class="n">parallel</span><span class="p">,</span> <span class="n">threads</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ttl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The flag to set the time-to-live for multicast traffic</span>
+
+<span class="sd">        :return: ` --ttl &lt;time-to-live&gt;` or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ttl</span>
+
+    <span class="nd">@ttl.setter</span>
+    <span class="k">def</span> <span class="nf">ttl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_to_live</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the time-to-live flag</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `time_to_live`: interger time-to-live for multicast packets</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_number</span><span class="p">(</span><span class="n">IperfClientConstants</span><span class="o">.</span><span class="n">ttl</span><span class="p">,</span> <span class="n">time_to_live</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">linux_congestion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The flag to set the TCP congestion control algorithm</span>
+
+<span class="sd">        :return: ` --linux-congestion &lt;algorithm&gt;` or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_linux_congestion</span>
+
+    <span class="nd">@linux_congestion.setter</span>
+    <span class="k">def</span> <span class="nf">linux_congestion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the TCP congestion-control algorithm flag</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `algorithm`: name of algorithm to use</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_linux_congestion</span> <span class="o">=</span> <span class="n">algorithm</span>
+        <span class="k">return</span>
+
+<div class="viewcode-block" id="IperfClientSettings.__str__"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.IperfSettings.IperfClientSettings.__str__.html#cameraobscura.commands.iperf.IperfSettings.IperfClientSettings.__str__">[docs]</a>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        settings string like parent-class but added to hands non-standard &#39;--linux-congestion&#39; option</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">IperfClientSettings</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__str__</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">linux_congestion</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot; --linux-congestion {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linux_congestion</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span></div></div>
+<span class="c1"># end class IperfClientSettings</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">pudb</span><span class="p">;</span> <span class="n">pudb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
+    <span class="n">configuration</span> <span class="o">=</span> <span class="n">IperfServerSettings</span><span class="p">()</span>
+    <span class="n">configuration</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;interval&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            
+    <span class="n">expected</span> <span class="o">=</span> <span class="s2">&quot; --server --interval 1&quot;</span>
+    <span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

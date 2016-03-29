@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The RVRConfiguration &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../index.html" />
+    <link rel="up" title="Rate-Vs-Range" href="index.html" />
+    <link rel="next" title="cameraobscura.ratevsrange.rvrconfiguration.optionalsection" href="api/cameraobscura.ratevsrange.rvrconfiguration.optionalsection.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The RVRConfiguration</a><ul>
+<li><a class="reference internal" href="#configuration-constants">Configuration Constants</a></li>
+<li><a class="reference internal" href="#the-optional-section-handler">The Optional Section Handler</a></li>
+<li><a class="reference internal" href="#rvrconfiguration-class">RVRConfiguration Class</a><ul>
+<li><a class="reference internal" href="#the-configuration-properties">The Configuration Properties</a></li>
+<li><a class="reference internal" href="#the-attributes">The Attributes</a><ul>
+<li><a class="reference internal" href="#the-ping-attribute">The Ping Attribute</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-attenuation-configuration">The Attenuation Configuration</a><ul>
+<li><a class="reference internal" href="#id2">The Attributes</a><ul>
+<li><a class="reference internal" href="#the-stop-attenuation-attribute">The Stop Attenuation Attribute</a></li>
+<li><a class="reference internal" href="#name">Name</a></li>
+<li><a class="reference internal" href="#control-ip">Control IP</a></li>
+<li><a class="reference internal" href="#start">Start</a></li>
+<li><a class="reference internal" href="#step-sizes">Step Sizes</a></li>
+<li><a class="reference internal" href="#step-change-thresholds">Step Change Thresholds</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-reset-method">The Reset Method</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-other-configuration">The Other Configuration</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="api/cameraobscura.ratevsrange.rvrconfiguration.optionalsection.html" title="Next Chapter: cameraobscura.ratevsrange.rvrconfiguration.optionalsection"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">cameraobscura... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/ratevsrange/rvrconfiguration.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="the-rvrconfiguration">
+<h1>The RVRConfiguration<a class="headerlink" href="#the-rvrconfiguration" title="Permalink to this headline">¶</a></h1>
+<p>This is a class to hold the attributes for the running of the RVR test. Since there are so many the different sections will each be given a class and then aggregated into the <cite>RVRConfiguration</cite> class.</p>
+<span class="target" id="module-cameraobscura.ratevsrange.rvrconfiguration"></span><div class="section" id="configuration-constants">
+<span id="rvrconfiguration-constants"></span><h2>Configuration Constants<a class="headerlink" href="#configuration-constants" title="Permalink to this headline">¶</a></h2>
+<p>I started calling these enums a while back, but they&#8217;re really constant-holders. The main purpose is to use dot-notation instead of strings in the classes to try and reduce errors, as well as to put them all in the same place.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AttenuationEnum</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constants for the [attenuation] section</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;attenuation&#39;</span>
+
+    <span class="c1"># options</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="s1">&#39;stop&#39;</span>
+    <span class="n">name</span> <span class="o">=</span><span class="s1">&#39;name&#39;</span>
+    <span class="n">control_ip</span> <span class="o">=</span> <span class="s1">&#39;control_ip&#39;</span>
+    <span class="n">interface</span> <span class="o">=</span> <span class="s1">&#39;interface&#39;</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="s1">&#39;start&#39;</span>
+    <span class="n">step_sizes</span> <span class="o">=</span> <span class="s1">&#39;step_sizes&#39;</span>
+    <span class="n">step</span> <span class="o">=</span> <span class="s1">&#39;step&#39;</span>
+    <span class="n">step_list</span> <span class="o">=</span> <span class="s1">&#39;step_list&#39;</span>
+    <span class="n">reversal_limit</span> <span class="o">=</span> <span class="s1">&#39;reversal_limit&#39;</span>
+    <span class="n">step_change_thresholds</span> <span class="o">=</span> <span class="s1">&#39;step_change_thresholds&#39;</span>
+    <span class="n">stepchange</span> <span class="o">=</span> <span class="s1">&#39;stepchange&#39;</span>
+
+    <span class="c1"># defaults</span>
+    <span class="n">default_attenuator</span> <span class="o">=</span> <span class="s1">&#39;WeinschelP&#39;</span>
+    <span class="n">default_start</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">default_reversal_limit</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">default_stop</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">maxint</span>
+    <span class="n">default_step_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># constants</span>
+    <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+
+
+<span class="n">ATTENUATION_LOG_STRING</span> <span class="o">=</span> <span class="s1">&#39;[attenuation] </span><span class="si">{0}</span><span class="s1"> = </span><span class="si">{1}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DutEnum</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Holder of constants for the DUT</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;dut&#39;</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ServerEnum</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Holder of constants for the server</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;server&#39;</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OtherEnum</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Holder of constants for the other section</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;other&#39;</span>
+
+    <span class="c1"># options</span>
+    <span class="n">result_location</span> <span class="o">=</span> <span class="s1">&#39;result_location&#39;</span>
+    <span class="n">test_name</span> <span class="o">=</span> <span class="s1">&#39;test_name&#39;</span>
+    <span class="n">ping</span> <span class="o">=</span><span class="s1">&#39;ping&#39;</span>
+    <span class="n">repetitions</span> <span class="o">=</span> <span class="s1">&#39;repetitions&#39;</span>
+    <span class="n">recovery_time</span> <span class="o">=</span> <span class="s1">&#39;recovery_time&#39;</span>
+
+    <span class="c1">#defaults</span>
+    <span class="n">default_result_location</span> <span class="o">=</span> <span class="s1">&#39;output_folder&#39;</span>
+    <span class="n">default_test_name</span> <span class="o">=</span> <span class="s1">&#39;rate_vs_range&#39;</span>
+    <span class="n">default_repetitions</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">default_recovery_time</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1"># end other Enum</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TrafficEnum</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A holder of iperf traffic constants</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;iperf&#39;</span>
+    <span class="n">old_section</span> <span class="o">=</span> <span class="s1">&#39;traffic&#39;</span>
+
+    <span class="c1"># directions</span>
+    <span class="n">upstream</span> <span class="o">=</span> <span class="n">IperfConstants</span><span class="o">.</span><span class="n">up</span>
+    <span class="n">downstream</span> <span class="o">=</span> <span class="n">IperfConstants</span><span class="o">.</span><span class="n">down</span>
+    <span class="n">both</span> <span class="o">=</span> <span class="s1">&#39;both&#39;</span>
+
+    <span class="c1"># options</span>
+    <span class="n">direction</span> <span class="o">=</span> <span class="s1">&#39;direction&#39;</span>
+
+    <span class="c1"># defaults</span>
+    <span class="n">default_direction</span> <span class="o">=</span> <span class="n">both</span>
+
+    <span class="n">false</span> <span class="o">=</span> <span class="s1">&#39;no false off&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-optional-section-handler">
+<span id="rvrconfiguration-optionalsection"></span><h2>The Optional Section Handler<a class="headerlink" href="#the-optional-section-handler" title="Permalink to this headline">¶</a></h2>
+<p>Since I&#8217;ve added so many defaults I&#8217;ve decided to create a decorator to deal with missing sections.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.optionalsection.html#cameraobscura.ratevsrange.rvrconfiguration.optionalsection" title="cameraobscura.ratevsrange.rvrconfiguration.optionalsection"><code class="xref py py-obj docutils literal"><span class="pre">optionalsection</span></code></a>(method,&nbsp;*args,&nbsp;**kwargs)</td>
+<td>function to use as a method decorator (expects <code class="docutils literal"><span class="pre">self</span></code> as one of the arguments)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rvrconfiguration-class">
+<span id="id1"></span><h2>RVRConfiguration Class<a class="headerlink" href="#rvrconfiguration-class" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.html#cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration" title="cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration"><code class="xref py py-obj docutils literal"><span class="pre">RVRConfiguration</span></code></a>(configuration)</td>
+<td>A holder of the RVR Configuration</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.attenuation.html#cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.attenuation" title="cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.attenuation"><code class="xref py py-obj docutils literal"><span class="pre">RVRConfiguration.attenuation</span></code></a></td>
+<td>An Attenuation Section Configuration</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.query.html#cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.query" title="cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.query"><code class="xref py py-obj docutils literal"><span class="pre">RVRConfiguration.query</span></code></a></td>
+<td>A Query configuration</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.dut.html#cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.dut" title="cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.dut"><code class="xref py py-obj docutils literal"><span class="pre">RVRConfiguration.dut</span></code></a></td>
+<td>The client&#8217;s configuration</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.server.html#cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.server" title="cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.server"><code class="xref py py-obj docutils literal"><span class="pre">RVRConfiguration.server</span></code></a></td>
+<td>The server&#8217;s configuration</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.other.html#cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.other" title="cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.other"><code class="xref py py-obj docutils literal"><span class="pre">RVRConfiguration.other</span></code></a></td>
+<td>Gets the Other Configuration</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.traffic.html#cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.traffic" title="cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.traffic"><code class="xref py py-obj docutils literal"><span class="pre">RVRConfiguration.traffic</span></code></a></td>
+<td>The Traffic Configuration</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.reset.html#cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.reset" title="cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.reset"><code class="xref py py-obj docutils literal"><span class="pre">RVRConfiguration.reset</span></code></a>()</td>
+<td>Resets the attributes to None</td>
+</tr>
+</tbody>
+</table>
+<p class="plantuml">
+<img src="../_images/plantuml-5a352970584272774f8e99b13a70a2f3db19a405.png" alt="RVRConfiguration o- ConfigurationAdapter
+RVRConfiguration o- AttenuationConfiguration
+RVRConfiguration o- DumpConfiguration
+RVRConfiguration o- QueryConfiguration
+RVRConfiguration o- HostConfiguration
+RVRConfiguration o- OtherConfiguration
+RVRConfiguration o- IperfConfiguration" />
+</p>
+<div class="section" id="the-configuration-properties">
+<h3>The Configuration Properties<a class="headerlink" href="#the-configuration-properties" title="Permalink to this headline">¶</a></h3>
+<p>For each of the required sub-configurations the RVRConfiguration has a property that builds it. For required sub-configurations the procedure is:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Create sub-configuration, passing in self.configuration to the constructor</li>
+<li>Set property to sub-configuration</li>
+<li>Cast the sub-configuration to a string and log it at the debug level</li>
+<li>Call the sub-configuration&#8217;s <code class="docutils literal"><span class="pre">check_rep</span></code> method</li>
+</ol>
+</div></blockquote>
+<p>If any check_rep fails it will raise a <code class="docutils literal"><span class="pre">ConfigurationError</span></code>.</p>
+<p>For the optional sub-configurations (like the Query), the procedure above is preceded by a check to see if the configuration has the section-header it needs, if not it quits.</p>
+</div>
+<div class="section" id="the-attributes">
+<h3>The Attributes<a class="headerlink" href="#the-attributes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="the-ping-attribute">
+<h4>The Ping Attribute<a class="headerlink" href="#the-ping-attribute" title="Permalink to this headline">¶</a></h4>
+<p><cite>ping</cite> is an option of the <cite>other</cite> section. It is optional with a default of True. The possible outcomes are:</p>
+<table border="1" class="docutils" id="id3">
+<caption><span class="caption-text">Ping Attribute</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Option</th>
+<th class="head">Value</th>
+<th class="head">Return</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ping</td>
+<td>true or 1 or on</td>
+<td>True</td>
+</tr>
+<tr class="row-odd"><td>ping</td>
+<td>false or 0 or off</td>
+<td>False</td>
+</tr>
+<tr class="row-even"><td>None</td>
+<td>None</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="the-attenuation-configuration">
+<span id="attenuation-configuration"></span><h2>The Attenuation Configuration<a class="headerlink" href="#the-attenuation-configuration" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils" id="id4">
+<caption><span class="caption-text">Attenuation Options</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Option</th>
+<th class="head">Default</th>
+<th class="head">Notes</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>maximum</td>
+<td>sys.maxint</td>
+<td>Maximum to attenuate</td>
+</tr>
+<tr class="row-odd"><td>name</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Name of the attenuator (used by the AttenuatorFactory)</td>
+</tr>
+<tr class="row-even"><td>control_ip</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Was called &#8216;interface&#8217; but is actually the IP address</td>
+</tr>
+<tr class="row-odd"><td>start</td>
+<td>0</td>
+<td>Starting attenuation</td>
+</tr>
+<tr class="row-even"><td>step_sizes</td>
+<td>[1]</td>
+<td>Old &#8216;step&#8217; option &#8211; Amounts to increase the attenuation</td>
+</tr>
+<tr class="row-odd"><td>step_change_thresholds</td>
+<td>None</td>
+<td>old <cite>stepchange</cite> option &#8211;iterator of thresholds or None</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">These changes need to be emphasized to users. There will be a configuration incompatibility otherwise.</p>
+</div>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.html#cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration" title="cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration"><code class="xref py py-obj docutils literal"><span class="pre">AttenuationConfiguration</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>Configuration for the Attenuation settings</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.stop.html#cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.stop" title="cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.stop"><code class="xref py py-obj docutils literal"><span class="pre">AttenuationConfiguration.stop</span></code></a></td>
+<td>Gets the maximum attenuation from the config-file</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.name.html#cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.name" title="cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.name"><code class="xref py py-obj docutils literal"><span class="pre">AttenuationConfiguration.name</span></code></a></td>
+<td>Gets the name of the Attenuator for the AttenuatorFactory</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.start.html#cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.start" title="cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.start"><code class="xref py py-obj docutils literal"><span class="pre">AttenuationConfiguration.start</span></code></a></td>
+<td>The starting attenuation value</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.control_ip.html#cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.control_ip" title="cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.control_ip"><code class="xref py py-obj docutils literal"><span class="pre">AttenuationConfiguration.control_ip</span></code></a></td>
+<td>The old option was <cite>interface</cite> so it will try that if <cite>control_ip</cite> is missing.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.step_sizes.html#cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.step_sizes" title="cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.step_sizes"><code class="xref py py-obj docutils literal"><span class="pre">AttenuationConfiguration.step_sizes</span></code></a></td>
+<td>The amounts to increase the attenuation with each pass.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.step_change_thresholds.html#cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.step_change_thresholds" title="cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.step_change_thresholds"><code class="xref py py-obj docutils literal"><span class="pre">AttenuationConfiguration.step_change_thresholds</span></code></a></td>
+<td>The thresholds which if exceeded triggers a change in step-size</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.step_list.html#cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.step_list" title="cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.step_list"><code class="xref py py-obj docutils literal"><span class="pre">AttenuationConfiguration.step_list</span></code></a></td>
+<td>Gets a list of steps to take</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.reversal_limit.html#cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.reversal_limit" title="cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.reversal_limit"><code class="xref py py-obj docutils literal"><span class="pre">AttenuationConfiguration.reversal_limit</span></code></a></td>
+<td>number of times to change attenuation direction</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id2">
+<h3>The Attributes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="the-stop-attenuation-attribute">
+<h4>The Stop Attenuation Attribute<a class="headerlink" href="#the-stop-attenuation-attribute" title="Permalink to this headline">¶</a></h4>
+<p>This uses the <cite>stop</cite> option in the <cite>attenuation</cite> section of the config-file.</p>
+<p>This is used when the ping isn&#8217;t used or the user wants to short-circuit the test at some level. Since the AutomatedRVR.Test is using asking the attenuator for the maximum it will allow (and uses that as the sentinal to quit the RunTest while loop), this will return the largest integer that the system will allow if the user doesn&#8217;t set it, that way in the code you can set the <cite>atten_max</cite> variable using something like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">atten_max</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">rvr_configuration</span><span class="o">.</span><span class="n">attenuation</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span>
+                <span class="n">attenuator</span><span class="o">.</span><span class="n">getAttenMax</span><span class="p">())</span>
+</pre></div>
+</div>
+<table border="1" class="docutils" id="id5">
+<caption><span class="caption-text">Stop Attenuation Attribute</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Option</th>
+<th class="head">Value</th>
+<th class="head">Return</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>stop</td>
+<td>&lt;some integer&gt;</td>
+<td>&lt;some integer&gt;</td>
+</tr>
+<tr class="row-odd"><td>None</td>
+<td>None</td>
+<td>sys.maxint</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Henry suggested calling this &#8216;maximum&#8217;, which it was for a while but since there was an existing <cite>start</cite> attribute I changed it to <cite>stop</cite> so there would be a more obvious pairing of the terms.</p>
+</div>
+</div>
+<div class="section" id="name">
+<h4>Name<a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h4>
+<p>The <cite>name</cite> attribute is the name of the Attenuator as recognized by the AttenuatorFactory located elsewhere in this package. It is optional with the name held in the <cite>AttenuationEnum.default_attenuator</cite>.</p>
+</div>
+<div class="section" id="control-ip">
+<h4>Control IP<a class="headerlink" href="#control-ip" title="Permalink to this headline">¶</a></h4>
+<p>The <cite>control_ip</cite> attribute is the IP address (or hostname) used to reach the Attenuator. The old configuration was expecting <cite>interface</cite> as the name so it accepts that as well, but I&#8217;ve changed it to <cite>control_ip</cite> since <cite>interface</cite> suggests the name of a network interface and the client and server configurations are using <cite>control_ip</cite>.</p>
+</div>
+<div class="section" id="start">
+<h4>Start<a class="headerlink" href="#start" title="Permalink to this headline">¶</a></h4>
+<p>The <cite>start</cite> attribute holds the starting attenutation value. It is optional with a default of 0.</p>
+</div>
+<div class="section" id="step-sizes">
+<h4>Step Sizes<a class="headerlink" href="#step-sizes" title="Permalink to this headline">¶</a></h4>
+<p>The <cite>step_sizes</cite> attribute holds the list of step-sizes to use. This is the same as the old <cite>step</cite> attribute, but since it&#8217;s a list and not a single value I renamed it to <cite>step_sizes</cite>. The default is a list with the value of 1.</p>
+</div>
+<div class="section" id="step-change-thresholds">
+<h4>Step Change Thresholds<a class="headerlink" href="#step-change-thresholds" title="Permalink to this headline">¶</a></h4>
+<p>The <cite>step_change_thresholds</cite> attribute is a list of threshold values to trigger a change in step size. If, for instance, the <cite>step_sizes</cite> has two values (1, 2) and the <cite>step_change_thresholds</cite> has 1 value (400) then the attenuation will increase by 1 on each iteration and then when the attenuation exceeds 400, the attenutation will increase by 2 on each iteration. It has a default of None, which will tell the <span class="xref std std-ref">StepIterator</span> that the step-size doesn&#8217;t change.</p>
+</div>
+</div>
+<div class="section" id="the-reset-method">
+<h3>The Reset Method<a class="headerlink" href="#the-reset-method" title="Permalink to this headline">¶</a></h3>
+<p>The only method the AttenuationConfiguration has is <cite>reset</cite> which will set the attributes back to None. This was implemented to make testing easier, but would also allow the object to be re-used if the configuration was changed.</p>
+</div>
+</div>
+<div class="section" id="the-other-configuration">
+<span id="other-configuration"></span><h2>The Other Configuration<a class="headerlink" href="#the-other-configuration" title="Permalink to this headline">¶</a></h2>
+<p>This is a place for leftover things.</p>
+<span class="target" id="module-cameraobscura.ratevsrange.rvrconfiguration"></span><table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration.html#cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration" title="cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration"><code class="xref py py-obj docutils literal"><span class="pre">OtherConfiguration</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>A holder of leftover parts</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration.result_location.html#cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration.result_location" title="cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration.result_location"><code class="xref py py-obj docutils literal"><span class="pre">OtherConfiguration.result_location</span></code></a></td>
+<td>The name of the output folder (default = &#8216;output_files&#8217;)</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration.test_name.html#cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration.test_name" title="cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration.test_name"><code class="xref py py-obj docutils literal"><span class="pre">OtherConfiguration.test_name</span></code></a></td>
+<td>The name to use for the test.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">OtherConfiguration.ping</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration.repetitions.html#cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration.repetitions" title="cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration.repetitions"><code class="xref py py-obj docutils literal"><span class="pre">OtherConfiguration.repetitions</span></code></a></td>
+<td>Gets number of times to repeat the same test</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

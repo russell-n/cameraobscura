@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Query Configuration &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Query Configuration</a><ul>
+<li><a class="reference internal" href="#delimiter"><code class="docutils literal"><span class="pre">delimiter</span></code></a></li>
+<li><a class="reference internal" href="#filename"><code class="docutils literal"><span class="pre">filename</span></code></a></li>
+<li><a class="reference internal" href="#timeout"><code class="docutils literal"><span class="pre">timeout</span></code></a></li>
+<li><a class="reference internal" href="#trap-errors"><code class="docutils literal"><span class="pre">trap_errors</span></code></a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../../../_sources/documentation/user/user_interface/configuration_sections/configuration_query.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="query-configuration">
+<h1>Query Configuration<a class="headerlink" href="#query-configuration" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal"><span class="pre">query</span></code> section is an optional section that allows the user to make arbitrary queries to the device in the chamber (DUT) between tests. It was created because there appeared to be some unused code that did things like retrieve RSSI and similar information. Since it&#8217;s completely free-form it is simultaneously somewhat restricted &#8211; each command has to be accompanied by a regular expression that will extract the desired data using <a class="reference external" href="https://docs.python.org/2/howto/regex.html#grouping">groups</a>. This is because output is being put into a csv and different commands put out differing lines of output (and much of the interesting data is accessible through non-standard commands (e.g. <code class="docutils literal"><span class="pre">wl</span></code> vs <code class="docutils literal"><span class="pre">iw</span></code>...)).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The connection being used is being configured by the <cite>dut</cite> section. If you set the <code class="docutils literal"><span class="pre">prefix</span></code> in it, you don&#8217;t have to use the full path for the command here (if it&#8217;s not in the PATH). On the other hand, if these commands are in some strange place where only they are (i.e. not the same place as iperf or ping) then you can put the full path here and forget the <code class="docutils literal"><span class="pre">prefix</span></code> in the <code class="docutils literal"><span class="pre">dut</span></code> section. Either (or both) will work, but putting &#8216;adb shell&#8217; in both places won&#8217;t.</p>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#[query]</span>
+<span class="c1">#delimiter =  ,</span>
+<span class="c1"># filename = query.csv</span>
+<span class="c1"># timeout = 10</span>
+<span class="c1"># trap_errors = trap_errors</span>
+<span class="c1"># &lt;column-header&gt; = &lt;command&gt;&lt;delimiter&gt;&lt;regular expression&gt;</span>
+<span class="c1">#rssi = iwconfig wlan0,Signal\slevel=(-\d+\sdBm)</span>
+<span class="c1">#noise = wl noise, (.*)</span>
+<span class="c1">#bitrate = iwconfig wlan0, Bit\sRate=(\d+\.\d\sMb/s)</span>
+<span class="c1">#counters = wl counters, (rxcrsglitch [0-9]* )</span>
+</pre></div>
+</div>
+<p>The basic format for each &#8216;query&#8217; you want to make:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">identifier</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">command</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">regular</span> <span class="n">expression</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<table border="1" class="docutils" id="id1">
+<caption><span class="caption-text">Query Parts</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Part</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>identifier</td>
+<td>a string that will be used for the column header in the csv</td>
+</tr>
+<tr class="row-odd"><td>command</td>
+<td>a string that will be sent to the device to execute whatever is in it</td>
+</tr>
+<tr class="row-even"><td>regular expression</td>
+<td>a regular expression that will extract the data using a group</td>
+</tr>
+</tbody>
+</table>
+<p>As an example, here&#8217;s how to get RSSI, BitRate, and Link Quality from a device that uses <cite>iwconfig</cite>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>[query]
+
+rssi = iwconfig wlan0,Signal level=(-\d+)\s+dBm
+bitrate = iwconfig wlan0,Bit\sRate=(.+)\s[M]?b/s
+link_quality = iwconfig wlan0,Link\sQuality=(\d+/\d+)\s
+</pre></div>
+</div>
+<p>The program will also add the attenuation and a timestamp to the output file would have something like the following in it:</p>
+<table border="1" class="docutils" id="id2">
+<caption><span class="caption-text">Downstream Query</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">timestamp</th>
+<th class="head">rssi</th>
+<th class="head">bitrate</th>
+<th class="head">link_quality</th>
+<th class="head">attenuation</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>2014-05-02T15:43:34.993952</td>
+<td>-53</td>
+<td>1</td>
+<td>57/70</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>2014-05-02T15:43:42.900022</td>
+<td>-61</td>
+<td>39</td>
+<td>59/70</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="delimiter">
+<h2><code class="docutils literal"><span class="pre">delimiter</span></code><a class="headerlink" href="#delimiter" title="Permalink to this headline">¶</a></h2>
+<p>The default configuration expects the <cite>&lt;command&gt;</cite> and <cite>&lt;regular expression&gt;</cite> to be separated by a comma. In the event that either one of them requires a comma, you will need to change the delimiter to something that doesn&#8217;t conflict. Using the rssi example above (although it doesn&#8217;t have a comma in it, let&#8217;s just pretend):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">query</span><span class="p">]</span>
+<span class="n">delimiter</span> <span class="o">=</span> <span class="p">;</span>
+
+<span class="n">rssi</span> <span class="o">=</span> <span class="n">iwconfig</span> <span class="n">wlan0</span><span class="p">;</span><span class="n">Signal</span> <span class="n">level</span><span class="o">=</span><span class="p">(</span><span class="o">-</span>\<span class="n">d</span><span class="o">+</span><span class="p">)</span>\<span class="n">s</span><span class="o">+</span><span class="n">dBm</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="filename">
+<h2><code class="docutils literal"><span class="pre">filename</span></code><a class="headerlink" href="#filename" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">filename</span></code> is the name to use for the output file. In practice I decided it would be better to separate the upstream and downstream files so the <code class="docutils literal"><span class="pre">filename</span></code> acts as a suffix to which a direction prefix is added. Additionally, since there&#8217;s so many files they all get put into a sub-folder named <cite>queries</cite>.</p>
+</div>
+<div class="section" id="timeout">
+<h2><code class="docutils literal"><span class="pre">timeout</span></code><a class="headerlink" href="#timeout" title="Permalink to this headline">¶</a></h2>
+<p>This is a socket-timeout value (the number of seconds to wait while reading a line before giving up). Since the commands are arbitrary the initial assumption is that they are non-blocking and quick. If the response is too slow and it starts raising errors you can extentd the timeout to try and work around it.</p>
+</div>
+<div class="section" id="trap-errors">
+<h2><code class="docutils literal"><span class="pre">trap_errors</span></code><a class="headerlink" href="#trap-errors" title="Permalink to this headline">¶</a></h2>
+<p>The default behavior of the program is to trap errors raised by calling these commands (most likely socket-timeouts) so that they don&#8217;t kill the testing. If the data from the commands are critical or you want to troubleshoot failures, set this to &#8216;false&#8217; and the program will stop whenever a command fails.</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

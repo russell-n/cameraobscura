@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cameraobscura.utilities.configurationadapter &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for cameraobscura.utilities.configurationadapter</h1><div class="highlight"><pre>
+<span></span>
+<span class="c1"># python standard library</span>
+<span class="kn">import</span> <span class="nn">ConfigParser</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="c1"># this package</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.common.errors</span> <span class="kn">import</span> <span class="n">ConfigurationError</span>
+
+<span class="n">DOT_JOIN</span> <span class="o">=</span> <span class="s2">&quot;{0}.{1}&quot;</span>
+<span class="n">USING_DEFAULT</span> <span class="o">=</span> <span class="s2">&quot;Section: {s}, Option: {o} not found -- using default: {d}&quot;</span>
+
+<span class="n">VALUE_ERROR</span> <span class="o">=</span> <span class="s2">&quot;Section: {s} Option: {o} Value: {v} -- couldn&#39;t cast value to {t}.&quot;</span>
+
+<div class="viewcode-block" id="ConfigurationAdapter"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.html#cameraobscura.utilities.configurationadapter.ConfigurationAdapter">[docs]</a><span class="k">class</span> <span class="nc">ConfigurationAdapter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An adapter to the ConfigParser to add optional-value methods</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="ConfigurationAdapter.__init__"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.html#cameraobscura.utilities.configurationadapter.ConfigurationAdapter.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_parser</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ConfigurationAdapter constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `config_parser`: An ConfigParser with the configuration already read into it</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span> <span class="o">=</span> <span class="n">config_parser</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A python Logger.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">DOT_JOIN</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__module__</span><span class="p">,</span>
+                                                             <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span>
+
+<div class="viewcode-block" id="ConfigurationAdapter.get"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.get.html#cameraobscura.utilities.configurationadapter.ConfigurationAdapter.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;get&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Similar to the ConfigParser.get, but changed so getint and getboolean will match</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `section`: section with option</span>
+<span class="sd">         - `option`: option in section whose value to return</span>
+<span class="sd">         - `method`: get-method to call</span>
+<span class="sd">         - `optional`: if True, returns default for missing options</span>
+<span class="sd">         - `default`: Value to return if optional and no option found</span>
+
+<span class="sd">        :return: value for option as string</span>
+<span class="sd">        :raise:</span>
+
+<span class="sd">         - `NoOptionError`: if option doesn&#39;t exist in section or defaults and not optional</span>
+<span class="sd">         - `NoSectionError`: if section doesn&#39;t exist in configuration and not optional</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="p">,</span> <span class="n">method</span><span class="p">)(</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">ConfigParser</span><span class="o">.</span><span class="n">NoOptionError</span><span class="p">,</span> <span class="n">ConfigParser</span><span class="o">.</span><span class="n">NoSectionError</span><span class="p">)</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">optional</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">USING_DEFAULT</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="n">section</span><span class="p">,</span>
+                                                      <span class="n">o</span><span class="o">=</span><span class="n">option</span><span class="p">,</span>
+                                                      <span class="n">d</span><span class="o">=</span><span class="n">default</span><span class="p">))</span>
+                <span class="k">return</span> <span class="n">default</span>
+            <span class="k">raise</span> <span class="n">ConfigurationError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="ConfigurationAdapter.getint"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getint.html#cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getint">[docs]</a>    <span class="k">def</span> <span class="nf">getint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets a value from the configuration and tries to cast it to an integer.</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `section`: section in configuration with `option`</span>
+<span class="sd">         - `option`: option in section with value</span>
+<span class="sd">         - `optional`: If true, return default when no option found</span>
+<span class="sd">         - `default`: value to return if optional and option not found (or value found but not castable to int)</span>
+<span class="sd">         </span>
+<span class="sd">        :return: value cast to an integer (or default)</span>
+<span class="sd">        :raises:</span>
+
+<span class="sd">         - `ValueError`: If value found but can&#39;t cast to integer</span>
+<span class="sd">         - `ConfigParser.NoSectionError`: If section not found and not optional</span>
+<span class="sd">         - `ConfigParser.NoOptionError`: If option not found and not optional</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="n">option</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;getint&#39;</span><span class="p">,</span>
+                            <span class="n">optional</span><span class="o">=</span><span class="n">optional</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">ConfigurationError</span><span class="p">(</span><span class="n">VALUE_ERROR</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="n">section</span><span class="p">,</span>
+                                                     <span class="n">o</span><span class="o">=</span><span class="n">option</span><span class="p">,</span>
+                                                     <span class="n">v</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span>
+                                                                <span class="n">option</span><span class="o">=</span><span class="n">option</span><span class="p">),</span>
+                                                                <span class="n">t</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="ConfigurationAdapter.getfloat"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getfloat.html#cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getfloat">[docs]</a>    <span class="k">def</span> <span class="nf">getfloat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets a value from the configuration and tries to cast it to an integer.</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `section`: section in configuration with `option`</span>
+<span class="sd">         - `option`: option in section with value</span>
+<span class="sd">         - `optional`: If true, return default when no option found</span>
+<span class="sd">         - `default`: value to return if optional and option not found (or value found but not castable to int)</span>
+<span class="sd">         </span>
+<span class="sd">        :return: value cast to an integer (or default)</span>
+<span class="sd">        :raises:</span>
+
+<span class="sd">         - `ValueError`: If value found but can&#39;t cast to integer</span>
+<span class="sd">         - `ConfigParser.NoSectionError`: If section not found and not optional</span>
+<span class="sd">         - `ConfigParser.NoOptionError`: If option not found and not optional</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="n">option</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;getfloat&#39;</span><span class="p">,</span>
+                        <span class="n">optional</span><span class="o">=</span><span class="n">optional</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ConfigurationAdapter.getboolean"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getboolean.html#cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getboolean">[docs]</a>    <span class="k">def</span> <span class="nf">getboolean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets value and casts to a boolean</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `section`: section in configuration to get option</span>
+<span class="sd">         - `option`: option in section to get value</span>
+<span class="sd">         - `optional`: if true, return default if not found</span>
+<span class="sd">         - `default`: value to return if value not found and optional</span>
+
+<span class="sd">        :raises:</span>
+<span class="sd">         - `ConfigParser.NoSectionError`: if section not found and not optional</span>
+<span class="sd">         - `ConfigParser.NoOptionError`: if option not found and not optional</span>
+
+<span class="sd">        :return: value cast to boolean or default if not found and optional</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="n">option</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;getboolean&#39;</span><span class="p">,</span>
+                            <span class="n">optional</span><span class="o">=</span><span class="n">optional</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">ConfigurationError</span><span class="p">(</span><span class="n">VALUE_ERROR</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="n">section</span><span class="p">,</span>
+                                                     <span class="n">o</span><span class="o">=</span><span class="n">option</span><span class="p">,</span>
+                                                     <span class="n">v</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="n">option</span><span class="p">),</span>
+                                                     <span class="n">t</span><span class="o">=</span><span class="s1">&#39;boolean&#39;</span><span class="p">))</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="ConfigurationAdapter.getlist"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getlist.html#cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getlist">[docs]</a>    <span class="k">def</span> <span class="nf">getlist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">converter</span><span class="o">=</span><span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        gets a string and converts it into a list</span>
+
+<span class="sd">        :param:</span>
+<span class="sd">        </span>
+<span class="sd">         - `section`: section in configuration to get option</span>
+<span class="sd">         - `option`: option in section to get value</span>
+<span class="sd">         - `delimiter`: what separates the items in the list</span>
+
+<span class="sd">        :return: list of strings</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span>
+                          <span class="n">option</span><span class="o">=</span><span class="n">option</span><span class="p">,</span>
+                          <span class="n">optional</span><span class="o">=</span><span class="n">optional</span><span class="p">,</span>
+                          <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">output</span> <span class="o">==</span> <span class="n">default</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">default</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">converter</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">output</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">delimiter</span><span class="p">)]</span></div>
+
+<div class="viewcode-block" id="ConfigurationAdapter.section_dict"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.section_dict.html#cameraobscura.utilities.configurationadapter.ConfigurationAdapter.section_dict">[docs]</a>    <span class="k">def</span> <span class="nf">section_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A convenience function to return the section option=value pairs as option:value dict</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `section`: name of section to convert to dict</span>
+
+<span class="sd">        :return: dict of option:value pairs</span>
+<span class="sd">        :raise: ConfigurationError if the section doesn&#39;t exist in the configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="n">section</span><span class="p">))</span>
+        <span class="k">except</span> <span class="n">ConfigParser</span><span class="o">.</span><span class="n">NoSectionError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+            <span class="k">raise</span><span class="p">(</span><span class="n">ConfigurationError</span><span class="p">(</span><span class="s2">&quot;No Section &#39;{0}&#39; in the configuration&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">section</span><span class="p">)))</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="ConfigurationAdapter.__getattr__"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.__getattr__.html#cameraobscura.utilities.configurationadapter.ConfigurationAdapter.__getattr__">[docs]</a>    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A pass-through to the config parser for all the methods I don&#39;t implement</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `attribute`: An attribute available from the ConfigParser object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="p">,</span> <span class="n">attribute</span><span class="p">)</span></div></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

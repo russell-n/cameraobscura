@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cameraobscura.tests.testquery &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for cameraobscura.tests.testquery</h1><div class="highlight"><pre>
+<span></span>
+<span class="c1"># python standard library</span>
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">ConfigParser</span>
+
+<span class="c1"># third party</span>
+<span class="kn">from</span> <span class="nn">mock</span> <span class="kn">import</span> <span class="n">MagicMock</span><span class="p">,</span> <span class="n">call</span><span class="p">,</span> <span class="n">patch</span><span class="p">,</span> <span class="n">Mock</span><span class="p">,</span> <span class="n">mock_open</span>
+
+<span class="c1"># this package</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.utilities.query</span> <span class="kn">import</span> <span class="n">Query</span>
+<span class="kn">from</span> <span class="nn">cameraobscura</span> <span class="kn">import</span> <span class="n">CameraobscuraError</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.clients.simpleclient</span> <span class="kn">import</span> <span class="n">ConnectionError</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.tests.helpers</span> <span class="kn">import</span> <span class="n">random_string_of_letters</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.utilities.query</span> <span class="kn">import</span> <span class="n">QueryConfiguration</span><span class="p">,</span> <span class="n">QueryEnum</span><span class="p">,</span> <span class="n">QueryBuilder</span>
+
+<span class="kn">from</span> <span class="nn">cameraobscura.utilities.configurationadapter</span> <span class="kn">import</span> <span class="n">ConfigurationAdapter</span>
+
+
+<span class="c1"># a place to import command output</span>
+<span class="n">IWCONFIG_OUTPUT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;wlan2     IEEE 802.11abgn  ESSID:&quot;allionguest-5&quot;  </span>
+<span class="s2">          Mode:Managed  Frequency:5.26 GHz  Access Point: 18:33:9D:F9:AB:7C   </span>
+<span class="s2">          Bit Rate=65 Mb/s   Tx-Power=15 dBm   </span>
+<span class="s2">          Retry  long limit:7   RTS thr:off   Fragment thr:off</span>
+<span class="s2">          Power Management:off</span>
+<span class="s2">          Link Quality=46/70  Signal level=-64 dBm  </span>
+<span class="s2">          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0</span>
+<span class="s2">          Tx excessive retries:2  Invalid misc:155   Missed beacon:0</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">IFCONFIG_OUTPUT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;eth0      Link encap:Ethernet  HWaddr 00:14:d1:20:13:a0</span>
+<span class="s2">          inet addr:192.168.10.35  Bcast:192.168.10.255  Mask:255.255.255.0</span>
+<span class="s2">          inet6 addr: fe80::214:d1ff:fe20:13a0/64 Scope:Link</span>
+<span class="s2">          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
+<span class="s2">          RX packets:1305885 errors:0 dropped:0 overruns:0 frame:0</span>
+<span class="s2">          TX packets:67382 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span class="s2">          collisions:0 txqueuelen:1000</span>
+<span class="s2">          RX bytes:215121185 (215.1 MB)  TX bytes:10152099 (10.1 MB)                                                                      </span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">FIELDS</span> <span class="o">=</span> <span class="s1">&#39;rssi hostname&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">COMMAND_LIST</span> <span class="o">=</span> <span class="s1">&#39;iwconfig wlan2, ifconfig wlan2&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="n">EXPRESSION_LIST</span> <span class="o">=</span> <span class="s2">r&quot;Signal\s+level=(-\d+)\s+dBm inet\saddr:(\S+)&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">COMMANDS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">FIELDS</span><span class="p">,</span> <span class="n">COMMAND_LIST</span><span class="p">))</span>
+<span class="n">EXPRESSIONS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">FIELDS</span><span class="p">,</span> <span class="n">EXPRESSION_LIST</span><span class="p">))</span>
+<span class="n">OUTPUTS</span> <span class="o">=</span> <span class="s1">&#39;-64 192.168.10.35&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">OUTPUT</span> <span class="o">=</span> <span class="p">{(</span><span class="n">COMMANDS</span><span class="p">[</span><span class="s1">&#39;rssi&#39;</span><span class="p">],):</span> <span class="n">IWCONFIG_OUTPUT</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">COMMANDS</span><span class="p">[</span><span class="s1">&#39;hostname&#39;</span><span class="p">]):</span> <span class="n">IFCONFIG_OUTPUT</span><span class="p">,</span>
+            <span class="n">COMMANDS</span><span class="p">[</span><span class="s1">&#39;rssi&#39;</span><span class="p">]:</span> <span class="n">IWCONFIG_OUTPUT</span><span class="p">,</span>
+            <span class="n">COMMANDS</span><span class="p">[</span><span class="s1">&#39;hostname&#39;</span><span class="p">]:</span> <span class="n">IFCONFIG_OUTPUT</span><span class="p">}</span>
+<span class="n">ERROR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">side_effects</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="n">OUTPUT</span><span class="p">[</span><span class="n">args</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="n">OUTPUT</span><span class="p">[</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;command&#39;</span><span class="p">]]</span>
+        <span class="k">return</span> <span class="bp">None</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">ERROR</span>
+
+
+
+<span class="k">class</span> <span class="nc">TestQuery</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">random_string_of_letters</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span> <span class="o">=</span> <span class="s1">&#39;rssi hostname&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_list</span> <span class="o">=</span> <span class="s1">&#39;iwconfig wlan2, ifconfig wlan2&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mock_commands</span> <span class="o">=</span> <span class="p">[</span><span class="n">Mock</span><span class="p">()</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">command</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_commands</span><span class="p">):</span>
+            <span class="n">command</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">OUTPUTS</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">commands</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_commands</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expression_list</span> <span class="o">=</span> <span class="s2">r&quot;Signal\s+level=(-\d+)\s+dBm inet\saddr:(\S+)&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">expressions</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">expression_list</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">querier</span> <span class="o">=</span> <span class="n">Query</span><span class="p">(</span><span class="n">output_filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span>
+                             <span class="n">connection</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">,</span>
+                             <span class="n">fields</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">,</span>
+                             <span class="n">commands</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">commands</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">_output_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_file</span>
+        <span class="k">return</span>
+    
+<div class="viewcode-block" id="TestQuery.test_constructor"><a class="viewcode-back" href="../../../tests/api/cameraobscura.tests.testquery.TestQuery.test_constructor.html#cameraobscura.tests.testquery.TestQuery.test_constructor">[docs]</a>    <span class="k">def</span> <span class="nf">test_constructor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does it build correctly?</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">output_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">fields</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">commands</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">commands</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="TestQuery.test_writer"><a class="viewcode-back" href="../../../tests/api/cameraobscura.tests.testquery.TestQuery.test_writer.html#cameraobscura.tests.testquery.TestQuery.test_writer">[docs]</a>    <span class="k">def</span> <span class="nf">test_writer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does it create a dict-writer and write the fields to the header?</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">writer</span><span class="p">,</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictWriter</span><span class="p">)</span>
+        <span class="n">line_ending</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">dialect</span><span class="o">.</span><span class="n">lineterminator</span>
+        <span class="c1"># adding a timestamp to the header</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">)</span> <span class="o">+</span>
+                                                  <span class="n">line_ending</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="TestQuery.test_close"><a class="viewcode-back" href="../../../tests/api/cameraobscura.tests.testquery.TestQuery.test_close.html#cameraobscura.tests.testquery.TestQuery.test_close">[docs]</a>    <span class="k">def</span> <span class="nf">test_close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does it close the file?</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="o">.</span><span class="n">close</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">()</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="TestQuery.test_destructor"><a class="viewcode-back" href="../../../tests/api/cameraobscura.tests.testquery.TestQuery.test_destructor.html#cameraobscura.tests.testquery.TestQuery.test_destructor">[docs]</a>    <span class="k">def</span> <span class="nf">test_destructor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does it call the close?</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">del</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="o">.</span><span class="n">close</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">()</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="TestQuery.test_call"><a class="viewcode-back" href="../../../tests/api/cameraobscura.tests.testquery.TestQuery.test_call.html#cameraobscura.tests.testquery.TestQuery.test_call">[docs]</a>    <span class="k">def</span> <span class="nf">test_call</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does it perform the expected activities?</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="s1">&#39;fake_timestamp&#39;</span>        
+        <span class="c1"># does it call the commands?</span>
+
+        <span class="n">date_mock</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+        <span class="n">isoformat</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;isoformat&#39;</span><span class="p">)</span>
+        <span class="n">isoformat</span><span class="o">.</span><span class="n">isoformat</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">timestamp</span>
+        <span class="n">date_mock</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">isoformat</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;datetime.datetime&#39;</span><span class="p">,</span> <span class="n">date_mock</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">command</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_commands</span><span class="p">:</span>
+            <span class="n">command</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">()</span>
+            
+        <span class="c1"># does it write the output?</span>
+        <span class="n">line_ending</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">dialect</span><span class="o">.</span><span class="n">lineterminator</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;{0},-64,192.168.10.35&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">timestamp</span><span class="p">)</span> <span class="o">+</span> <span class="n">line_ending</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">)</span> <span class="o">+</span> <span class="n">line_ending</span>
+
+        <span class="n">expected</span> <span class="o">=</span> <span class="p">[</span><span class="n">call</span><span class="p">(</span><span class="n">header</span><span class="p">),</span> <span class="n">call</span><span class="p">(</span><span class="n">data</span><span class="p">)]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mock_calls</span><span class="p">)</span>        
+        <span class="k">return</span></div>
+    
+<div class="viewcode-block" id="TestQuery.test_change_file"><a class="viewcode-back" href="../../../tests/api/cameraobscura.tests.testquery.TestQuery.test_change_file.html#cameraobscura.tests.testquery.TestQuery.test_change_file">[docs]</a>    <span class="k">def</span> <span class="nf">test_change_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does it properly swap out files?</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">writer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">writer</span>
+        <span class="n">new_file</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+        <span class="n">new_filename</span> <span class="o">=</span> <span class="n">random_string_of_letters</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+        <span class="n">open_mock</span> <span class="o">=</span> <span class="n">mock_open</span><span class="p">()</span>
+        <span class="n">open_mock</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">new_file</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;__builtin__.open&#39;</span><span class="p">,</span> <span class="n">open_mock</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">output_filename</span> <span class="o">=</span> <span class="n">new_filename</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">new_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">output_file</span><span class="p">)</span>
+        <span class="n">open_mock</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="n">new_filename</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="o">.</span><span class="n">close</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">_writer</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="TestQuery.test_check_rep"><a class="viewcode-back" href="../../../tests/api/cameraobscura.tests.testquery.TestQuery.test_check_rep.html#cameraobscura.tests.testquery.TestQuery.test_check_rep">[docs]</a>    <span class="k">def</span> <span class="nf">test_check_rep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does check_rep check that the keys of the dictionaries match?</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="n">field</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="c1"># extra command</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">AssertionError</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="TestQuery.test_add_data_call"><a class="viewcode-back" href="../../../tests/api/cameraobscura.tests.testquery.TestQuery.test_add_data_call.html#cameraobscura.tests.testquery.TestQuery.test_add_data_call">[docs]</a>    <span class="k">def</span> <span class="nf">test_add_data_call</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does it work to add data?</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># we are going to add an extra column</span>
+        <span class="n">extra_field</span> <span class="o">=</span> <span class="n">random_string_of_letters</span><span class="p">()</span>
+        <span class="n">extra_value</span> <span class="o">=</span> <span class="n">random_string_of_letters</span><span class="p">()</span>
+        <span class="n">extra_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">extra_field</span><span class="p">:</span><span class="n">extra_value</span><span class="p">}</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">extra_field</span><span class="p">)</span>
+        
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="s1">&#39;fake_timestamp&#39;</span>        
+        <span class="c1"># does it call the commands?</span>
+        <span class="n">date_mock</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+        <span class="n">isoformat</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;isoformat&#39;</span><span class="p">)</span>
+        <span class="n">isoformat</span><span class="o">.</span><span class="n">isoformat</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">timestamp</span>
+        <span class="n">date_mock</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">isoformat</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;datetime.datetime&#39;</span><span class="p">,</span> <span class="n">date_mock</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="p">(</span><span class="n">extra_data</span><span class="o">=</span><span class="n">extra_data</span><span class="p">)</span>
+        
+        <span class="c1"># does it write the output?</span>
+        <span class="n">line_ending</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">querier</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">dialect</span><span class="o">.</span><span class="n">lineterminator</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;{0},-64,192.168.10.35,{1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">extra_value</span><span class="p">)</span> <span class="o">+</span> <span class="n">line_ending</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">)</span> <span class="o">+</span> <span class="n">line_ending</span>
+
+        <span class="n">expected</span> <span class="o">=</span> <span class="p">[</span><span class="n">call</span><span class="p">(</span><span class="n">header</span><span class="p">),</span> <span class="n">call</span><span class="p">(</span><span class="n">data</span><span class="p">)]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mock_calls</span><span class="p">)</span>        
+
+        <span class="k">return</span></div>
+<span class="c1"># end TestQuery        </span>
+
+
+<span class="n">SECTION</span> <span class="o">=</span> <span class="n">QueryEnum</span><span class="o">.</span><span class="n">section</span>
+            
+<span class="n">FIELDS</span> <span class="o">=</span> <span class="s1">&#39;rssi ip_address bitrate&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<span class="n">value</span> <span class="o">=</span> <span class="s1">&#39;{c}, {e}&#39;</span>
+        
+<span class="n">IWCONFIG</span> <span class="o">=</span> <span class="s1">&#39;iwconfig wlan2&#39;</span>
+<span class="n">IFCONFIG</span> <span class="o">=</span> <span class="s1">&#39;ifconfig wlan2&#39;</span>
+<span class="n">COMMANDS</span> <span class="o">=</span> <span class="p">(</span><span class="n">IWCONFIG</span><span class="p">,</span> <span class="n">IFCONFIG</span><span class="p">,</span> <span class="n">IWCONFIG</span><span class="p">)</span>
+<span class="c1"># expressions</span>
+<span class="n">RSSI_EXPRESSION</span> <span class="o">=</span> <span class="s1">r&#39;Signal\slevel=(-\d+\s+dBm)&#39;</span>
+<span class="n">BITRATE_EXPRESSION</span> <span class="o">=</span> <span class="s2">r&quot;Bit\sRate=(\d+\s+[MK]b/s)&quot;</span>
+<span class="n">IP_ADDRESS_EXPRESSION</span> <span class="o">=</span> <span class="s1">r&#39;inet\saddr:(\d+\.\d+\.\d+\.\d+)&#39;</span>
+
+<span class="n">EXPRESSIONS</span> <span class="o">=</span> <span class="p">(</span><span class="n">RSSI_EXPRESSION</span><span class="p">,</span> <span class="n">IP_ADDRESS_EXPRESSION</span><span class="p">,</span> <span class="n">BITRATE_EXPRESSION</span><span class="p">)</span>
+<span class="n">rssi_value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">IWCONFIG</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="n">RSSI_EXPRESSION</span><span class="p">)</span>
+<span class="n">bitrate_value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">IWCONFIG</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="n">BITRATE_EXPRESSION</span><span class="p">)</span>
+<span class="n">ip_address_value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">IFCONFIG</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="n">IP_ADDRESS_EXPRESSION</span><span class="p">)</span>
+
+
+
+<span class="n">ACTIONS</span> <span class="o">=</span> <span class="p">{(</span><span class="n">SECTION</span><span class="p">,</span> <span class="s1">&#39;rssi&#39;</span><span class="p">):</span><span class="n">rssi_value</span><span class="p">,</span>
+           <span class="p">(</span><span class="n">SECTION</span><span class="p">,</span> <span class="s1">&#39;bitrate&#39;</span><span class="p">):</span> <span class="n">bitrate_value</span><span class="p">,</span>
+           <span class="p">(</span><span class="n">SECTION</span><span class="p">,</span> <span class="s1">&#39;ip_address&#39;</span><span class="p">):</span><span class="n">ip_address_value</span><span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">TestQueryConfiguration</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_adapter</span> <span class="o">=</span> <span class="n">ConfigurationAdapter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">QueryConfiguration</span><span class="p">(</span><span class="n">configuration</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config_adapter</span><span class="p">)</span>
+        <span class="k">return</span>
+
+<div class="viewcode-block" id="TestQueryConfiguration.test_constructor"><a class="viewcode-back" href="../../../tests/api/cameraobscura.tests.testquery.TestQueryConfiguration.test_constructor.html#cameraobscura.tests.testquery.TestQueryConfiguration.test_constructor">[docs]</a>    <span class="k">def</span> <span class="nf">test_constructor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does it build?</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_adapter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="TestQueryConfiguration.test_delimiter"><a class="viewcode-back" href="../../../tests/api/cameraobscura.tests.testquery.TestQueryConfiguration.test_delimiter.html#cameraobscura.tests.testquery.TestQueryConfiguration.test_delimiter">[docs]</a>    <span class="k">def</span> <span class="nf">test_delimiter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does it get the delimiter separating the &lt;command&gt; and &lt;expression&gt;?</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># user gives a delimiter</span>
+        <span class="n">expected</span> <span class="o">=</span> <span class="s1">&#39;separator&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">expected</span>
+        <span class="n">actual</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">delimiter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="n">QueryEnum</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                  <span class="n">QueryEnum</span><span class="o">.</span><span class="n">delimiter</span><span class="p">)</span>
+
+        <span class="c1"># no delimiter given (use the default)</span>
+        <span class="n">expected</span> <span class="o">=</span> <span class="n">QueryEnum</span><span class="o">.</span><span class="n">default_delimiter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="o">.</span><span class="n">NoOptionError</span><span class="p">(</span><span class="n">QueryEnum</span><span class="o">.</span><span class="n">delimiter</span><span class="p">,</span>
+                                                                        <span class="n">QueryEnum</span><span class="o">.</span><span class="n">section</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="n">actual</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">delimiter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">actual</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="TestQueryConfiguration.test_not_available"><a class="viewcode-back" href="../../../tests/api/cameraobscura.tests.testquery.TestQueryConfiguration.test_not_available.html#cameraobscura.tests.testquery.TestQueryConfiguration.test_not_available">[docs]</a>    <span class="k">def</span> <span class="nf">test_not_available</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does it get a not-available symbol?</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># user-specified</span>
+        <span class="n">expected</span> <span class="o">=</span> <span class="s1">&#39;NUNYA&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">expected</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">not_available</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="n">QueryEnum</span><span class="o">.</span><span class="n">section</span><span class="p">,</span> <span class="n">QueryEnum</span><span class="o">.</span><span class="n">not_available</span><span class="p">)</span>
+
+        <span class="c1"># user takes default</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="o">.</span><span class="n">NoOptionError</span><span class="p">(</span><span class="n">QueryEnum</span><span class="o">.</span><span class="n">not_available</span><span class="p">,</span>
+                                                                        <span class="n">QueryEnum</span><span class="o">.</span><span class="n">section</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">QueryEnum</span><span class="o">.</span><span class="n">default_not_available</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">not_available</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="TestQueryConfiguration.test_fields"><a class="viewcode-back" href="../../../tests/api/cameraobscura.tests.testquery.TestQueryConfiguration.test_fields.html#cameraobscura.tests.testquery.TestQueryConfiguration.test_fields">[docs]</a>    <span class="k">def</span> <span class="nf">test_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does it create a list from the options?</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="s1">&#39;anna banana chocobonbons&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">options</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">fields</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">section</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">fields</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="TestQueryConfiguration.test_commands"><a class="viewcode-back" href="../../../tests/api/cameraobscura.tests.testquery.TestQueryConfiguration.test_commands.html#cameraobscura.tests.testquery.TestQueryConfiguration.test_commands">[docs]</a>    <span class="k">def</span> <span class="nf">test_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does it build a dictionary of commands to execute?</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># the commands are built by splitting on the delimiter</span>
+        <span class="c1"># to avoid the extra call to check for a non-default delimiter</span>
+        <span class="c1"># set it here</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">_delimiter</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span>
+        <span class="k">def</span> <span class="nf">side_effect</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">ACTIONS</span><span class="p">[</span><span class="n">args</span><span class="p">]</span>
+        
+        <span class="n">expected</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">FIELDS</span><span class="p">,</span> <span class="n">COMMANDS</span><span class="p">))</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">FIELDS</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="n">side_effect</span>        
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span>
+                         <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">commands</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="TestQueryConfiguration.test_expressions"><a class="viewcode-back" href="../../../tests/api/cameraobscura.tests.testquery.TestQueryConfiguration.test_expressions.html#cameraobscura.tests.testquery.TestQueryConfiguration.test_expressions">[docs]</a>    <span class="k">def</span> <span class="nf">test_expressions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does it get the regular expressions to parse the command output?</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># re-using the test_commands values</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">_delimiter</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span>
+        <span class="k">def</span> <span class="nf">side_effect</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">ACTIONS</span><span class="p">[</span><span class="n">args</span><span class="p">]</span>
+        <span class="n">expected</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">FIELDS</span><span class="p">,</span> <span class="n">EXPRESSIONS</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">FIELDS</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="n">side_effect</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span>
+                         <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">expressions</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+    <span class="k">def</span> <span class="nf">test_output_filename</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does it get the name to use to store the data?        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">random_string_of_letters</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s1">&#39;query&#39;</span><span class="p">,</span> <span class="s1">&#39;filename&#39;</span><span class="p">)</span>
+
+        <span class="c1"># user didn&#39;t set, use the default</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_parser</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="o">.</span><span class="n">NoOptionError</span><span class="p">(</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span>
+                                                                        <span class="s1">&#39;query&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">QueryEnum</span><span class="o">.</span><span class="n">default_filename</span><span class="p">)</span>
+        <span class="k">return</span>
+<span class="c1"># end class TestQueryConfiguration    </span>
+
+
+<span class="n">filename</span> <span class="o">=</span> <span class="n">random_string_of_letters</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">configuration</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;query&#39;</span><span class="p">,</span> <span class="s1">&#39;filename&#39;</span><span class="p">):</span> <span class="n">filename</span><span class="p">}</span>
+
+
+<span class="k">def</span> <span class="nf">side_effect</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">configuration</span><span class="p">[</span><span class="n">args</span><span class="p">]</span>
+
+<span class="k">class</span> <span class="nc">TestQueryBuilder</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="n">side_effect</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">builder</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">(</span><span class="n">connection</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">,</span>
+                                    <span class="n">configuration</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
+        <span class="k">return</span>
+
+<div class="viewcode-block" id="TestQueryBuilder.test_constructor"><a class="viewcode-back" href="../../../tests/api/cameraobscura.tests.testquery.TestQueryBuilder.test_constructor.html#cameraobscura.tests.testquery.TestQueryBuilder.test_constructor">[docs]</a>    <span class="k">def</span> <span class="nf">test_constructor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does it build?</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">connection</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="TestQueryBuilder.test_product"><a class="viewcode-back" href="../../../tests/api/cameraobscura.tests.testquery.TestQueryBuilder.test_product.html#cameraobscura.tests.testquery.TestQueryBuilder.test_product">[docs]</a>    <span class="k">def</span> <span class="nf">test_product</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does it build the Query correctly?</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="s1">&#39;a b&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">fields</span> <span class="o">=</span> <span class="n">fields</span>
+        
+        <span class="n">configuration</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;query&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">):</span> <span class="s1">&#39;apple,alpha&#39;</span><span class="p">,</span>
+                         <span class="p">(</span><span class="s1">&#39;query&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">):</span> <span class="s1">&#39;banana,beta&#39;</span><span class="p">}</span>
+        
+        <span class="k">def</span> <span class="nf">side_effect</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span> <span class="k">return</span> <span class="n">configuration</span><span class="p">[</span><span class="n">args</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="n">side_effect</span>
+        
+        <span class="n">commands</span> <span class="o">=</span> <span class="p">[</span><span class="n">Mock</span><span class="p">(),</span> <span class="n">Mock</span><span class="p">()]</span>
+        <span class="k">def</span> <span class="nf">object_effect</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span> <span class="k">return</span> <span class="n">command</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+        <span class="c1">#mock_commands =Mock()</span>
+        <span class="c1">#mock_commands.side_effect = object_effect</span>
+        <span class="c1">#expected = dict(zip(fields, commands))</span>
+        <span class="c1">#with patch(&#39;cameraobscura.commands.command.command.TheCommand&#39;, mock_commands):</span>
+        <span class="c1">#        self.assertIsInstance(self.builder.product, Query)</span>
+        <span class="c1">#self.assertDictEqual(expected, self.builder.product.commands)</span>
+        <span class="k">return</span></div>
+<span class="c1"># end TestQueryBuilder    </span>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

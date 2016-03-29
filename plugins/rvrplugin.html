@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>RVR Plugin &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../index.html" />
+    <link rel="up" title="RVR Plugin" href="index.html" />
+    <link rel="next" title="cameraobscura.plugins.rvrplugin.RVR" href="api/cameraobscura.plugins.rvrplugin.RVR.html" />
+    <link rel="prev" title="RVR Plugin" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">RVR Plugin</a></li>
+<li><a class="reference internal" href="#the-sample-configuration">The Sample Configuration</a></li>
+<li><a class="reference internal" href="#the-configspec">The ConfigSpec</a><ul>
+<li><a class="reference internal" href="#the-sections">The Sections</a></li>
+<li><a class="reference internal" href="#the-plugin">The Plugin</a></li>
+<li><a class="reference internal" href="#rvr-configuration">RVR Configuration</a></li>
+<li><a class="reference internal" href="#the-subconfigurations">The SubConfigurations</a></li>
+<li><a class="reference internal" href="#the-attenuationpluginconfiguration">The AttenuationPluginConfiguration</a></li>
+<li><a class="reference internal" href="#queryconfiguration">QueryConfiguration</a></li>
+<li><a class="reference internal" href="#dumpconfiguration">DumpConfiguration</a></li>
+<li><a class="reference internal" href="#hostconfiguration">HostConfiguration</a></li>
+<li><a class="reference internal" href="#iperfpluginconfiguration">IperfPluginConfiguration</a><ul>
+<li><a class="reference internal" href="#the-iperf-configspec">The Iperf Configspec</a></li>
+<li><a class="reference internal" href="#the-iperfpluginconfiguration">The IperfPluginConfiguration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="index.html" title="Previous Chapter: RVR Plugin"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; RVR Plugin</span>
+    </a>
+  </li>
+  <li>
+    <a href="api/cameraobscura.plugins.rvrplugin.RVR.html" title="Next Chapter: cameraobscura.plugins.rvrplugin.RVR"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">cameraobscura... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/plugins/rvrplugin.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="rvr-plugin">
+<h1>RVR Plugin<a class="headerlink" href="#rvr-plugin" title="Permalink to this headline">¶</a></h1>
+<p>This is a plugin for the CameraObscura&#8217;s rvr command to allow it to be run by the ape.</p>
+<span class="target" id="module-cameraobscura.plugins.rvrplugin"></span><table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.plugins.rvrplugin.RVR.html#cameraobscura.plugins.rvrplugin.RVR" title="cameraobscura.plugins.rvrplugin.RVR"><code class="xref py py-obj docutils literal"><span class="pre">RVR</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>A plugin for the RVR front-end</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-sample-configuration">
+<h1>The Sample Configuration<a class="headerlink" href="#the-sample-configuration" title="Permalink to this headline">¶</a></h1>
+<p>The <cite>RVRPlugin</cite> has four parameters in its arguments so the configuration text will mirror that. The configuration needs to be a sub-section of the <cite>[PLUGINS]</cite> section.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">configuration</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">  [[RVR]]</span>
+<span class="s2">  # these first two lines are needed by the ape</span>
+<span class="s2">  plugin = RVR</span>
+<span class="s2">  module = cameraobscura.plugins.rvrplugin</span>
+
+<span class="s2">  &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-configspec">
+<h1>The ConfigSpec<a class="headerlink" href="#the-configspec" title="Permalink to this headline">¶</a></h1>
+<p>Since the configuration is being changed to use ConfigObj, a configspec should be used to validate the configuration.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr_configuration_specification</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">[attenuation]</span>
+<span class="s2">start = integer(default=0)</span>
+<span class="s2">stop = integer(default=9223372036854775807)</span>
+<span class="s2">name = option(&#39;mockattenuator&#39;, &#39;weinschelp&#39;, default=&#39;weinschelp&#39;)</span>
+<span class="s2">control_ip = string</span>
+<span class="s2">step_sizes = int_list(default=list(1,))</span>
+<span class="s2">step_change_thresholds = int_list(default=None)</span>
+
+<span class="s2">[dut]</span>
+<span class="s2">username = string</span>
+<span class="s2">control_ip = string</span>
+<span class="s2">test_ip = string</span>
+<span class="s2">password = string(default=None)</span>
+<span class="s2">connection_type = string(default=&#39;ssh&#39;)</span>
+<span class="s2">timeout = float(default=1)</span>
+<span class="s2">prefix = string(default=None)</span>
+<span class="s2">operating_system = option(&#39;cygwin&#39;, &#39;linux&#39;, default=&#39;linux&#39;)</span>
+
+<span class="s2">[server]</span>
+<span class="s2">username = string</span>
+<span class="s2">control_ip = string</span>
+<span class="s2">test_ip = string</span>
+<span class="s2">password = string(default=None)</span>
+<span class="s2">connection_type = string(default=&#39;ssh&#39;)</span>
+<span class="s2">timeout = float(default=1)</span>
+<span class="s2">prefix = string(default=None)</span>
+<span class="s2">operating_system = option(&#39;cygwin&#39;, &#39;linux&#39;, default=&#39;linux&#39;)</span>
+
+<span class="s2">[iperf]</span>
+<span class="s2">direction = force_list(default=list(&#39;downstream&#39;, &#39;upstream&#39;))</span>
+<span class="s2">parallel = integer(default=None)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<div class="section" id="the-sections">
+<h2>The Sections<a class="headerlink" href="#the-sections" title="Permalink to this headline">¶</a></h2>
+<p>The help-sections.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">sections</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+<span class="n">sections</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{bold}</span><span class="s1">RVR</span><span class="si">{reset}</span><span class="s1"> -- a bandwith with attenuation measurer&#39;</span>
+<span class="n">sections</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{bold}</span><span class="s1">RVR</span><span class="si">{reset}</span><span class="s1"> runs the CameraObscura rate-vs-range implementation.&#39;</span>
+<span class="n">sections</span><span class="p">[</span><span class="s1">&#39;configuration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span>
+<span class="c1">#sections[&#39;see also&#39;] = &#39;&#39;</span>
+<span class="n">sections</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">The configuration options --</span>
+
+<span class="s2">    </span><span class="si">{bold}</span><span class="s2">end</span><span class="si">{reset}</span><span class="s2"> : an absolute time given as a time-stamp that can be interpreted by `dateutil.parser.parse`. This is for the cases where you have a specific time that you want the sleep to end.</span>
+
+<span class="s2">    </span><span class="si">{bold}</span><span class="s2">total</span><span class="si">{reset}</span><span class="s2"> : a relative time given as pairs of &#39;&lt;amount&gt; &lt;units&gt;&#39; -- e.g. &#39;3.4 hours&#39;. Most units only use the first letter, but since `months` and `minutes` both start with `m`, you have to use two letters to specify them. The sleep will stop at the start of the sleep + the total time given.</span>
+
+<span class="s2">    </span><span class="si">{bold}</span><span class="s2">interval</span><span class="si">{reset}</span><span class="s2"> : The amount of time beween reports of the time remaining (default = 1 second). Use the same formatting as the `total` option.</span>
+
+<span class="s2">    </span><span class="si">{bold}</span><span class="s2">verbose</span><span class="si">{reset}</span><span class="s2"> : If True (the default) then report time remaining at specified intervals while the sleep runs.</span>
+
+<span class="s2">One of </span><span class="si">{bold}</span><span class="s2">end</span><span class="si">{reset}</span><span class="s2"> or </span><span class="si">{bold}</span><span class="s2">total</span><span class="si">{reset}</span><span class="s2"> needs to be specified. Everything else is optional.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">sections</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;ape&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-plugin">
+<h2>The Plugin<a class="headerlink" href="#the-plugin" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img src="../_images/plantuml-6122823bdb1169cc9602374d1a2cafdf0f5ef42e.png" alt="ape.BasePlugin &lt;|-- RVR" />
+</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.plugins.rvrplugin.RVR.html#cameraobscura.plugins.rvrplugin.RVR" title="cameraobscura.plugins.rvrplugin.RVR"><code class="xref py py-obj docutils literal"><span class="pre">RVR</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>A plugin for the RVR front-end</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rvr-configuration">
+<h2>RVR Configuration<a class="headerlink" href="#rvr-configuration" title="Permalink to this headline">¶</a></h2>
+<p>This is meant for the top-level (it replaces the &#8216;[other]&#8217; section).</p>
+<p class="plantuml">
+<img src="../_images/plantuml-1f2f014a610f40d55eab1a0bcf3455cd2cdc8593.png" alt="BaseConfiguration &lt;|-- RVRConfiguration
+RVRConfiguration o- AttenuationPluginConfiguration
+RVRConfiguration o- HostConfiguration
+RVRConfiguration o- IperfConfiguration" />
+</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.plugins.rvrplugin.RVRConfiguration.html#cameraobscura.plugins.rvrplugin.RVRConfiguration" title="cameraobscura.plugins.rvrplugin.RVRConfiguration"><code class="xref py py-obj docutils literal"><span class="pre">RVRConfiguration</span></code></a>(sets&nbsp;allow&nbsp;extras&nbsp;to&nbsp;True)</td>
+<td>The Main configuration</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.plugins.rvrplugin.RVRConfiguration.attenuation.html#cameraobscura.plugins.rvrplugin.RVRConfiguration.attenuation" title="cameraobscura.plugins.rvrplugin.RVRConfiguration.attenuation"><code class="xref py py-obj docutils literal"><span class="pre">RVRConfiguration.attenuation</span></code></a></td>
+<td>An AttenuationPluginConfiguration</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.plugins.rvrplugin.RVRConfiguration.dut.html#cameraobscura.plugins.rvrplugin.RVRConfiguration.dut" title="cameraobscura.plugins.rvrplugin.RVRConfiguration.dut"><code class="xref py py-obj docutils literal"><span class="pre">RVRConfiguration.dut</span></code></a></td>
+<td>Host Configuration for the dut</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.plugins.rvrplugin.RVRConfiguration.server.html#cameraobscura.plugins.rvrplugin.RVRConfiguration.server" title="cameraobscura.plugins.rvrplugin.RVRConfiguration.server"><code class="xref py py-obj docutils literal"><span class="pre">RVRConfiguration.server</span></code></a></td>
+<td>Host Configuration for the server</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.plugins.rvrplugin.RVRConfiguration.iperf.html#cameraobscura.plugins.rvrplugin.RVRConfiguration.iperf" title="cameraobscura.plugins.rvrplugin.RVRConfiguration.iperf"><code class="xref py py-obj docutils literal"><span class="pre">RVRConfiguration.iperf</span></code></a></td>
+<td>Iperf Configuration</td>
+</tr>
+</tbody>
+</table>
+<p># need plugin_name</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">other_configuration_configspec</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="si">{folder_option}</span><span class="s2"> = string(default=&#39;</span><span class="si">{folder}</span><span class="s2">&#39;)</span>
+<span class="si">{test_name}</span><span class="s2"> = string(default=&#39;</span><span class="si">{name}</span><span class="s2">&#39;)</span>
+<span class="si">{repetitions_option}</span><span class="s2"> = integer(default=</span><span class="si">{repetitions}</span><span class="s2">)</span>
+<span class="si">{recovery_option}</span><span class="s2"> = float(default=</span><span class="si">{recovery}</span><span class="s2">)</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">folder_option</span><span class="o">=</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">result_location</span><span class="p">,</span>
+           <span class="n">folder</span><span class="o">=</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">default_result_location</span><span class="p">,</span>
+           <span class="n">test_name</span><span class="o">=</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">test_name</span><span class="p">,</span>
+           <span class="n">name</span><span class="o">=</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">default_test_name</span><span class="p">,</span>
+           <span class="n">repetitions_option</span><span class="o">=</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">repetitions</span><span class="p">,</span>
+           <span class="n">repetitions</span><span class="o">=</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">default_repetitions</span><span class="p">,</span>
+           <span class="n">recovery_option</span><span class="o">=</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">recovery_time</span><span class="p">,</span>
+           <span class="n">recovery</span><span class="o">=</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">default_recovery_time</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In order to break this each sub-section gets its own <span class="xref std std-ref">SubConfiguration</span>. This means that it has to accept extra sections that it doesn&#8217;t know about. This makes it somewhat fragile. A separate check might be in order (outside of the validator).</p>
+</div>
+<div class="section" id="the-subconfigurations">
+<h2>The SubConfigurations<a class="headerlink" href="#the-subconfigurations" title="Permalink to this headline">¶</a></h2>
+<p>The rest of the configurations are sub-classes of the Ape&#8217;s sub-configuration. They were meant to do the configuration for the classes used in the plugin&#8217;s product, but mapping everything is getting too hard so I&#8217;m just mapping the ConfigObj object the ConfigurationAdapter when it&#8217;s needed and passing in the sub-section dictonary when it&#8217;s needed (like in the Iperf Configuration).</p>
+<p>Here&#8217;s what the Configurations are inheriting from the Ape&#8217;s SubConfiguration</p>
+<span class="target" id="module-theape.plugins.base_plugin"></span><table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/theape.plugins.base_plugin.SubConfiguration.html#theape.plugins.base_plugin.SubConfiguration" title="theape.plugins.base_plugin.SubConfiguration"><code class="xref py py-obj docutils literal"><span class="pre">SubConfiguration</span></code></a>(source,&nbsp;section_name[,&nbsp;...])</td>
+<td>Abstract base class for configurations</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/theape.plugins.base_plugin.SubConfiguration.check_methods.html#theape.plugins.base_plugin.SubConfiguration.check_methods" title="theape.plugins.base_plugin.SubConfiguration.check_methods"><code class="xref py py-obj docutils literal"><span class="pre">SubConfiguration.check_methods</span></code></a></td>
+<td>dict of extra check methods for the validator</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/theape.plugins.base_plugin.SubConfiguration.configspec_source.html#theape.plugins.base_plugin.SubConfiguration.configspec_source" title="theape.plugins.base_plugin.SubConfiguration.configspec_source"><code class="xref py py-obj docutils literal"><span class="pre">SubConfiguration.configspec_source</span></code></a></td>
+<td>abstract: implement as configspec string</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/theape.plugins.base_plugin.SubConfiguration.sample.html#theape.plugins.base_plugin.SubConfiguration.sample" title="theape.plugins.base_plugin.SubConfiguration.sample"><code class="xref py py-obj docutils literal"><span class="pre">SubConfiguration.sample</span></code></a></td>
+<td>Creates a sample configuration section using the configspec_source</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/theape.plugins.base_plugin.SubConfiguration.constants.html#theape.plugins.base_plugin.SubConfiguration.constants" title="theape.plugins.base_plugin.SubConfiguration.constants"><code class="xref py py-obj docutils literal"><span class="pre">SubConfiguration.constants</span></code></a></td>
+<td>object with string constants (see SubConfigurationConstants)</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/theape.plugins.base_plugin.SubConfiguration.validation_outcome.html#theape.plugins.base_plugin.SubConfiguration.validation_outcome" title="theape.plugins.base_plugin.SubConfiguration.validation_outcome"><code class="xref py py-obj docutils literal"><span class="pre">SubConfiguration.validation_outcome</span></code></a></td>
+<td>Outcome of validating the configuration</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/theape.plugins.base_plugin.SubConfiguration.plugin_name.html#theape.plugins.base_plugin.SubConfiguration.plugin_name" title="theape.plugins.base_plugin.SubConfiguration.plugin_name"><code class="xref py py-obj docutils literal"><span class="pre">SubConfiguration.plugin_name</span></code></a></td>
+<td>Gets the plugin name from the section</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/theape.plugins.base_plugin.SubConfiguration.validator.html#theape.plugins.base_plugin.SubConfiguration.validator" title="theape.plugins.base_plugin.SubConfiguration.validator"><code class="xref py py-obj docutils literal"><span class="pre">SubConfiguration.validator</span></code></a></td>
+<td>validator for the configuration</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/theape.plugins.base_plugin.SubConfiguration.configspec.html#theape.plugins.base_plugin.SubConfiguration.configspec" title="theape.plugins.base_plugin.SubConfiguration.configspec"><code class="xref py py-obj docutils literal"><span class="pre">SubConfiguration.configspec</span></code></a></td>
+<td>A configspec built from configspec_source for validation</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/theape.plugins.base_plugin.SubConfiguration.update.html#theape.plugins.base_plugin.SubConfiguration.update" title="theape.plugins.base_plugin.SubConfiguration.update"><code class="xref py py-obj docutils literal"><span class="pre">SubConfiguration.update</span></code></a>(section)</td>
+<td>Uses &#8216;updates_section&#8217; to build configuration from other section</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/theape.plugins.base_plugin.SubConfiguration.process_errors.html#theape.plugins.base_plugin.SubConfiguration.process_errors" title="theape.plugins.base_plugin.SubConfiguration.process_errors"><code class="xref py py-obj docutils literal"><span class="pre">SubConfiguration.process_errors</span></code></a>()</td>
+<td>processes configuration, validation_outcome and logs the errors</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/theape.plugins.base_plugin.SubConfiguration.check_extra_values.html#theape.plugins.base_plugin.SubConfiguration.check_extra_values" title="theape.plugins.base_plugin.SubConfiguration.check_extra_values"><code class="xref py py-obj docutils literal"><span class="pre">SubConfiguration.check_extra_values</span></code></a>([warn_user])</td>
+<td>checks the configuration for values not in the configspec</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/theape.plugins.base_plugin.SubConfiguration.check_rep.html#theape.plugins.base_plugin.SubConfiguration.check_rep" title="theape.plugins.base_plugin.SubConfiguration.check_rep"><code class="xref py py-obj docutils literal"><span class="pre">SubConfiguration.check_rep</span></code></a>()</td>
+<td>Calls process_errors</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/theape.plugins.base_plugin.SubConfiguration.__getattr__.html#theape.plugins.base_plugin.SubConfiguration.__getattr__" title="theape.plugins.base_plugin.SubConfiguration.__getattr__"><code class="xref py py-obj docutils literal"><span class="pre">SubConfiguration.__getattr__</span></code></a>(key)</td>
+<td>Passes key to self.configuration</td>
+</tr>
+</tbody>
+</table>
+<p>That last method (<cite>__gettattr__</cite>) might cause you some problems. It is intended to let the user use the sub-configurations using dot-notation but if you ask for a section or option (if you&#8217;re already in a section) and it doesn&#8217;t exist, this will raise an <cite>IndexError</cite>.</p>
+</div>
+<div class="section" id="the-attenuationpluginconfiguration">
+<h2>The AttenuationPluginConfiguration<a class="headerlink" href="#the-attenuationpluginconfiguration" title="Permalink to this headline">¶</a></h2>
+<p>A sub-configuration for the <code class="docutils literal"><span class="pre">attenuation</span></code> sub-section.</p>
+<p class="plantuml">
+<img src="../_images/plantuml-c5a903b30bb3ba06033501a1dde2386ed91d2304.png" alt="SubConfiguration &lt;|-- AttenuationPluginConfiguration
+AttenuationPluginConfiguration o- AttenuationPluginConfiguration" />
+</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">AttenuationPluginConfigurationConfiguration</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">attenuation_configspec</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">control_ip = string</span>
+<span class="s2">start = integer(default=0)</span>
+<span class="s2">stop = integer(default=</span><span class="si">{maxint}</span><span class="s2">)</span>
+<span class="s2">name = option(&#39;weinschelp&#39;, &#39;mockattenuator&#39;, &#39;MockAttenuator&#39;, &#39;WeinschelP&#39;, default=&#39;WeinschelP&#39;)s</span>
+<span class="s2">step_sizes = int_list(default=list(1,))</span>
+<span class="s2">step_change_thresholds = int_list(default=None)</span>
+<span class="s2">reversal_limit = integer(default=None)</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">maxint</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">maxint</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="queryconfiguration">
+<h2>QueryConfiguration<a class="headerlink" href="#queryconfiguration" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img src="../_images/plantuml-d2362fa1471f78a50365e7ff34e8c135d08ff888.png" alt="BaseConfiguration &lt;|-- QueryConfiguration" />
+</p>
+<p>A configuration for the queries.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">query_configspec</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">filename = string(default=&#39;query.csv&#39;)</span>
+<span class="s2">timeout = float(default=10)</span>
+<span class="s2">trap_errors = boolean(default=True)</span>
+<span class="s2">__many__ = list(min=2, max=2)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dumpconfiguration">
+<h2>DumpConfiguration<a class="headerlink" href="#dumpconfiguration" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img src="../_images/plantuml-8520335ec9b293e71f5277543553526b56409c73.png" alt="SubConfiguration &lt;|-- DumpConfiguration" />
+</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">DumpConfiguration</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">DumpConfiguration.configspec_source</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>A configuration for the dump.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">dump_configspec</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">filename = string(default=&#39;dump.csv&#39;)</span>
+<span class="s2">timeout = float(default=5)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hostconfiguration">
+<h2>HostConfiguration<a class="headerlink" href="#hostconfiguration" title="Permalink to this headline">¶</a></h2>
+<p>To match the original code <cite>dut</cite> and <cite>server</cite> sections are required.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">node_configspec</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">username = string</span>
+<span class="s2">password = string(default=None)</span>
+<span class="s2">control_ip = string</span>
+
+<span class="s2"># this identifies the type (only &#39;telnet&#39;, &#39;ssh&#39;, or &#39;fake&#39;)</span>
+<span class="s2">connection_type = string(default=&#39;</span><span class="si">{connection_type}</span><span class="s2">&#39;)</span>
+
+<span class="s2"># address of the interface to test</span>
+<span class="s2">test_ip = string</span>
+
+<span class="s2"># connection time-out in seconds</span>
+<span class="s2">timeout = float(default=</span><span class="si">{timeout}</span><span class="s2">)</span>
+
+<span class="s2"># optional prefix to add to ALL commands (default: None)</span>
+<span class="s2"># this will be added with a space (i.e. &lt;prefix&gt; &lt;command&gt;)</span>
+<span class="s2"># so if needed, add a semicolon like in the example between the PATH and adb</span>
+
+<span class="s2">prefix = string(default=None)</span>
+
+<span class="s2"># the operating system for the DUT</span>
+<span class="s2">operating_system = string(default=&#39;</span><span class="si">{operating_system}</span><span class="s2">&#39;)</span>
+
+<span class="s2"># there are too many options for the different connection-types</span>
+<span class="s2"># so you can add necessary parameters but make sure the name</span>
+<span class="s2"># matches the parameter name</span>
+<span class="s2"># e.g. if you need to set the port:</span>
+<span class="s2"># port=52686</span>
+<span class="s2">__many__ = string</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">connection_type</span><span class="o">=</span><span class="n">HostConstants</span><span class="o">.</span><span class="n">default_type</span><span class="p">,</span>
+           <span class="n">timeout</span><span class="o">=</span><span class="n">HostConstants</span><span class="o">.</span><span class="n">default_timeout</span><span class="p">,</span>
+            <span class="n">operating_system</span><span class="o">=</span><span class="n">HostConstants</span><span class="o">.</span><span class="n">default_operating_system</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="plantuml">
+<img src="../_images/plantuml-f7a66d7b6abdfc21ae63e0a3ecfff5097743f08d.png" alt="SubConfiguration &lt;|-- HostConfiguration" />
+</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">HostConfiguration</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="iperfpluginconfiguration">
+<h2>IperfPluginConfiguration<a class="headerlink" href="#iperfpluginconfiguration" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">IperfPluginConfiguration</span></code> is a mash-up of the Ape&#8217;s configspec and the current CameraObscura IperfSettings. This currently assumes symmetric arguments. Eventually it should be extended so the two nodes can get different parameters.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">I have to add Plugin to the configuration names because the CameraObscura already has configuration&#8217;s with the same names without &#8216;Plugin&#8217; (e.g. <cite>IperfConfiguration</cite>).</p>
+</div>
+<p class="plantuml">
+<img src="../_images/plantuml-dc24b3847d2bc49e95722889d9d7dd0aef50c15d.png" alt="SubConfiguration &lt;|-- IperfPluginConfiguration
+IperfPluginConfiguration o- IperfServerSettings
+IperfPluginConfiguration o- IperfClientSettings
+IperfPluginConfiguration o- IperfConfiguration" />
+</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfPluginConfiguration</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfPluginConfiguration.direction</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfPluginConfiguration.server_settings</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfPluginConfiguration.client_settings</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfPluginConfiguration.iperf_configuration</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="the-iperf-configspec">
+<h3>The Iperf Configspec<a class="headerlink" href="#the-iperf-configspec" title="Permalink to this headline">¶</a></h3>
+<p>Most of the configspec is being defined in the <cite>ape</cite>, but the <cite>direction</cite> is added here since it&#8217;s specific to this code.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">check_direction</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A check-method for the configuration validation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># accept if first letter is u,d, or b</span>
+        <span class="k">if</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="s1">&#39;udb&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">value</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">VdtValueError</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="n">VdtValueError</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span>
+
+<span class="n">iperf_checks</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;check_direction&#39;</span><span class="p">:</span> <span class="n">check_direction</span><span class="p">})</span>
+
+<span class="n">iperf_configspec</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">direction = check_direction(default=both)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">iperf_configspec</span> <span class="o">+=</span> <span class="n">ape_iperf_configspec</span>
+</pre></div>
+</div>
+<p>In retrospect the configspec is overkill, I forgot that I set up so much parameter checking already, but I guess it&#8217;s better too be too safe rather than not safe enough.</p>
+<p>The main purpose of this class is to bridge the old configurations made in the CameraObscura (using the old APE&#8217;s configuration adapter) and the new ape&#8217;s plugin-system which uses configobj instead.</p>
+</div>
+<div class="section" id="the-iperfpluginconfiguration">
+<h3>The IperfPluginConfiguration<a class="headerlink" href="#the-iperfpluginconfiguration" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

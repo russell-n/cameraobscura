@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Iperf &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The Iperf</a><ul>
+<li><a class="reference internal" href="#the-clientserver-namedtuple">The ClientServer NamedTuple</a></li>
+<li><a class="reference internal" href="#the-iperf-class">The Iperf Class</a></li>
+<li><a class="reference internal" href="#iperf-enum">Iperf Enum</a></li>
+<li><a class="reference internal" href="#iperf-configuration">Iperf Configuration</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../_sources/commands/iperf/Iperf.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="the-iperf">
+<h1>The Iperf<a class="headerlink" href="#the-iperf" title="Permalink to this headline">¶</a></h1>
+<p>A set of convenience classes and methods for running iperf traffic.</p>
+<div class="section" id="the-clientserver-namedtuple">
+<span id="iperf-client-server-namedtuple"></span><h2>The ClientServer NamedTuple<a class="headerlink" href="#the-clientserver-namedtuple" title="Permalink to this headline">¶</a></h2>
+<p>This is a namedtuple to pass around the client and server  for different directions.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">ClientServer</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;ClientServer&#39;</span><span class="p">,</span> <span class="s1">&#39;client server&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-iperf-class">
+<span id="iperf-class"></span><h2>The Iperf Class<a class="headerlink" href="#the-iperf-class" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img src="../../_images/plantuml-401441d8e26f82a939884c96230dca22f6852b93.png" alt="Iperf o- EventTimer
+Iperf o- ClientServer
+Iperf o- HostSSH
+Iperf o- IperfClientSettings
+Iperf o- IperfServerSettings" />
+</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.Iperf.html#cameraobscura.commands.iperf.Iperf.Iperf" title="cameraobscura.commands.iperf.Iperf.Iperf"><code class="xref py py-obj docutils literal"><span class="pre">Iperf</span></code></a>(dut,&nbsp;traffic_server,&nbsp;client_settings,&nbsp;...)</td>
+<td>A runner of iperf tests</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.Iperf.event_timer.html#cameraobscura.commands.iperf.Iperf.Iperf.event_timer" title="cameraobscura.commands.iperf.Iperf.Iperf.event_timer"><code class="xref py py-obj docutils literal"><span class="pre">Iperf.event_timer</span></code></a></td>
+<td>An event-timer instance to help the server block the client</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.Iperf.client_server.html#cameraobscura.commands.iperf.Iperf.Iperf.client_server" title="cameraobscura.commands.iperf.Iperf.Iperf.client_server"><code class="xref py py-obj docutils literal"><span class="pre">Iperf.client_server</span></code></a></td>
+<td>A dict with {direction:ClientServer} named tuples</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.Iperf.udp.html#cameraobscura.commands.iperf.Iperf.Iperf.udp" title="cameraobscura.commands.iperf.Iperf.Iperf.udp"><code class="xref py py-obj docutils literal"><span class="pre">Iperf.udp</span></code></a></td>
+<td>A check for the UDP flag in the settings</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.Iperf.__call__.html#cameraobscura.commands.iperf.Iperf.Iperf.__call__" title="cameraobscura.commands.iperf.Iperf.Iperf.__call__"><code class="xref py py-obj docutils literal"><span class="pre">Iperf.__call__</span></code></a>(direction,&nbsp;filename)</td>
+<td>the main interface</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.Iperf.downstream.html#cameraobscura.commands.iperf.Iperf.Iperf.downstream" title="cameraobscura.commands.iperf.Iperf.Iperf.downstream"><code class="xref py py-obj docutils literal"><span class="pre">Iperf.downstream</span></code></a>(filename)</td>
+<td>This is slightly safer than using the call, since you don&#8217;t need to know the direction string</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.Iperf.upstream.html#cameraobscura.commands.iperf.Iperf.Iperf.upstream" title="cameraobscura.commands.iperf.Iperf.Iperf.upstream"><code class="xref py py-obj docutils literal"><span class="pre">Iperf.upstream</span></code></a>(filename)</td>
+<td>Like <cite>downstream</cite> this is just a convenience pass-through to __call__</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.Iperf.run.html#cameraobscura.commands.iperf.Iperf.Iperf.run" title="cameraobscura.commands.iperf.Iperf.Iperf.run"><code class="xref py py-obj docutils literal"><span class="pre">Iperf.run</span></code></a>(host,&nbsp;settings,&nbsp;filename[,&nbsp;...])</td>
+<td>Runs one-direction of traffic</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.Iperf.start_server.html#cameraobscura.commands.iperf.Iperf.Iperf.start_server" title="cameraobscura.commands.iperf.Iperf.Iperf.start_server"><code class="xref py py-obj docutils literal"><span class="pre">Iperf.start_server</span></code></a>(server,&nbsp;filename)</td>
+<td>Starts the server in a thread so the client can run.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.Iperf.run_client.html#cameraobscura.commands.iperf.Iperf.Iperf.run_client" title="cameraobscura.commands.iperf.Iperf.Iperf.run_client"><code class="xref py py-obj docutils literal"><span class="pre">Iperf.run_client</span></code></a>(client,&nbsp;filename)</td>
+<td>Runs the client iperf session</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.Iperf.version.html#cameraobscura.commands.iperf.Iperf.Iperf.version" title="cameraobscura.commands.iperf.Iperf.Iperf.version"><code class="xref py py-obj docutils literal"><span class="pre">Iperf.version</span></code></a>(connection)</td>
+<td>Runs iperf with the version flag</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">Iperf.parser</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="iperf-enum">
+<span id="id1"></span><h2>Iperf Enum<a class="headerlink" href="#iperf-enum" title="Permalink to this headline">¶</a></h2>
+<p>A holder of constants.</p>
+</div>
+<div class="section" id="iperf-configuration">
+<span id="id2"></span><h2>Iperf Configuration<a class="headerlink" href="#iperf-configuration" title="Permalink to this headline">¶</a></h2>
+<p>A configuration for iperf testing.</p>
+<p class="plantuml">
+<img src="../../_images/plantuml-73902650c12361d9125d16bc7f9954f0f38d6538.png" alt="BaseConfiguration &lt;|-- IperfConfiguration
+IperfConfiguration o- ConfigurationAdapter
+IperfConfiguration o- IperfEnum
+IperfConfiguration o- IperfClientSettings
+IperfConfiguration o- IperfServerSettings" />
+</p>
+<span class="target" id="module-cameraobscura.commands.iperf.Iperf"></span><table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.IperfConfiguration.html#cameraobscura.commands.iperf.Iperf.IperfConfiguration" title="cameraobscura.commands.iperf.Iperf.IperfConfiguration"><code class="xref py py-obj docutils literal"><span class="pre">IperfConfiguration</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>A holder of iperf parameters</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.IperfConfiguration.direction.html#cameraobscura.commands.iperf.Iperf.IperfConfiguration.direction" title="cameraobscura.commands.iperf.Iperf.IperfConfiguration.direction"><code class="xref py py-obj docutils literal"><span class="pre">IperfConfiguration.direction</span></code></a></td>
+<td>Gets the traffic direction (only uses the first letters (u, d, or b))</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.IperfConfiguration.client_settings.html#cameraobscura.commands.iperf.Iperf.IperfConfiguration.client_settings" title="cameraobscura.commands.iperf.Iperf.IperfConfiguration.client_settings"><code class="xref py py-obj docutils literal"><span class="pre">IperfConfiguration.client_settings</span></code></a></td>
+<td>An IperfClientSettings object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.IperfConfiguration.server_settings.html#cameraobscura.commands.iperf.Iperf.IperfConfiguration.server_settings" title="cameraobscura.commands.iperf.Iperf.IperfConfiguration.server_settings"><code class="xref py py-obj docutils literal"><span class="pre">IperfConfiguration.server_settings</span></code></a></td>
+<td>IperfServerSettings</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.IperfConfiguration.get_section_dict.html#cameraobscura.commands.iperf.Iperf.IperfConfiguration.get_section_dict" title="cameraobscura.commands.iperf.Iperf.IperfConfiguration.get_section_dict"><code class="xref py py-obj docutils literal"><span class="pre">IperfConfiguration.get_section_dict</span></code></a>()</td>
+<td>Convenience method to get the section dict</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.IperfConfiguration.reset.html#cameraobscura.commands.iperf.Iperf.IperfConfiguration.reset" title="cameraobscura.commands.iperf.Iperf.IperfConfiguration.reset"><code class="xref py py-obj docutils literal"><span class="pre">IperfConfiguration.reset</span></code></a>()</td>
+<td>Sets the properties to None</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.IperfConfiguration.check_rep.html#cameraobscura.commands.iperf.Iperf.IperfConfiguration.check_rep" title="cameraobscura.commands.iperf.Iperf.IperfConfiguration.check_rep"><code class="xref py py-obj docutils literal"><span class="pre">IperfConfiguration.check_rep</span></code></a>()</td>
+<td>Checks the representation</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.IperfConfiguration.example.html#cameraobscura.commands.iperf.Iperf.IperfConfiguration.example" title="cameraobscura.commands.iperf.Iperf.IperfConfiguration.example"><code class="xref py py-obj docutils literal"><span class="pre">IperfConfiguration.example</span></code></a></td>
+<td><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">return:</th><td class="field-body">example iperf configuration</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.iperf.Iperf.IperfConfiguration.section.html#cameraobscura.commands.iperf.Iperf.IperfConfiguration.section" title="cameraobscura.commands.iperf.Iperf.IperfConfiguration.section"><code class="xref py py-obj docutils literal"><span class="pre">IperfConfiguration.section</span></code></a></td>
+<td>The section name in the configuration</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

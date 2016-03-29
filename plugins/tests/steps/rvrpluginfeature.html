@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>RVR Plugin &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../index.html" />
+    <link rel="up" title="RVR Plugin Tests" href="index.html" />
+    <link rel="next" title="Rate-Vs-Range" href="../../../ratevsrange/index.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="rvr_sample.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">RVR Plugin</a><ul>
+<li><a class="reference internal" href="#scenario-user-builds-the-rvr-plugin">Scenario: User builds the RVR Plugin</a></li>
+<li><a class="reference internal" href="#scenario-user-builds-the-minimal-rvr-configuration">Scenario: User builds the minimal RVR Configuration</a></li>
+<li><a class="reference internal" href="#scenario-user-builds-the-rvr-configuration-with-extra-iperf-values">Scenario: User builds the RVR Configuration with extra iperf values</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="rvr_sample.html" title="Previous Chapter: <no title>"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; <no title></span>
+    </a>
+  </li>
+  <li>
+    <a href="../../../ratevsrange/index.html" title="Next Chapter: Rate-Vs-Range"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Rate-Vs-Range &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../../_sources/plugins/tests/steps/rvrpluginfeature.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="rvr-plugin">
+<h1>RVR Plugin<a class="headerlink" href="#rvr-plugin" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-gherkin"><div class="highlight"><pre><span></span><span class="k">Feature:</span><span class="nf"> RVR Plugin for the APE</span>
+<span class="nf"> </span><span class="k">Scenario:</span><span class="nf"> User builds the RVR Plugin</span>
+<span class="k">  Given </span><span class="nf">an instance of the RVR Plugin</span>
+<span class="nf">  </span><span class="k">When </span><span class="nf">the RVR Plugin is checked</span>
+<span class="nf">  </span><span class="k">Then </span><span class="nf">the RVRPlugin is an APE Plugin</span>
+
+<span class="nf"> </span><span class="k">Scenario:</span><span class="nf"> User builds the minimal RVR Configuration</span>
+<span class="k">  Given </span><span class="nf">an instance of the minimal RVRConfiguration </span>
+<span class="nf">  </span><span class="k">When </span><span class="nf">the RVRConfiguration is checked</span>
+<span class="nf">  </span><span class="k">Then </span><span class="nf">RVRConfiguration is instance of ape&#39;s BaseConfiguration</span>
+<span class="nf">  </span><span class="k">And </span><span class="nf">RVRConfiguration has the user values</span>
+<span class="nf">  </span><span class="k">And </span><span class="nf">RVRConfiguration has the default values</span>
+<span class="nf">  </span>
+<span class="nf"> </span><span class="k">Scenario:</span><span class="nf"> User builds the RVR Configuration with extra iperf values</span>
+<span class="k">  Given </span><span class="nf">an instance of the RVRConfiguration with extra iperf values</span>
+<span class="nf">  </span><span class="k">When </span><span class="nf">the RVRConfiguration is checked for extra iperf values</span>
+<span class="nf">  </span><span class="k">Then </span><span class="nf">the RVRConfiguration has the extra iperf values</span>
+<span class="nf">  </span>
+</pre></div>
+</div>
+<div class="section" id="scenario-user-builds-the-rvr-plugin">
+<h2>Scenario: User builds the RVR Plugin<a class="headerlink" href="#scenario-user-builds-the-rvr-plugin" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;an instance of the RVR Plugin&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">rvr_plugin_instance</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">plugin</span> <span class="o">=</span> <span class="n">RVR</span><span class="p">()</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@when</span><span class="p">(</span><span class="s2">&quot;the RVR Plugin is checked&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">check_plugin</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="n">BasePlugin</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;the RVRPlugin is an APE Plugin&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">assert_ape</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">plugin</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">instance_of</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">expected</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scenario-user-builds-the-minimal-rvr-configuration">
+<h2>Scenario: User builds the minimal RVR Configuration<a class="headerlink" href="#scenario-user-builds-the-minimal-rvr-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">base_header</span> <span class="o">=</span> <span class="s1">&#39;default_rvr&#39;</span>
+<span class="n">base_sections</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;attenuation&#39;</span><span class="p">:{</span><span class="s1">&#39;control_ip&#39;</span><span class="p">:</span><span class="s1">&#39;outthere&#39;</span><span class="p">},</span>
+                 <span class="s1">&#39;dut&#39;</span><span class="p">:{</span><span class="s1">&#39;username&#39;</span><span class="p">:</span><span class="s1">&#39;root&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;control_ip&#39;</span><span class="p">:</span><span class="s1">&#39;www.aoeu.com&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;test_ip&#39;</span><span class="p">:</span><span class="s1">&#39;localhost&#39;</span><span class="p">},</span>
+                 <span class="s1">&#39;server&#39;</span><span class="p">:{</span><span class="s1">&#39;username&#39;</span><span class="p">:</span><span class="s1">&#39;bama&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;control_ip&#39;</span><span class="p">:</span><span class="s1">&#39;here&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;test_ip&#39;</span><span class="p">:</span><span class="s1">&#39;there&#39;</span><span class="p">}}</span>
+<span class="n">base_configuration</span> <span class="o">=</span> <span class="p">{</span><span class="n">base_header</span><span class="p">:</span><span class="n">base_sections</span><span class="p">}</span>
+
+<span class="n">default_configuration</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">[rate_vs_range]</span>
+<span class="s2">[[attenuation]]</span>
+<span class="s2"># &#39;control_ip&#39; is the address of the attenuator</span>
+<span class="s2">control_ip = 192.168.10.53</span>
+
+<span class="s2">[[dut]]</span>
+<span class="s2"># login information (these are required)</span>
+<span class="s2">username = admin</span>
+<span class="s2">control_ip = 192.168.10.34</span>
+<span class="s2">test_ip = 192.168.20.34</span>
+
+<span class="s2">[[server]]</span>
+<span class="s2"># login information (these are required)</span>
+<span class="s2">username = admin</span>
+<span class="s2">control_ip = 192.168.10.34</span>
+<span class="s2">test_ip = 192.168.20.34</span>
+
+<span class="s2">[[iperf]]</span>
+<span class="s2">direction = downstream</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;an instance of the minimal RVRConfiguration&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">rvr_configuration</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">plugin_source</span> <span class="o">=</span> <span class="n">ConfigObj</span><span class="p">(</span><span class="n">base_configuration</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">RVRConfiguration</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">plugin_source</span><span class="p">,</span>
+                                             <span class="n">section_name</span><span class="o">=</span><span class="s2">&quot;default_rvr&quot;</span><span class="p">)</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@when</span><span class="p">(</span><span class="s2">&quot;the RVRConfiguration is checked&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">check_rvr_configuration</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="n">base_configuration</span><span class="p">[</span><span class="n">base_header</span><span class="p">][</span><span class="s1">&#39;attenuation&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">attenuation_control_ip</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;control_ip&#39;</span><span class="p">]</span>
+
+    <span class="n">section</span> <span class="o">=</span> <span class="n">base_configuration</span><span class="p">[</span><span class="n">base_header</span><span class="p">][</span><span class="s1">&#39;server&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">server_username</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span>
+    <span class="c1">#context.server_control = configuration[&#39;server&#39;][&#39;control_ip&#39;]</span>
+    <span class="c1">#context.server_test = configuration[&#39;server&#39;][&#39;test_ip&#39;]</span>
+    <span class="c1">#</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="n">base_configuration</span><span class="p">[</span><span class="n">base_header</span><span class="p">][</span><span class="s1">&#39;dut&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">dut_username</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">dut_control_ip</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;control_ip&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">dut_test_ip</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;test_ip&#39;</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;RVRConfiguration is instance of ape&#39;s BaseConfiguration&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">assert_base_configuration</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">instance_of</span><span class="p">(</span><span class="n">BaseConfiguration</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;RVRConfiguration has the user values&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">check_user_values</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+    <span class="c1"># dut</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">attenuation_control_ip</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">attenuation</span><span class="o">.</span><span class="n">control_ip</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">dut_username</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">dut</span><span class="o">.</span><span class="n">username</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">dut_control_ip</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">dut</span><span class="o">.</span><span class="n">control_ip</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">dut_test_ip</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">dut</span><span class="o">.</span><span class="n">test_ip</span><span class="p">)))</span>
+    <span class="c1"># server</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">server_username</span><span class="p">,</span>
+                 <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">username</span><span class="p">)))</span>
+
+    <span class="c1"># the check_rep is catching the rest if they&#39;re missing anyway</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;RVRConfiguration has the default values&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">check_default_values</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">rvrconfiguration</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">configuration</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">rvrconfiguration</span><span class="o">.</span><span class="n">result_location</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">default_result_location</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">rvrconfiguration</span><span class="o">.</span><span class="n">test_name</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">default_test_name</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">rvrconfiguration</span><span class="o">.</span><span class="n">repetitions</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">default_repetitions</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">rvrconfiguration</span><span class="o">.</span><span class="n">recovery_time</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">default_recovery_time</span><span class="p">)))</span>
+
+    <span class="n">section</span> <span class="o">=</span> <span class="n">rvrconfiguration</span><span class="o">.</span><span class="n">attenuation</span>
+
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">start</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">AttenuationConstants</span><span class="o">.</span><span class="n">default_start</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">AttenuationConstants</span><span class="o">.</span><span class="n">default_stop</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">AttenuationConstants</span><span class="o">.</span><span class="n">default_attenuator</span><span class="p">)))</span>
+
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">step_sizes</span><span class="p">,</span>
+                <span class="n">contains</span><span class="p">(</span><span class="o">*</span><span class="n">AttenuationConstants</span><span class="o">.</span><span class="n">default_step_sizes</span><span class="p">))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">step_change_thresholds</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
+
+    <span class="n">section</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">dut</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">connection_type</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">HostConstants</span><span class="o">.</span><span class="n">default_type</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">HostConstants</span><span class="o">.</span><span class="n">default_timeout</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">operating_system</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">HostConstants</span><span class="o">.</span><span class="n">default_operating_system</span><span class="p">)))</span>
+
+    <span class="c1">## iperf</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="n">rvrconfiguration</span><span class="o">.</span><span class="n">iperf</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">direction</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">TrafficConstants</span><span class="o">.</span><span class="n">default_direction</span><span class="p">)))</span>
+    <span class="c1">#assert_that(section[&#39;parallel&#39;],</span>
+    <span class="c1">#            is_(None))</span>
+
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scenario-user-builds-the-rvr-configuration-with-extra-iperf-values">
+<h2>Scenario: User builds the RVR Configuration with extra iperf values<a class="headerlink" href="#scenario-user-builds-the-rvr-configuration-with-extra-iperf-values" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">iperf_configuration</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">[rate_vs_range]</span>
+<span class="s2">[[attenuation]]</span>
+<span class="s2"># &#39;control_ip&#39; is the address of the attenuator</span>
+<span class="s2">control_ip = 192.168.10.53</span>
+
+<span class="s2">[[dut]]</span>
+<span class="s2"># login information (these are required)</span>
+<span class="s2">username = admin</span>
+<span class="s2">control_ip = 192.168.10.34</span>
+<span class="s2">test_ip = 192.168.20.34</span>
+
+<span class="s2">[[server]]</span>
+<span class="s2"># login information (these are required)</span>
+<span class="s2">username = admin</span>
+<span class="s2">control_ip = 192.168.10.34</span>
+<span class="s2">test_ip = 192.168.20.34</span>
+
+<span class="s2">[[iperf]]</span>
+<span class="s2">direction = upstream</span>
+<span class="s2">parallel = 4</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+<span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;an instance of the RVRConfiguration with extra iperf values&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">extra_iperf_values</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">RVRConfiguration</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">ConfigObj</span><span class="p">(</span><span class="n">iperf_configuration</span><span class="p">),</span>
+                                             <span class="n">section_name</span><span class="o">=</span><span class="s2">&quot;rate_vs_range&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@when</span><span class="p">(</span><span class="s2">&quot;the RVRConfiguration is checked for extra iperf values&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">check_extra_iperf</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">configuration</span><span class="p">[</span><span class="s1">&#39;iperf&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">parallel</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;parallel&#39;</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;the RVRConfiguration has the extra iperf values&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">assert_extra_iperf</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">parallel</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="s1">&#39;4&#39;</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

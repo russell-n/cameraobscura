@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Configuration Adapter &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../index.html" />
+    <link rel="up" title="Configuration" href="index.html" />
+    <link rel="next" title="ConfigParser.SafeConfigParser" href="api/ConfigParser.SafeConfigParser.html" />
+    <link rel="prev" title="Configuration" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../user/index.html">User Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The Configuration Adapter</a><ul>
+<li><a class="reference internal" href="#read-configuration">Read Configuration</a></li>
+<li><a class="reference internal" href="#convert-to-data">Convert to Data</a></li>
+<li><a class="reference internal" href="#convert-to-class">Convert To Class</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="index.html" title="Previous Chapter: Configuration"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Configuration</span>
+    </a>
+  </li>
+  <li>
+    <a href="api/ConfigParser.SafeConfigParser.html" title="Next Chapter: ConfigParser.SafeConfigParser"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">ConfigParser.... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../../_sources/documentation/developer/configuration/configurationadapter.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="the-configuration-adapter">
+<h1>The Configuration Adapter<a class="headerlink" href="#the-configuration-adapter" title="Permalink to this headline">¶</a></h1>
+<p class="plantuml">
+<img src="../../../_images/plantuml-1d8f3d48ef3d01dd5299f62cc1d6288821900297.png" alt="state &quot;Read Configuration&quot; as RC
+state &quot;Convert to Data&quot; as DS
+state &quot;Convert to Class&quot; as CC
+
+[*] -&gt; RC : ConfigurationFile
+RC -&gt; DS : ConfigParser
+DS -&gt; CC : Data | Data Structure
+CC -&gt; [*] : Configuration Class" />
+</p>
+<p>contents:</p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>Read Configuration &lt;developer-configuration-read-configuration&gt;</cite></li>
+<li><cite>Convert to Data &lt;developer-configuration-convert-to-data&gt;</cite></li>
+<li><cite>Convert to Class &lt;developer-configuration-convert-to-class&gt;</cite></li>
+</ul>
+</div></blockquote>
+<div class="section" id="read-configuration">
+<span id="developer-configuration-read-configuration"></span><h2>Read Configuration<a class="headerlink" href="#read-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The first part of the requirement is to convert a file into a &#8216;configuration&#8217;. This is done in the <a class="reference internal" href="../../../ratevsrange/main.html#rate-vs-range-main"><span class="std std-ref">main</span></a> section by creating a <em>SafeConfigParser</em> from a configuration file-name. Since this is part of the standard library it won&#8217;t be documented.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/ConfigParser.SafeConfigParser.html#ConfigParser.SafeConfigParser" title="ConfigParser.SafeConfigParser"><code class="xref py py-obj docutils literal"><span class="pre">SafeConfigParser</span></code></a>([defaults,&nbsp;dict_type,&nbsp;...])</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="convert-to-data">
+<span id="developer-configuration-convert-to-data"></span><h2>Convert to Data<a class="headerlink" href="#convert-to-data" title="Permalink to this headline">¶</a></h2>
+<p>An adapter class was created (the <a class="reference internal" href="../../../utilities/configurationadapter.html#configuration-adapter"><span class="std std-ref">ConfigurationAdapter</span></a>) in order to add two features to the <em>SafeConfigParser</em>:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Optional options (and defaults)</li>
+<li>Data structures</li>
+</ol>
+</div></blockquote>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">ConfigurationAdapter</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="convert-to-class">
+<span id="developer-configuration-convert-to-class"></span><h2>Convert To Class<a class="headerlink" href="#convert-to-class" title="Permalink to this headline">¶</a></h2>
+<p>The last part of the implementation is difficult to document completely. The idea is that each class that needs a configuration will create a class to map a <cite>&lt;section&gt;:&lt;option&gt;</cite> pair for each parameter it needs &#8211; with <cite>&lt;section&gt;</cite> meaning a section in the configuration file (e.g. <cite>[dut]</cite>) and the <cite>option</cite> meaning the left-hand side of a configuration line (e.g. <cite>hostname=192.168.20.24</cite> would have <cite>hostname</cite> as the option and <cite>192.168.20.24</cite> as the assigned value).</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

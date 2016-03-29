@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>HostConfiguration &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../index.html" />
+    <link rel="up" title="RVR Plugin Tests" href="index.html" />
+    <link rel="next" title="Iperf Configuration" href="iperfconfigurationfeature.html" />
+    <link rel="prev" title="DumpConfiguration" href="dumpconfiguration.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">HostConfiguration</a><ul>
+<li><a class="reference internal" href="#scenario-missing-required-option-in-host-configuration">Scenario: Missing Required Option in Host Configuration</a></li>
+<li><a class="reference internal" href="#example-minimal-host-configuration">Example: Minimal Host Configuration</a></li>
+<li><a class="reference internal" href="#example-complete-host-configuration">Example: Complete Host Configuration</a></li>
+<li><a class="reference internal" href="#example-extra-host-configuration">Example: Extra Host Configuration</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="dumpconfiguration.html" title="Previous Chapter: DumpConfiguration"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; DumpConfigura...</span>
+    </a>
+  </li>
+  <li>
+    <a href="iperfconfigurationfeature.html" title="Next Chapter: Iperf Configuration"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Iperf Configu... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../../_sources/plugins/tests/steps/dutconfigurationfeature.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="hostconfiguration">
+<h1>HostConfiguration<a class="headerlink" href="#hostconfiguration" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Feature</span><span class="p">:</span> <span class="n">Dut</span> <span class="n">Configuration</span>
+  <span class="n">Scenario</span><span class="p">:</span> <span class="n">Missing</span> <span class="n">required</span> <span class="n">options</span> <span class="ow">in</span> <span class="n">Node</span> <span class="n">Configuration</span>
+    <span class="n">Given</span> <span class="n">a</span> <span class="n">node</span> <span class="n">configuration</span> <span class="k">with</span> <span class="n">missing</span> <span class="n">required</span> <span class="n">options</span>
+    <span class="n">When</span> <span class="n">the</span> <span class="n">node</span> <span class="n">configuration</span> <span class="ow">is</span> <span class="n">checked</span>
+    <span class="n">Then</span> <span class="n">the</span> <span class="n">node</span> <span class="n">configuration</span> <span class="n">raises</span> <span class="n">an</span> <span class="n">error</span>
+
+  <span class="n">Scenario</span> <span class="n">Outline</span><span class="p">:</span> <span class="n">Node</span> <span class="n">Configurations</span>
+    <span class="n">Given</span> <span class="n">a</span> <span class="n">node</span> <span class="n">configuration</span> <span class="k">with</span> <span class="o">&lt;</span><span class="n">setting</span><span class="o">&gt;</span> <span class="n">settings</span>
+    <span class="n">When</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">setting</span><span class="o">&gt;</span> <span class="n">node</span> <span class="n">configuration</span> <span class="n">options</span> <span class="n">are</span> <span class="n">checked</span>
+    <span class="n">Then</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">options</span><span class="o">&gt;</span> <span class="n">node</span> <span class="n">configuration</span> <span class="ow">is</span> <span class="n">correct</span>
+
+  <span class="n">Examples</span><span class="p">:</span> <span class="n">Node</span> <span class="n">Configuration</span> <span class="n">Levels</span>
+  <span class="o">|</span> <span class="n">setting</span> <span class="o">|</span> <span class="n">options</span>    <span class="o">|</span>
+  <span class="o">|</span> <span class="n">minimal</span> <span class="o">|</span> <span class="n">required</span>   <span class="o">|</span>
+  <span class="o">|</span> <span class="n">full</span>    <span class="o">|</span> <span class="n">complete</span>   <span class="o">|</span>
+  <span class="o">|</span> <span class="n">extra</span>   <span class="o">|</span> <span class="n">overloaded</span> <span class="o">|</span>
+
+</pre></div>
+</div>
+<div class="section" id="scenario-missing-required-option-in-host-configuration">
+<h2>Scenario: Missing Required Option in Host Configuration<a class="headerlink" href="#scenario-missing-required-option-in-host-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">[missing]</span>
+<span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+<span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;a node configuration with missing required options&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">missing_defaults</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">configuration</span> <span class="o">=</span> <span class="n">ConfigObj</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">=</span><span class="n">HostConfiguration</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span>
+                                            <span class="s1">&#39;missing&#39;</span><span class="p">)</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@when</span><span class="p">(</span><span class="s2">&quot;the node configuration is checked&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">check_configuration</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">callable</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">check_rep</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;the node configuration raises an error&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">assert_error</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">callable</span><span class="p">,</span>
+                <span class="n">raises</span><span class="p">(</span><span class="n">ConfigurationError</span><span class="p">))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-minimal-host-configuration">
+<h2>Example: Minimal Host Configuration<a class="headerlink" href="#example-minimal-host-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">minimal</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;[minimal]</span>
+<span class="s2">username = bob</span>
+<span class="s2">control_ip = www.google.com</span>
+<span class="s2">test_ip = aoeusnth</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+<span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;a node configuration with minimal settings&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">minimal_configuration</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">configuration</span> <span class="o">=</span> <span class="n">ConfigObj</span><span class="p">(</span><span class="n">minimal</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">HostConfiguration</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span>
+                                              <span class="s1">&#39;minimal&#39;</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@when</span><span class="p">(</span><span class="s2">&quot;the minimal node configuration options are checked&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">check_options</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;bob&#39;</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">control_ip</span> <span class="o">=</span> <span class="s1">&#39;www.google.com&#39;</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">test_ip</span> <span class="o">=</span> <span class="s1">&#39;aoeusnth&#39;</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;the required node configuration is correct&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">assert_correct</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">username</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">control_ip</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">control_ip</span><span class="p">)))</span>
+
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">connection_type</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">HostConstants</span><span class="o">.</span><span class="n">default_type</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">test_ip</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">test_ip</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">HostConstants</span><span class="o">.</span><span class="n">default_timeout</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">operating_system</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">HostConstants</span><span class="o">.</span><span class="n">default_operating_system</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-complete-host-configuration">
+<h2>Example: Complete Host Configuration<a class="headerlink" href="#example-complete-host-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;username password control_ip test_ip&#39;</span>
+           <span class="s1">&#39; connection_type timeout prefix&#39;</span>
+           <span class="s1">&#39; operating_system&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;bob ummagumma www.google.com aoeusnth telnet&#39;</span>
+          <span class="s1">&#39; 4538 sudo planet9&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">complete</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;complete&#39;</span><span class="p">:</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">values</span><span class="p">))}</span>
+
+<span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;a node configuration with full settings&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">full_configuration</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">configuration</span> <span class="o">=</span> <span class="n">ConfigObj</span><span class="p">(</span><span class="n">complete</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">HostConfiguration</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span>
+                                              <span class="s1">&#39;complete&#39;</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@when</span><span class="p">(</span><span class="s2">&quot;the full node configuration options are checked&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">check_options</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="n">complete</span><span class="p">[</span><span class="s1">&#39;complete&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">control_ip</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;control_ip&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">test_ip</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;test_ip&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">connection_type</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;connection_type&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">section</span><span class="p">[</span><span class="s1">&#39;timeout&#39;</span><span class="p">])</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;prefix&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">operating_system</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;operating_system&#39;</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;the complete node configuration is correct&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">assert_correct</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">username</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">password</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">control_ip</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">control_ip</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">connection_type</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">connection_type</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">test_ip</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">test_ip</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">timeout</span><span class="p">)))</span>
+
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">prefix</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">operating_system</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">operating_system</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-extra-host-configuration">
+<h2>Example: Extra Host Configuration<a class="headerlink" href="#example-extra-host-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;username password control_ip test_ip&#39;</span>
+           <span class="s1">&#39; connection_type timeout prefix&#39;</span>
+           <span class="s1">&#39; operating_system port&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;bob ummagumma www.google.com aoeusnth telnet&#39;</span>
+          <span class="s1">&#39; 4538 sudo planet9 52686&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">overfull</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;complete&#39;</span><span class="p">:</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">values</span><span class="p">))}</span>
+
+<span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;a node configuration with extra settings&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">extra_configuration</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">configuration</span> <span class="o">=</span> <span class="n">ConfigObj</span><span class="p">(</span><span class="n">overfull</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">HostConfiguration</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span>
+                                              <span class="s1">&#39;complete&#39;</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@when</span><span class="p">(</span><span class="s2">&quot;the extra node configuration options are checked&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">check_options</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="n">overfull</span><span class="p">[</span><span class="s1">&#39;complete&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">control_ip</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;control_ip&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">test_ip</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;test_ip&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">connection_type</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;connection_type&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">section</span><span class="p">[</span><span class="s1">&#39;timeout&#39;</span><span class="p">])</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;prefix&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">operating_system</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;operating_system&#39;</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">section</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">]</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;the overloaded node configuration is correct&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">assert_correct</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">username</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">password</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">control_ip</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">control_ip</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">connection_type</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">connection_type</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">test_ip</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">test_ip</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">timeout</span><span class="p">)))</span>
+
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">prefix</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">operating_system</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">operating_system</span><span class="p">)))</span>
+
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">port</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

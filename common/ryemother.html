@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Rye Mother &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../index.html" />
+    <link rel="up" title="Common Code" href="index.html" />
+    <link rel="next" title="pkg_resources.load_entry_point" href="api/pkg_resources.load_entry_point.html" />
+    <link rel="prev" title="cameraobscura.common.errors.ConfigurationError" href="api/cameraobscura.common.errors.ConfigurationError.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The Rye Mother</a><ul>
+<li><a class="reference internal" href="#the-entry-points">The Entry Points</a></li>
+<li><a class="reference internal" href="#dependencies">Dependencies</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#what-the-ryemother-does">What the RyeMother Does</a></li>
+<li><a class="reference internal" href="#module-cameraobscura.common.ryemother">The RyeMother Class</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="api/cameraobscura.common.errors.ConfigurationError.html" title="Previous Chapter: cameraobscura.common.errors.ConfigurationError"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; cameraobscura...</span>
+    </a>
+  </li>
+  <li>
+    <a href="api/pkg_resources.load_entry_point.html" title="Next Chapter: pkg_resources.load_entry_point"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">pkg_resources... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/common/ryemother.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="the-rye-mother">
+<h1>The Rye Mother<a class="headerlink" href="#the-rye-mother" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="http://www.pitt.edu/~dash/gerchange.html#GrimmRyeMother">Rye Mother</a> gathers children.</p>
+<div class="figure align-center" id="id1">
+<img alt="../_images/troll_changeling.jpg" src="../_images/troll_changeling.jpg" />
+<p class="caption"><span class="caption-text">Source: <a class="reference external" href="http://en.wikipedia.org/wiki/File:En_kv%C3%A4ll_vid_midsommartid_gingo_de_med_Bianca_Maria_djupt_in_i_skogen2.jpg">Wikipedia</a></span></p>
+</div>
+<div class="section" id="the-entry-points">
+<span id="cameraobscura-common-rye-mother-entry-points"></span><h2>The Entry Points<a class="headerlink" href="#the-entry-points" title="Permalink to this headline">¶</a></h2>
+<p>The RyeMother uses entry points defined in the <cite>setup.py</cite> file. The entry_points use an ini-like format with the form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">group</span><span class="p">]</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">module</span><span class="p">:</span><span class="nb">object</span>
+</pre></div>
+</div>
+<p>In this case, the RyeMother wants to search the folder for class-definitions so the <cite>object</cite> is left out. As a concrete example, for the plugins, the entry points would look like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">entry_points</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">  [cameraobscura.plugins]</span>
+<span class="s2">  plugins = cameraobscura.plugins</span>
+<span class="s2">  &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The actual <cite>setup.py</cite> has other entries, this is just the plugins entry.</p>
+</div>
+<p>The <cite>[cameraobscura.plugins]</cite> defines a group name and you can put multiple entries under it for other modules or objects. <cite>plugins</cite> is the name that is used to reference the <cite>cameraobscura.plugins</cite> module in the code.</p>
+</div>
+<div class="section" id="dependencies">
+<span id="cameraobscura-common-rye-mother-dependecies"></span><h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<p>The RyeMother relies on several python modules.</p>
+<table border="1" class="docutils" id="id2">
+<caption><span class="caption-text">Dependencies</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Package</th>
+<th class="head">Source</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference external" href="https://docs.python.org/2/library/pkgutil.html">pkgutil</a></td>
+<td>python standard library</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://docs.python.org/2.7/library/importlib.html">importlib</a></td>
+<td>python standard library</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://docs.python.org/2/library/os.path.html">os.path</a></td>
+<td>python standard library</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://docs.python.org/2/library/inspect.html">inspect</a></td>
+<td>python standard library</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://pythonhosted.org/setuptools/pkg_resources.html">pkg_resources</a></td>
+<td>setuptools</td>
+</tr>
+</tbody>
+</table>
+<p>The methods used:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/pkg_resources.load_entry_point.html#pkg_resources.load_entry_point" title="pkg_resources.load_entry_point"><code class="xref py py-obj docutils literal"><span class="pre">pkg_resources.load_entry_point</span></code></a>(dist,&nbsp;group,&nbsp;name)</td>
+<td>Return <cite>name</cite> entry point of <cite>group</cite> for <cite>dist</cite> or raise ImportError</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/os.path.dirname.html#os.path.dirname" title="os.path.dirname"><code class="xref py py-obj docutils literal"><span class="pre">dirname</span></code></a>(p)</td>
+<td>Returns the directory component of a pathname</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/pkgutil.iter_modules.html#pkgutil.iter_modules" title="pkgutil.iter_modules"><code class="xref py py-obj docutils literal"><span class="pre">iter_modules</span></code></a>([path,&nbsp;prefix])</td>
+<td>Yields (module_loader, name, ispkg) for all submodules on path, or, if path is None, all top-level modules on sys.path.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/inspect.getmembers.html#inspect.getmembers" title="inspect.getmembers"><code class="xref py py-obj docutils literal"><span class="pre">getmembers</span></code></a>(object[,&nbsp;predicate])</td>
+<td>Return all members of an object as (name, value) pairs sorted by name.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="what-the-ryemother-does">
+<span id="tuna-commoncode-rye-mother-algorithm"></span><h2>What the RyeMother Does<a class="headerlink" href="#what-the-ryemother-does" title="Permalink to this headline">¶</a></h2>
+<p>The RyeMother&#8217;s __call__ method converts the parameters to a dictionary of class definition objects.</p>
+<table border="1" class="docutils" id="id3">
+<caption><span class="caption-text">Call Parameters</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><cite>parent</cite></td>
+<td>The Base Class of the child-classes that we want to import</td>
+</tr>
+<tr class="row-odd"><td><cite>group</cite></td>
+<td>Group name in the <cite>entry_points</cite> variable in <cite>setup.py</cite> (see <span class="xref std std-ref">Entry Points</span>)</td>
+</tr>
+<tr class="row-even"><td><cite>name</cite></td>
+<td>name of the module in the <cite>entry_points</cite> variable in <cite>setup.py</cite></td>
+</tr>
+<tr class="row-odd"><td><cite>keyfunction</cite></td>
+<td>function to transform the keys of the dictionary (default uses the actual class names)</td>
+</tr>
+</tbody>
+</table>
+<p>The idea here is that to identify the classes that we&#8217;re interested in we&#8217;ll define them as children of a specific class.</p>
+<p class="plantuml">
+<img src="../_images/plantuml-843d10abcf0858e3d512bd9de6c7ee96a7d242e4.png" alt="Parent &lt;|-- Child_1
+Parent &lt;|-- Child_2
+Parent &lt;|-- Child_3" />
+</p>
+<p>The <cite>parent</cite> parameter for the RyeMother is the actual class definition object. For example, if the user of the RyeMother did the following:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cameraobscura.plugins</span> <span class="k">import</span> <span class="n">BaseArguments</span>
+</pre></div>
+</div>
+<p>Then <cite>BaseArguments</cite> is what should be passed to the call and all the classes that inherit from it will be returned. If we defined <cite>cameraobscura.plugins</cite> as the group and  <cite>plugins</cite> as the name in the <cite>setup.py</cite> <cite>entry_points</cite> variable as mentioned <a class="reference internal" href="#cameraobscura-common-rye-mother-entry-points"><span class="std std-ref">earlier</span></a>, and we wanted to retrieve the <cite>Run</cite> class, we could use something like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mother</span> <span class="o">=</span> <span class="n">RyeMother</span><span class="p">()</span>
+<span class="n">children</span> <span class="o">=</span> <span class="n">mother</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="n">BaseArguments</span><span class="p">,</span>
+                  <span class="n">group</span><span class="o">=</span><span class="s1">&#39;cameraobscura.plugins&#39;</span><span class="p">,</span>
+                  <span class="n">name</span><span class="o">=</span><span class="s1">&#39;plugins&#39;</span><span class="p">)</span>
+<span class="n">Run</span> <span class="o">=</span> <span class="n">children</span><span class="p">[</span><span class="s1">&#39;Run&#39;</span><span class="p">]</span>
+<span class="n">run_instance</span> <span class="o">=</span> <span class="n">Run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The <cite>keyfunction</cite> is used to change the keys in the dictionary. One of the reasons that the RyeMother was created was so that classes could be auto-discovered and displayed for the users. Since the human-readable name might not always match the class-name, rather than forcing the classes to change their names, the <cite>keyfunction</cite> can be used to make a limited tranformation of the strings used as the keys.</p>
+<p>To make them lower-cased you could use something like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">keyfunction</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s1">&#39;lower&#39;</span><span class="p">)()</span>
+</pre></div>
+</div>
+<p>The use of the gettattr might not seem intuitive, but since they recommend using string methods, I figured it&#8217;d be the best way. Another common transform might occur if the class names have a common suffix. Say they all have the suffix &#8216;Arguments&#8217; and you don&#8217;t want that in the dictionaries keys. You could do something like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">keyfunction</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s1">&#39;rstrip&#39;</span><span class="p">)(</span><span class="s1">&#39;Arguments&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is the main path for the <code class="docutils literal"><span class="pre">__call__</span></code>:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Create a dictionary called <cite>children</cite></li>
+<li>Import the package (folder) that contains the modules (files) that have the class definitions we want</li>
+<li>Get the package&#8217;s directory</li>
+<li>Create a <cite>prefix</cite> using the module&#8217;s package name</li>
+<li>Generate a list of module names within the imported module&#8217;s directory and add the prefix to them (<cite>&lt;prefix&gt;.&lt;name&gt;</cite>)</li>
+<li>Import each of the module names from the previous step</li>
+<li>For each of the modules import all members that are children of the parent base-class</li>
+<li>For each member, if <cite>keyfunction</cite> is defined, transform its name</li>
+<li>For each member, add it to the children dictionary, using the name as a key and the class-definition object as the value</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="module-cameraobscura.common.ryemother">
+<span id="the-ryemother-class"></span><span id="cameraobscura-common-rye-mother-class"></span><h2>The RyeMother Class<a class="headerlink" href="#module-cameraobscura.common.ryemother" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.common.ryemother.RyeMother.html#cameraobscura.common.ryemother.RyeMother" title="cameraobscura.common.ryemother.RyeMother"><code class="xref py py-obj docutils literal"><span class="pre">RyeMother</span></code></a>([exclusions,&nbsp;parent,&nbsp;...])</td>
+<td>A gatherer of child classes</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.common.ryemother.RyeMother.__call__.html#cameraobscura.common.ryemother.RyeMother.__call__" title="cameraobscura.common.ryemother.RyeMother.__call__"><code class="xref py py-obj docutils literal"><span class="pre">RyeMother.__call__</span></code></a>([parent,&nbsp;group,&nbsp;name,&nbsp;...])</td>
+<td>The main interface</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

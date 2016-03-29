@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cameraobscura.plugins.rvrplugin &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for cameraobscura.plugins.rvrplugin</h1><div class="highlight"><pre>
+<span></span>
+<span class="c1"># python standard library</span>
+<span class="kn">from</span> <span class="nn">ConfigParser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1"># the ape needs this, I don&#39;t know if I can get around this</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">ConfigObj</span> <span class="kn">import</span> <span class="n">ConfigObj</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="c1"># cameraobscura</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.ratevsrange.rvrconfiguration</span> <span class="kn">import</span> <span class="n">OtherEnum</span> <span class="k">as</span> <span class="n">RVRConstants</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.ratevsrange.rvrconfiguration</span> <span class="kn">import</span> <span class="n">AttenuationEnum</span> <span class="k">as</span> <span class="n">AttenuationConstants</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.ratevsrange.rvrconfiguration</span> <span class="kn">import</span> <span class="n">AttenuationConfiguration</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.ratevsrange.rvrconfiguration</span> <span class="kn">import</span> <span class="n">TrafficEnum</span> <span class="k">as</span> <span class="n">TrafficConstants</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.hosts.host</span> <span class="kn">import</span> <span class="n">HostEnum</span> <span class="k">as</span> <span class="n">HostConstants</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.utilities.configurationadapter</span> <span class="kn">import</span> <span class="n">ConfigurationAdapter</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.commands.iperf.Iperf</span> <span class="kn">import</span> <span class="n">IperfEnum</span><span class="p">,</span> <span class="n">IperfConfiguration</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.commands.iperf.iperfsettings</span> <span class="kn">import</span> <span class="p">(</span><span class="n">IperfServerSettings</span><span class="p">,</span>
+                                                        <span class="n">IperfClientSettings</span><span class="p">)</span>
+
+<span class="c1"># the ape package</span>
+<span class="kn">from</span> <span class="nn">theape</span> <span class="kn">import</span> <span class="n">BasePlugin</span><span class="p">,</span> <span class="n">BaseConfiguration</span><span class="p">,</span> <span class="n">SubConfiguration</span>
+<span class="kn">from</span> <span class="nn">theape.parts.iperf.iperfsettings</span> <span class="kn">import</span> <span class="n">iperf_checks</span>
+<span class="kn">from</span> <span class="nn">theape.parts.iperf.iperfsettings</span> <span class="kn">import</span> <span class="n">iperf_configspec</span> <span class="k">as</span> <span class="n">ape_iperf_configspec</span>
+
+<span class="n">configuration</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">  [[RVR]]</span>
+<span class="s2">  # these first two lines are needed by the ape</span>
+<span class="s2">  plugin = RVR</span>
+<span class="s2">  module = cameraobscura.plugins.rvrplugin</span>
+
+<span class="s2">  &quot;&quot;&quot;</span>
+
+<span class="n">rvr_configuration_specification</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">[attenuation]</span>
+<span class="s2">start = integer(default=0)</span>
+<span class="s2">stop = integer(default=9223372036854775807)</span>
+<span class="s2">name = option(&#39;mockattenuator&#39;, &#39;weinschelp&#39;, default=&#39;weinschelp&#39;)</span>
+<span class="s2">control_ip = string</span>
+<span class="s2">step_sizes = int_list(default=list(1,))</span>
+<span class="s2">step_change_thresholds = int_list(default=None)</span>
+
+<span class="s2">[dut]</span>
+<span class="s2">username = string</span>
+<span class="s2">control_ip = string</span>
+<span class="s2">test_ip = string</span>
+<span class="s2">password = string(default=None)</span>
+<span class="s2">connection_type = string(default=&#39;ssh&#39;)</span>
+<span class="s2">timeout = float(default=1)</span>
+<span class="s2">prefix = string(default=None)</span>
+<span class="s2">operating_system = option(&#39;cygwin&#39;, &#39;linux&#39;, default=&#39;linux&#39;)</span>
+
+<span class="s2">[server]</span>
+<span class="s2">username = string</span>
+<span class="s2">control_ip = string</span>
+<span class="s2">test_ip = string</span>
+<span class="s2">password = string(default=None)</span>
+<span class="s2">connection_type = string(default=&#39;ssh&#39;)</span>
+<span class="s2">timeout = float(default=1)</span>
+<span class="s2">prefix = string(default=None)</span>
+<span class="s2">operating_system = option(&#39;cygwin&#39;, &#39;linux&#39;, default=&#39;linux&#39;)</span>
+
+<span class="s2">[iperf]</span>
+<span class="s2">direction = force_list(default=list(&#39;downstream&#39;, &#39;upstream&#39;))</span>
+<span class="s2">parallel = integer(default=None)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">sections</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+<span class="n">sections</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;{bold}RVR{reset} -- a bandwith with attenuation measurer&#39;</span>
+<span class="n">sections</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;{bold}RVR{reset} runs the CameraObscura rate-vs-range implementation.&#39;</span>
+<span class="n">sections</span><span class="p">[</span><span class="s1">&#39;configuration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span>
+<span class="c1">#sections[&#39;see also&#39;] = &#39;&#39;</span>
+<span class="n">sections</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">The configuration options --</span>
+
+<span class="s2">    {bold}end{reset} : an absolute time given as a time-stamp that can be interpreted by `dateutil.parser.parse`. This is for the cases where you have a specific time that you want the sleep to end.</span>
+
+<span class="s2">    {bold}total{reset} : a relative time given as pairs of &#39;&lt;amount&gt; &lt;units&gt;&#39; -- e.g. &#39;3.4 hours&#39;. Most units only use the first letter, but since `months` and `minutes` both start with `m`, you have to use two letters to specify them. The sleep will stop at the start of the sleep + the total time given.</span>
+
+<span class="s2">    {bold}interval{reset} : The amount of time beween reports of the time remaining (default = 1 second). Use the same formatting as the `total` option.</span>
+
+<span class="s2">    {bold}verbose{reset} : If True (the default) then report time remaining at specified intervals while the sleep runs.</span>
+
+<span class="s2">One of {bold}end{reset} or {bold}total{reset} needs to be specified. Everything else is optional.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">sections</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;ape&#39;</span>
+
+<div class="viewcode-block" id="RVR"><a class="viewcode-back" href="../../../plugins/api/cameraobscura.plugins.rvrplugin.RVR.html#cameraobscura.plugins.rvrplugin.RVR">[docs]</a><span class="k">class</span> <span class="nc">RVR</span><span class="p">(</span><span class="n">BasePlugin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A plugin for the RVR front-end</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="RVR.__init__"><a class="viewcode-back" href="../../../plugins/api/cameraobscura.plugins.rvrplugin.RVR.html#cameraobscura.plugins.rvrplugin.RVR.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor for RVR Plugin</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RVR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_attenuation_configuration</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">attenuation_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Builder for the AttenuationPluginConfiguration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span>
+
+<div class="viewcode-block" id="RVR.fetch_config"><a class="viewcode-back" href="../../../plugins/api/cameraobscura.plugins.rvrplugin.RVR.html#cameraobscura.plugins.rvrplugin.RVR.fetch_config">[docs]</a>    <span class="k">def</span> <span class="nf">fetch_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        prints a config-file sample</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attenuation_configuration</span><span class="o">.</span><span class="n">sample</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">sections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Help dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span> <span class="o">=</span> <span class="n">sections</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">product</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A built RVR object</span>
+
+<span class="sd">        :return: RVR</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_product</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subsection</span><span class="p">[</span><span class="n">END_OPTION</span><span class="p">]</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subsection</span><span class="p">[</span><span class="n">TOTAL_OPTION</span><span class="p">]</span>
+            <span class="n">interval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subsection</span><span class="p">[</span><span class="n">INTERVAL_OPTION</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">interval</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">interval</span> <span class="o">=</span> <span class="n">interval</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+            <span class="n">verbose</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subsection</span><span class="p">[</span><span class="n">VERBOSE_OPTION</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_product</span> <span class="o">=</span> <span class="n">TheBigSleep</span><span class="p">(</span><span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span>
+                                        <span class="n">total</span><span class="o">=</span><span class="n">total</span><span class="p">,</span>
+                                        <span class="n">interval</span><span class="o">=</span><span class="n">interval</span><span class="p">,</span>
+                                        <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_product</span></div>
+<span class="c1"># end RVRPlugin</span>
+
+<span class="n">other_configuration_configspec</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">{folder_option} = string(default=&#39;{folder}&#39;)</span>
+<span class="s2">{test_name} = string(default=&#39;{name}&#39;)</span>
+<span class="s2">{repetitions_option} = integer(default={repetitions})</span>
+<span class="s2">{recovery_option} = float(default={recovery})</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">folder_option</span><span class="o">=</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">result_location</span><span class="p">,</span>
+           <span class="n">folder</span><span class="o">=</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">default_result_location</span><span class="p">,</span>
+           <span class="n">test_name</span><span class="o">=</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">test_name</span><span class="p">,</span>
+           <span class="n">name</span><span class="o">=</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">default_test_name</span><span class="p">,</span>
+           <span class="n">repetitions_option</span><span class="o">=</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">repetitions</span><span class="p">,</span>
+           <span class="n">repetitions</span><span class="o">=</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">default_repetitions</span><span class="p">,</span>
+           <span class="n">recovery_option</span><span class="o">=</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">recovery_time</span><span class="p">,</span>
+           <span class="n">recovery</span><span class="o">=</span><span class="n">RVRConstants</span><span class="o">.</span><span class="n">default_recovery_time</span><span class="p">)</span>
+
+<div class="viewcode-block" id="RVRConfiguration"><a class="viewcode-back" href="../../../plugins/api/cameraobscura.plugins.rvrplugin.RVRConfiguration.html#cameraobscura.plugins.rvrplugin.RVRConfiguration">[docs]</a><span class="k">class</span> <span class="nc">RVRConfiguration</span><span class="p">(</span><span class="n">BaseConfiguration</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The Main configuration </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="RVRConfiguration.__init__"><a class="viewcode-back" href="../../../plugins/api/cameraobscura.plugins.rvrplugin.RVRConfiguration.html#cameraobscura.plugins.rvrplugin.RVRConfiguration.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        RVRConfiguration (sets allow extras to True)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RVRConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allow_extras</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_attenuation</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dut</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_server</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_iperf</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">configspec_source</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;String configuration specification&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configspec_source</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_configspec_source</span> <span class="o">=</span> <span class="n">other_configuration_configspec</span>            
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configspec_source</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">product</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        the callable product</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">attenuation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        An AttenuationPluginConfiguration        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_attenuation</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_attenuation</span> <span class="o">=</span> <span class="n">AttenuationPluginConfiguration</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">,</span>
+                                                         <span class="n">section_name</span><span class="o">=</span><span class="n">AttenuationConstants</span><span class="o">.</span><span class="n">section</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_attenuation</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dut</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Host Configuration for the dut</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dut</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dut</span> <span class="o">=</span> <span class="n">HostConfiguration</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">,</span>
+                                          <span class="n">section_name</span><span class="o">=</span><span class="s1">&#39;dut&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dut</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">server</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Host Configuration for the server</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_server</span> <span class="o">=</span> <span class="n">HostConfiguration</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">,</span>
+                                             <span class="n">section_name</span><span class="o">=</span><span class="s1">&#39;server&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">iperf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Iperf Configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iperf</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_iperf</span> <span class="o">=</span> <span class="n">IperfPluginConfiguration</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">,</span>
+                                             <span class="n">section_name</span><span class="o">=</span><span class="s1">&#39;iperf&#39;</span><span class="p">)</span>          
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iperf</span>
+
+<div class="viewcode-block" id="RVRConfiguration.check_rep"><a class="viewcode-back" href="../../../plugins/api/cameraobscura.plugins.rvrplugin.RVRConfiguration.html#cameraobscura.plugins.rvrplugin.RVRConfiguration.check_rep">[docs]</a>    <span class="k">def</span> <span class="nf">check_rep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calls parent check_rep then the sub-configurations check_rep</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RVRConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attenuation</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dut</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iperf</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="k">return</span></div></div>
+
+<span class="n">attenuation_configspec</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">control_ip = string</span>
+<span class="s2">start = integer(default=0)</span>
+<span class="s2">stop = integer(default={maxint})</span>
+<span class="s2">name = option(&#39;weinschelp&#39;, &#39;mockattenuator&#39;, &#39;MockAttenuator&#39;, &#39;WeinschelP&#39;, default=&#39;WeinschelP&#39;)s</span>
+<span class="s2">step_sizes = int_list(default=list(1,))</span>
+<span class="s2">step_change_thresholds = int_list(default=None)</span>
+<span class="s2">reversal_limit = integer(default=None)</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">maxint</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">maxint</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">AttenuationPluginConfiguration</span><span class="p">(</span><span class="n">SubConfiguration</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A sub-configuration for the attenuation section</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AttenuationPluginConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                                                             <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_configuration</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_attenuation_configuration</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_adapter</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">adapter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Mapping config obj to the Configuration Adapter</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_adapter</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># there is an unfortunate inconsistency in the camera obscura&#39;s configuration</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">()</span>
+            <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;attenuation&#39;</span>
+            <span class="n">config</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
+            <span class="n">lists</span> <span class="o">=</span> <span class="s1">&#39;step_sizes step_change_thresholds step_list&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="n">to_recast</span> <span class="o">=</span> <span class="p">(</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">lists</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">to_recast</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+                <span class="c1"># unfortunately the ConfigParser will only accept strings</span>
+                <span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_adapter</span> <span class="o">=</span> <span class="n">ConfigurationAdapter</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_adapter</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">attenuation_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A built cameraobscura AttenuationConfiguration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_attenuation_configuration</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>            
+            <span class="bp">self</span><span class="o">.</span><span class="n">_attenuation_configuration</span> <span class="o">=</span> <span class="n">AttenuationConfiguration</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_attenuation_configuration</span>               
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">configspec_source</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        string attenuation configuration specification</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configspec_source</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_configspec_source</span> <span class="o">=</span> <span class="n">attenuation_configspec</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configspec_source</span>
+
+<span class="n">query_configspec</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">filename = string(default=&#39;query.csv&#39;)</span>
+<span class="s2">timeout = float(default=10)</span>
+<span class="s2">trap_errors = boolean(default=True)</span>
+<span class="s2">__many__ = list(min=2, max=2)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">class</span> <span class="nc">QueryPluginConfiguration</span><span class="p">(</span><span class="n">SubConfiguration</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A configuration for the queries</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor to set up the sub-configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">QueryPluginConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                                                 <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_query_configuration</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_adapter</span> <span class="ow">is</span> <span class="bp">None</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">adapter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Mapping config obj to the Configuration Adapter</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_adapter</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">()</span>
+            <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;query&#39;</span>
+            <span class="n">config</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_adapter</span> <span class="o">=</span> <span class="n">ConfigurationAdapter</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_adapter</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">query_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The camera obscura&#39;s configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query_configuration</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_query_configuration</span> <span class="o">=</span> <span class="n">QueryConfiguration</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query_configuration</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">configspec_source</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        string configuration specification</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configspec_source</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_configspec_source</span> <span class="o">=</span> <span class="n">query_configspec</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configspec_source</span>
+
+<span class="n">dump_configspec</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">filename = string(default=&#39;dump.csv&#39;)</span>
+<span class="s2">timeout = float(default=5)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="DumpConfiguration"><a class="viewcode-back" href="../../../plugins/api/cameraobscura.plugins.rvrplugin.DumpConfiguration.html#cameraobscura.plugins.rvrplugin.DumpConfiguration">[docs]</a><span class="k">class</span> <span class="nc">DumpConfiguration</span><span class="p">(</span><span class="n">SubConfiguration</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A configuration for the dump</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="DumpConfiguration.__init__"><a class="viewcode-back" href="../../../plugins/api/cameraobscura.plugins.rvrplugin.DumpConfiguration.html#cameraobscura.plugins.rvrplugin.DumpConfiguration.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DumpConfiguration constructor (allow_extras=True)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DumpConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allow_extras</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">return</span></div>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">configspec_source</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        string configuration specification</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configspec_source</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_configspec_source</span> <span class="o">=</span> <span class="n">dump_configspec</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configspec_source</span></div>
+
+<span class="n">node_configspec</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">username = string</span>
+<span class="s2">password = string(default=None)</span>
+<span class="s2">control_ip = string</span>
+
+<span class="s2"># this identifies the type (only &#39;telnet&#39;, &#39;ssh&#39;, or &#39;fake&#39;)</span>
+<span class="s2">connection_type = string(default=&#39;{connection_type}&#39;)</span>
+
+<span class="s2"># address of the interface to test</span>
+<span class="s2">test_ip = string</span>
+
+<span class="s2"># connection time-out in seconds</span>
+<span class="s2">timeout = float(default={timeout})</span>
+
+<span class="s2"># optional prefix to add to ALL commands (default: None)</span>
+<span class="s2"># this will be added with a space (i.e. &lt;prefix&gt; &lt;command&gt;)</span>
+<span class="s2"># so if needed, add a semicolon like in the example between the PATH and adb</span>
+
+<span class="s2">prefix = string(default=None)</span>
+
+<span class="s2"># the operating system for the DUT</span>
+<span class="s2">operating_system = string(default=&#39;{operating_system}&#39;)</span>
+
+<span class="s2"># there are too many options for the different connection-types</span>
+<span class="s2"># so you can add necessary parameters but make sure the name</span>
+<span class="s2"># matches the parameter name</span>
+<span class="s2"># e.g. if you need to set the port:</span>
+<span class="s2"># port=52686</span>
+<span class="s2">__many__ = string</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">connection_type</span><span class="o">=</span><span class="n">HostConstants</span><span class="o">.</span><span class="n">default_type</span><span class="p">,</span>
+           <span class="n">timeout</span><span class="o">=</span><span class="n">HostConstants</span><span class="o">.</span><span class="n">default_timeout</span><span class="p">,</span>
+            <span class="n">operating_system</span><span class="o">=</span><span class="n">HostConstants</span><span class="o">.</span><span class="n">default_operating_system</span><span class="p">)</span>
+
+<div class="viewcode-block" id="HostConfiguration"><a class="viewcode-back" href="../../../plugins/api/cameraobscura.plugins.rvrplugin.HostConfiguration.html#cameraobscura.plugins.rvrplugin.HostConfiguration">[docs]</a><span class="k">class</span> <span class="nc">HostConfiguration</span><span class="p">(</span><span class="n">SubConfiguration</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A configuration for a node</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">configspec_source</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ConfigObj-style string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configspec_source</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_configspec_source</span> <span class="o">=</span> <span class="n">node_configspec</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configspec_source</span></div>
+
+<span class="k">def</span> <span class="nf">check_direction</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A check-method for the configuration validation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># accept if first letter is u,d, or b</span>
+        <span class="k">if</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="s1">&#39;udb&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">value</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">VdtValueError</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="n">VdtValueError</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span>
+
+<span class="n">iperf_checks</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;check_direction&#39;</span><span class="p">:</span> <span class="n">check_direction</span><span class="p">})</span>
+
+<span class="n">iperf_configspec</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">direction = check_direction(default=both)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">iperf_configspec</span> <span class="o">+=</span> <span class="n">ape_iperf_configspec</span>
+
+<div class="viewcode-block" id="IperfPluginConfiguration"><a class="viewcode-back" href="../../../plugins/api/cameraobscura.plugins.rvrplugin.IperfPluginConfiguration.html#cameraobscura.plugins.rvrplugin.IperfPluginConfiguration">[docs]</a><span class="k">class</span> <span class="nc">IperfPluginConfiguration</span><span class="p">(</span><span class="n">SubConfiguration</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A configuration for iperf</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="IperfPluginConfiguration.__init__"><a class="viewcode-back" href="../../../plugins/api/cameraobscura.plugins.rvrplugin.IperfPluginConfiguration.html#cameraobscura.plugins.rvrplugin.IperfPluginConfiguration.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">IperfPluginConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_server_settings</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client_settings</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_configuration</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_methods</span> <span class="o">=</span> <span class="n">iperf_checks</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_iperf_configuration</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">iperf_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The CameraObscura&#39;s IperfConfiguration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iperf_configuration</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_iperf_configuration</span> <span class="o">=</span> <span class="n">IperfConfiguration</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+            <span class="c1"># set things up so it doesn&#39;t try to query Iperf_ConfigurationAdapter</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_iperf_configuration</span>\
+                <span class="o">.</span><span class="n">_direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_iperf_configuration</span>\
+                <span class="o">.</span><span class="n">_server_settings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server_settings</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_iperf_configuration</span>\
+                <span class="o">.</span><span class="n">_client_settings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client_settings</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iperf_configuration</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">server_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The IperfServerSettings</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server_settings</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_server_settings</span> <span class="o">=</span> <span class="n">IperfServerSettings</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_server_settings</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>            
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server_settings</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">client_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The IperfClinetSettings</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_settings</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client_settings</span> <span class="o">=</span> <span class="n">IperfClientSettings</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client_settings</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>            
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_settings</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The directions are special since they are the only things required</span>
+<span class="sd">        </span>
+<span class="sd">        :return: </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">u</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">IperfEnum</span><span class="o">.</span><span class="n">upstream</span><span class="p">,</span> <span class="n">IperfEnum</span><span class="o">.</span><span class="n">downstream</span><span class="p">,</span> <span class="n">IperfEnum</span><span class="o">.</span><span class="n">both</span>
+            <span class="n">directions</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="s1">&#39;u d b&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">b</span><span class="p">)))</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># map only the first letter to one of the </span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">[</span><span class="n">IperfEnum</span><span class="o">.</span><span class="n">direction</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span> <span class="o">=</span> <span class="n">directions</span><span class="p">[</span><span class="n">direction</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="c1"># the validator should have grabbed a valid name</span>
+                <span class="c1"># so this must mean there&#39;s no &#39;direction&#39; option in the section</span>
+                <span class="c1"># or no &#39;iperf&#39; section</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                <span class="c1"># so use the default</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span> <span class="o">=</span> <span class="n">IperfEnum</span><span class="o">.</span><span class="n">default_direction</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">configspec_source</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ConfigObj-style string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configspec_source</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_configspec_source</span> <span class="o">=</span> <span class="n">iperf_configspec</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configspec_source</span>
+
+<div class="viewcode-block" id="IperfPluginConfiguration.check_rep"><a class="viewcode-back" href="../../../plugins/api/cameraobscura.plugins.rvrplugin.IperfPluginConfiguration.html#cameraobscura.plugins.rvrplugin.IperfPluginConfiguration.check_rep">[docs]</a>    <span class="k">def</span> <span class="nf">check_rep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        checks if the section doesn&#39;t exist first</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># a hack because I didn&#39;t think about optional sections</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span>
+        <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">((</span><span class="s2">&quot;section name &#39;{0}&#39; &quot;</span>
+                               <span class="s2">&quot;not found in configuration&quot;</span>\
+                       <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section_name</span><span class="p">)))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;using iperf defaults&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">IperfPluginConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="k">return</span></div></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

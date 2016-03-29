@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Step Iterator &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../index.html" />
+    <link rel="up" title="Rate-Vs-Range" href="index.html" />
+    <link rel="next" title="cameraobscura.ratevsrange.stepiterator.StepBase" href="api/cameraobscura.ratevsrange.stepiterator.StepBase.html" />
+    <link rel="prev" title="cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration.repetitions" href="api/cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration.repetitions.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The Step Iterator</a><ul>
+<li><a class="reference internal" href="#use-cases">Use Cases</a></li>
+<li><a class="reference internal" href="#the-stepbase-class">The StepBase Class</a></li>
+<li><a class="reference internal" href="#the-steplist-class">The StepList Class</a></li>
+<li><a class="reference internal" href="#the-steprange-class">The StepRange Class</a></li>
+<li><a class="reference internal" href="#the-constructor-parameters">The Constructor Parameters</a><ul>
+<li><a class="reference internal" href="#start">start</a></li>
+<li><a class="reference internal" href="#stop">stop</a></li>
+<li><a class="reference internal" href="#step-sizes">step_sizes</a></li>
+<li><a class="reference internal" href="#step-thresholds">step_thresholds</a></li>
+<li><a class="reference internal" href="#reversal-limit">reversal_limit</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-attributes">The Attributes</a><ul>
+<li><a class="reference internal" href="#current-value">current_value</a></li>
+<li><a class="reference internal" href="#threshold">threshold</a></li>
+<li><a class="reference internal" href="#step-size">step_size</a></li>
+<li><a class="reference internal" href="#reversals">reversals</a></li>
+<li><a class="reference internal" href="#direction">direction</a></li>
+<li><a class="reference internal" href="#list-direction">list_direction</a></li>
+<li><a class="reference internal" href="#compare">compare</a></li>
+<li><a class="reference internal" href="#threshold-compare">threshold_compare</a></li>
+<li><a class="reference internal" href="#reversible">reversible</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-methods">The Methods</a><ul>
+<li><a class="reference internal" href="#update-threshold">update_threshold</a></li>
+<li><a class="reference internal" href="#increment-index">increment_index</a></li>
+<li><a class="reference internal" href="#reverse">reverse</a></li>
+<li><a class="reference internal" href="#iter">__iter__</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#activity-diagram">Activity Diagram</a><ul>
+<li><a class="reference internal" href="#check-rep">check_rep</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#stepiterator-class">StepIterator Class</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="api/cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration.repetitions.html" title="Previous Chapter: cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration.repetitions"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; cameraobscura...</span>
+    </a>
+  </li>
+  <li>
+    <a href="api/cameraobscura.ratevsrange.stepiterator.StepBase.html" title="Next Chapter: cameraobscura.ratevsrange.stepiterator.StepBase"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">cameraobscura... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/ratevsrange/stepiterator.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="the-step-iterator">
+<h1>The Step Iterator<a class="headerlink" href="#the-step-iterator" title="Permalink to this headline">¶</a></h1>
+<p id="step-iterator">This is a module to provide an iterator for attenuation steps. There was at one time a request to be able to change the size of the attenuation steps based on a threshold value (i.e. when the attenuation exceeds the threshold, increase the amount added to the attenuation on each execution of the loop). Looking at the configuration files being out in the wild it looks like this &#8216;feature&#8217; isn&#8217;t actively used, but since it was implemented this module is created to provide a more explicit implementation (as well as some documentation).</p>
+<div class="section" id="use-cases">
+<h2>Use Cases<a class="headerlink" href="#use-cases" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img src="../_images/plantuml-68b8201cf764bb1b2721cce239805263ced289fc.png" alt="User -&gt; (Requests only one step size)
+User -&gt; (Requests two step-sizes and one change in step)
+User -&gt; (Requests more than two step sizes)
+User -&gt; (Requests a list of steps)
+User -&gt; (Requests attenuations in both directions)" />
+</p>
+</div>
+<div class="section" id="the-stepbase-class">
+<h2>The StepBase Class<a class="headerlink" href="#the-stepbase-class" title="Permalink to this headline">¶</a></h2>
+<p>In order to support the request from Brad to be able to specify values for the attenuations (as opposed to just the parameters making up a range of values) I&#8217;m  making a <code class="docutils literal"><span class="pre">StepList</span></code> class. Since there&#8217;s a certain amount of overlap between the the two types of step-iterators, the <code class="docutils literal"><span class="pre">StepBase</span></code> will hold the common attributes.</p>
+<span class="target" id="module-cameraobscura.ratevsrange.stepiterator"></span><table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.stepiterator.StepBase.html#cameraobscura.ratevsrange.stepiterator.StepBase" title="cameraobscura.ratevsrange.stepiterator.StepBase"><code class="xref py py-obj docutils literal"><span class="pre">StepBase</span></code></a>([start,&nbsp;stop,&nbsp;reversal_limit])</td>
+<td>Base-class for the step-iterators</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-steplist-class">
+<h2>The StepList Class<a class="headerlink" href="#the-steplist-class" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">StepList</span></code> was created to address a request to allow the users to run a second test with specified attenuation values rather than a range of values. Although a little arithmetic on the user&#8217;s part would achieve the same thing, why force them to think?</p>
+<p class="plantuml">
+<img src="../_images/plantuml-9671808cf2155412f4c616d9edc98b6704c234a2.png" alt="StepBase &lt;|-- StepList" />
+</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.stepiterator.StepList.html#cameraobscura.ratevsrange.stepiterator.StepList" title="cameraobscura.ratevsrange.stepiterator.StepList"><code class="xref py py-obj docutils literal"><span class="pre">StepList</span></code></a>(step_list,&nbsp;*args,&nbsp;**kwargs)</td>
+<td>a list-based attenuation generator</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-steprange-class">
+<h2>The StepRange Class<a class="headerlink" href="#the-steprange-class" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.stepiterator.StepRange.html#cameraobscura.ratevsrange.stepiterator.StepRange" title="cameraobscura.ratevsrange.stepiterator.StepRange"><code class="xref py py-obj docutils literal"><span class="pre">StepRange</span></code></a>([step_sizes,&nbsp;step_change_thresholds])</td>
+<td>A stepped-iterator that generates a range of integers</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.stepiterator.StepRange.threshold.html#cameraobscura.ratevsrange.stepiterator.StepRange.threshold" title="cameraobscura.ratevsrange.stepiterator.StepRange.threshold"><code class="xref py py-obj docutils literal"><span class="pre">StepRange.threshold</span></code></a></td>
+<td>The current threshold to test if the step-size should change</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.stepiterator.StepRange.step_size.html#cameraobscura.ratevsrange.stepiterator.StepRange.step_size" title="cameraobscura.ratevsrange.stepiterator.StepRange.step_size"><code class="xref py py-obj docutils literal"><span class="pre">StepRange.step_size</span></code></a></td>
+<td>The amount to increase the current-value with each iteration.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.stepiterator.StepRange.step_sizes.html#cameraobscura.ratevsrange.stepiterator.StepRange.step_sizes" title="cameraobscura.ratevsrange.stepiterator.StepRange.step_sizes"><code class="xref py py-obj docutils literal"><span class="pre">StepRange.step_sizes</span></code></a></td>
+<td>List of step-sizes (default of 1)</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.stepiterator.StepRange.update_threshold.html#cameraobscura.ratevsrange.stepiterator.StepRange.update_threshold" title="cameraobscura.ratevsrange.stepiterator.StepRange.update_threshold"><code class="xref py py-obj docutils literal"><span class="pre">StepRange.update_threshold</span></code></a>()</td>
+<td>Updates the threshold if it has been exceeded</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.stepiterator.StepRange.__iter__.html#cameraobscura.ratevsrange.stepiterator.StepRange.__iter__" title="cameraobscura.ratevsrange.stepiterator.StepRange.__iter__"><code class="xref py py-obj docutils literal"><span class="pre">StepRange.__iter__</span></code></a>()</td>
+<td>Iterates over the values</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.stepiterator.StepRange.check_rep.html#cameraobscura.ratevsrange.stepiterator.StepRange.check_rep" title="cameraobscura.ratevsrange.stepiterator.StepRange.check_rep"><code class="xref py py-obj docutils literal"><span class="pre">StepRange.check_rep</span></code></a>()</td>
+<td>Does nothing (to let the user decide what is valid and what is invalid)</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.stepiterator.StepRange.reversible.html#cameraobscura.ratevsrange.stepiterator.StepRange.reversible" title="cameraobscura.ratevsrange.stepiterator.StepRange.reversible"><code class="xref py py-obj docutils literal"><span class="pre">StepRange.reversible</span></code></a></td>
+<td><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">return:</th><td class="field-body">True if still reversible</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.stepiterator.StepRange.direction.html#cameraobscura.ratevsrange.stepiterator.StepRange.direction" title="cameraobscura.ratevsrange.stepiterator.StepRange.direction"><code class="xref py py-obj docutils literal"><span class="pre">StepRange.direction</span></code></a></td>
+<td>Direction of steps (1 or -1)</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.stepiterator.StepRange.list_direction.html#cameraobscura.ratevsrange.stepiterator.StepRange.list_direction" title="cameraobscura.ratevsrange.stepiterator.StepRange.list_direction"><code class="xref py py-obj docutils literal"><span class="pre">StepRange.list_direction</span></code></a></td>
+<td>Direction to traverse lists (e.g.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.stepiterator.StepRange.compare.html#cameraobscura.ratevsrange.stepiterator.StepRange.compare" title="cameraobscura.ratevsrange.stepiterator.StepRange.compare"><code class="xref py py-obj docutils literal"><span class="pre">StepRange.compare</span></code></a></td>
+<td>comparison function based on direction</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.stepiterator.StepRange.threshold_compare.html#cameraobscura.ratevsrange.stepiterator.StepRange.threshold_compare" title="cameraobscura.ratevsrange.stepiterator.StepRange.threshold_compare"><code class="xref py py-obj docutils literal"><span class="pre">StepRange.threshold_compare</span></code></a></td>
+<td>comparison function for changing step-size</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.stepiterator.StepRange.increment_index.html#cameraobscura.ratevsrange.stepiterator.StepRange.increment_index" title="cameraobscura.ratevsrange.stepiterator.StepRange.increment_index"><code class="xref py py-obj docutils literal"><span class="pre">StepRange.increment_index</span></code></a>(index,&nbsp;container)</td>
+<td>increments the index for the container</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.stepiterator.StepRange.reverse.html#cameraobscura.ratevsrange.stepiterator.StepRange.reverse" title="cameraobscura.ratevsrange.stepiterator.StepRange.reverse"><code class="xref py py-obj docutils literal"><span class="pre">StepRange.reverse</span></code></a>()</td>
+<td>changes the direction of the iteration</td>
+</tr>
+</tbody>
+</table>
+<p class="plantuml">
+<img src="../_images/plantuml-308fdc1ac7d70985549b0291c51760f3c3e1c6b4.png" alt="StepBase &lt;|-- StepRange
+StepRange : Integer start
+StepRange : Integer stop
+StepRange : List step_sizes
+StepRange : List step_change_thresholds
+StepRange : Integer current_value
+StepRange : Integer step_size
+StepRange : Integer threshold
+StepRange : reverse()
+StepRange : __iter__()" />
+</p>
+</div>
+<div class="section" id="the-constructor-parameters">
+<h2>The Constructor Parameters<a class="headerlink" href="#the-constructor-parameters" title="Permalink to this headline">¶</a></h2>
+<p>These are what should (or can be) passed in on constuction of the <cite>StepRange</cite>.</p>
+<div class="section" id="start">
+<h3>start<a class="headerlink" href="#start" title="Permalink to this headline">¶</a></h3>
+<p>This is the value that the iterator will start with (the first value that it will yield).</p>
+</div>
+<div class="section" id="stop">
+<h3>stop<a class="headerlink" href="#stop" title="Permalink to this headline">¶</a></h3>
+<p>This is the end-limit of the values that will be generated. It isn&#8217;t necessarily the largest (or smallest) value since the step-sizes can be greater than 1, but the generator will stop anytime the next value would be greater than <code class="docutils literal"><span class="pre">stop</span></code> (if ascending, less than <code class="docutils literal"><span class="pre">stop</span></code> if descending, meaning start is greater than stop).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To match the behavior of the older code the stop-value is inclusive, rather than stopping prior to it in every case the way other python functions like <cite>range</cite> work.</p>
+</div>
+</div>
+<div class="section" id="step-sizes">
+<h3>step_sizes<a class="headerlink" href="#step-sizes" title="Permalink to this headline">¶</a></h3>
+<p>This is a list of step-sizes in the order that they are to be used.</p>
+<blockquote>
+<div><ul class="simple">
+<li>This list should always exceed the number of step_thresholds by 1.</li>
+<li>The StepRange is using indexing to get the sizes so it has to be a list or something that acts like a list.</li>
+<li>Since changes of direction are allowed they will be cast to positive integers (so the magnitude is all that counts)</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="step-thresholds">
+<h3>step_thresholds<a class="headerlink" href="#step-thresholds" title="Permalink to this headline">¶</a></h3>
+<p>A list of thresholds which when exceeded (<img class="math" src="../_images/math/365ff522639802b8f0d2bf3b44bcce7c267f30f3.png" alt="currentValue &gt; threshold"/>) will cause the current step-size to be changed to the next item in the <code class="docutils literal"><span class="pre">step_sizes</span></code> list. If no change in step-size is required, it should be set to <code class="docutils literal"><span class="pre">None</span></code> (the default).</p>
+</div>
+<div class="section" id="reversal-limit">
+<h3>reversal_limit<a class="headerlink" href="#reversal-limit" title="Permalink to this headline">¶</a></h3>
+<p>This is the number of times to allow the iteration to change directions. The intention is to allow the user to attenuate out until it kills the connection, then attenuate back in. If the <code class="docutils literal"><span class="pre">reversal_limit</span></code> is 0 (the default) then no reversals will be allowed, meaning that when <code class="docutils literal"><span class="pre">reverse()</span></code> is called, the current-value will be set to the stop-value so the generator will stop.</p>
+</div>
+</div>
+<div class="section" id="the-attributes">
+<h2>The Attributes<a class="headerlink" href="#the-attributes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="current-value">
+<h3>current_value<a class="headerlink" href="#current-value" title="Permalink to this headline">¶</a></h3>
+<p>The <cite>current_value</cite> attribute is a variable to hold the current value in the iteration. It is initialized with the <cite>start</cite> value and incremented with the <cite>step_size</cite> attribute with each iteration. This is what is being generated by the <cite>__iter__</cite> method.</p>
+</div>
+<div class="section" id="threshold">
+<h3>threshold<a class="headerlink" href="#threshold" title="Permalink to this headline">¶</a></h3>
+<p>This is the current threshold to check if the step-size needs to be changed. If the <cite>current_value</cite> exceeds the <code class="docutils literal"><span class="pre">threshold</span></code> then the <code class="docutils literal"><span class="pre">step_size</span></code> and <code class="docutils literal"><span class="pre">threshold</span></code> are both be updated, if there are more of them.</p>
+</div>
+<div class="section" id="step-size">
+<h3>step_size<a class="headerlink" href="#step-size" title="Permalink to this headline">¶</a></h3>
+<p>The <cite>step_size</cite> is the amount to increase the <cite>current_value</cite> with each iteration. If the <cite>current_value</cite> exceeds the <cite>threshold</cite> then the step-size should be increased to the next step-size (if there is one).</p>
+</div>
+<div class="section" id="reversals">
+<h3>reversals<a class="headerlink" href="#reversals" title="Permalink to this headline">¶</a></h3>
+<p>This is a count of how many times the direction has been reversed (by calling the <code class="docutils literal"><span class="pre">reverse</span></code> method).</p>
+</div>
+<div class="section" id="direction">
+<h3>direction<a class="headerlink" href="#direction" title="Permalink to this headline">¶</a></h3>
+<p>This is the direction that the values are going. If they are increasing then it is 1, if they are decreasing it is -1.</p>
+</div>
+<div class="section" id="list-direction">
+<h3>list_direction<a class="headerlink" href="#list-direction" title="Permalink to this headline">¶</a></h3>
+<p>This is the direction to traverse the <code class="docutils literal"><span class="pre">step_sizes</span></code> and <code class="docutils literal"><span class="pre">step_change_thresholds</span></code> lists. It reverses its sign whenever <code class="docutils literal"><span class="pre">reverse</span></code> is called.</p>
+</div>
+<div class="section" id="compare">
+<h3>compare<a class="headerlink" href="#compare" title="Permalink to this headline">¶</a></h3>
+<p>This is the comparison done between the current value and the stop value to decide whether to stop or not. If the values are increasing, then it is <img class="math" src="../_images/math/5ffbdb8f6fd40e856169dda4586fe9e70ab19466.png" alt="\leq"/> (i.e. <img class="math" src="../_images/math/cf1802e6d7ae35a1f6160ae7c1de2374cd702676.png" alt="\textit{while current} \leq stop"/>) and if the values are decreasing then it is <img class="math" src="../_images/math/ed30a36cf8fc762b6f8ce2be32037e4fb3e0c0ad.png" alt="\geq"/>.</p>
+</div>
+<div class="section" id="threshold-compare">
+<h3>threshold_compare<a class="headerlink" href="#threshold-compare" title="Permalink to this headline">¶</a></h3>
+<p>This is the comparison done between the current value and the threshold to see if the step-size should be changed. When the values are increasing, it is :math` geq ` (i.e. <img class="math" src="../_images/math/75f9ff69ab05250e210e881ed0a2880fdacaeb81.png" alt="\textit{if current value} \geq threshold"/>) and when the values are decreasing it is <img class="math" src="../_images/math/5ffbdb8f6fd40e856169dda4586fe9e70ab19466.png" alt="\leq"/>.</p>
+</div>
+<div class="section" id="reversible">
+<h3>reversible<a class="headerlink" href="#reversible" title="Permalink to this headline">¶</a></h3>
+<p>This is true if the <code class="docutils literal"><span class="pre">reversals</span></code> haven&#8217;t reached the <code class="docutils literal"><span class="pre">reversal_limit</span></code>.</p>
+</div>
+</div>
+<div class="section" id="the-methods">
+<h2>The Methods<a class="headerlink" href="#the-methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="update-threshold">
+<h3>update_threshold<a class="headerlink" href="#update-threshold" title="Permalink to this headline">¶</a></h3>
+<p>This method was introduced because updating the step-size requires checking the threshold, so a separate method was required to control updating the threshold (if the update was made in the <cite>threshold</cite> property itself then checking it would always update it before the conditional was checked so it would never be exceeded). Specifically:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_value</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">:</span>
+    <span class="o">&lt;</span><span class="n">do</span> <span class="n">something</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Would never become True because self.threshold would update itself because it detected it was greater than the current value. Anyway, it was needed.</p>
+</div>
+<div class="section" id="increment-index">
+<h3>increment_index<a class="headerlink" href="#increment-index" title="Permalink to this headline">¶</a></h3>
+<p>This takes a list index (e.g. <code class="docutils literal"><span class="pre">current_step_index</span></code>) and the list that it is for (e.g. <code class="docutils literal"><span class="pre">step_sizes</span></code>) and &#8216;increments&#8217; it. It actually decrements it if the values are going down. Additionally it bounds it on the upper side by the highest index in the list and on the lower side by 0. The index variable isn&#8217;t changed in place, instead it&#8217;s given as a returned value.</p>
+</div>
+<div class="section" id="reverse">
+<h3>reverse<a class="headerlink" href="#reverse" title="Permalink to this headline">¶</a></h3>
+<p>This changes the direction of the iteration. If <code class="docutils literal"><span class="pre">reversible</span></code> is False, it sets the <code class="docutils literal"><span class="pre">current_value</span></code> to the <code class="docutils literal"><span class="pre">stop</span></code> value, otherwise it increments <code class="docutils literal"><span class="pre">reversals</span></code>, swaps the start and stop values, resets <code class="docutils literal"><span class="pre">threshold</span></code> and increments the list-indices.</p>
+</div>
+<div class="section" id="iter">
+<h3>__iter__<a class="headerlink" href="#iter" title="Permalink to this headline">¶</a></h3>
+<p>The iterator is the main (really the only) way to use this class. it&#8217;s expected that it will be used something like:</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">step_iterator</span><span class="p">:</span>
+    <span class="n">do_something</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="activity-diagram">
+<h2>Activity Diagram<a class="headerlink" href="#activity-diagram" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<img src="../_images/step_iterator_activity_diagram.svg" /></div>
+<div class="section" id="check-rep">
+<h3>check_rep<a class="headerlink" href="#check-rep" title="Permalink to this headline">¶</a></h3>
+<p>This method checks the integrity of the parameters.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Is the stop value greater than or equal to the stop value?</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="stepiterator-class">
+<h2>StepIterator Class<a class="headerlink" href="#stepiterator-class" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img src="../_images/plantuml-6421fae1d6c03112bf0cfaa931bfd26a68407b4d.png" alt="StepIterator o- StepList
+StepIterator o- StepRange" />
+</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">StepIterator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An aggregator of step-iterators</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        StepIterator constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - ``step_list``: collection of steps</span>
+<span class="sd">         - ``reversal_limit``: number of reversals allowed</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">step_list</span> <span class="o">=</span> <span class="n">step_list</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_iterator</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">iterator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        StepRange if step_list not set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iterator</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_list</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s1">&#39;reversal_limit&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">:</span>
+                    <span class="n">reversal_limit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;reversal_limit&#39;</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">reversal_limit</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_iterator</span> <span class="o">=</span> <span class="n">StepList</span><span class="p">(</span><span class="n">step_list</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">step_list</span><span class="p">,</span>
+                                          <span class="n">reversal_limit</span><span class="o">=</span><span class="n">reversal_limit</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_iterator</span> <span class="o">=</span> <span class="n">StepRange</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iterator</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        traverses the iterator</span>
+
+<span class="sd">        :yield: next step</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterator</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">step</span>
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A pass-through to the iterator</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iterator</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cameraobscura.hosts.host &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for cameraobscura.hosts.host</h1><div class="highlight"><pre>
+<span></span>
+<span class="c1"># python standard library</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
+<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">RLock</span>
+
+<span class="c1"># this package</span>
+<span class="kn">from</span> <span class="nn">theape.parts.connections.fakeclient</span> <span class="kn">import</span> <span class="n">FakeClient</span>
+<span class="kn">from</span> <span class="nn">theape.parts.connections.simpleclient</span> <span class="kn">import</span> <span class="n">SimpleClient</span>
+<span class="kn">from</span> <span class="nn">theape.parts.connections.telnetclient</span> <span class="kn">import</span> <span class="n">TelnetClient</span>
+
+<span class="kn">from</span> <span class="nn">cameraobscura</span> <span class="kn">import</span> <span class="n">CameraobscuraError</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.common.baseconfiguration</span> <span class="kn">import</span> <span class="n">BaseConfiguration</span>
+
+<span class="k">class</span> <span class="nc">HostConstants</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A holder of constants for the Host</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="c1"># connection types</span>
+    <span class="n">ssh</span> <span class="o">=</span> <span class="s1">&#39;ssh&#39;</span>
+    <span class="n">telnet</span> <span class="o">=</span> <span class="s1">&#39;telnet&#39;</span>
+    <span class="n">fake</span> <span class="o">=</span> <span class="s1">&#39;fake&#39;</span>
+
+    <span class="n">prefix_command</span> <span class="o">=</span> <span class="s1">&#39;{p} {c}&#39;</span>
+<span class="c1"># end HostConstants</span>
+
+<div class="viewcode-block" id="TheHost"><a class="viewcode-back" href="../../../hosts/api/cameraobscura.hosts.host.TheHost.html#cameraobscura.hosts.host.TheHost">[docs]</a><span class="k">class</span> <span class="nc">TheHost</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The main host used to build the other hosts</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="TheHost.__init__"><a class="viewcode-back" href="../../../hosts/api/cameraobscura.hosts.host.TheHost.html#cameraobscura.hosts.host.TheHost.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">test_interface</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                 <span class="n">operating_system</span><span class="o">=</span><span class="s1">&#39;linux&#39;</span><span class="p">,</span> <span class="n">connection_type</span><span class="o">=</span><span class="n">HostConstants</span><span class="o">.</span><span class="n">ssh</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        TheHost Constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `hostname`: hostname to connect to the device</span>
+<span class="sd">         - `test_interface`: the address of the interface to send test-traffic to (over)</span>
+<span class="sd">         - `username`: login name</span>
+<span class="sd">         - `timeout`: timeout for reading from the connection</span>
+<span class="sd">         - `prefix`: string to add to every command sent to the connection</span>
+<span class="sd">         - `operating_system`: os to help commands predict syntax</span>
+<span class="sd">         - `connection_type`: Identifier for the connection (see HostConstants)</span>
+<span class="sd">         - `kwargs`: extra parameters for connections other than the SimpleClient</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TheHost</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="n">hostname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_interface</span> <span class="o">=</span> <span class="n">test_interface</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">prefix</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operating_system</span> <span class="o">=</span> <span class="n">operating_system</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connection_type</span> <span class="o">=</span> <span class="n">connection_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
+
+        <span class="c1"># properties</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client_constructors</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="c1"># backward compatibility</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ControlInterface</span> <span class="o">=</span> <span class="n">hostname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">TestInterface</span> <span class="o">=</span> <span class="n">test_interface</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">testInterface</span> <span class="o">=</span> <span class="n">test_interface</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: A logging object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;{0}.{1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__module__</span><span class="p">,</span>
+                                  <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lock</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A re-entrant lock to protect the exec-command calls</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">RLock</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">client</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A built client (connection)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client_constructors</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">connection_type</span><span class="p">](</span><span class="n">hostname</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hostname</span><span class="p">,</span>
+                                                                          <span class="n">username</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+                                                                          <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span>
+                                                                          <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">client_constructors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A collection of Client class constructors</span>
+
+<span class="sd">        :return: dict of type:class definition objects</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_constructors</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client_constructors</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">((</span><span class="n">HostConstants</span><span class="o">.</span><span class="n">ssh</span><span class="p">,</span> <span class="n">HostConstants</span><span class="o">.</span><span class="n">telnet</span><span class="p">,</span> <span class="n">HostConstants</span><span class="o">.</span><span class="n">fake</span><span class="p">),</span>
+                                                 <span class="p">(</span><span class="n">SimpleClient</span><span class="p">,</span> <span class="n">TelnetClient</span><span class="p">,</span> <span class="n">FakeClient</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_constructors</span>
+
+<div class="viewcode-block" id="TheHost.exec_command"><a class="viewcode-back" href="../../../hosts/api/cameraobscura.hosts.host.TheHost.exec_command.html#cameraobscura.hosts.host.TheHost.exec_command">[docs]</a>    <span class="k">def</span> <span class="nf">exec_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calls the Clients&#39;s non-blocking run to execute `prefix command`.</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `command`: string to send to the ssh-client</span>
+<span class="sd">         - `timeout`: Timeout for reading from the socket (set to None for output that will be empty for a while)</span>
+
+<span class="sd">        :rtype: Tuple</span>
+<span class="sd">        :return: Stdin, Stdout, Stderr</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">command</span> <span class="o">=</span> <span class="n">HostConstants</span><span class="o">.</span><span class="n">prefix_command</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span>
+                                                          <span class="n">c</span><span class="o">=</span><span class="n">command</span><span class="p">)</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">exec_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span>
+                                        <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
+
+    <span class="c1"># backwards compatibility</span>
+    <span class="n">Run</span> <span class="o">=</span> <span class="n">exec_command</span>
+    
+<div class="viewcode-block" id="TheHost.close"><a class="viewcode-back" href="../../../hosts/api/cameraobscura.hosts.host.TheHost.close.html#cameraobscura.hosts.host.TheHost.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Closes the client and sets it to None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># so it doesn&#39;t create it by mistake</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="TheHost.kill_all"><a class="viewcode-back" href="../../../hosts/api/cameraobscura.hosts.host.TheHost.kill_all.html#cameraobscura.hosts.host.TheHost.kill_all">[docs]</a>    <span class="k">def</span> <span class="nf">kill_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Kills all the process instances on the remote client. </span>
+
+<span class="sd">        :postcondition: kill command on all process id&#39;s that match &#39;process&#39; string on remote host.</span>
+<span class="sd">        :raise: CameraobscuraError if couldn&#39;t kill process</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exec_command</span><span class="p">(</span><span class="s2">&quot;ps -e | grep {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">process</span><span class="p">))</span>
+        
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">stdout</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">line</span> <span class="ow">and</span> <span class="s1">&#39;grep&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">process_id</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">command</span> <span class="o">=</span> <span class="s1">&#39;kill -9 {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">process_id</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+                <span class="n">stdin_2</span><span class="p">,</span> <span class="n">stdout_2</span><span class="p">,</span> <span class="n">stderr_2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exec_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">check_stderr</span><span class="p">(</span><span class="n">stderr_2</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s1">&#39;Operation not permitted&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s2">&quot;Unable to kill process &#39;{0}&#39; on {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">process</span><span class="p">,</span>
+                                                                                   <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_stderr</span><span class="p">(</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exec_command</span><span class="p">(</span><span class="s2">&quot;ps -e | grep {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">process</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">stdout</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">line</span> <span class="ow">and</span> <span class="s1">&#39;grep&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>                
+                <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s2">&quot;Unable to kill process &#39;{0}&#39; on &#39;{1}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">process</span><span class="p">,</span>
+                                                                                     <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_stderr</span><span class="p">(</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="TheHost.check_stderr"><a class="viewcode-back" href="../../../hosts/api/cameraobscura.hosts.host.TheHost.html#cameraobscura.hosts.host.TheHost.check_stderr">[docs]</a>    <span class="k">def</span> <span class="nf">check_stderr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stderr</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        helper code to check if stderr is empty</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">stderr</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                <span class="k">if</span> <span class="s2">&quot;Operation not permitted&quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s2">&quot;Insufficient privileges to kill on {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">))</span>
+        <span class="k">return</span></div>
+
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        string of settings</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;Host -- OS: {0} Prefix: {1} Client -- {2}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">operating_system</span><span class="p">,</span>
+                                                               <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span>
+                                                               <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">)</span></div>
+
+<span class="c1"># end class TheHost</span>
+
+<span class="k">class</span> <span class="nc">HostEnum</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A holder of Host constants</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+
+    <span class="c1"># options  </span>
+    <span class="n">control_ip</span> <span class="o">=</span> <span class="s1">&#39;control_ip&#39;</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;password&#39;</span>
+    <span class="n">connection_type</span> <span class="o">=</span> <span class="s1">&#39;connection_type&#39;</span>
+    <span class="n">test_ip</span> <span class="o">=</span> <span class="s1">&#39;test_ip&#39;</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;username&#39;</span>
+    <span class="n">port</span> <span class="o">=</span> <span class="s1">&#39;port&#39;</span>
+    <span class="n">timeout</span> <span class="o">=</span> <span class="s1">&#39;timeout&#39;</span>
+    <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;prefix&#39;</span>
+    <span class="n">operating_system</span> <span class="o">=</span> <span class="s1">&#39;operating_system&#39;</span>
+
+    <span class="n">options</span> <span class="o">=</span> <span class="p">(</span><span class="n">control_ip</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">connection_type</span><span class="p">,</span> <span class="n">test_ip</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span>
+               <span class="n">port</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">operating_system</span><span class="p">)</span>
+    <span class="c1"># defaults</span>
+    <span class="n">default_port</span> <span class="o">=</span> <span class="mi">22</span>
+    <span class="n">default_type</span> <span class="o">=</span> <span class="s1">&#39;ssh&#39;</span>
+    <span class="n">default_timeout</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">default_operating_system</span> <span class="o">=</span> <span class="s1">&#39;linux&#39;</span>
+<span class="c1"># end HostEnum</span>
+
+<div class="viewcode-block" id="HostConfiguration"><a class="viewcode-back" href="../../../hosts/api/cameraobscura.hosts.host.HostConfiguration.html#cameraobscura.hosts.host.HostConfiguration">[docs]</a><span class="k">class</span> <span class="nc">HostConfiguration</span><span class="p">(</span><span class="n">BaseConfiguration</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A holder of device-configurations</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="HostConfiguration.__init__"><a class="viewcode-back" href="../../../hosts/api/cameraobscura.hosts.host.HostConfiguration.html#cameraobscura.hosts.host.HostConfiguration.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        HostConfiguration constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `configuration`: Built Configuration Adapter</span>
+<span class="sd">         - `section`: The [&lt;section&gt;] name (e.g. &#39;server&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">HostConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_section</span> <span class="o">=</span> <span class="n">section</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;using section: [{0}]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">))</span>
+
+        <span class="c1"># properties</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_control_ip</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection_type</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_ip</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_username</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_operating_system</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">example</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        an example device configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_example</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_example</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            [{section}]</span>
+<span class="s2">            # login information (these are required)</span>
+<span class="s2">            username = admin</span>
+
+<span class="s2">            # this isn&#39;t if your public keys are working</span>
+<span class="s2">            #password = root</span>
+<span class="s2">            </span>
+<span class="s2">            # address of the control-interface </span>
+<span class="s2">            control_ip = 192.168.10.34</span>
+
+<span class="s2">            # this identifies the type (only &#39;telnet&#39;, &#39;ssh&#39;, or &#39;fake&#39;)</span>
+<span class="s2">            #connection_type = {connection_type}</span>
+
+<span class="s2">            # address of the interface to test</span>
+<span class="s2">            test_ip = 192.168.20.34</span>
+
+<span class="s2">            # connection time-out in seconds</span>
+<span class="s2">            #timeout = {timeout}</span>
+
+<span class="s2">            # optional prefix to add to ALL commands (default: None)</span>
+<span class="s2">            # this will be added with a space (i.e. &lt;prefix&gt; &lt;command&gt;)</span>
+<span class="s2">            # so if needed, add a semicolon like in the example between the PATH and adb</span>
+<span class="s2">            </span>
+<span class="s2">            #prefix = PATH=/opt:$PATH; adb shell</span>
+
+<span class="s2">            # the operating system for the DUT</span>
+<span class="s2">            </span>
+<span class="s2">            # operating_system = {operating_system}</span>
+
+<span class="s2">            # there are too many options for the different connection-types</span>
+<span class="s2">            # so you can add necessary parameters but make sure the name</span>
+<span class="s2">            # matches the parameter name</span>
+<span class="s2">            # e.g. if you need to set the port:</span>
+<span class="s2">            # port=52686</span>
+<span class="s2">            &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                       <span class="n">connection_type</span><span class="o">=</span><span class="n">HostEnum</span><span class="o">.</span><span class="n">default_type</span><span class="p">,</span>
+                       <span class="n">timeout</span><span class="o">=</span><span class="n">HostEnum</span><span class="o">.</span><span class="n">default_timeout</span><span class="p">,</span>
+                       <span class="n">operating_system</span><span class="o">=</span><span class="n">HostEnum</span><span class="o">.</span><span class="n">default_operating_system</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_example</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">section</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The section name in the configuration file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_section</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">control_ip</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The optional hostname for the device (default=None)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_control_ip</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_control_ip</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                       <span class="n">option</span><span class="o">=</span><span class="n">HostEnum</span><span class="o">.</span><span class="n">control_ip</span><span class="p">,</span>
+                                                       <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_control_ip</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">password</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The optional password for the device (default=None)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_password</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                    <span class="n">option</span><span class="o">=</span><span class="n">HostEnum</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+                                                    <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_password</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">connection_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        One of &#39;ssh&#39; or&#39;telnet&#39;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection_type</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connection_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                         <span class="n">option</span><span class="o">=</span><span class="n">HostEnum</span><span class="o">.</span><span class="n">connection_type</span><span class="p">,</span>
+                                                         <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                         <span class="n">default</span><span class="o">=</span><span class="n">HostEnum</span><span class="o">.</span><span class="n">default_type</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection_type</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">test_ip</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the hostname for the test interface (not optional)</span>
+
+<span class="sd">        :raise: ConfigParser.NoOptionError if option not in configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_test_ip</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_test_ip</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                   <span class="n">option</span><span class="o">=</span><span class="n">HostEnum</span><span class="o">.</span><span class="n">test_ip</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_test_ip</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">prefix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets a prefix string to add to each command sent to the DUT</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                  <span class="n">option</span><span class="o">=</span><span class="n">HostEnum</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span>
+                                                  <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the timeout for connections (e.g. reading from stdout)</span>
+
+<span class="sd">        :rtype: Float</span>
+<span class="sd">        :return: Seconds to wait for output before timing-out</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                        <span class="n">option</span><span class="o">=</span><span class="n">HostEnum</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span>
+                                                        <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                        <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">username</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the login username for the device</span>
+
+<span class="sd">        :raise: ConfigParser.NoOptionError if option not in configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_username</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_username</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                    <span class="n">option</span><span class="o">=</span><span class="n">HostEnum</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_username</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">operating_system</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the operating system if the user set it</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operating_system</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_operating_system</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                            <span class="n">option</span><span class="o">=</span><span class="n">HostEnum</span><span class="o">.</span><span class="n">operating_system</span><span class="p">,</span>
+                                                            <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                            <span class="n">default</span><span class="o">=</span><span class="n">HostEnum</span><span class="o">.</span><span class="n">default_operating_system</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operating_system</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        dictionary of options not in this class</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="n">option</span> <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">)</span> <span class="k">if</span> <span class="n">option</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">HostEnum</span><span class="o">.</span><span class="n">options</span><span class="p">]</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span> <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">options</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">values</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span>
+    
+<div class="viewcode-block" id="HostConfiguration.reset"><a class="viewcode-back" href="../../../hosts/api/cameraobscura.hosts.host.HostConfiguration.reset.html#cameraobscura.hosts.host.HostConfiguration.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the properties to None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_operating_system</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_port</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_control_ip</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection_type</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_ip</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_username</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="HostConfiguration.check_rep"><a class="viewcode-back" href="../../../hosts/api/cameraobscura.hosts.host.HostConfiguration.check_rep.html#cameraobscura.hosts.host.HostConfiguration.check_rep">[docs]</a>    <span class="k">def</span> <span class="nf">check_rep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if the parameters seem reasonable</span>
+
+<span class="sd">        :raise: AssertionError if something seems wrong</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">HostConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># a timeout of 0 or less will timeout before you can get output</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Timeout must be greater than 0, not {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_type</span> <span class="ow">in</span> <span class="s2">&quot;ssh telnet&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_ip</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">,</span> <span class="s2">&quot;If not using serial, the control_ip needs to be set&quot;</span>
+        <span class="k">return</span></div></div>
+<span class="c1"># end class HostConfiguration</span>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

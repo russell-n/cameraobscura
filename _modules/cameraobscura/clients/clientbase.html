@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cameraobscura.clients.clientbase &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for cameraobscura.clients.clientbase</h1><div class="highlight"><pre>
+<span></span>
+<span class="c1"># python standard library</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">abstractproperty</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+
+<span class="c1"># this package</span>
+<span class="kn">from</span> <span class="nn">theape</span> <span class="kn">import</span> <span class="n">BaseClass</span>
+<span class="kn">from</span> <span class="nn">cameraobscura</span> <span class="kn">import</span> <span class="n">CameraobscuraError</span>
+
+<span class="n">COMMA</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span>
+<span class="n">TIMEOUT</span> <span class="o">=</span> <span class="mi">10</span>
+
+<div class="viewcode-block" id="BaseClient"><a class="viewcode-back" href="../../../clients/api/cameraobscura.clients.clientbase.BaseClient.html#cameraobscura.clients.clientbase.BaseClient">[docs]</a><span class="k">class</span> <span class="nc">BaseClient</span><span class="p">(</span><span class="n">BaseClass</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A base class for clients.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="BaseClient.__init__"><a class="viewcode-back" href="../../../clients/api/cameraobscura.clients.clientbase.BaseClient.html#cameraobscura.clients.clientbase.BaseClient.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">TIMEOUT</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `hostname`: ip address or resolvable hostname.</span>
+<span class="sd">         - `username`: the login name.</span>
+<span class="sd">         - `timeout`: Time to give the client to connect</span>
+<span class="sd">         - `port`: TCP port of the server</span>
+<span class="sd">         - `kwargs`: anything else that the client can use will be passed in to it</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BaseClient</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="n">hostname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_port</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@abstractproperty</span>
+    <span class="k">def</span> <span class="nf">client</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The actual client to the device</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span>
+
+    <span class="nd">@abstractproperty</span>
+    <span class="k">def</span> <span class="nf">port</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The TCP port of the server (this is where a default should be set)</span>
+
+<span class="sd">        :return: port</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#raise NotImplemented(&quot;port not implemented&quot;)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_port</span>
+
+    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="BaseClient.exec_command"><a class="viewcode-back" href="../../../clients/api/cameraobscura.clients.clientbase.BaseClient.html#cameraobscura.clients.clientbase.BaseClient.exec_command">[docs]</a>    <span class="k">def</span> <span class="nf">exec_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">TIMEOUT</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The main interface with the client</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `command`: A string to send to the client.</span>
+<span class="sd">         - `timeout`: Set non-blocking timeout.</span>
+
+<span class="sd">        :rtype: tuple</span>
+<span class="sd">        :return: stdin, stdout, stderr</span>
+
+<span class="sd">        :raise: CameraobscuraError for client exceptions</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span></div>
+        
+<div class="viewcode-block" id="BaseClient.close"><a class="viewcode-back" href="../../../clients/api/cameraobscura.clients.clientbase.BaseClient.html#cameraobscura.clients.clientbase.BaseClient.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Closes and removes the client (if it exists)</span>
+<span class="sd">        </span>
+<span class="sd">        :postcondition: client&#39;s connection is closed and self._client is None                </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+    
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        creates the string representation</span>
+<span class="sd">        :return: username, hostname, port, password in string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;Username: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+        <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;Hostname: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hostname</span><span class="p">)</span>
+        <span class="n">port</span> <span class="o">=</span> <span class="s2">&quot;Port: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">):</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="p">[</span><span class="n">user</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="s2">&quot;Password: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">)]</span>
+        <span class="k">elif</span> <span class="s1">&#39;password&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="p">[</span><span class="n">user</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="s2">&quot;Password: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="p">[</span><span class="n">user</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">COMMA</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A pass-through to the client for un-implemented methods.</span>
+
+<span class="sd">        .. warning:: This can&#39;t go in the base-class</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span></div>
+<span class="c1"># end BaseClient</span>
+
+<div class="viewcode-block" id="handlesocketerrors"><a class="viewcode-back" href="../../../clients/api/cameraobscura.clients.clientbase.handlesocketerrors.html#cameraobscura.clients.clientbase.handlesocketerrors">[docs]</a><span class="k">def</span> <span class="nf">handlesocketerrors</span><span class="p">(</span><span class="n">method</span><span class="p">,</span>  <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    function to use as a method decorator (expects ``self`` as one of the arguments)</span>
+
+<span class="sd">    Also expects that the object has connection and logger attributes</span>
+
+<span class="sd">    :param:</span>
+
+<span class="sd">     - `method`: method instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">wrapped</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">socket</span><span class="o">.</span><span class="n">error</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;{e}: Error with connection to {c}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">,</span>
+                                                                 <span class="n">e</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapped</span></div>
+
+<div class="viewcode-block" id="suppresssocketerrors"><a class="viewcode-back" href="../../../clients/api/cameraobscura.clients.clientbase.suppresssocketerrors.html#cameraobscura.clients.clientbase.suppresssocketerrors">[docs]</a><span class="k">def</span> <span class="nf">suppresssocketerrors</span><span class="p">(</span><span class="n">method</span><span class="p">,</span>  <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Unlike handlesocketerrors this logs the error and quits (no exception raised)</span>
+<span class="sd">    function to use as a method decorator (expects ``self`` as one of the arguments)</span>
+
+<span class="sd">    Also expects that the object has connection and logger attributes</span>
+
+<span class="sd">    :param:</span>
+
+<span class="sd">     - `method`: method instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">wrapped</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">socket</span><span class="o">.</span><span class="n">error</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;{e}: Error with connection to {c}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">,</span>
+                                                                 <span class="n">e</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapped</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

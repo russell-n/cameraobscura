@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Command &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The Command</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#design-elements">Design Elements</a><ul>
+<li><a class="reference internal" href="#use-case">Use Case</a></li>
+<li><a class="reference internal" href="#main-path">Main Path</a></li>
+<li><a class="reference internal" href="#alternate-path">Alternate Path</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#command-constants">Command Constants</a></li>
+<li><a class="reference internal" href="#socketerrors-decorator">socketerrors Decorator</a></li>
+<li><a class="reference internal" href="#the-command-class">The Command Class</a><ul>
+<li><a class="reference internal" href="#the-constructor">The Constructor</a></li>
+<li><a class="reference internal" href="#the-call">The Call</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../_sources/commands/command/command.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="the-command">
+<h1>The Command<a class="headerlink" href="#the-command" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#command-introduction"><span class="std std-ref">Introduction</span></a></li>
+<li><a class="reference internal" href="#command-design"><span class="std std-ref">Design</span></a></li>
+<li><a class="reference internal" href="#command-constants"><span class="std std-ref">Command Constants</span></a></li>
+<li><a class="reference internal" href="#command-socketerrors-decorator"><span class="std std-ref">socketerrors Decorator</span></a></li>
+<li><a class="reference internal" href="#command-class"><span class="std std-ref">Command Class</span></a></li>
+</ul>
+</div></blockquote>
+<div class="section" id="introduction">
+<span id="command-introduction"></span><h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This is a building block to execute non-blocking commands and extracting data from the output. It&#8217;s probably not the right choice for things like <cite>iperf</cite> where there is a lot of data (although if you aren&#8217;t using the <code class="docutils literal"><span class="pre">--interval</span></code> flag it might work).</p>
+<p>It is based on <a class="reference internal" href="../../utilities/query.html#query-class-implementation"><span class="std std-ref">The Query</span></a> (and should be what the Query is using). The idea is to allow user&#8217;s an open-ended way to send commands to the device and get data. It&#8217;s assumed that this data will then be used in some way &#8211; as opposed to <a class="reference internal" href="../../utilities/dump.html#the-dump-class"><span class="std std-ref">The Dump</span></a> which just dumps the output to a files. To make this possible three things are needed:</p>
+<blockquote>
+<div><ul class="simple">
+<li>The command string</li>
+<li>An argument string for the command</li>
+<li>A regular expression to search the output</li>
+</ul>
+</div></blockquote>
+<p>The argument-string is optional (since the command-string can contain all the options). The regular expressions needs to have a group, denoted with parentheses &#8216;()&#8217; in python&#8217;s <a class="reference external" href="https://docs.python.org/2/library/re.html#regular-expression-syntax">regular expression syntax</a>. If no group is put into the regular expression it&#8217;s assumed that an error was made.</p>
+<p>Additionally, the <cite>Command</cite> will check standard error using a regular expression so that known errors can be used to halt operation (if that&#8217;s a good idea). To make it easier for the end user the default will be to log the errors but not raise an exception (so the user has to purposefully set the expression for it to actually raise an error).</p>
+<p>A final element to consider when using <cite>TheCommand</cite> is whether a socket timeout should raise an exception or not. By default it won&#8217;t (as noted the inspiration was the <cite>Query</cite> class which is assumed to be less important than the main part of the testing and thus tries not to kill the entire program). If it should be fatal than the <cite>trap_errors</cite> should be set to False (despite the name it will only try to catch socket-based errors).</p>
+</div>
+<div class="section" id="design-elements">
+<span id="command-design"></span><h2>Design Elements<a class="headerlink" href="#design-elements" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="use-case">
+<h3>Use Case<a class="headerlink" href="#use-case" title="Permalink to this headline">¶</a></h3>
+<p class="plantuml">
+<img src="../../_images/plantuml-611707054554a0cc9a22ae11c1e2c91f07bbc457.png" alt="User -&gt; (Requests output from a command)" />
+</p>
+</div>
+<div class="section" id="main-path">
+<h3>Main Path<a class="headerlink" href="#main-path" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ol class="arabic simple">
+<li>send command, arguments, and timeout to the connection</li>
+<li>traverse the lines in stdout</li>
+<li>search each line with a regular expression</li>
+<li>return the first match</li>
+<li>traverse the lines in stderr</li>
+<li>search each line with a regular expression</li>
+<li>raise an error on match</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="alternate-path">
+<h3>Alternate Path<a class="headerlink" href="#alternate-path" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>2.1.1. Socket time-out</p>
+<p>2.1.2. if the trap-error flag was set, log the error and quit</p>
+<p>2.1.3. if not, raise an exception</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="command-constants">
+<span id="id1"></span><h2>Command Constants<a class="headerlink" href="#command-constants" title="Permalink to this headline">¶</a></h2>
+<p>A holder of constants for TheCommand.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">START_OF_STRING</span> <span class="o">=</span> <span class="s1">r&#39;^&#39;</span>
+<span class="n">ANYTHING</span> <span class="o">=</span> <span class="s1">r&#39;.&#39;</span>
+<span class="n">ZERO_OR_MORE</span> <span class="o">=</span> <span class="s1">r&#39;*&#39;</span>
+<span class="n">GROUP</span> <span class="o">=</span> <span class="s1">r&#39;(</span><span class="si">{0}</span><span class="s1">)&#39;</span>
+
+<span class="n">EVERYTHING</span> <span class="o">=</span> <span class="n">GROUP</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ANYTHING</span> <span class="o">+</span> <span class="n">ZERO_OR_MORE</span><span class="p">)</span>
+<span class="n">NOTHING</span> <span class="o">=</span> <span class="s1">r&#39;a&#39;</span> <span class="o">+</span> <span class="n">START_OF_STRING</span>
+<span class="n">NEWLINE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+<span class="k">class</span> <span class="nc">CommandConstants</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constants for the Command</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="c1"># defaults</span>
+    <span class="n">default_arguments</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">default_timeout</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">default_trap_errors</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">default_data_expression</span> <span class="o">=</span> <span class="n">EVERYTHING</span>
+    <span class="n">default_error_expression</span> <span class="o">=</span> <span class="n">NOTHING</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="socketerrors-decorator">
+<span id="command-socketerrors-decorator"></span><h2>socketerrors Decorator<a class="headerlink" href="#socketerrors-decorator" title="Permalink to this headline">¶</a></h2>
+<p>This is a decorator to handle catching socket errors so the __call__ doesn&#8217;t get too unwieldy.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.command.command.socketerrors.html#cameraobscura.commands.command.command.socketerrors" title="cameraobscura.commands.command.command.socketerrors"><code class="xref py py-obj docutils literal"><span class="pre">socketerrors</span></code></a>(method,&nbsp;*args,&nbsp;**kwargs)</td>
+<td>Traps errors if self.trap_errors is true, raises CameraobscuraErrors otherwise</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-command-class">
+<span id="command-class"></span><h2>The Command Class<a class="headerlink" href="#the-command-class" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img src="../../_images/plantuml-be00bd6e4d69978e99769690df625b5d1cafafd9.png" alt="BaseClass &lt;|-- TheCommand
+TheCommand o- TheHost
+TheCommand : String identifier
+TheCommand : String command
+TheCommand : String arguments
+TheCommand : String data_expression
+TheCommand : String error_expression
+TheCommand : Float timeout
+TheCommand : Boolean trap_errors
+TheCommand : String __call__" />
+</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.command.command.TheCommand.html#cameraobscura.commands.command.command.TheCommand" title="cameraobscura.commands.command.command.TheCommand"><code class="xref py py-obj docutils literal"><span class="pre">TheCommand</span></code></a>(connection,&nbsp;command[,&nbsp;...])</td>
+<td>Command to get output from a device</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.commands.command.command.TheCommand.command.html#cameraobscura.commands.command.command.TheCommand.command" title="cameraobscura.commands.command.command.TheCommand.command"><code class="xref py py-obj docutils literal"><span class="pre">TheCommand.command</span></code></a></td>
+<td>String to send to the connection</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.command.command.TheCommand.arguments.html#cameraobscura.commands.command.command.TheCommand.arguments" title="cameraobscura.commands.command.command.TheCommand.arguments"><code class="xref py py-obj docutils literal"><span class="pre">TheCommand.arguments</span></code></a></td>
+<td>arguments for the command (separated so they can be updated separately)</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.commands.command.command.TheCommand.command_arguments.html#cameraobscura.commands.command.command.TheCommand.command_arguments" title="cameraobscura.commands.command.command.TheCommand.command_arguments"><code class="xref py py-obj docutils literal"><span class="pre">TheCommand.command_arguments</span></code></a></td>
+<td>A compilation of command and arguments (with newline appended)</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.command.command.TheCommand.data_expression.html#cameraobscura.commands.command.command.TheCommand.data_expression" title="cameraobscura.commands.command.command.TheCommand.data_expression"><code class="xref py py-obj docutils literal"><span class="pre">TheCommand.data_expression</span></code></a></td>
+<td>compiled regular expression to extract data from the command output</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.commands.command.command.TheCommand.error_expression.html#cameraobscura.commands.command.command.TheCommand.error_expression" title="cameraobscura.commands.command.command.TheCommand.error_expression"><code class="xref py py-obj docutils literal"><span class="pre">TheCommand.error_expression</span></code></a></td>
+<td>regular expression &#8211; if matched, raise Exception</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.command.command.TheCommand.identifier.html#cameraobscura.commands.command.command.TheCommand.identifier" title="cameraobscura.commands.command.command.TheCommand.identifier"><code class="xref py py-obj docutils literal"><span class="pre">TheCommand.identifier</span></code></a></td>
+<td>A string identifier to distinguish this command</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.commands.command.command.TheCommand.__call__.html#cameraobscura.commands.command.command.TheCommand.__call__" title="cameraobscura.commands.command.command.TheCommand.__call__"><code class="xref py py-obj docutils literal"><span class="pre">TheCommand.__call__</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The Command Class is responsible for maintaining a connection, a command and its arguments, and regular expressions to search the output. When called, it sends the command and searches the output, returning matched (group) strings or handles errors depending on how it was configured.</p>
+<p>Its main collaborator would be something that looks like one of the clients (hopefully the <a class="reference internal" href="../../clients/simpleclient.html#id1"><span class="std std-ref">SimpleClient</span></a>) or <a class="reference internal" href="../../hosts/host.html#host-host"><span class="std std-ref">the Host</span></a> (it will only expect the <cite>exec_command</cite> method).</p>
+<div class="section" id="the-constructor">
+<h3>The Constructor<a class="headerlink" href="#the-constructor" title="Permalink to this headline">¶</a></h3>
+<p>The only required arguments are <cite>connection</cite> and <cite>command</cite>. Arguments are optional in the event that the <cite>command</cite> parameter is actual a complete string of <cite>command</cite> + <cite>arguments</cite> (e.g. &#8216;ls -a&#8217;).</p>
+</div>
+<div class="section" id="the-call">
+<h3>The Call<a class="headerlink" href="#the-call" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-center" id="id2">
+<img src="../../_images/command_activity.svg" /><p class="caption"><span class="caption-text">TheCommand&#8217;s Activity Diagram</span></p>
+</div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Host &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../index.html" />
+    <link rel="up" title="Hosts" href="index.html" />
+    <link rel="next" title="cameraobscura.hosts.host.TheHost" href="api/cameraobscura.hosts.host.TheHost.html" />
+    <link rel="prev" title="Hosts" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common/index.html">Common Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Host</a><ul>
+<li><a class="reference internal" href="#host-constants">Host Constants</a></li>
+<li><a class="reference internal" href="#the-host">The Host</a></li>
+<li><a class="reference internal" href="#the-host-enum">The Host Enum</a></li>
+<li><a class="reference internal" href="#the-host-configuration">The Host Configuration</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="index.html" title="Previous Chapter: Hosts"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Hosts</span>
+    </a>
+  </li>
+  <li>
+    <a href="api/cameraobscura.hosts.host.TheHost.html" title="Next Chapter: cameraobscura.hosts.host.TheHost"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">cameraobscura... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/hosts/host.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="host">
+<h1>Host<a class="headerlink" href="#host" title="Permalink to this headline">¶</a></h1>
+<p>A bundle of client and some leftover methods and information. The <cite>Host</cite> builds the connection based on the identified connection type.</p>
+<div class="section" id="host-constants">
+<span id="id1"></span><h2>Host Constants<a class="headerlink" href="#host-constants" title="Permalink to this headline">¶</a></h2>
+<p>A central place for constants needed by the Host.</p>
+</div>
+<div class="section" id="the-host">
+<span id="host-host"></span><h2>The Host<a class="headerlink" href="#the-host" title="Permalink to this headline">¶</a></h2>
+<p>There used to be multiple hosts, but now there is one. It uses the connection type to build the other hosts and return them.</p>
+<p class="plantuml">
+<img src="../_images/plantuml-0061d9908bde06f6405068d765a72fb4adaf145f.png" alt="BaseClass &lt;|-- TheHost
+TheHost o- SimpleClient
+TheHost o- TelnetClient" />
+</p>
+<span class="target" id="module-cameraobscura.hosts.host"></span><table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.hosts.host.TheHost.html#cameraobscura.hosts.host.TheHost" title="cameraobscura.hosts.host.TheHost"><code class="xref py py-obj docutils literal"><span class="pre">TheHost</span></code></a>(hostname,&nbsp;test_interface[,&nbsp;...])</td>
+<td>The main host used to build the other hosts</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.hosts.host.TheHost.client.html#cameraobscura.hosts.host.TheHost.client" title="cameraobscura.hosts.host.TheHost.client"><code class="xref py py-obj docutils literal"><span class="pre">TheHost.client</span></code></a></td>
+<td>A built client (connection)</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.hosts.host.TheHost.exec_command.html#cameraobscura.hosts.host.TheHost.exec_command" title="cameraobscura.hosts.host.TheHost.exec_command"><code class="xref py py-obj docutils literal"><span class="pre">TheHost.exec_command</span></code></a>(command[,&nbsp;timeout])</td>
+<td>Calls the Clients&#8217;s non-blocking run to execute <cite>prefix command</cite>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.hosts.host.TheHost.close.html#cameraobscura.hosts.host.TheHost.close" title="cameraobscura.hosts.host.TheHost.close"><code class="xref py py-obj docutils literal"><span class="pre">TheHost.close</span></code></a>()</td>
+<td>Closes the client and sets it to None</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.hosts.host.TheHost.kill_all.html#cameraobscura.hosts.host.TheHost.kill_all" title="cameraobscura.hosts.host.TheHost.kill_all"><code class="xref py py-obj docutils literal"><span class="pre">TheHost.kill_all</span></code></a>(process)</td>
+<td>Kills all the process instances on the remote client.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-host-enum">
+<span id="host-enum"></span><h2>The Host Enum<a class="headerlink" href="#the-host-enum" title="Permalink to this headline">¶</a></h2>
+<p>A place to store constants that other classes might need to refer to.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HostEnum</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A holder of Host constants</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+
+    <span class="c1"># options</span>
+    <span class="n">control_ip</span> <span class="o">=</span> <span class="s1">&#39;control_ip&#39;</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;password&#39;</span>
+    <span class="n">connection_type</span> <span class="o">=</span> <span class="s1">&#39;connection_type&#39;</span>
+    <span class="n">test_ip</span> <span class="o">=</span> <span class="s1">&#39;test_ip&#39;</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;username&#39;</span>
+    <span class="n">port</span> <span class="o">=</span> <span class="s1">&#39;port&#39;</span>
+    <span class="n">timeout</span> <span class="o">=</span> <span class="s1">&#39;timeout&#39;</span>
+    <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;prefix&#39;</span>
+    <span class="n">operating_system</span> <span class="o">=</span> <span class="s1">&#39;operating_system&#39;</span>
+
+    <span class="n">options</span> <span class="o">=</span> <span class="p">(</span><span class="n">control_ip</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">connection_type</span><span class="p">,</span> <span class="n">test_ip</span><span class="p">,</span>
+<span class="n">username</span><span class="p">,</span>
+               <span class="n">port</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">operating_system</span><span class="p">)</span>
+    <span class="c1"># defaults</span>
+    <span class="n">default_port</span> <span class="o">=</span> <span class="mi">22</span>
+    <span class="n">default_type</span> <span class="o">=</span> <span class="s1">&#39;ssh&#39;</span>
+    <span class="n">default_timeout</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">default_operating_system</span> <span class="o">=</span> <span class="s1">&#39;linux&#39;</span>
+<span class="c1"># end HostEnum</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-host-configuration">
+<span id="host-configuration"></span><h2>The Host Configuration<a class="headerlink" href="#the-host-configuration" title="Permalink to this headline">¶</a></h2>
+<p>This is a configuration holder for host-configurations. It is created as an Abstract Base Class so that separate <cite>dut</cite> and <cite>server</cite> configurations can be used. They need to inherit from it and set the section name.</p>
+<p class="plantuml">
+<img src="../_images/plantuml-c4f573f5a6ac074a7e83a403ccbb2634f82f8c54.png" alt="BaseConfiguration &lt;|-- HostConfiguration" />
+</p>
+<span class="target" id="module-cameraobscura.hosts.host"></span><table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.hosts.host.HostConfiguration.html#cameraobscura.hosts.host.HostConfiguration" title="cameraobscura.hosts.host.HostConfiguration"><code class="xref py py-obj docutils literal"><span class="pre">HostConfiguration</span></code></a>(section,&nbsp;*args,&nbsp;**kwargs)</td>
+<td>A holder of device-configurations</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.hosts.host.HostConfiguration.example.html#cameraobscura.hosts.host.HostConfiguration.example" title="cameraobscura.hosts.host.HostConfiguration.example"><code class="xref py py-obj docutils literal"><span class="pre">HostConfiguration.example</span></code></a></td>
+<td>an example device configuration</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.hosts.host.HostConfiguration.section.html#cameraobscura.hosts.host.HostConfiguration.section" title="cameraobscura.hosts.host.HostConfiguration.section"><code class="xref py py-obj docutils literal"><span class="pre">HostConfiguration.section</span></code></a></td>
+<td>The section name in the configuration file</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.hosts.host.HostConfiguration.control_ip.html#cameraobscura.hosts.host.HostConfiguration.control_ip" title="cameraobscura.hosts.host.HostConfiguration.control_ip"><code class="xref py py-obj docutils literal"><span class="pre">HostConfiguration.control_ip</span></code></a></td>
+<td>The optional hostname for the device (default=None)</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.hosts.host.HostConfiguration.password.html#cameraobscura.hosts.host.HostConfiguration.password" title="cameraobscura.hosts.host.HostConfiguration.password"><code class="xref py py-obj docutils literal"><span class="pre">HostConfiguration.password</span></code></a></td>
+<td>The optional password for the device (default=None)</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.hosts.host.HostConfiguration.connection_type.html#cameraobscura.hosts.host.HostConfiguration.connection_type" title="cameraobscura.hosts.host.HostConfiguration.connection_type"><code class="xref py py-obj docutils literal"><span class="pre">HostConfiguration.connection_type</span></code></a></td>
+<td>One of &#8216;ssh&#8217; or&#8217;telnet&#8217;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.hosts.host.HostConfiguration.test_ip.html#cameraobscura.hosts.host.HostConfiguration.test_ip" title="cameraobscura.hosts.host.HostConfiguration.test_ip"><code class="xref py py-obj docutils literal"><span class="pre">HostConfiguration.test_ip</span></code></a></td>
+<td>Gets the hostname for the test interface (not optional)</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.hosts.host.HostConfiguration.prefix.html#cameraobscura.hosts.host.HostConfiguration.prefix" title="cameraobscura.hosts.host.HostConfiguration.prefix"><code class="xref py py-obj docutils literal"><span class="pre">HostConfiguration.prefix</span></code></a></td>
+<td>Gets a prefix string to add to each command sent to the DUT</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.hosts.host.HostConfiguration.timeout.html#cameraobscura.hosts.host.HostConfiguration.timeout" title="cameraobscura.hosts.host.HostConfiguration.timeout"><code class="xref py py-obj docutils literal"><span class="pre">HostConfiguration.timeout</span></code></a></td>
+<td>Gets the timeout for connections (e.g.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.hosts.host.HostConfiguration.username.html#cameraobscura.hosts.host.HostConfiguration.username" title="cameraobscura.hosts.host.HostConfiguration.username"><code class="xref py py-obj docutils literal"><span class="pre">HostConfiguration.username</span></code></a></td>
+<td>Gets the login username for the device</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.hosts.host.HostConfiguration.operating_system.html#cameraobscura.hosts.host.HostConfiguration.operating_system" title="cameraobscura.hosts.host.HostConfiguration.operating_system"><code class="xref py py-obj docutils literal"><span class="pre">HostConfiguration.operating_system</span></code></a></td>
+<td>Gets the operating system if the user set it</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.hosts.host.HostConfiguration.kwargs.html#cameraobscura.hosts.host.HostConfiguration.kwargs" title="cameraobscura.hosts.host.HostConfiguration.kwargs"><code class="xref py py-obj docutils literal"><span class="pre">HostConfiguration.kwargs</span></code></a></td>
+<td>dictionary of options not in this class</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.hosts.host.HostConfiguration.reset.html#cameraobscura.hosts.host.HostConfiguration.reset" title="cameraobscura.hosts.host.HostConfiguration.reset"><code class="xref py py-obj docutils literal"><span class="pre">HostConfiguration.reset</span></code></a>()</td>
+<td>Sets the properties to None</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.hosts.host.HostConfiguration.check_rep.html#cameraobscura.hosts.host.HostConfiguration.check_rep" title="cameraobscura.hosts.host.HostConfiguration.check_rep"><code class="xref py py-obj docutils literal"><span class="pre">HostConfiguration.check_rep</span></code></a>()</td>
+<td>Checks if the parameters seem reasonable</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils" id="id2">
+<caption><span class="caption-text">HostConfiguration Attributes</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+<th class="head">Default</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>control_ip</td>
+<td>Hostname for the control interface</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td>password</td>
+<td>Login password</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>connection_type</td>
+<td>Type of connection to the device</td>
+<td>ssh</td>
+</tr>
+<tr class="row-odd"><td>test_ip</td>
+<td>Hostname for the test-interface</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>username</td>
+<td>Login username</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>port</td>
+<td>port for the connection</td>
+<td>22</td>
+</tr>
+<tr class="row-even"><td>timeout</td>
+<td>timeout for the connection</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>prefix</td>
+<td>string to prepend to the commands sent to the device</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>operating_system</td>
+<td>name of OS so commands can be altered as needed</td>
+<td>linux</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

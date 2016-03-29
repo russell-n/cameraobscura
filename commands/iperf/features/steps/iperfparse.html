@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>IperfParse Feature &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">IperfParse Feature</a><ul>
+<li><a class="reference internal" href="#scenario-the-default-iperfparser-is-used">Scenario: The default IperfParser is used</a></li>
+<li><a class="reference internal" href="#scenario-iperfparser-parses-outcome">Scenario: IperfParser parses outcome</a></li>
+<li><a class="reference internal" href="#scenario-iperfparser-sets-client-for-client">Scenario: IperfParser sets client for client</a><ul>
+<li><a class="reference internal" href="#example-client">Example: client</a></li>
+<li><a class="reference internal" href="#example-server">Example: server</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#scenario-iperf-settings-are-unknown">Scenario: Iperf Settings are unknown</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../../../_sources/commands/iperf/features/steps/iperfparse.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="iperfparse-feature">
+<h1>IperfParse Feature<a class="headerlink" href="#iperfparse-feature" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-gherkin"><div class="highlight"><pre><span></span><span class="k">Feature:</span><span class="nf"> Iperf has IperfParser</span>
+<span class="nf">  </span><span class="k">Scenario:</span><span class="nf"> The default IperfParser is used</span>
+<span class="k">    Given </span><span class="nf">no parser</span>
+<span class="nf">    </span><span class="k">When </span><span class="nf">the Iperf.parser is checked </span>
+<span class="nf">    </span><span class="k">Then </span><span class="nf">it is the IperfParser</span>
+
+<span class="nf"> </span><span class="k">Scenario:</span><span class="nf"> IperfParser parses outcome</span>
+<span class="k">   Given </span><span class="nf">An Iperf instance</span>
+<span class="nf">   </span><span class="k">When </span><span class="nf">the ``run`` method is called</span>
+<span class="nf">   </span><span class="k">Then </span><span class="nf">the output is given to the IperfParser</span>
+
+<span class="nf"> </span><span class="k">Scenario Outline:</span><span class="nf"> IperfParser sets summary</span>
+<span class="k">   Given </span><span class="nf">an Iperf instance with fake parser</span>
+<span class="nf">   </span><span class="k">When </span><span class="nf">the ``run`` method is called and the </span><span class="nv">&lt;role&gt;</span><span class="nf"> summary checked</span>
+<span class="nf">   </span><span class="k">Then </span><span class="nf">the summary of </span><span class="nv">&lt;role&gt;</span><span class="nf"> values is set</span>
+
+<span class="nf">   </span><span class="k">Examples:</span><span class="nf"> client and server</span><span class="k"></span>
+<span class="k">   |</span><span class="nv"> role</span><span class="k">   |</span><span class="nf"></span>
+<span class="k">   |</span><span class="s"> client</span><span class="k"> |</span><span class="nf"></span>
+<span class="k">   |</span><span class="s"> server</span><span class="k"> |</span>
+
+<span class="nf"> </span><span class="k">Scenario:</span><span class="nf"> Iperf Settings are unknown</span>
+<span class="k">   Given </span><span class="nf">an Iperf instance with fake parser</span>
+<span class="nf">   </span><span class="k">When </span><span class="nf">the ``run`` method is called with unknown settings type</span>
+<span class="nf">   </span><span class="k">Then </span><span class="nf">a CameraObscura error is raised</span>
+</pre></div>
+</div>
+<div class="section" id="scenario-the-default-iperfparser-is-used">
+<h2>Scenario: The default IperfParser is used<a class="headerlink" href="#scenario-the-default-iperfparser-is-used" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;no parser&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">no_parser</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">client_settings</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">iperf</span> <span class="o">=</span> <span class="n">Iperf</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="kc">None</span><span class="p">,</span>
+                          <span class="n">server_settings</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">client_settings</span><span class="o">=</span><span class="n">client_settings</span><span class="p">)</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@when</span><span class="p">(</span><span class="s2">&quot;the Iperf.parser is checked&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">check_parser</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">iperf</span><span class="o">.</span><span class="n">parser</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;it is the IperfParser&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">assert_iperf_parser</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">instance_of</span><span class="p">(</span><span class="n">IperfParser</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scenario-iperfparser-parses-outcome">
+<h2>Scenario: IperfParser parses outcome<a class="headerlink" href="#scenario-iperfparser-parses-outcome" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;An Iperf instance&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">iperf_run_instance</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">client_settings</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">fake_output</span> <span class="o">=</span> <span class="s1">&#39;a b c d e&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">bandwidths</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">expected</span> <span class="o">=</span> <span class="p">[</span><span class="n">call</span><span class="p">(</span><span class="n">output</span><span class="p">)</span> <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">context</span><span class="o">.</span><span class="n">fake_output</span><span class="p">]</span>
+
+    <span class="n">mock_definition</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;IperfParser Definition&#39;</span><span class="p">)</span>
+    <span class="n">mock_definition</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">parser</span>
+    <span class="n">mock_file</span> <span class="o">=</span> <span class="n">mock_open</span><span class="p">()</span>
+    <span class="n">mock_os</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+
+    <span class="n">names</span> <span class="o">=</span> <span class="s1">&#39;__builtin__.open os.makedirs iperflexer.iperfparser.IperfParser&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">mocks</span> <span class="o">=</span> <span class="p">(</span><span class="n">mock_file</span><span class="p">,</span> <span class="n">mock_os</span><span class="p">,</span> <span class="n">mock_definition</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">patches</span> <span class="o">=</span> <span class="p">[</span><span class="n">patch</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mocks</span><span class="p">[</span><span class="n">index</span><span class="p">])</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">)]</span>
+
+    <span class="n">context</span><span class="o">.</span><span class="n">iperf</span> <span class="o">=</span> <span class="n">Iperf</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+                          <span class="n">server_settings</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">client_settings</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">client_settings</span><span class="p">,</span>
+                          <span class="n">parser</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="p">)</span>
+
+    <span class="n">context</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">exec_command</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">context</span><span class="o">.</span><span class="n">fake_output</span><span class="p">,</span>
+                                      <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@when</span><span class="p">(</span><span class="s2">&quot;the ``run`` method is called&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">call_run</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">settings</span> <span class="o">=</span> <span class="n">IperfSettings</span><span class="o">.</span><span class="n">IperfClientSettings</span><span class="p">(</span><span class="n">server</span><span class="o">=</span><span class="s1">&#39;fake&#39;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">nested</span><span class="p">(</span><span class="o">*</span><span class="n">context</span><span class="o">.</span><span class="n">patches</span><span class="p">):</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">iperf</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">host</span><span class="p">,</span>
+                          <span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">,</span>
+                          <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;apple&#39;</span><span class="p">)</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;the output is given to the IperfParser&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">check_output</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">mock_calls</span><span class="p">,</span>
+                <span class="n">contains</span><span class="p">(</span><span class="o">*</span><span class="n">context</span><span class="o">.</span><span class="n">expected</span><span class="p">))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scenario-iperfparser-sets-client-for-client">
+<h2>Scenario: IperfParser sets client for client<a class="headerlink" href="#scenario-iperfparser-sets-client-for-client" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="example-client">
+<h3>Example: client<a class="headerlink" href="#example-client" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;an Iperf instance with fake parser&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fake_parser</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">bandwidths</span> <span class="o">=</span>  <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">fake_output</span> <span class="o">=</span> <span class="s1">&#39;a b c d e&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">bandwidths</span><span class="p">)</span>
+
+    <span class="n">mock_definition</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;IperfParser Definition&#39;</span><span class="p">)</span>
+    <span class="n">mock_definition</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">parser</span>
+    <span class="n">mock_file</span> <span class="o">=</span> <span class="n">mock_open</span><span class="p">()</span>
+    <span class="n">mock_os</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+
+    <span class="n">names</span> <span class="o">=</span> <span class="s1">&#39;__builtin__.open os.makedirs iperflexer.iperfparser.IperfParser&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">mocks</span> <span class="o">=</span> <span class="p">(</span><span class="n">mock_file</span><span class="p">,</span> <span class="n">mock_os</span><span class="p">,</span> <span class="n">mock_definition</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">patches</span> <span class="o">=</span> <span class="p">[</span><span class="n">patch</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mocks</span><span class="p">[</span><span class="n">index</span><span class="p">])</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">)]</span>
+
+    <span class="n">context</span><span class="o">.</span><span class="n">iperf</span> <span class="o">=</span> <span class="n">Iperf</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="kc">None</span><span class="p">,</span>
+                          <span class="n">client_settings</span><span class="o">=</span><span class="n">MagicMock</span><span class="p">(),</span>
+                          <span class="n">server_settings</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">parser</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">parser</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">exec_command</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">context</span><span class="o">.</span><span class="n">fake_output</span><span class="p">,</span>
+                                      <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@when</span><span class="p">(</span><span class="s2">&quot;the ``run`` method is called and the client summary checked&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">check_client_outcome</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">settings</span> <span class="o">=</span> <span class="n">IperfSettings</span><span class="o">.</span><span class="n">IperfClientSettings</span><span class="p">(</span><span class="n">server</span><span class="o">=</span><span class="s1">&#39;fake&#39;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">nested</span><span class="p">(</span><span class="o">*</span><span class="n">context</span><span class="o">.</span><span class="n">patches</span><span class="p">):</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">iperf</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">host</span><span class="p">,</span>
+                          <span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">,</span>
+                          <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;apple&#39;</span><span class="p">)</span>
+
+    <span class="n">context</span><span class="o">.</span><span class="n">client_summary</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">iperf</span><span class="o">.</span><span class="n">client_summary</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;the summary of client values is set&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">assert_client_summary</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">client_summary</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">summary</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-server">
+<h3>Example: server<a class="headerlink" href="#example-server" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@when</span><span class="p">(</span><span class="s2">&quot;the ``run`` method is called and the server summary checked&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">check_server_outcome</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">settings</span> <span class="o">=</span> <span class="n">IperfSettings</span><span class="o">.</span><span class="n">IperfServerSettings</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="n">nested</span><span class="p">(</span><span class="o">*</span><span class="n">context</span><span class="o">.</span><span class="n">patches</span><span class="p">):</span>
+        <span class="c1">#with patch(&#39;iperflexer.iperfparser.IperfParser&#39;, mock_definition):</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">iperf</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">host</span><span class="p">,</span>
+                          <span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">,</span>
+                          <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;apple&#39;</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">server_summary</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">iperf</span><span class="o">.</span><span class="n">server_summary</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;the summary of server values is set&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">assert_server_summary</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iperf</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">bandwidths</span><span class="p">)</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">server_summary</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="scenario-iperf-settings-are-unknown">
+<h2>Scenario: Iperf Settings are unknown<a class="headerlink" href="#scenario-iperf-settings-are-unknown" title="Permalink to this headline">¶</a></h2>
+<p>Given an Iperf instance with fake parser</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@when</span><span class="p">(</span><span class="s2">&quot;the ``run`` method is called with unknown settings type&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">unknown_settings</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s1">&#39;a CameraObscura error is raised&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">raise_error</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">mock_file</span> <span class="o">=</span> <span class="n">mock_open</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;__builtin__.open&#39;</span><span class="p">,</span> <span class="n">mock_file</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;os.makedirs&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+            <span class="n">assert_that</span><span class="p">(</span><span class="n">calling</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iperf</span><span class="o">.</span><span class="n">run</span><span class="p">)</span><span class="o">.</span><span class="n">with_args</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">host</span><span class="p">,</span>
+                                                     <span class="n">settings</span><span class="o">=</span><span class="n">MagicMock</span><span class="p">(),</span>
+                                                     <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;asoethu&#39;</span><span class="p">),</span>
+                                                     <span class="n">raises</span><span class="p">(</span><span class="n">CameraobscuraError</span><span class="p">))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

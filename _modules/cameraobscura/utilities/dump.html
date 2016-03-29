@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cameraobscura.utilities.dump &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for cameraobscura.utilities.dump</h1><div class="highlight"><pre>
+<span></span>
+<span class="c1"># python standard library</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
+
+<span class="c1"># third-party</span>
+<span class="kn">from</span> <span class="nn">theape.parts.connections.clientbase</span> <span class="kn">import</span> <span class="n">suppresssocketerrors</span>
+
+<span class="c1"># this package</span>
+<span class="kn">from</span> <span class="nn">cameraobscura</span> <span class="kn">import</span>  <span class="n">CameraobscuraError</span>
+
+<span class="kn">from</span> <span class="nn">cameraobscura.common.baseconfiguration</span> <span class="kn">import</span> <span class="n">BaseConfiguration</span>
+
+<span class="n">WRITEABLE</span> <span class="o">=</span> <span class="s1">&#39;w&#39;</span>
+
+<span class="k">class</span> <span class="nc">DumpConstants</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constants for the Dump</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="c1"># defaults</span>
+    <span class="n">default_timeout</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">default_delimiter</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span>
+
+    <span class="c1"># configuration</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;dump&#39;</span>
+
+    <span class="c1"># options</span>
+    <span class="n">timeout</span> <span class="o">=</span> <span class="s1">&#39;timeout&#39;</span>
+    
+    <span class="n">example</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">#[{s}]</span>
+<span class="s2"># the dump takes commands that dump their output and saves</span>
+<span class="s2"># the output to files. It is mainly intended as a log dump</span>
+<span class="s2"># comment this section out if you don&#39;t want a dump</span>
+<span class="s2">    </span>
+<span class="s2"># timeout is how long to wait for output</span>
+<span class="s2"># timeout = {time}</span>
+
+<span class="s2"># for the commands you should use the form:</span>
+<span class="s2"># &lt;identifier_1&gt; = &lt;command_1&gt;</span>
+<span class="s2"># &lt;identifier_2&gt; = &lt;command_2&gt;</span>
+<span class="s2"># ...</span>
+<span class="s2"># &lt;identifier_n&gt; = &lt;command_n&gt;</span>
+
+<span class="s2"># the identifiers can be anything as long as each is unique</span>
+<span class="s2"># the command should be the actual string you want to send to the device</span>
+<span class="s2"># as an example for &#39;dmesg&#39;:</span>
+<span class="s2"># dump = dmesg -k</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="n">section</span><span class="p">,</span>
+               <span class="n">time</span><span class="o">=</span><span class="n">default_timeout</span><span class="p">))</span>
+    
+<span class="c1"># end DumpConstants</span>
+
+<div class="viewcode-block" id="TheDump"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.dump.TheDump.html#cameraobscura.utilities.dump.TheDump">[docs]</a><span class="k">class</span> <span class="nc">TheDump</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The Dump dumps the output of a command to a file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="TheDump.__init__"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.dump.TheDump.html#cameraobscura.utilities.dump.TheDump.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="n">connection</span><span class="p">,</span> <span class="n">identifier</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">timeout</span><span class="o">=</span><span class="n">DumpConstants</span><span class="o">.</span><span class="n">default_timeout</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        TheDump&#39;s Constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `command`: the command (string) to send to the device to get output</span>
+<span class="sd">         - `identifier`: string to identify this object</span>
+<span class="sd">         - `connection`: connection to the device with an `exec_command` method</span>
+<span class="sd">         - `filename`: Name for output file</span>
+<span class="sd">         - `timeout`: Readline timeout (seconds)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TheDump</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_identifier</span> <span class="o">=</span> <span class="n">identifier</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command</span> <span class="o">=</span> <span class="n">command</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">connection</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: A logging object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;{0}.{1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__module__</span><span class="p">,</span>
+                                  <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">identifier</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        String to identify this dump</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_identifier</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_identifier</span> <span class="o">=</span> <span class="s1">&#39;dump&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_identifier</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">filename</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Name to use for file to dump command output to</span>
+
+<span class="sd">        If not set by user uses &#39;&lt;host-str&gt;_&lt;identifier&gt;_&lt;command 1st token&gt;.txt&#39;</span>
+
+<span class="sd">        :rtype: StringType</span>
+<span class="sd">        :return: filename for output</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filename</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_filename</span> <span class="o">=</span> <span class="s2">&quot;{0}_{1}_{2}.txt&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">,</span>
+                                                      <span class="bp">self</span><span class="o">.</span><span class="n">identifier</span><span class="p">,</span>
+                                                      <span class="bp">self</span><span class="o">.</span><span class="n">command</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filename</span>
+
+    <span class="nd">@suppresssocketerrors</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        runs the command and saves it to the file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">WRITEABLE</span><span class="p">)</span> <span class="k">as</span> <span class="n">output_file</span><span class="p">:</span>
+            <span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">exec_command</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">command</span><span class="p">,</span>
+                                                                 <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">stdout</span><span class="p">:</span>
+                <span class="n">output_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">stderr</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;{0}: {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">identifier</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">command</span><span class="p">)</span></div>
+<span class="c1"># end class TheDump</span>
+
+<div class="viewcode-block" id="DumpConfiguration"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.dump.DumpConfiguration.html#cameraobscura.utilities.dump.DumpConfiguration">[docs]</a><span class="k">class</span> <span class="nc">DumpConfiguration</span><span class="p">(</span><span class="n">BaseConfiguration</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A configuration for the dump</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="DumpConfiguration.__init__"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.dump.DumpConfiguration.html#cameraobscura.utilities.dump.DumpConfiguration.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor for the DumpConfiguration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DumpConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fields</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_commands</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">section</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The expected section name in the configuration file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_section</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_section</span> <span class="o">=</span> <span class="n">DumpConstants</span><span class="o">.</span><span class="n">section</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_section</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">example</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        An example string for the user to copy</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_example</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_example</span> <span class="o">=</span> <span class="n">DumpConstants</span><span class="o">.</span><span class="n">example</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_example</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The readline-timeout value</span>
+
+<span class="sd">        :raise: CameraobscuraError if timeout is &lt;= 0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                        <span class="n">option</span><span class="o">=</span><span class="n">DumpConstants</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span>
+                                                        <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                        <span class="n">default</span><span class="o">=</span><span class="n">DumpConstants</span><span class="o">.</span><span class="n">default_timeout</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s2">&quot;timeout must be positive, not {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">fields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        list of identifiers for the commands</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fields</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">option</span> <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">option</span> <span class="o">!=</span> <span class="n">DumpConstants</span><span class="o">.</span><span class="n">timeout</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fields</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">commands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        list of commands to send to the device</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_commands</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_commands</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span> <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_commands</span>
+
+<div class="viewcode-block" id="DumpConfiguration.check_rep"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.dump.DumpConfiguration.html#cameraobscura.utilities.dump.DumpConfiguration.check_rep">[docs]</a>    <span class="k">def</span> <span class="nf">check_rep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks the values for validity</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DumpConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="DumpConfiguration.reset"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.dump.DumpConfiguration.html#cameraobscura.utilities.dump.DumpConfiguration.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resets the values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_commands</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fields</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div></div>
+<span class="c1"># end class DumpConfiguration</span>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

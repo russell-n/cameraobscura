@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Dump &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../index.html" />
+    <link rel="up" title="Utility Modules" href="index.html" />
+    <link rel="next" title="cameraobscura.utilities.dump.TheDump" href="api/cameraobscura.utilities.dump.TheDump.html" />
+    <link rel="prev" title="cameraobscura.utilities.configurationadapter.ConfigurationAdapter.__getattr__" href="api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.__getattr__.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The Dump</a><ul>
+<li><a class="reference internal" href="#use-case">Use Case</a><ul>
+<li><a class="reference internal" href="#main-path">Main Path</a></li>
+<li><a class="reference internal" href="#alternate-path">Alternate Path</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dump-constants">Dump Constants</a></li>
+<li><a class="reference internal" href="#the-dump-class">The Dump Class</a></li>
+<li><a class="reference internal" href="#dump-configuration">Dump Configuration</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.__getattr__.html" title="Previous Chapter: cameraobscura.utilities.configurationadapter.ConfigurationAdapter.__getattr__"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; cameraobscura...</span>
+    </a>
+  </li>
+  <li>
+    <a href="api/cameraobscura.utilities.dump.TheDump.html" title="Next Chapter: cameraobscura.utilities.dump.TheDump"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">cameraobscura... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/utilities/dump.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="the-dump">
+<h1>The Dump<a class="headerlink" href="#the-dump" title="Permalink to this headline">¶</a></h1>
+<p>The <strong>Dump</strong> is a module to dump some output from a device. It is similar to the query but differs in that it expects to capture multi-line output and dump it to a file. Think <cite>dmesg</cite>.</p>
+<div class="section" id="use-case">
+<span id="the-dump-use-case"></span><h2>Use Case<a class="headerlink" href="#use-case" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img src="../_images/plantuml-c46bf36d95aa43d5e443f7e71834b565d5e68296.png" alt="User - (Dump command output to file)" />
+</p>
+<div class="section" id="main-path">
+<h3>Main Path<a class="headerlink" href="#main-path" title="Permalink to this headline">¶</a></h3>
+<p><em>The Dump</em> is fairly primitive and acts more as a way to bundle things together.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Open writeable file</li>
+<li>Send command to device</li>
+<li>Redirect stdout to the file</li>
+<li>Redirect stderr to log</li>
+<li>Close the file</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="alternate-path">
+<h3>Alternate Path<a class="headerlink" href="#alternate-path" title="Permalink to this headline">¶</a></h3>
+<p>I&#8217;m not sure how it&#8217;s going to be used, but I&#8217;ll assume that socket errors and other connection-related errors should be noted but shouldn&#8217;t kill the program.</p>
+<blockquote>
+<div>3.1.1. Socket error is caught
+3.1.2. Error logged
+3.1.3. Quit</div></blockquote>
+</div>
+</div>
+<div class="section" id="dump-constants">
+<span id="the-dump-constants"></span><h2>Dump Constants<a class="headerlink" href="#dump-constants" title="Permalink to this headline">¶</a></h2>
+<p>Some constants put into a class so other modules can get them.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DumpConstants</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constants for the Dump</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="c1"># defaults</span>
+    <span class="n">default_timeout</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">default_delimiter</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span>
+
+    <span class="c1"># configuration</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;dump&#39;</span>
+
+    <span class="c1"># options</span>
+    <span class="n">timeout</span> <span class="o">=</span> <span class="s1">&#39;timeout&#39;</span>
+
+    <span class="n">example</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">#[</span><span class="si">{s}</span><span class="s2">]</span>
+<span class="s2"># the dump takes commands that dump their output and saves</span>
+<span class="s2"># the output to files. It is mainly intended as a log dump</span>
+<span class="s2"># comment this section out if you don&#39;t want a dump</span>
+
+<span class="s2"># timeout is how long to wait for output</span>
+<span class="s2"># timeout = </span><span class="si">{time}</span><span class="s2"></span>
+
+<span class="s2"># for the commands you should use the form:</span>
+<span class="s2"># &lt;identifier_1&gt; = &lt;command_1&gt;</span>
+<span class="s2"># &lt;identifier_2&gt; = &lt;command_2&gt;</span>
+<span class="s2"># ...</span>
+<span class="s2"># &lt;identifier_n&gt; = &lt;command_n&gt;</span>
+
+<span class="s2"># the identifiers can be anything as long as each is unique</span>
+<span class="s2"># the command should be the actual string you want to send to the</span>
+<span class="s2">device</span>
+<span class="s2"># as an example for &#39;dmesg&#39;:</span>
+<span class="s2"># dump = dmesg -k</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="n">section</span><span class="p">,</span>
+               <span class="n">time</span><span class="o">=</span><span class="n">default_timeout</span><span class="p">))</span>
+
+<span class="c1"># end DumpConstants</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-dump-class">
+<span id="id1"></span><h2>The Dump Class<a class="headerlink" href="#the-dump-class" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.utilities.dump.TheDump.html#cameraobscura.utilities.dump.TheDump" title="cameraobscura.utilities.dump.TheDump"><code class="xref py py-obj docutils literal"><span class="pre">TheDump</span></code></a>(command,&nbsp;connection[,&nbsp;identifier,&nbsp;...])</td>
+<td>The Dump dumps the output of a command to a file</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.utilities.dump.TheDump.filename.html#cameraobscura.utilities.dump.TheDump.filename" title="cameraobscura.utilities.dump.TheDump.filename"><code class="xref py py-obj docutils literal"><span class="pre">TheDump.filename</span></code></a></td>
+<td>Name to use for file to dump command output to</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.utilities.dump.TheDump.__call__.html#cameraobscura.utilities.dump.TheDump.__call__" title="cameraobscura.utilities.dump.TheDump.__call__"><code class="xref py py-obj docutils literal"><span class="pre">TheDump.__call__</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="dump-configuration">
+<span id="the-dump-configuration"></span><h2>Dump Configuration<a class="headerlink" href="#dump-configuration" title="Permalink to this headline">¶</a></h2>
+<p>A configuration class to make getting values from the config-file maybe a little easier.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.utilities.dump.DumpConfiguration.html#cameraobscura.utilities.dump.DumpConfiguration" title="cameraobscura.utilities.dump.DumpConfiguration"><code class="xref py py-obj docutils literal"><span class="pre">DumpConfiguration</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>A configuration for the dump</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

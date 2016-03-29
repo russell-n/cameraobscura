@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Iperf Configuration &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../index.html" />
+    <link rel="up" title="RVR Plugin Tests" href="index.html" />
+    <link rel="next" title="Other Configuration" href="otherconfigurationfeature.html" />
+    <link rel="prev" title="HostConfiguration" href="dutconfigurationfeature.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Iperf Configuration</a><ul>
+<li><a class="reference internal" href="#scenario-iperf-configuration">Scenario: Iperf Configuration</a></li>
+<li><a class="reference internal" href="#scenario-iperf-with-some-settings">Scenario: Iperf with some settings</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="dutconfigurationfeature.html" title="Previous Chapter: HostConfiguration"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; HostConfigura...</span>
+    </a>
+  </li>
+  <li>
+    <a href="otherconfigurationfeature.html" title="Next Chapter: Other Configuration"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Other Configu... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../../_sources/plugins/tests/steps/iperfconfigurationfeature.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="iperf-configuration">
+<h1>Iperf Configuration<a class="headerlink" href="#iperf-configuration" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-gherkin"><div class="highlight"><pre><span></span><span class="k">Feature:</span><span class="nf"> Iperf Configuration</span>
+<span class="nf"> </span><span class="k">Scenario:</span><span class="nf"> Iperf default direction</span>
+<span class="k">   Given </span><span class="nf">an iperf configuration with no parameters </span>
+<span class="nf">   </span><span class="k">When </span><span class="nf">the iperf configuration is checked</span>
+<span class="nf">   </span><span class="k">Then </span><span class="nf">the iperf configuration has the defaults</span>
+
+<span class="nf"> </span><span class="k">Scenario:</span><span class="nf"> Iperf with some settings</span>
+<span class="k">   Given </span><span class="nf">an iperf configuration with some parameters</span>
+<span class="nf">   </span><span class="k">When </span><span class="nf">the iperf configuration is checked</span>
+<span class="nf">   </span><span class="k">Then </span><span class="nf">the configuration has the iperf parameters</span>
+<span class="nf">   </span><span class="k">And </span><span class="nf">the IperfConfiguration is ready</span>
+</pre></div>
+</div>
+<div class="section" id="scenario-iperf-configuration">
+<h2>Scenario: Iperf Configuration<a class="headerlink" href="#scenario-iperf-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">section</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">[action]</span>
+<span class="s2">jackson = hole</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+<span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;an iperf configuration with no parameters&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">default_configuration</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">IperfPluginConfiguration</span><span class="p">(</span><span class="n">ConfigObj</span><span class="p">(</span><span class="n">section</span><span class="p">),</span>
+                                                     <span class="n">section_name</span><span class="o">=</span><span class="s1">&#39;iperf&#39;</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@when</span><span class="p">(</span><span class="s2">&quot;the iperf configuration is checked&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">check_configuration</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">iperf_configuration</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">configuration</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># this gets called many times</span>
+<span class="c1"># so make it simpler</span>
+<span class="k">def</span> <span class="nf">assert_equal</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">actual</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">expected</span><span class="p">)),</span>
+                <span class="s2">&quot;Actual: </span><span class="si">{0}</span><span class="s2"> Expected: </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span>
+                                                      <span class="n">expected</span><span class="p">))</span>
+    <span class="k">return</span>
+
+<span class="k">def</span> <span class="nf">assert_same</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">actual</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">same_instance</span><span class="p">(</span><span class="n">expected</span><span class="p">)),</span>
+                <span class="s2">&quot;Actual: </span><span class="si">{0}</span><span class="s2"> Expected: </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span>
+                <span class="n">expected</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;the iperf configuration has the defaults&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">assert_defaults</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">IperfEnum</span><span class="o">.</span><span class="n">default_direction</span><span class="p">,</span>
+                 <span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">direction</span><span class="p">)</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">server_settings</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span>
+                 <span class="nb">str</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">server_settings</span><span class="p">))</span>
+
+    <span class="c1"># client settings needs a hostname before being used</span>
+    <span class="c1"># but that&#39;s set later in the code</span>
+    <span class="c1"># so fake it here</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">client_settings</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="s1">&#39;bob&#39;</span>
+    <span class="n">expected</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">client_settings</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span>
+                                <span class="s1">&#39;bob&#39;</span><span class="p">)</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">client_settings</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span>
+                 <span class="nb">str</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">client_settings</span><span class="p">))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scenario-iperf-with-some-settings">
+<h2>Scenario: Iperf with some settings<a class="headerlink" href="#scenario-iperf-with-some-settings" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">configuration</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">[traffic]</span>
+<span class="s2">direction = up</span>
+<span class="s2">parallel = 20</span>
+<span class="s2">interval = 1</span>
+<span class="s2">bandwidth = 12K</span>
+<span class="s2">udp = True</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;an iperf configuration with some parameters&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">some_parameters</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">IperfPluginConfiguration</span><span class="p">(</span><span class="n">ConfigObj</span><span class="p">(</span><span class="n">configuration</span><span class="p">),</span>
+                                                     <span class="n">section_name</span><span class="o">=</span><span class="s1">&#39;traffic&#39;</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>When the iperf configuration is checked</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;the configuration has the iperf parameters&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">assert_iperf_parameters</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">direction</span><span class="p">,</span>
+                 <span class="n">IperfEnum</span><span class="o">.</span><span class="n">upstream</span><span class="p">)</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">configuration</span><span class="p">[</span><span class="s1">&#39;parallel&#39;</span><span class="p">],</span>
+                 <span class="mi">20</span><span class="p">)</span>
+    <span class="n">expected</span> <span class="o">=</span> <span class="s1">&#39; --server --udp  --interval 1&#39;</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span>
+                 <span class="nb">str</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">server_settings</span><span class="p">))</span>
+
+    <span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">client_settings</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="s1">&#39;ted&#39;</span>
+    <span class="n">expected</span> <span class="o">=</span> <span class="s1">&#39; --client ted --udp  --bandwidth 12K --parallel 20 --interval 1&#39;</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">client_settings</span><span class="p">))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;the IperfConfiguration is ready&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">iperfconfiguration_check</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">direction</span><span class="p">,</span>
+                 <span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">iperf_configuration</span><span class="o">.</span><span class="n">direction</span><span class="p">)</span>
+    <span class="n">assert_same</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">server_settings</span><span class="p">,</span>
+                <span class="n">context</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">iperf_configuration</span><span class="o">.</span><span class="n">server_settings</span><span class="p">)</span>
+
+    <span class="n">assert_same</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">configuration</span>\
+                       <span class="o">.</span><span class="n">client_settings</span><span class="p">,</span>
+                <span class="n">context</span><span class="o">.</span><span class="n">configuration</span>\
+                       <span class="o">.</span><span class="n">iperf_configuration</span>\
+                       <span class="o">.</span><span class="n">client_settings</span><span class="p">)</span>
+
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

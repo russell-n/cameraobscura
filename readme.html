@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Camera Obscura (Read Me) &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="index.html" />
+    <link rel="next" title="The Log Setter" href="set_logger.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The Camera Obscura (Read Me)</a><ul>
+<li><a class="reference internal" href="#installing-the-code">Installing the Code</a><ul>
+<li><a class="reference internal" href="#a-note-on-the-paramiko-version">A Note On The Paramiko Version</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#getting-a-sample-configuration">Getting a Sample Configuration</a></li>
+<li><a class="reference internal" href="#getting-help">Getting Help</a><ul>
+<li><a class="reference internal" href="#the-documentation">The Documentation</a></li>
+<li><a class="reference internal" href="#command-line-help">Command-Line Help</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#testing-the-code">Testing the Code</a></li>
+<li><a class="reference internal" href="#tangling-and-weaving">Tangling and Weaving</a></li>
+<li><a class="reference internal" href="#plugin-dependencies">Plugin Dependencies</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="set_logger.html" title="Next Chapter: The Log Setter"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">The Log Setter &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/readme.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="the-camera-obscura-read-me">
+<h1>The Camera Obscura (Read Me)<a class="headerlink" href="#the-camera-obscura-read-me" title="Permalink to this headline">¶</a></h1>
+<p>This is a renovated form of the &#8216;AutomatedRVR&#8217; created to combine three main features:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Signal Attenuation via a mechanical attenuator (e.g. a Weinschel attenuator)</li>
+<li>Iperf Traffic run between two devices in between signal attenuations</li>
+<li>Device state information sampled between attenuations</li>
+</ul>
+</div></blockquote>
+<p>This assumes that there is a (wireless) <cite>Device Under Test (DUT)</cite> that is connected to a <cite>Wireless Access Point (AP)</cite> which gives the DUT access to a sub-network (test network) used for testing. It is also assumed that there will be a <cite>Traffic Server (TPC)</cite> that is also connected to the sub-network used for testing and that both the DUT and TPC will also be attached to a different sub-network (control network) that will be dedicated to controlling and communicating with the devices. It is further assumed that this code will be run on a third device (<cite>Control PC (CPC)</cite>) and that it will communicate with the devices via the control network.</p>
+<p>The Attenuator is also assumed to be attached to the <cite>control network</cite> so that the CPC can communicate with it. Although the assumption is made that there will be an AP and attenuator, the existence of the wireless network is outside the scope of the code. It only communicates with the devices and assumes that the network topology has been set up as desired by whoever runs the code. There&#8217;s a <cite>MockAttenuator</cite> that could be used to run the traffic without an attenuator, turning it into just an iperf runner.</p>
+<div class="section" id="installing-the-code">
+<h2>Installing the Code<a class="headerlink" href="#installing-the-code" title="Permalink to this headline">¶</a></h2>
+<p>The only external requirements for running the code are <cite>theape</cite> and the <cite>iperflexer</cite> (both will be installed by distutils from pypi if they aren&#8217;t already installed).</p>
+<p>Once installed the command <cite>rvr</cite> will access the code. To test it you can try:</p>
+<blockquote>
+<div>rvr -h</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The Camera Obscura is currently using some modules from TheApe so it imports numpy even though it isn&#8217;t used here. It will also install paramiko (which is used here)</p>
+</div>
+<div class="section" id="a-note-on-the-paramiko-version">
+<h3>A Note On The Paramiko Version<a class="headerlink" href="#a-note-on-the-paramiko-version" title="Permalink to this headline">¶</a></h3>
+<p>Sometime in 2013 (commit <a class="reference external" href="https://github.com/paramiko/paramiko/commit/2403504b44de773c3f566e7d647bc0e8661af918#diff-169e8b6af6ef7bee0bb2c9a6a637aa5fR353">2403504</a>) a <cite>timeout</cite> parameter was added to the SSHClient.exec_command call. The code within expects that to be available so the installed paramiko version should be v1.13.0 or newer. If an older version of paramiko is required a (relatively) small change needs to be added to the code.</p>
+</div>
+</div>
+<div class="section" id="getting-a-sample-configuration">
+<h2>Getting a Sample Configuration<a class="headerlink" href="#getting-a-sample-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Because there are so many options to the code, <a class="reference external" href="http://en.wikipedia.org/wiki/INI_file">ini formatted</a> files are used. To get a sample use the <code class="docutils literal"><span class="pre">fetch</span></code> sub-command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="n">fetch</span>
+</pre></div>
+</div>
+<div class="code highlight-ini"><div class="highlight"><pre><span></span><span class="k">[attenuation]</span>
+<span class="c1"># if an option is commented out it has the default setting you see</span>
+
+<span class="c1"># &#39;start&#39; is the attenuation value to use when the testing starts</span>
+
+<span class="c1">#start = 0</span>
+
+<span class="c1"># &#39;stop&#39; is the maximum attenuation to try before stopping</span>
+
+<span class="c1">#stop = 9223372036854775807</span>
+
+<span class="c1"># &#39;name&#39; is the name of the attenuator</span>
+<span class="c1"># not case-sensitive, but spelling counts</span>
+<span class="c1"># valid names : mockattenuator</span>
+
+<span class="c1">#name = WeinschelP</span>
+
+<span class="c1"># &#39;control_ip&#39; is the address of the attenuator</span>
+<span class="na">control_ip</span> <span class="o">=</span> <span class="s">192.168.10.53</span>
+
+<span class="c1"># &#39;step_sizes&#39; is a space-separated list of step-sizes</span>
+<span class="c1"># (each attenuation increases by the current step-size at each repetition)</span>
+
+<span class="c1">#step_sizes = [1]</span>
+
+<span class="c1"># &#39;step_change_thresholds&#39; is a space-separated list of thresholds which</span>
+<span class="c1"># when reached trigger a change to the next &#39;step-size&#39;</span>
+<span class="c1"># there should always be one less threshold than step-sizes</span>
+<span class="c1"># if you don&#39;t want to change, comment out or remove the line</span>
+
+<span class="c1">#step_change_thresholds =</span>
+
+<span class="c1"># as an example, the next two lines would cause</span>
+<span class="c1"># the attenuation to increase by 1 until 10 is reached</span>
+<span class="c1"># then it will increase by 5 until 100 then it will increase by 10</span>
+<span class="c1"># until the end of the test</span>
+
+<span class="c1"># step_sizes = 1 5 10</span>
+<span class="c1"># step_change_thresholds = 10 100</span>
+
+<span class="c1"># `reversal_limit` is the maximum number of times to reverse directions</span>
+<span class="c1"># reversal_limit = 0</span>
+
+<span class="c1"># `step_list` a list of attenuations to use instead of calculating a range</span>
+<span class="c1"># this overrides step_sizes, start, stop, etc.</span>
+<span class="c1"># e.g. to run only attenuations 10, 20, 30,:</span>
+<span class="c1"># step_list = 10 20 30</span>
+<span class="c1"># step_list =</span>
+
+<span class="k">[dut]</span>
+<span class="c1"># login information (these are required)</span>
+<span class="na">username</span> <span class="o">=</span> <span class="s">admin</span>
+
+<span class="c1"># this isn&#39;t if your public keys are working</span>
+<span class="c1">#password = root</span>
+
+<span class="c1"># address of the control-interface</span>
+<span class="na">control_ip</span> <span class="o">=</span> <span class="s">192.168.10.34</span>
+
+<span class="c1"># this identifies the type (only &#39;telnet&#39;, &#39;ssh&#39;, or &#39;fake&#39;)</span>
+<span class="c1">#connection_type = ssh</span>
+
+<span class="c1"># address of the interface to test</span>
+<span class="na">test_ip</span> <span class="o">=</span> <span class="s">192.168.20.34</span>
+
+<span class="c1"># connection time-out in seconds</span>
+<span class="c1">#timeout = 1</span>
+
+<span class="c1"># optional prefix to add to ALL commands (default: None)</span>
+<span class="c1"># this will be added with a space (i.e. &lt;prefix&gt; &lt;command&gt;)</span>
+<span class="c1"># so if needed, add a semicolon like in the example between the PATH and adb</span>
+
+<span class="c1">#prefix = PATH=/opt:$PATH; adb shell</span>
+
+<span class="c1"># the operating system for the DUT</span>
+
+<span class="c1"># operating_system = linux</span>
+
+<span class="c1"># there are too many options for the different connection-types</span>
+<span class="c1"># so you can add necessary parameters but make sure the name</span>
+<span class="c1"># matches the parameter name</span>
+<span class="c1"># e.g. if you need to set the port:</span>
+<span class="c1"># port=52686</span>
+
+<span class="k">[server]</span>
+<span class="c1"># login information (these are required)</span>
+<span class="na">username</span> <span class="o">=</span> <span class="s">admin</span>
+
+<span class="c1"># this isn&#39;t if your public keys are working</span>
+<span class="c1">#password = root</span>
+
+<span class="c1"># address of the control-interface</span>
+<span class="na">control_ip</span> <span class="o">=</span> <span class="s">192.168.10.34</span>
+
+<span class="c1"># this identifies the type (only &#39;telnet&#39;, &#39;ssh&#39;, or &#39;fake&#39;)</span>
+<span class="c1">#connection_type = ssh</span>
+
+<span class="c1"># address of the interface to test</span>
+<span class="na">test_ip</span> <span class="o">=</span> <span class="s">192.168.20.34</span>
+
+<span class="c1"># connection time-out in seconds</span>
+<span class="c1">#timeout = 1</span>
+
+<span class="c1"># optional prefix to add to ALL commands (default: None)</span>
+<span class="c1"># this will be added with a space (i.e. &lt;prefix&gt; &lt;command&gt;)</span>
+<span class="c1"># so if needed, add a semicolon like in the example between the PATH and adb</span>
+
+<span class="c1">#prefix = PATH=/opt:$PATH; adb shell</span>
+
+<span class="c1"># the operating system for the DUT</span>
+
+<span class="c1"># operating_system = linux</span>
+
+<span class="c1"># there are too many options for the different connection-types</span>
+<span class="c1"># so you can add necessary parameters but make sure the name</span>
+<span class="c1"># matches the parameter name</span>
+<span class="c1"># e.g. if you need to set the port:</span>
+<span class="c1"># port=52686</span>
+
+<span class="k">[iperf]</span>
+<span class="c1"># these are iperf options</span>
+<span class="c1"># directions can be upstream, downstream or both (default : both)</span>
+<span class="c1"># actually only checks the first letter so could also be ugly, dumb, or bunny too</span>
+<span class="na">direction</span> <span class="o">=</span> <span class="s">upstream</span>
+
+<span class="c1"># everything else uses iperf long-option-names</span>
+<span class="c1"># to get a list use `iperf -h` or `man iperf`</span>
+<span class="c1"># the left-hand-side options are the iperf options without --</span>
+<span class="c1"># for example, to set `--parallel 5`:</span>
+<span class="c1">#parallel = 5</span>
+
+<span class="c1"># if the flag takes no options, use True to set</span>
+<span class="c1">#udp = True</span>
+
+<span class="c1"># --client &lt;hostname&gt; and server are set automatically don&#39;t put them here</span>
+<span class="c1"># put all the other settings in, though, and the client vs server stuff will get sorted out</span>
+
+<span class="c1">#[ping]</span>
+<span class="c1"># &#39;target&#39; (default: None) is the IP address or name to ping (RVR will use the traffic server if not given)</span>
+<span class="c1"># target = www.google.com</span>
+
+<span class="c1"># &#39;time_limit&#39;  is number of seconds to try to ping before giving up</span>
+<span class="c1"># time_limit = 300</span>
+
+<span class="c1"># &#39;threshold&#39; is the number of consecutive pings needed for a success</span>
+<span class="c1"># threshold = 5</span>
+
+<span class="c1"># &#39;arguments&#39; are the arguments to give the ping command</span>
+<span class="c1"># arguments = -c 1 -W 1</span>
+
+<span class="c1"># &#39;operating_system&#39; is used to chose the arguments for the ping</span>
+<span class="c1"># operating_system = None</span>
+
+<span class="c1"># &#39;timeout&#39; is the seconds to wait for socket readlines (try to keep above 1 second)</span>
+<span class="c1"># timeout = 10</span>
+
+<span class="c1"># &#39;data_expression&#39; is the regular expression to extract the round-trip time (used to check success)</span>
+<span class="c1"># data_expression = None</span>
+
+<span class="c1"># &#39;trap_errors&#39;  if False, will raise an error if there is a socket error</span>
+<span class="c1"># otherwise it will just log it</span>
+<span class="c1">#trap_errors = True</span>
+
+<span class="c1">#[query]</span>
+<span class="c1"># these are arbitrary commands that will be called in between attenuations</span>
+<span class="c1"># it&#39;s original use-case is to get RSSI and other monitoring information</span>
+<span class="c1"># but since it&#39;s free-form you can pass in whatever you like</span>
+<span class="c1"># the commands are issued on the DUT, not the traffic-server</span>
+
+<span class="c1"># delimiter separating command and expression</span>
+<span class="c1"># this is provided so that if the command or expression has a comma in it</span>
+<span class="c1"># you can use an alternative</span>
+
+<span class="c1">#delimiter =  ,</span>
+
+<span class="c1"># if you want to specify a filename set the filename option</span>
+<span class="c1"># filename = query.csv</span>
+
+<span class="c1"># to change the readline timeout</span>
+<span class="c1"># timeout = 10</span>
+
+<span class="c1"># to have it crash instead of trap socket errors</span>
+<span class="c1"># trap_errors = trap_errors</span>
+
+<span class="c1"># everything else is of the format:</span>
+<span class="c1"># &lt;column-header&gt; = &lt;command&gt;&lt;delimiter&gt;&lt;regular expression&gt;</span>
+<span class="c1"># the column-header will be used in the csv-file</span>
+<span class="c1"># the regular expression has to have a group &#39;()&#39; or it will raise an error</span>
+<span class="c1"># the contents of the group is what will be saved to the file</span>
+
+<span class="c1">#some examples:</span>
+<span class="c1">#rssi = iwconfig wlan0,Signal\slevel=(-\d+\sdBm)</span>
+<span class="c1">#noise = wl noise, (.*)</span>
+<span class="c1">#bitrate = iwconfig wlan0, Bit\sRate=(\d+\.*\d*\sMb/s)</span>
+<span class="c1">#counters = wl counters, (rxcrsglitch [0-9]* )</span>
+<span class="c1">#rtt_min/rtt_avg/rtt_max/rtt_mdev = ping -c 2 192.168.103.17,rtt\s+min.*=\s*(.*)\s+ms</span>
+
+<span class="c1">#[dump]</span>
+<span class="c1"># the dump takes commands that dump their output and saves</span>
+<span class="c1"># the output to files. It is mainly intended as a log dump</span>
+<span class="c1"># comment this section out if you don&#39;t want a dump</span>
+
+<span class="c1"># timeout is how long to wait for output</span>
+<span class="c1"># timeout = 5</span>
+
+<span class="c1"># for the commands you should use the form:</span>
+<span class="c1"># &lt;identifier_1&gt; = &lt;command_1&gt;</span>
+<span class="c1"># &lt;identifier_2&gt; = &lt;command_2&gt;</span>
+<span class="c1"># ...</span>
+<span class="c1"># &lt;identifier_n&gt; = &lt;command_n&gt;</span>
+
+<span class="c1"># the identifiers can be anything as long as each is unique</span>
+<span class="c1"># the command should be the actual string you want to send to the device</span>
+<span class="c1"># as an example for &#39;dmesg&#39;:</span>
+<span class="c1"># dump = dmesg -k</span>
+
+<span class="c1">#[other]</span>
+<span class="c1"># a sub-folder name to save the output files in</span>
+<span class="c1"># also used for the final csv</span>
+<span class="c1"># add {timestamp}  to get a timestamp</span>
+<span class="c1"># e.g. result_location = rvr_{timestamp}</span>
+
+<span class="c1">#result_location = output_folder</span>
+
+<span class="c1"># identifier for the test</span>
+<span class="c1">#test_name = rate_vs_range</span>
+
+<span class="c1"># to run the same test multiple times</span>
+<span class="c1"># repetitions = 1</span>
+
+<span class="c1"># there is currently a sleep between directions (up and down)</span>
+<span class="c1"># use this next setting to change it if it&#39;s too long or short</span>
+<span class="c1">#recovery_time = 10</span>
+</pre></div>
+</div>
+<p>This will dump the sample to standard-out so to use it you need to re-direct it to a file:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span>rvr fetch &gt; rvr.ini
+</pre></div>
+</div>
+<p>I did it this way to prevent accidental over-writes of existing configuration files (originally I was creating the file and users, including myself, sometimes erased one that was meant to be kept). If you are already familiar with the configurations and want to just grab a section you can use the <cite>&#8211;section`</cite> option (by <cite>section</cite> I mean the sub-section of the configuration file with the <code class="docutils literal"><span class="pre">[section]</span></code> header). For instance, to append a sample <cite>[dut]</cite> configuration to an existing file called <cite>rvr.ini</cite>:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span>rvr fetch --section dut &gt;&gt; rvr.ini
+</pre></div>
+</div>
+<p>This might also be helpful as a reminder of what goes into each section (just dump it to the screen instead of redirecting it):</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span>rvr fetch --section dut
+</pre></div>
+</div>
+<div class="code highlight-ini"><div class="highlight"><pre><span></span><span class="k">[dut]</span>
+<span class="c1"># login information (these are required)</span>
+<span class="na">username</span> <span class="o">=</span> <span class="s">admin</span>
+
+<span class="c1"># this isn&#39;t if your public keys are working</span>
+<span class="c1">#password = root</span>
+
+<span class="c1"># address of the control-interface</span>
+<span class="na">control_ip</span> <span class="o">=</span> <span class="s">192.168.10.34</span>
+
+<span class="c1"># this identifies the type (only &#39;telnet&#39;, &#39;ssh&#39;, or &#39;fake&#39;)</span>
+<span class="c1">#connection_type = ssh</span>
+
+<span class="c1"># address of the interface to test</span>
+<span class="na">test_ip</span> <span class="o">=</span> <span class="s">192.168.20.34</span>
+
+<span class="c1"># connection time-out in seconds</span>
+<span class="c1">#timeout = 1</span>
+
+<span class="c1"># optional prefix to add to ALL commands (default: None)</span>
+<span class="c1"># this will be added with a space (i.e. &lt;prefix&gt; &lt;command&gt;)</span>
+<span class="c1"># so if needed, add a semicolon like in the example between the PATH and adb</span>
+
+<span class="c1">#prefix = PATH=/opt:$PATH; adb shell</span>
+
+<span class="c1"># the operating system for the DUT</span>
+
+<span class="c1"># operating_system = linux</span>
+
+<span class="c1"># there are too many options for the different connection-types</span>
+<span class="c1"># so you can add necessary parameters but make sure the name</span>
+<span class="c1"># matches the parameter name</span>
+<span class="c1"># e.g. if you need to set the port:</span>
+<span class="c1"># port=52686</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getting-help">
+<h2>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-documentation">
+<h3>The Documentation<a class="headerlink" href="#the-documentation" title="Permalink to this headline">¶</a></h3>
+<p>Here&#8217;s a dump of the <cite>documentation_requirements.txt</cite> file.</p>
+<div class="code highlight-ini"><div class="highlight"><pre><span></span>sphinx
+sphinxcontrib-plantuml
+sphinx_boostrap_theme
+pweave
+matplotlib
+</pre></div>
+</div>
+<p>The source for the main documentation sits at the top level of this package and is built using <cite>make</cite>. Unfortunately there are extra requirements to build it. If you aren&#8217;t already a sphinx user it might prove problematic. To build it you will need <cite>alabaster</cite>, <cite>sphinx</cite> and <cite>sphinxcontrib-plantuml</cite>:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span>pip install alabaster
+pip install sphinx
+pip install sphinxcontrib-plantuml
+</pre></div>
+</div>
+<p>(you may need to run this as root). <cite>sphinxcontrib-plantuml</cite> requires <cite>plantuml</cite>:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span>sudo apt-get plantuml
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">plantuml doesn&#8217;t always work out of the box for me. Check out the <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-plantuml">pypi page for sphinxcontrib-plantuml</a> for more information on setting it up.</p>
+</div>
+<p>You will also need <code class="docutils literal"><span class="pre">graphviz</span></code> for plantuml. On ubuntu you can use:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span>sudo apt-get install graphviz
+</pre></div>
+</div>
+<p>If those have been installed then you can build the documentation by changing into the directory next to the <code class="docutils literal"><span class="pre">Makefile</span></code> and build it (in html) using:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span>make html
+</pre></div>
+</div>
+<p>The output of the <cite>make</cite> command will sit in a folder named <cite>build/&lt;format&gt;</cite> where format is the parameter you passed to <cite>make</cite> &#8211; so if you entered <cite>make html</cite> there will be a folder named <cite>build/html</cite> if everything went as intended.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The documentation is also on <a class="reference external" href="http://rallion.bitbucket.org/others/cameraobscura/index.html">the web</a> I try to push it whenever I make changes but it may be a little behind.</p>
+</div>
+</div>
+<div class="section" id="command-line-help">
+<h3>Command-Line Help<a class="headerlink" href="#command-line-help" title="Permalink to this headline">¶</a></h3>
+<p>Additionally, the command-line help system can prompt you for the options if you can&#8217;t remember them:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span>rvr -h
+</pre></div>
+</div>
+<p>And you should see something like this.</p>
+<div class="code highlight-ini"><div class="highlight"><pre><span></span>usage: rvr [-h] [-v] [--pudb] [--pdb] [--debug] [--silent] {fetch,run}
+...
+
+RVR Runner
+
+positional arguments:
+  {fetch,run}    RVR Sub-Commands
+
+optional arguments:
+  -h, --help     show this help message and exit
+  -v, --version  Display the version number and quit
+  --pudb         Enable the PUDB debugger default=False.
+  --pdb          Enable the python debugger default=False.
+  --debug        Enable debugging messages (default=False).
+  --silent       Turn off non-error logging messages (default=False).
+</pre></div>
+</div>
+<p>The command should be fairly straight-forward to anyone familiar with unix-like command-options. The one thing that might not be familiar is the use of sub-commands. In the output of the <code class="docutils literal"><span class="pre">rvr</span> <span class="pre">-h</span></code> command will be a list in curly braces <code class="docutils literal"><span class="pre">{fetch,run}</span></code> which are sub-commands. They are basically forks in the operation of the code &#8211; choosing <code class="docutils literal"><span class="pre">fetch</span></code> runs one function while choosing <code class="docutils literal"><span class="pre">run</span></code> chooses another. Since they are sub-commands they have their own set of options that you can see with the help command again:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span>rvr run -h
+</pre></div>
+</div>
+<div class="code highlight-ini"><div class="highlight"><pre><span></span>usage: rvr run [-h] [configurations [configurations ...]]
+
+positional arguments:
+  configurations  Configuration file(s) to use.
+                  default=[&#39;rvr_configuration.ini&#39;]
+
+optional arguments:
+  -h, --help      show this help message and exit
+</pre></div>
+</div>
+<p>Running that last help command should show only the options that can be used with the <cite>run</cite> sub-command (which in case you didn&#8217;t deduce it, runs the tests).</p>
+<p>Here&#8217;s the fetch help:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span>rvr fetch -h
+</pre></div>
+</div>
+<div class="code highlight-ini"><div class="highlight"><pre><span></span>usage: rvr fetch [-h] [-s SECTION]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s SECTION, --section SECTION
+                        Section name to retrieve (defaults to all
+sections)
+</pre></div>
+</div>
+<p>Because configuration files are being used the amount of options being passed in are fairly limited. The top level options are for debugging (and help), the <code class="docutils literal"><span class="pre">fetch</span></code> option is to choose a section to fetch, and the <code class="docutils literal"><span class="pre">run</span></code> option is to pass in a list of configuration file names to use. So, if you had a set of configuration files whose names ended with <code class="docutils literal"><span class="pre">.ini</span></code>  you could run them all by using:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span>rvr run *.ini
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Since the shell is what&#8217;s gathering the names the ordering of the tests will follow whatever order the shell uses (I think it&#8217;s usually lexicographic ordering). If strict ordering is needed it might be better to pass in the file names directly.</p>
+</div>
+</div>
+</div>
+<div class="section" id="testing-the-code">
+<h2>Testing the Code<a class="headerlink" href="#testing-the-code" title="Permalink to this headline">¶</a></h2>
+<p>Here&#8217;s a dump of the <cite>testing_requirements.txt</cite> file.</p>
+<div class="code highlight-ini"><div class="highlight"><pre><span></span><span class="na">PyHamcrest</span><span class="o">=</span><span class="s">=1.8.1</span>
+<span class="na">behave</span><span class="o">=</span><span class="s">=1.2.4</span>
+</pre></div>
+</div>
+<p>If you want to run the tests you will need <a class="reference external" href="https://pypi.python.org/pypi/mock">mock</a> it is part of the python 3 standard library but needs to installed for python 2.* versions. There is also no runner for the tests because I use <a class="reference external" href="https://nose.readthedocs.org/en/latest/">nose</a> to run them.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This was true when the updates were first made. Now I use <a class="reference external" href="http://pythonhosted.org/behave/">behave</a> and <a class="reference external" href="http://pyhamcrest.readthedocs.org/en/1.8.0/">pyhamcrest</a> instead of nose and the built-in unittest module (I still use mock).</p>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>pip install behave
+pip install pyhamcrest
+pip install mock
+</pre></div>
+</div>
+</div>
+<div class="section" id="tangling-and-weaving">
+<h2>Tangling and Weaving<a class="headerlink" href="#tangling-and-weaving" title="Permalink to this headline">¶</a></h2>
+<p>The newer code is written in <a class="reference external" href="http://mpastell.com/pweave/">pweave</a> format (the <code class="docutils literal"><span class="pre">.pnw</span></code> files are the actual edited sources, the <code class="docutils literal"><span class="pre">.py</span></code> and <code class="docutils literal"><span class="pre">.rst</span></code> files are generated from them). You can edit the <code class="docutils literal"><span class="pre">.py</span></code> or <code class="docutils literal"><span class="pre">.rst</span></code> files directly, but they will be wiped out the next time they are generated (assuming there is a <code class="docutils literal"><span class="pre">pnw</span></code> file, older code was written directly in python files).</p>
+<p>To get <cite>pweave</cite>:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span>pip install pweave
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The latest version of Pweave expects some python 3 syntax so not all the files might be convertible unless you run the older version of pweave. I&#8217;ll try and make it compatible with the new version, but I&#8217;m not going to make an effort to go through all the files and fix things.</p>
+</div>
+<p>To get the older version of Pweave:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span><span class="na">pip install Pweave</span><span class="o">=</span><span class="s">=0.21</span>
+</pre></div>
+</div>
+<p>To convert a pnw file to a python file (with the new Pweave, otherwise <code class="docutils literal"><span class="pre">ptangle</span></code> is <code class="docutils literal"><span class="pre">Ptangle</span></code> and <code class="docutils literal"><span class="pre">pweave</span></code> is <code class="docutils literal"><span class="pre">Pweave</span></code> for the older <code class="docutils literal"><span class="pre">pweave</span></code>):</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span>ptangle somefile.pnw
+</pre></div>
+</div>
+<p>To convert a pnw file to an rst file:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span>pweave somefile.pnw
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">pweave</span></code> command has a dependency on <code class="docutils literal"><span class="pre">matplotlib</span></code> so even if none of the files use it (which I don&#8217;t think they do) you have to install it:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span>pip install matplotlib
+</pre></div>
+</div>
+<p>Or for ubuntu:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span>sudo apt-get install python-matplotlib
+</pre></div>
+</div>
+<p>If you&#8217;re using <code class="docutils literal"><span class="pre">pip</span></code> and <code class="docutils literal"><span class="pre">matplotlib</span></code> is having a hard time, you can install the dependencies through <code class="docutils literal"><span class="pre">apt-get</span></code> first:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span>sudo apt-get build-dep python-matplotlib
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">I rsync the output of <code class="docutils literal"><span class="pre">make</span> <span class="pre">html</span></code> to my web-server directory. This will produce an error at the end of the <cite>make</cite> command (unless you coincidentally have the same folder structure that I do) but that is unrelated to building the documentation.</p>
+</div>
+</div>
+<div class="section" id="plugin-dependencies">
+<h2>Plugin Dependencies<a class="headerlink" href="#plugin-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">rvr</span></code> command was built to be standalone, but to open up the possibilities of combining it with other packages, there is currently a plugin for the <code class="docutils literal"><span class="pre">TheApe</span></code> in it (I&#8217;ll probably put it in its own repository eventually). For it to work (or at least to test it), the APE and its dependencies are required (e.g. <a class="reference external" href="http://configobj.readthedocs.org/en/latest/">configobj</a>), but since <code class="docutils literal"><span class="pre">TheApe</span></code> is itself a dependency they should be installed when this package is installed.</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

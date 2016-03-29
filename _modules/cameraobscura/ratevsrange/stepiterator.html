@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cameraobscura.ratevsrange.stepiterator &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for cameraobscura.ratevsrange.stepiterator</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+
+<span class="c1"># python standard library</span>
+<span class="kn">import</span> <span class="nn">operator</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="c1"># this package</span>
+<span class="kn">from</span> <span class="nn">cameraobscura</span> <span class="kn">import</span> <span class="n">CameraobscuraError</span>
+
+<span class="n">FIRST_ITEM</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">UP</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">DOWN</span> <span class="o">=</span> <span class="o">-</span><span class="n">UP</span>
+<span class="n">comparisons</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">((</span><span class="n">UP</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">),</span>
+                       <span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">le</span><span class="p">,</span>
+                        <span class="n">operator</span><span class="o">.</span><span class="n">ge</span><span class="p">)))</span>
+<span class="n">threshold_comparisons</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">((</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">UP</span><span class="p">),</span>
+                       <span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">le</span><span class="p">,</span>
+                        <span class="n">operator</span><span class="o">.</span><span class="n">ge</span><span class="p">)))</span>
+
+<div class="viewcode-block" id="StepBase"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.stepiterator.StepBase.html#cameraobscura.ratevsrange.stepiterator.StepBase">[docs]</a><span class="k">class</span> <span class="nc">StepBase</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base-class for the step-iterators</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="StepBase.__init__"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.stepiterator.StepBase.html#cameraobscura.ratevsrange.stepiterator.StepBase.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">reversal_limit</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        StepBase Constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - ``reversal_limit``: maximum reversals allowed</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">StepBase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">stop</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reversal_limit</span> <span class="o">=</span> <span class="n">reversal_limit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reversals</span> <span class="o">=</span> <span class="n">FIRST_ITEM</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: A logging object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;{0}.{1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__module__</span><span class="p">,</span>
+                                  <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span>
+
+
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">compare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        comparison function based on direction</span>
+
+<span class="sd">        :return: operator le or ge</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">comparisons</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Direction of steps (1 or -1)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">difference</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span>
+            <span class="k">return</span> <span class="n">difference</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Start ({0}) equals stop ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span>
+                                                                     <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">UP</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">reversible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: True if still reversible</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reversals</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">reversal_limit</span></div>
+
+<div class="viewcode-block" id="StepList"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.stepiterator.StepList.html#cameraobscura.ratevsrange.stepiterator.StepList">[docs]</a><span class="k">class</span> <span class="nc">StepList</span><span class="p">(</span><span class="n">StepBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    a list-based attenuation generator</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="StepList.__init__"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.stepiterator.StepList.html#cameraobscura.ratevsrange.stepiterator.StepList.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step_list</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        StepList constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `step_list`: list of attenuations         </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">StepList</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_value</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">step_list</span> <span class="o">=</span> <span class="n">step_list</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The end-index</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">step_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span>
+
+    <span class="nd">@stop.setter</span>
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stopper</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the stop (needed because the StepBase sets it)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span> <span class="o">=</span> <span class="n">stopper</span>
+        <span class="k">return</span>
+    
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The main interface</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_list</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_value</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_value</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span>
+        <span class="k">return</span>
+
+<div class="viewcode-block" id="StepList.reset"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.stepiterator.StepList.html#cameraobscura.ratevsrange.stepiterator.StepList.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        resets the start and stop values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_value</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reversals</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="StepList.reverse"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.stepiterator.StepList.html#cameraobscura.ratevsrange.stepiterator.StepList.reverse">[docs]</a>    <span class="k">def</span> <span class="nf">reverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        reverse directions</span>
+
+<span class="sd">        :precondition: self.stop has been set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">reversible</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span>
+        <span class="k">return</span> <span class="bp">True</span></div>
+
+<div class="viewcode-block" id="StepList.check_rep"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.stepiterator.StepList.html#cameraobscura.ratevsrange.stepiterator.StepList.check_rep">[docs]</a>    <span class="k">def</span> <span class="nf">check_rep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does nothing</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span></div></div>
+<span class="c1"># end class StepList</span>
+
+<div class="viewcode-block" id="StepRange"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.stepiterator.StepRange.html#cameraobscura.ratevsrange.stepiterator.StepRange">[docs]</a><span class="k">class</span> <span class="nc">StepRange</span><span class="p">(</span><span class="n">StepBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A stepped-iterator that generates a range of integers</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="StepRange.__init__"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.stepiterator.StepRange.html#cameraobscura.ratevsrange.stepiterator.StepRange.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step_sizes</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                       <span class="n">step_change_thresholds</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                       <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        StepRange constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `start`: value to start with</span>
+<span class="sd">         - `stop`: maximum value</span>
+<span class="sd">         - `step_sizes`: list of step-sizes (in order)</span>
+<span class="sd">         - `step_change_thresholds`: list of step-thresholds (to trigger change in step-size)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">StepRange</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_step_sizes</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">step_sizes</span> <span class="o">=</span> <span class="n">step_sizes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">step_change_thresholds</span> <span class="o">=</span> <span class="n">step_change_thresholds</span>
+
+        <span class="c1"># not obvious anymore, but the parent is setting this</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span>
+        
+        <span class="c1"># properties</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_threshold</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_step_size</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="c1"># these are used to keep track of positions in the lists</span>
+        <span class="c1"># so that they can be reset and the iterator re-used</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_step_index</span> <span class="o">=</span> <span class="n">FIRST_ITEM</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_change_index</span> <span class="o">=</span> <span class="n">FIRST_ITEM</span>
+
+        <span class="c1"># count of how many times we&#39;ve reversed direction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reversals</span> <span class="o">=</span> <span class="n">FIRST_ITEM</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">list_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Direction to traverse lists (e.g. step_sizes)</span>
+
+<span class="sd">        :return: UP or DOWN</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># even means up, odd mean back down</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reversals</span> <span class="o">%</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">DOWN</span>
+        <span class="k">return</span> <span class="n">UP</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">threshold_compare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        comparison function for changing step-size</span>
+
+<span class="sd">        :return: operator le or ge</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">threshold_comparisons</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">step_sizes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        List of step-sizes (default of 1)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_step_sizes</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_step_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_step_sizes</span>
+
+    <span class="nd">@step_sizes.setter</span>
+    <span class="k">def</span> <span class="nf">step_sizes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sizes</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Casts the sizes to positive and sets step_sizes</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - ``sizes``: list of integers for attenuation step-sizes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">sizes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">sizes</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_step_sizes</span> <span class="o">=</span> <span class="n">sizes</span>
+        <span class="k">return</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The current threshold to test if the step-size should change</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_change_thresholds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_threshold</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_change_thresholds</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_change_index</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">current_change_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">increment_index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_change_index</span><span class="p">,</span>
+                                                                 <span class="bp">self</span><span class="o">.</span><span class="n">step_change_thresholds</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_threshold</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Initial threshold: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_threshold</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">step_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The amount to increase the current-value with each iteration.</span>
+
+<span class="sd">        .. warning:: this checks current_value &gt; threshold and updates accordingly</span>
+
+<span class="sd">        :postcondition:</span>
+
+<span class="sd">         - step_size set to first step_size</span>
+<span class="sd">         - or step_size updated</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_step_size</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">threshold_compare</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_value</span><span class="p">,</span>
+                                                                <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">)</span>
+                                        <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_step_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_sizes</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_step_index</span><span class="p">]</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_step_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">increment_index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_step_index</span><span class="p">,</span>
+                                                           <span class="bp">self</span><span class="o">.</span><span class="n">step_sizes</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_threshold</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_step_size</span>
+
+<div class="viewcode-block" id="StepRange.update_threshold"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.stepiterator.StepRange.update_threshold.html#cameraobscura.ratevsrange.stepiterator.StepRange.update_threshold">[docs]</a>    <span class="k">def</span> <span class="nf">update_threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Updates the threshold if it has been exceeded</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">threshold_compare</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">)</span> <span class="ow">and</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">step_change_thresholds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_threshold</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_change_thresholds</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_change_index</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">current_change_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">increment_index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_change_index</span><span class="p">,</span>
+                                                                 <span class="bp">self</span><span class="o">.</span><span class="n">step_change_thresholds</span><span class="p">)</span>
+        <span class="k">return</span>    </div>
+
+<div class="viewcode-block" id="StepRange.reset"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.stepiterator.StepRange.html#cameraobscura.ratevsrange.stepiterator.StepRange.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the properties back to None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reversals</span> <span class="o">%</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reversals</span> <span class="o">=</span> <span class="n">FIRST_ITEM</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_step_size</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_threshold</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_step_index</span> <span class="o">=</span> <span class="n">FIRST_ITEM</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_change_index</span> <span class="o">=</span> <span class="n">FIRST_ITEM</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="StepRange.increment_index"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.stepiterator.StepRange.increment_index.html#cameraobscura.ratevsrange.stepiterator.StepRange.increment_index">[docs]</a>    <span class="k">def</span> <span class="nf">increment_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">container</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        increments the index for the container</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `index`: current index for the container</span>
+<span class="sd">         - `container`: container to be indexed</span>
+
+<span class="sd">        :return: index incremented, bounded by container size</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">index</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_direction</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">container</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># disallowing wrap-around</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">index</span></div>
+
+<div class="viewcode-block" id="StepRange.reverse"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.stepiterator.StepRange.reverse.html#cameraobscura.ratevsrange.stepiterator.StepRange.reverse">[docs]</a>    <span class="k">def</span> <span class="nf">reverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        changes the direction of the iteration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">reversible</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        
+        <span class="c1"># reversals, start, and stop are used to check direction</span>
+        <span class="c1"># so they should be changed first</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reversals</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_threshold</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_step_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">increment_index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_step_index</span><span class="p">,</span>
+                                                        <span class="bp">self</span><span class="o">.</span><span class="n">step_sizes</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_change_thresholds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_change_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">increment_index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_change_index</span><span class="p">,</span>
+                                                            <span class="bp">self</span><span class="o">.</span><span class="n">step_change_thresholds</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">True</span></div>
+
+<div class="viewcode-block" id="StepRange.check_rep"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.stepiterator.StepRange.check_rep.html#cameraobscura.ratevsrange.stepiterator.StepRange.check_rep">[docs]</a>    <span class="k">def</span> <span class="nf">check_rep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does nothing (to let the user decide what is valid and what is invalid)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#if self.step_change_thresholds is not None:</span>
+        <span class="c1">#    try:</span>
+        <span class="c1">#        assert (len(self.step_sizes) == len(self.step_change_thresholds) + 1 or</span>
+        <span class="c1">#                min(self.step_change_thresholds) &gt; self.stop)</span>
+        <span class="c1">#    except AssertionError as error:</span>
+        <span class="c1">#        self.logger.debug(error)</span>
+        <span class="c1">#        raise CameraobscuraError((&quot;Need exactly one more step_change_threshold than step_size&quot;</span>
+        <span class="c1">#                                  &quot;or stop must be less than smallest step_change_threshold&quot;)</span>
+        <span class="k">return</span></div>
+        
+
+<div class="viewcode-block" id="StepRange.__iter__"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.stepiterator.StepRange.__iter__.html#cameraobscura.ratevsrange.stepiterator.StepRange.__iter__">[docs]</a>    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Iterates over the values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_value</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_value</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_size</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span>
+        <span class="k">return</span></div>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        String of constructor parameters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;start: {0}, stop: {1}, step_sizes: {2}, step_change_thresholds: {3}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span>
+                                                                                            <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span>
+                                                                                            <span class="bp">self</span><span class="o">.</span><span class="n">step_sizes</span><span class="p">,</span>
+                                                                                            <span class="bp">self</span><span class="o">.</span><span class="n">step_change_thresholds</span><span class="p">)</span></div>
+<span class="c1"># end class StepRange</span>
+
+<div class="viewcode-block" id="StepIterator"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.stepiterator.StepIterator.html#cameraobscura.ratevsrange.stepiterator.StepIterator">[docs]</a><span class="k">class</span> <span class="nc">StepIterator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An aggregator of step-iterators</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="StepIterator.__init__"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.stepiterator.StepIterator.html#cameraobscura.ratevsrange.stepiterator.StepIterator.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step_list</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        StepIterator constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - ``step_list``: collection of steps</span>
+<span class="sd">         - ``reversal_limit``: number of reversals allowed</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">step_list</span> <span class="o">=</span> <span class="n">step_list</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_iterator</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">iterator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        StepRange if step_list not set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iterator</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_list</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s1">&#39;reversal_limit&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">:</span>
+                    <span class="n">reversal_limit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;reversal_limit&#39;</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">reversal_limit</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_iterator</span> <span class="o">=</span> <span class="n">StepList</span><span class="p">(</span><span class="n">step_list</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">step_list</span><span class="p">,</span>
+                                          <span class="n">reversal_limit</span><span class="o">=</span><span class="n">reversal_limit</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_iterator</span> <span class="o">=</span> <span class="n">StepRange</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iterator</span>
+
+<div class="viewcode-block" id="StepIterator.__iter__"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.stepiterator.StepIterator.__iter__.html#cameraobscura.ratevsrange.stepiterator.StepIterator.__iter__">[docs]</a>    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        traverses the iterator</span>
+
+<span class="sd">        :yield: next step</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterator</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">step</span>
+        <span class="k">return</span></div>
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A pass-through to the iterator</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iterator</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">iterator</span> <span class="o">=</span> <span class="n">StepRange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                            <span class="n">stop</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                            <span class="n">step_sizes</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+                            <span class="n">step_change_thresholds</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+    <span class="kn">import</span> <span class="nn">pudb</span>
+    <span class="n">pudb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

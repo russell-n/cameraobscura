@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Ping Configuration &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../index.html" />
+    <link rel="up" title="Ping Things" href="index.html" />
+    <link rel="next" title="cameraobscura.commands.ping.pingconfiguration.PingConfiguration" href="api/cameraobscura.commands.ping.pingconfiguration.PingConfiguration.html" />
+    <link rel="prev" title="cameraobscura.commands.ping.pingbuilder.PingBuilder.product" href="api/cameraobscura.commands.ping.pingbuilder.PingBuilder.product.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The Ping Configuration</a><ul>
+<li><a class="reference internal" href="#pingconfigurationconstants">PingConfigurationConstants</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="api/cameraobscura.commands.ping.pingbuilder.PingBuilder.product.html" title="Previous Chapter: cameraobscura.commands.ping.pingbuilder.PingBuilder.product"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; cameraobscura...</span>
+    </a>
+  </li>
+  <li>
+    <a href="api/cameraobscura.commands.ping.pingconfiguration.PingConfiguration.html" title="Next Chapter: cameraobscura.commands.ping.pingconfiguration.PingConfiguration"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">cameraobscura... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../_sources/commands/ping/pingconfiguration.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="the-ping-configuration">
+<h1>The Ping Configuration<a class="headerlink" href="#the-ping-configuration" title="Permalink to this headline">¶</a></h1>
+<p>The ping has been converted to use <a class="reference internal" href="../command/command.html#command-class"><span class="std std-ref">The Command</span></a> so the configuration it needs is a combination of ping-specific things and what the command needs.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.ping.pingconfiguration.PingConfiguration.html#cameraobscura.commands.ping.pingconfiguration.PingConfiguration" title="cameraobscura.commands.ping.pingconfiguration.PingConfiguration"><code class="xref py py-obj docutils literal"><span class="pre">PingConfiguration</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>A class to hold configuration for the ping</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.commands.ping.pingconfiguration.PingConfiguration.target.html#cameraobscura.commands.ping.pingconfiguration.PingConfiguration.target" title="cameraobscura.commands.ping.pingconfiguration.PingConfiguration.target"><code class="xref py py-obj docutils literal"><span class="pre">PingConfiguration.target</span></code></a></td>
+<td>The address or hostname to ping</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.ping.pingconfiguration.PingConfiguration.time_limit.html#cameraobscura.commands.ping.pingconfiguration.PingConfiguration.time_limit" title="cameraobscura.commands.ping.pingconfiguration.PingConfiguration.time_limit"><code class="xref py py-obj docutils literal"><span class="pre">PingConfiguration.time_limit</span></code></a></td>
+<td>The number of seconds to try to ping the target</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.commands.ping.pingconfiguration.PingConfiguration.threshold.html#cameraobscura.commands.ping.pingconfiguration.PingConfiguration.threshold" title="cameraobscura.commands.ping.pingconfiguration.PingConfiguration.threshold"><code class="xref py py-obj docutils literal"><span class="pre">PingConfiguration.threshold</span></code></a></td>
+<td>Number of consecutive pings to consider a success</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.ping.pingconfiguration.PingConfiguration.arguments.html#cameraobscura.commands.ping.pingconfiguration.PingConfiguration.arguments" title="cameraobscura.commands.ping.pingconfiguration.PingConfiguration.arguments"><code class="xref py py-obj docutils literal"><span class="pre">PingConfiguration.arguments</span></code></a></td>
+<td>String of arguments for the ping command (uses linux as default)</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.commands.ping.pingconfiguration.PingConfiguration.operating_system.html#cameraobscura.commands.ping.pingconfiguration.PingConfiguration.operating_system" title="cameraobscura.commands.ping.pingconfiguration.PingConfiguration.operating_system"><code class="xref py py-obj docutils literal"><span class="pre">PingConfiguration.operating_system</span></code></a></td>
+<td>The operating system used to chose the form of the ping command</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.ping.pingconfiguration.PingConfiguration.trap_errors.html#cameraobscura.commands.ping.pingconfiguration.PingConfiguration.trap_errors" title="cameraobscura.commands.ping.pingconfiguration.PingConfiguration.trap_errors"><code class="xref py py-obj docutils literal"><span class="pre">PingConfiguration.trap_errors</span></code></a></td>
+<td>Boolean to indicate if socket errors should be fatal or not</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.commands.ping.pingconfiguration.PingConfiguration.data_expression.html#cameraobscura.commands.ping.pingconfiguration.PingConfiguration.data_expression" title="cameraobscura.commands.ping.pingconfiguration.PingConfiguration.data_expression"><code class="xref py py-obj docutils literal"><span class="pre">PingConfiguration.data_expression</span></code></a></td>
+<td>A regular expression to match a successful ping</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.commands.ping.pingconfiguration.PingConfiguration.timeout.html#cameraobscura.commands.ping.pingconfiguration.PingConfiguration.timeout" title="cameraobscura.commands.ping.pingconfiguration.PingConfiguration.timeout"><code class="xref py py-obj docutils literal"><span class="pre">PingConfiguration.timeout</span></code></a></td>
+<td>The readline timeout for the connection</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="pingconfigurationconstants">
+<h2>PingConfigurationConstants<a class="headerlink" href="#pingconfigurationconstants" title="Permalink to this headline">¶</a></h2>
+<p>This holds the constants for the PingConfiguration and show what&#8217;s expected in the config-file. &#8216;section&#8217; is the section header (e.g. [ping]), the options are the names of the options and the defaults are the values used if the user doesn&#8217;t fill in the value for that option. The actual strings are what&#8217;s expected in the configuration file so they can be changed to help clarify their meanings for the user but the variable names shouldn&#8217;t change since the PingConfiguration class is using them.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PingConfigurationConstants</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Holder of constant values for PingConfiguration</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;ping&#39;</span>
+
+    <span class="c1"># options</span>
+    <span class="n">data_expression</span> <span class="o">=</span> <span class="s1">&#39;data_expression&#39;</span>
+    <span class="n">trap_errors</span> <span class="o">=</span> <span class="s1">&#39;trap_errors&#39;</span>
+    <span class="n">timeout</span> <span class="o">=</span> <span class="s1">&#39;timeout&#39;</span>
+    <span class="n">operating_system</span> <span class="o">=</span> <span class="s1">&#39;operating_system&#39;</span>
+    <span class="n">arguments</span> <span class="o">=</span> <span class="s1">&#39;arguments&#39;</span>
+    <span class="n">threshold</span> <span class="o">=</span> <span class="s1">&#39;threshold&#39;</span>
+    <span class="n">time_limit</span> <span class="o">=</span> <span class="s1">&#39;time_limit&#39;</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="s1">&#39;target&#39;</span>
+
+    <span class="c1"># defaults</span>
+    <span class="n">default_trap_errors</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">default_timeout</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">default_data_expression</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">default_os</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">default_threshold</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">default_time_limit</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="c1"># end PingConfigurationConstants</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

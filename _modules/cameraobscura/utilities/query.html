@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cameraobscura.utilities.query &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for cameraobscura.utilities.query</h1><div class="highlight"><pre>
+<span></span>
+<span class="c1"># python standard library</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># third party</span>
+<span class="kn">from</span> <span class="nn">theape.parts.connections.simpleclient</span> <span class="kn">import</span> <span class="n">ConnectionError</span>
+<span class="kn">from</span> <span class="nn">theape.parts.command.command</span> <span class="kn">import</span> <span class="n">TheCommand</span>
+
+<span class="c1"># this package</span>
+<span class="kn">from</span> <span class="nn">cameraobscura</span> <span class="kn">import</span> <span class="n">CameraobscuraError</span>
+
+<span class="kn">from</span> <span class="nn">cameraobscura.common.baseconfiguration</span> <span class="kn">import</span> <span class="n">BaseConfiguration</span>
+
+<span class="n">TIMESTAMP</span> <span class="o">=</span> <span class="s1">&#39;timestamp&#39;</span>
+<span class="n">UNDERSCORE</span> <span class="o">=</span> <span class="s1">&#39;_&#39;</span>
+<span class="n">ONE</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">FIRST</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">LAST</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">APPENDABLE</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span>
+<span class="n">WRITEABLE</span> <span class="o">=</span> <span class="s1">&#39;w&#39;</span>
+
+<div class="viewcode-block" id="Query"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.query.Query.html#cameraobscura.utilities.query.Query">[docs]</a><span class="k">class</span> <span class="nc">Query</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A querier of devices</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Query.__init__"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.query.Query.html#cameraobscura.utilities.query.Query.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">commands</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Query constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `output_filename`: name of file to use to save data</span>
+<span class="sd">         - `fields`: list of fields for headers (and keys to &#39;commands&#39; dict)</span>
+<span class="sd">         - `commands`: dict of field:command where commands are strings to send to connection</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Query</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_output_file</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_output_filename</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_filename</span> <span class="o">=</span> <span class="n">output_filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span> <span class="o">=</span> <span class="n">fields</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">commands</span> <span class="o">=</span> <span class="n">commands</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">new_file</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_writer</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span>        </div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: A logging object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;{0}.{1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__module__</span><span class="p">,</span>
+                                  <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">output_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Writeable output file for the DictWriter</span>
+
+<span class="sd">        :postcondition:</span>
+
+<span class="sd">          - old file closed</span>
+<span class="sd">          - self.output_file is opened file with new_filename</span>
+<span class="sd">          - self._writer is None</span>
+<span class="sd">          - self.new_file is False if the new_filename was an existing file</span>
+
+<span class="sd">        :return: openend writeable file with self.output_filename as name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_file</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># an ugly hack to let the writer know if this is a new file</span>
+            <span class="c1"># because once it&#39;s open, it will exist, even if not written to</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">new_file</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_filename</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_output_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_filename</span><span class="p">,</span> <span class="n">APPENDABLE</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_writer</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_file</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">output_filename</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The name of the file to write data to</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_filename</span>
+
+    <span class="nd">@output_filename.setter</span>
+    <span class="k">def</span> <span class="nf">output_filename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the filename and closes the output_file if it exists</span>
+
+<span class="sd">        This was created because the AutomatedRVR is adding a folder to the filenames</span>
+<span class="sd">        So the builder doesn&#39;t know the full path at time of construction</span>
+<span class="sd">        A more robust scheme would be to move all the building out of the AutomatedRVR</span>
+<span class="sd">        And create the file-path before creating the objects. Oh, well.</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `new_filename`: name to use for the csv file</span>
+
+<span class="sd">        :postcondition:</span>
+
+<span class="sd">         - `self._outputfilename` = `new_filename`</span>
+<span class="sd">         - `self._output_file is None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Closing output file and setting new file&quot;</span><span class="p">)</span>
+        <span class="c1"># close older output-file if it exists</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_output_filename</span> <span class="o">=</span> <span class="n">new_filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_output_file</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">writer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A DictWriter that writes the query data to a csv-file</span>
+
+<span class="sd">        :precondition:</span>
+
+<span class="sd">         - `self.output_file` is an opened writeable file</span>
+<span class="sd">         - `self.new_file` is True if the opened file didn&#39;t exist before opening</span>
+<span class="sd">         </span>
+<span class="sd">        :postcondition:</span>
+
+<span class="sd">         - self.writer is DictWriter</span>
+<span class="sd">         - self.fields written as header</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_writer</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+           <span class="bp">self</span><span class="o">.</span><span class="n">_writer</span> <span class="o">=</span>  <span class="n">csv</span><span class="o">.</span><span class="n">DictWriter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="p">,</span>
+                                          <span class="n">fieldnames</span><span class="o">=</span><span class="p">[</span><span class="n">TIMESTAMP</span><span class="p">]</span>  <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">)</span>
+
+           <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_file</span><span class="p">:</span>
+               <span class="bp">self</span><span class="o">.</span><span class="n">_writer</span><span class="o">.</span><span class="n">writeheader</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_writer</span>
+
+<div class="viewcode-block" id="Query.close"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.query.Query.close.html#cameraobscura.utilities.query.Query.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Closes the output-file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="Query.__call__"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.query.Query.__call__.html#cameraobscura.utilities.query.Query.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra_data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The main interface, traverses commands and saves output to csv</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `extra_data`: extra data to add to the csv (keys have to already be added to the `fields` list)</span>
+
+<span class="sd">        :raise: CameraobscuraError if the regular expressions matches but there&#39;s no group</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="p">{</span><span class="n">TIMESTAMP</span><span class="p">:</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()}</span>
+        <span class="k">if</span> <span class="n">extra_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">extra_data</span><span class="p">)</span>
+                
+        <span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">command</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">commands</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Checking field {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">field</span><span class="p">))</span>
+            <span class="n">output</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="n">command</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="Query.check_rep"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.query.Query.check_rep.html#cameraobscura.utilities.query.Query.check_rep">[docs]</a>    <span class="k">def</span> <span class="nf">check_rep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks that</span>
+<span class="sd">           * commands and expressions have the same keys</span>
+<span class="sd">           * keys they are in fields list</span>
+<span class="sd">           </span>
+<span class="sd">        :raise: AssertionError if either is False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">commands</span><span class="o">.</span><span class="n">iterkeys</span><span class="p">():</span>
+            <span class="k">assert</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">,</span> <span class="s2">&quot;Extra key in &#39;commands&#39;: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span></div>
+    
+<div class="viewcode-block" id="Query.__del__"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.query.Query.__del__.html#cameraobscura.utilities.query.Query.__del__">[docs]</a>    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Closes the file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span></div></div>
+<span class="c1"># end Query</span>
+
+<span class="k">class</span> <span class="nc">QueryEnum</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;query&#39;</span>
+
+    <span class="c1"># special options</span>
+    <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39;delimiter&#39;</span>
+    <span class="n">not_available</span> <span class="o">=</span> <span class="s1">&#39;not_available&#39;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;filename&#39;</span>
+    <span class="n">timeout</span> <span class="o">=</span> <span class="s1">&#39;timeout&#39;</span>
+    <span class="n">trap_errors</span> <span class="o">=</span> <span class="s1">&#39;trap_errors&#39;</span>
+
+    <span class="c1"># reserved names</span>
+    <span class="n">reserved</span> <span class="o">=</span> <span class="p">(</span><span class="n">delimiter</span><span class="p">,</span> <span class="n">not_available</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span>
+                <span class="n">trap_errors</span><span class="p">)</span>
+    
+    <span class="c1"># defaults</span>
+    <span class="n">default_delimiter</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span>
+    <span class="n">default_not_available</span> <span class="o">=</span> <span class="s1">&#39;NA&#39;</span>
+    <span class="n">default_filename</span> <span class="o">=</span> <span class="s1">&#39;query.csv&#39;</span>
+    <span class="n">default_timeout</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">default_trap_errors</span> <span class="o">=</span> <span class="bp">True</span>
+
+<div class="viewcode-block" id="QueryConfiguration"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.query.QueryConfiguration.html#cameraobscura.utilities.query.QueryConfiguration">[docs]</a><span class="k">class</span> <span class="nc">QueryConfiguration</span><span class="p">(</span><span class="n">BaseConfiguration</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A holder of query configurations</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="QueryConfiguration.__init__"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.query.QueryConfiguration.html#cameraobscura.utilities.query.QueryConfiguration.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        QueryConfiguration constructor</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">QueryConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fields</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_delimiter</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_not_available</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_commands</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_expressions</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_filename</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_trap_errors</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">example</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        An example query configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_example</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_example</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            #[{section}]</span>
+<span class="s2">            # these are arbitrary commands that will be called in between attenuations</span>
+<span class="s2">            # it&#39;s original use-case is to get RSSI and other monitoring information</span>
+<span class="s2">            # but since it&#39;s free-form you can pass in whatever you like</span>
+<span class="s2">            # the commands are issued on the DUT, not the traffic-server</span>
+<span class="s2">            </span>
+<span class="s2">            # delimiter separating command and expression</span>
+<span class="s2">            # this is provided so that if the command or expression has a comma in it</span>
+<span class="s2">            # you can use an alternative</span>
+<span class="s2">            </span>
+<span class="s2">            #delimiter =  {delimiter}</span>
+
+<span class="s2">            # if you want to specify a filename set the filename option</span>
+<span class="s2">            # filename = {filename}</span>
+
+<span class="s2">            # to change the readline timeout</span>
+<span class="s2">            # timeout = {timeout}</span>
+
+<span class="s2">            # to have it crash instead of trap socket errors</span>
+<span class="s2">            # trap_errors = {trap_errors}</span>
+
+<span class="s2">            # everything else is of the format:</span>
+<span class="s2">            # &lt;column-header&gt; = &lt;command&gt;&lt;delimiter&gt;&lt;regular expression&gt;</span>
+<span class="s2">            # the column-header will be used in the csv-file</span>
+<span class="s2">            # the regular expression has to have a group &#39;()&#39; or it will raise an error</span>
+<span class="s2">            # the contents of the group is what will be saved to the file</span>
+
+<span class="s2">            #some examples:</span>
+<span class="s2">            #rssi = iwconfig wlan0,Signal\slevel=(-\d+\sdBm)</span>
+<span class="s2">            #noise = wl noise, (.*)</span>
+<span class="s2">            #bitrate = iwconfig wlan0, Bit\sRate=(\d+\.*\d*\sMb/s)</span>
+<span class="s2">            #counters = wl counters, (rxcrsglitch [0-9]* )</span>
+<span class="s2">            #rtt_min/rtt_avg/rtt_max/rtt_mdev = ping -c 2 192.168.103.17,rtt\s+min.*=\s*(.*)\s+ms</span>
+<span class="s2">            &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                       <span class="n">delimiter</span><span class="o">=</span><span class="n">QueryEnum</span><span class="o">.</span><span class="n">default_delimiter</span><span class="p">,</span>
+                       <span class="n">timeout</span><span class="o">=</span><span class="n">QueryEnum</span><span class="o">.</span><span class="n">default_timeout</span><span class="p">,</span>
+                       <span class="n">filename</span><span class="o">=</span><span class="n">QueryEnum</span><span class="o">.</span><span class="n">default_filename</span><span class="p">,</span>
+                       <span class="n">trap_errors</span><span class="o">=</span><span class="n">QueryEnum</span><span class="o">.</span><span class="n">trap_errors</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_example</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">section</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The configuration section name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_section</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_section</span> <span class="o">=</span> <span class="n">QueryEnum</span><span class="o">.</span><span class="n">section</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_section</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">delimiter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The delimiter separating the &lt;command&gt; and &lt;expression&gt; for each field.</span>
+
+<span class="sd">        :return: string used to separate the sub-values `command` and `expression`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delimiter</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_delimiter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                     <span class="n">option</span><span class="o">=</span><span class="n">QueryEnum</span><span class="o">.</span><span class="n">delimiter</span><span class="p">,</span>
+                                                     <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                     <span class="n">default</span><span class="o">=</span><span class="n">QueryEnum</span><span class="o">.</span><span class="n">default_delimiter</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delimiter</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">not_available</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The symbol to use if the command fails to retrieve a value.</span>
+
+<span class="sd">        :default: NA</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_not_available</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_not_available</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                         <span class="n">QueryEnum</span><span class="o">.</span><span class="n">not_available</span><span class="p">,</span>
+                                                         <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                         <span class="n">default</span><span class="o">=</span><span class="n">QueryEnum</span><span class="o">.</span><span class="n">default_not_available</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_not_available</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">fields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        List of field names (options from the section) for commands</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fields</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">option</span> <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">option</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">QueryEnum</span><span class="o">.</span><span class="n">reserved</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fields</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">commands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dictionary of field:command</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_commands</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># commands is a generator of first-entries in the values split by the delimiter</span>
+            <span class="c1"># e.g. field = command,expression</span>
+
+            <span class="n">commands</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delimiter</span><span class="p">,</span> <span class="n">ONE</span><span class="p">)[</span><span class="n">FIRST</span><span class="p">]</span> <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">)</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">_commands</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">,</span> <span class="n">commands</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_commands</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">expressions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dictionary of field:expression</span>
+
+<span class="sd">        This strips off whitespace from the ends to avoid introducing unexpected spaces</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expressions</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># expressions are the leftovers after the command is extracted from the values</span>
+            <span class="n">expressions</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delimiter</span><span class="p">,</span> <span class="n">ONE</span><span class="p">)[</span><span class="n">LAST</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">)</span>            
+            <span class="bp">self</span><span class="o">.</span><span class="n">_expressions</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">,</span> <span class="n">expressions</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expressions</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">filename</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The name of a file to use for the csv data        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filename</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                    <span class="n">QueryEnum</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span>
+                                                    <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                    <span class="n">default</span><span class="o">=</span><span class="n">QueryEnum</span><span class="o">.</span><span class="n">default_filename</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filename</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Readline timeout</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                        <span class="n">QueryEnum</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span>
+                                                        <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                        <span class="n">default</span><span class="o">=</span><span class="n">QueryEnum</span><span class="o">.</span><span class="n">default_timeout</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">trap_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Boolean to decide whether or not to trap errors</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trap_errors</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_trap_errors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                           <span class="n">QueryEnum</span><span class="o">.</span><span class="n">trap_errors</span><span class="p">,</span>
+                <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                <span class="n">default</span><span class="o">=</span><span class="n">QueryEnum</span><span class="o">.</span><span class="n">default_trap_errors</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trap_errors</span>
+
+<div class="viewcode-block" id="QueryConfiguration.reset"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.query.QueryConfiguration.html#cameraobscura.utilities.query.QueryConfiguration.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resets the options to None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_filename</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_commands</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_expressions</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_delimiter</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_not_available</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span>        </div>
+        
+<div class="viewcode-block" id="QueryConfiguration.check_rep"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.query.QueryConfiguration.html#cameraobscura.utilities.query.QueryConfiguration.check_rep">[docs]</a>    <span class="k">def</span> <span class="nf">check_rep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks the representation</span>
+
+<span class="sd">        :raises: AssertionError if there is an invalid option</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">QueryConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="k">return</span></div></div>
+<span class="c1"># end class QueryConfiguration</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__builtin__&#39;</span><span class="p">:</span>
+    <span class="n">configuration</span> <span class="o">=</span> <span class="n">QueryConfiguration</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">example</span><span class="p">)</span>
+
+<div class="viewcode-block" id="QueryBuilder"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.query.QueryBuilder.html#cameraobscura.utilities.query.QueryBuilder">[docs]</a><span class="k">class</span> <span class="nc">QueryBuilder</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A builder of queries</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="QueryBuilder.__init__"><a class="viewcode-back" href="../../../utilities/api/cameraobscura.utilities.query.QueryBuilder.html#cameraobscura.utilities.query.QueryBuilder.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">,</span> <span class="n">configuration</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        QueryBuilder Constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `connection`: Connection to the device to query</span>
+<span class="sd">         - `configuration`: built QueryConfiguration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">connection</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">configuration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_product</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_commands</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">commands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A dict of TheCommand objects built from the configuration and connection</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_commands</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">commands</span> <span class="o">=</span> <span class="p">[</span><span class="n">TheCommand</span><span class="p">(</span><span class="n">connection</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">,</span>
+                                   <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">commands</span><span class="p">[</span><span class="n">field</span><span class="p">],</span>
+                                   <span class="n">data_expression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">expressions</span><span class="p">[</span><span class="n">field</span><span class="p">],</span>
+                                   <span class="n">identifier</span><span class="o">=</span><span class="n">field</span><span class="p">,</span>
+                                   <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span>
+                                   <span class="n">trap_errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">trap_errors</span><span class="p">)</span>
+                                   <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_commands</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">fields</span><span class="p">,</span>
+                                      <span class="n">commands</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_commands</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">product</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Query built from the connection and configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_product</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_product</span> <span class="o">=</span> <span class="n">Query</span><span class="p">(</span><span class="n">output_filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span>
+                                  <span class="n">fields</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">fields</span><span class="p">[:],</span>
+                                  <span class="n">commands</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">commands</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_product</span>        </div>
+<span class="c1"># end QueryBuilder</span>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

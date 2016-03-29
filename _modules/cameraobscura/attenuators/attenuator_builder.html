@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cameraobscura.attenuators.attenuator_builder &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for cameraobscura.attenuators.attenuator_builder</h1><div class="highlight"><pre>
+<span></span>
+<span class="c1"># python standard library</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">importlib</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+
+<span class="c1"># this package</span>
+<span class="kn">from</span> <span class="nn">cameraobscura</span> <span class="kn">import</span> <span class="n">CameraobscuraError</span>
+<span class="kn">from</span> <span class="nn">attenuator</span> <span class="kn">import</span> <span class="n">Attenuator</span>
+
+<div class="viewcode-block" id="is_attenuator"><a class="viewcode-back" href="../../../attenuators/api/cameraobscura.attenuators.attenuator_builder.is_attenuator.html#cameraobscura.attenuators.attenuator_builder.is_attenuator">[docs]</a><span class="k">def</span> <span class="nf">is_attenuator</span><span class="p">(</span><span class="n">instance</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A function to see if the imported module item is a sub-class of Attenuator</span>
+
+<span class="sd">    :param:</span>
+
+<span class="sd">     - `instance`: an object to check</span>
+
+<span class="sd">    :return: True if instance sub-classes `Attenuator`, False otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># the &#39;inspect.isclass(instance)&#39; call is there so that if there&#39;s</span>
+    <span class="c1"># stuff in the modules that lack a `__base__` attribute it won&#39;t</span>
+    <span class="c1"># raise an AttributeError</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span> <span class="ow">and</span> <span class="n">instance</span><span class="o">.</span><span class="n">__base__</span> <span class="ow">is</span> <span class="n">Attenuator</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="get_definitions"><a class="viewcode-back" href="../../../attenuators/api/cameraobscura.attenuators.attenuator_builder.get_definitions.html#cameraobscura.attenuators.attenuator_builder.get_definitions">[docs]</a><span class="k">def</span> <span class="nf">get_definitions</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Imports class definitions for `Attenuator` sub-classes</span>
+
+<span class="sd">    :return: dict of (name (lower-cased): class definition object)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">definitions</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__builtin__&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">definitions</span>
+
+    <span class="c1"># directory is the path to this directory</span>
+    <span class="n">directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span>
+    
+    <span class="c1"># filenames is a generator of python files in this directory</span>
+    <span class="n">filenames</span>  <span class="o">=</span> <span class="p">(</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.pyc&#39;</span><span class="p">))</span>
+    <span class="c1">#basenames_extensions is a generator of (basename, ext) tuples for the python files</span>
+    <span class="c1"># so basename is the filename without &#39;.py&#39; (and no path either)</span>
+    <span class="n">basenames_extensions</span> <span class="o">=</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">)</span>
+
+    <span class="c1"># modules is a generator of modules represented by the python files</span>
+    <span class="c1"># `__package__` is &#39;cameraobscura.attenuators&#39;</span>
+    <span class="n">modules</span> <span class="o">=</span>  <span class="p">(</span><span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">__package__</span><span class="p">,</span> <span class="n">base</span><span class="p">)))</span>
+                <span class="k">for</span> <span class="n">base</span><span class="p">,</span> <span class="n">extension</span> <span class="ow">in</span> <span class="n">basenames_extensions</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">:</span>
+        <span class="n">members</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getmembers</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">predicate</span><span class="o">=</span><span class="n">is_attenuator</span><span class="p">)</span>
+        <span class="c1"># members is a list of all Attenuator sub-classes in the module</span>
+        <span class="c1"># so it could possibly have more than one member</span>
+        <span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="n">members</span><span class="p">:</span>
+            <span class="n">name</span><span class="p">,</span> <span class="n">definition</span> <span class="o">=</span> <span class="n">member</span>
+            <span class="c1"># the AdeptNCustomPath is returning an incorrect name for some reason</span>
+            <span class="c1"># so the __name__ variable is used instead of the returned &#39;name&#39;</span>
+            <span class="n">definitions</span><span class="p">[</span><span class="n">definition</span><span class="o">.</span><span class="n">__name__</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span> <span class="o">=</span> <span class="n">definition</span>
+    <span class="k">return</span> <span class="n">definitions</span></div>
+<span class="c1"># end get_definitions</span>
+
+<div class="viewcode-block" id="AttenuatorBuilder"><a class="viewcode-back" href="../../../attenuators/api/cameraobscura.attenuators.attenuator_builder.AttenuatorBuilder.html#cameraobscura.attenuators.attenuator_builder.AttenuatorBuilder">[docs]</a><span class="k">class</span> <span class="nc">AttenuatorBuilder</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Builds attenuator objects</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_attenuators</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">definitions</span> <span class="o">=</span> <span class="n">get_definitions</span><span class="p">()</span>
+    
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="AttenuatorBuilder.GetAttenuator"><a class="viewcode-back" href="../../../attenuators/api/cameraobscura.attenuators.attenuator_builder.AttenuatorBuilder.html#cameraobscura.attenuators.attenuator_builder.AttenuatorBuilder.GetAttenuator">[docs]</a>    <span class="k">def</span> <span class="nf">GetAttenuator</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">attenuator_type</span><span class="p">,</span> <span class="n">ip_address</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check what *type* of attenuator is needed and return an instance</span>
+<span class="sd">        of that type. Use the collection of already created instances</span>
+<span class="sd">        to avoid duplication.</span>
+<span class="sd">        </span>
+<span class="sd">        :param:</span>
+<span class="sd">         - `attenuator_type`: Name of class to control attenuator, e.g. &quot;MockAttenuator&quot;</span>
+<span class="sd">         - `ip_address`: attenuator&#39;s IP or hostname</span>
+
+<span class="sd">        :return: Attenuator object</span>
+<span class="sd">        :raise: CameraObscura error if the `attenuator_type` is unknown</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="n">type_lower</span> <span class="o">=</span> <span class="n">attenuator_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="n">check</span> <span class="o">=</span> <span class="p">(</span><span class="n">type_lower</span><span class="p">,</span> <span class="n">ip_address</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">check</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">AttenuatorBuilder</span><span class="o">.</span><span class="n">_attenuators</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">new_attenuator</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="n">definitions</span><span class="p">[</span><span class="n">type_lower</span><span class="p">](</span><span class="n">ip_address</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s2">&quot;&#39;{0}&#39; attenuator not implemented (or mis-named)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">attenuator_type</span><span class="p">))</span>
+            <span class="n">AttenuatorBuilder</span><span class="o">.</span><span class="n">_attenuators</span><span class="p">[</span><span class="n">check</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_attenuator</span>
+        <span class="k">return</span> <span class="n">AttenuatorBuilder</span><span class="o">.</span><span class="n">_attenuators</span><span class="p">[</span><span class="n">check</span><span class="p">]</span></div></div>
+<span class="c1"># end AttenuatorBuilder</span>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

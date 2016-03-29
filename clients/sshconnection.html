@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The SSH Connection &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../index.html" />
+    <link rel="up" title="Client Connections" href="index.html" />
+    <link rel="prev" title="cameraobscura.clients.simpleclient.SimpleClient.close" href="api/cameraobscura.clients.simpleclient.SimpleClient.close.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The SSH Connection</a><ul>
+<li><a class="reference internal" href="#the-sshclient">The SSHClient</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-inouterror-named-tuple">The InOutError Named Tuple</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="api/cameraobscura.clients.simpleclient.SimpleClient.close.html" title="Previous Chapter: cameraobscura.clients.simpleclient.SimpleClient.close"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; cameraobscura...</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/clients/sshconnection.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="the-ssh-connection">
+<h1>The SSH Connection<a class="headerlink" href="#the-ssh-connection" title="Permalink to this headline">¶</a></h1>
+<p id="ssh-connection">This is the workhorse connection built around the <cite>paramiko</cite> SSHClient. Updates in paramiko&#8217;s interface as well as a better understanding of how it works has lead me to re-start it as the basis for the other connection types. The main way to use it is meant to be with dot-notation. To do <code class="docutils literal"><span class="pre">ls</span> <span class="pre">-a</span></code> for instance, you would do something like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">connection</span> <span class="o">=</span> <span class="n">SSHConnection</span><span class="p">(</span><span class="n">hostname</span><span class="o">=</span><span class="s1">&#39;someip&#39;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;tester&#39;</span><span class="p">)</span>
+<span class="n">opened_files</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">opened_files</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="n">line</span>
+</pre></div>
+</div>
+<p>This assumes you have your public keys set up, otherwise you would need to pass in the password to the constructor.</p>
+<p>Sometimes people create commands as files with extensions (e.g. <code class="docutils literal"><span class="pre">wifi.sh</span></code>) which will mess up the dot-notation, in that case you can pass in the whole thing as a string by calling the connection:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">opened_files</span> <span class="o">=</span> <span class="n">connection</span><span class="p">(</span><span class="s1">&#39;wifi.sh -h&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">opened_files</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="n">line</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">opened_files</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="n">line</span>
+</pre></div>
+</div>
+<p>I have also aliased the call with <code class="docutils literal"><span class="pre">exec_command</span></code> so that code that is expecting a paramiko SSHClient can still use it:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">exec_command</span><span class="p">(</span><span class="s1">&#39;iperf -s&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There is also a <code class="docutils literal"><span class="pre">sudo</span></code> method to let you run something as root:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">in_out_error</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">sudo</span><span class="p">(</span><span class="s1">&#39;nmap -sS &quot;192.168.10.*&quot;&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;testlabs&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">in_out_error</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="n">line</span>
+</pre></div>
+</div>
+<p>This is the equivalent of:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">in_out_error</span> <span class="o">=</span> <span class="n">connection</span><span class="p">(</span><span class="s1">&#39;sudo nmap -sS &quot;192.168.10.*&quot;&#39;</span><span class="p">,</span> <span class="n">get_pty</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">in_out_error</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;testlabs&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">in_out_error</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="n">line</span>
+</pre></div>
+</div>
+<p>But I figured it&#8217;s such a rare thing that I wouldn&#8217;t be able to remember how to do it when I needed it.</p>
+<p>There&#8217;s also a lock so that if multiple pieces of code are using the same connection they can be thread-safe:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>
+    <span class="n">in_out_error</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="s1">&#39;/proc/cpuinfo&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">I&#8217;ve integrated a lock into the calls to <code class="docutils literal"><span class="pre">exec_command</span></code> so that it will always be thread-safe (although I think it&#8217;s better to use multiple clients when possible instead of sharing one instance). This means that you shouldn&#8217;t need to use the lock as shown above. Using the lock can introduce waiting time for users of the shared client and will make them more brittle (one dead client will kill all the threads using it) so it is only meant to test cases where the device seems to be having trouble with multiple ssh-sessions.</p>
+</div>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">SSHConnection</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">SSHConnection.client</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">SSHConnection.sudo</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">SSHConnection.__call__</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">SSHConnection.close</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">SSHConnection.__getattr__</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">SSHConnection.lock</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p class="plantuml">
+<img src="../_images/plantuml-6ae40a198ccdecbff42beb404713963d9d845044.png" alt="SSHConnection -|&gt; BaseClass
+SSHConnection o-- paramiko.SSHClient
+SSHConnection o-- SocketStorage
+SSHConnection : sudo(command, password, [timeout=None])
+SSHConnection : __call__(command, [timeout=None, [get_pty=False]])
+SSHConnection : exec_command(command, [timeout=None, [get_pty=False]])
+SSHConnection : __getattr__(command, [timeout, [get_pty=False]])
+SSHConnection o-- threading.RLock" />
+</p>
+<div class="section" id="the-sshclient">
+<span id="ape-sshconnection-client"></span><h2>The SSHClient<a class="headerlink" href="#the-sshclient" title="Permalink to this headline">¶</a></h2>
+<p>Behind the scenes this is mostly a thin adapter for the SSHClient.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/paramiko.client.SSHClient.html#paramiko.client.SSHClient" title="paramiko.client.SSHClient"><code class="xref py py-obj docutils literal"><span class="pre">SSHClient</span></code></a>()</td>
+<td>A high-level representation of a session with an SSH server.</td>
+</tr>
+</tbody>
+</table>
+<p>And the methods are versions of the <cite>exec_command</cite>.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/paramiko.client.SSHClient.exec_command.html#paramiko.client.SSHClient.exec_command" title="paramiko.client.SSHClient.exec_command"><code class="xref py py-obj docutils literal"><span class="pre">SSHClient.exec_command</span></code></a>(command[,&nbsp;bufsize,&nbsp;...])</td>
+<td>Execute a command on the SSH server.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-inouterror-named-tuple">
+<span id="ape-sshconnection-inouterror"></span><h2>The InOutError Named Tuple<a class="headerlink" href="#the-inouterror-named-tuple" title="Permalink to this headline">¶</a></h2>
+<p>To help prevent the mixing up of the different files returned (stdout, stdin, and stderr (not necessarily in that order)) the SSHConnection will returned a named tuple.</p>
+<p class="plantuml">
+<img src="../_images/plantuml-d20526ba87d4f46cc2304ad53f9799025c91af89.png" alt="InOutError -|&gt; collections.namedtuple
+InOutError : Storage input
+InOutError : Storage output
+InOutError : Storage error" />
+</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

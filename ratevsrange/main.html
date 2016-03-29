@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Main Entrance &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../index.html" />
+    <link rel="up" title="Rate-Vs-Range" href="index.html" />
+    <link rel="prev" title="Rate-Vs-Range" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The Main Entrance</a><ul>
+<li><a class="reference internal" href="#parse-arguments">Parse Arguments</a></li>
+<li><a class="reference internal" href="#enable-debugging">Enable Debugging</a></li>
+<li><a class="reference internal" href="#the-sub-strategies">The Sub-Strategies</a></li>
+<li><a class="reference internal" href="#the-main-function">The Main Function</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="index.html" title="Previous Chapter: Rate-Vs-Range"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Rate-Vs-Range</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/ratevsrange/main.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="the-main-entrance">
+<h1>The Main Entrance<a class="headerlink" href="#the-main-entrance" title="Permalink to this headline">¶</a></h1>
+<p id="rate-vs-range-main">This is the main entrance point for running this (RVR) code without an external code-runner.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">parse_args</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="parse-arguments">
+<h2>Parse Arguments<a class="headerlink" href="#parse-arguments" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ArgumentConstants</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constants (primarily used to keep the tests in sync)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;2014.12.19&#39;</span>
+    <span class="c1"># defaults</span>
+    <span class="n">default_configuration</span> <span class="o">=</span> <span class="s1">&#39;rvr_configuration.ini&#39;</span>
+    <span class="n">default_path</span> <span class="o">=</span> <span class="s1">&#39;rate_vs_range&#39;</span>
+</pre></div>
+</div>
+<p>The <cite>parse_arguments</cite> function creates an ArgumentParser, adds the arguments and sub-commands and parses the command line (or arguments list if it was passed in as an argument).</p>
+<img alt="../_images/parse_arguments_activity.png" src="../_images/parse_arguments_activity.png" />
+</div>
+<div class="section" id="enable-debugging">
+<h2>Enable Debugging<a class="headerlink" href="#enable-debugging" title="Permalink to this headline">¶</a></h2>
+<p>Checks the <cite>args</cite> namespace to see if the user asked for an interactive debugger and enables it (if possible).</p>
+<img alt="../_images/enable_debugging_activity.png" src="../_images/enable_debugging_activity.png" />
+</div>
+<div class="section" id="the-sub-strategies">
+<h2>The Sub-Strategies<a class="headerlink" href="#the-sub-strategies" title="Permalink to this headline">¶</a></h2>
+<p>These are functions that the sub-parsers use to chose the path to follow at run-time based on the user&#8217;s command-line arguments. The get_examples was created so that other code can get them.
+.. &#8216;</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.main.get_examples.html#cameraobscura.ratevsrange.main.get_examples" title="cameraobscura.ratevsrange.main.get_examples"><code class="xref py py-obj docutils literal"><span class="pre">get_examples</span></code></a>()</td>
+<td>gets the example strings from the configurations</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.main.fetch_configuration.html#cameraobscura.ratevsrange.main.fetch_configuration" title="cameraobscura.ratevsrange.main.fetch_configuration"><code class="xref py py-obj docutils literal"><span class="pre">fetch_configuration</span></code></a>(args)</td>
+<td>gets the default configuration and dumps it to the screen</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.ratevsrange.main.run_configuration.html#cameraobscura.ratevsrange.main.run_configuration" title="cameraobscura.ratevsrange.main.run_configuration"><code class="xref py py-obj docutils literal"><span class="pre">run_configuration</span></code></a>(args)</td>
+<td>Runs the AutomatedRVR.Test</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-main-function">
+<h2>The Main Function<a class="headerlink" href="#the-main-function" title="Permalink to this headline">¶</a></h2>
+<p>The main entry point to run the rate-vs-range code:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Get <cite>args</cite> namespace from <code class="docutils literal"><span class="pre">parse_args</span></code></li>
+<li>If <cite>args.pudb</cite> or <cite>args.pdb</cite>, enable debugging</li>
+<li>Set the logger</li>
+<li>Call the subcommand</li>
+</ol>
+</div></blockquote>
+<div class="figure">
+<img alt="../_images/main_activity.png" src="../_images/main_activity.png" />
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

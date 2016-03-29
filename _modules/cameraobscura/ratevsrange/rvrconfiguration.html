@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cameraobscura.ratevsrange.rvrconfiguration &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for cameraobscura.ratevsrange.rvrconfiguration</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+
+<span class="c1"># python standard library</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">abc</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">abstractproperty</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">IntType</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
+<span class="kn">import</span> <span class="nn">ConfigParser</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="c1"># this package</span>
+<span class="kn">from</span> <span class="nn">cameraobscura</span> <span class="kn">import</span> <span class="n">CameraobscuraError</span>
+
+<span class="kn">from</span> <span class="nn">cameraobscura.commands.iperf.Iperf</span> <span class="kn">import</span> <span class="n">IperfConfiguration</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.commands.iperf.iperfsettings</span> <span class="kn">import</span> <span class="n">IperfConstants</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.commands.iperf.iperfsettings</span> <span class="kn">import</span>  <span class="n">IperfClientSettings</span><span class="p">,</span> <span class="n">IperfServerSettings</span>
+
+<span class="kn">from</span> <span class="nn">cameraobscura.hosts.host</span> <span class="kn">import</span> <span class="n">HostConfiguration</span>
+
+<span class="kn">from</span> <span class="nn">cameraobscura.attenuators.attenuator_builder</span> <span class="kn">import</span> <span class="n">get_definitions</span>
+<span class="n">attenuation_definitions</span> <span class="o">=</span> <span class="n">get_definitions</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">cameraobscura.utilities.configurationadapter</span> <span class="kn">import</span> <span class="n">ConfigurationError</span>
+
+<span class="kn">from</span> <span class="nn">cameraobscura.common.baseconfiguration</span> <span class="kn">import</span> <span class="n">BaseConfiguration</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.utilities.query</span> <span class="kn">import</span> <span class="n">QueryEnum</span><span class="p">,</span> <span class="n">QueryConfiguration</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.utilities.dump</span> <span class="kn">import</span> <span class="n">DumpConstants</span><span class="p">,</span> <span class="n">DumpConfiguration</span>
+
+<span class="kn">from</span> <span class="nn">cameraobscura.commands.ping.pingconfiguration</span> <span class="kn">import</span> <span class="n">PingConfigurationConstants</span><span class="p">,</span> <span class="n">PingConfiguration</span>
+
+<span class="n">UNDERSCORE</span> <span class="o">=</span> <span class="s1">&#39;_&#39;</span>
+<span class="n">ONE</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">FIRST</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">LAST</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="k">class</span> <span class="nc">AttenuationEnum</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constants for the [attenuation] section</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;attenuation&#39;</span>
+
+    <span class="c1"># options</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="s1">&#39;stop&#39;</span>
+    <span class="n">name</span> <span class="o">=</span><span class="s1">&#39;name&#39;</span>
+    <span class="n">control_ip</span> <span class="o">=</span> <span class="s1">&#39;control_ip&#39;</span>
+    <span class="n">interface</span> <span class="o">=</span> <span class="s1">&#39;interface&#39;</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="s1">&#39;start&#39;</span>
+    <span class="n">step_sizes</span> <span class="o">=</span> <span class="s1">&#39;step_sizes&#39;</span>
+    <span class="n">step</span> <span class="o">=</span> <span class="s1">&#39;step&#39;</span>
+    <span class="n">step_list</span> <span class="o">=</span> <span class="s1">&#39;step_list&#39;</span>
+    <span class="n">reversal_limit</span> <span class="o">=</span> <span class="s1">&#39;reversal_limit&#39;</span>
+    <span class="n">step_change_thresholds</span> <span class="o">=</span> <span class="s1">&#39;step_change_thresholds&#39;</span>
+    <span class="n">stepchange</span> <span class="o">=</span> <span class="s1">&#39;stepchange&#39;</span>
+    
+    <span class="c1"># defaults</span>
+    <span class="n">default_attenuator</span> <span class="o">=</span> <span class="s1">&#39;WeinschelP&#39;</span>
+    <span class="n">default_start</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">default_reversal_limit</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">default_stop</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">maxint</span>
+    <span class="n">default_step_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># constants</span>
+    <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+
+    
+<span class="n">ATTENUATION_LOG_STRING</span> <span class="o">=</span> <span class="s1">&#39;[attenuation] {0} = {1}&#39;</span>
+
+<span class="k">class</span> <span class="nc">DutEnum</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Holder of constants for the DUT</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;dut&#39;</span>
+
+<span class="k">class</span> <span class="nc">ServerEnum</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Holder of constants for the server</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;server&#39;</span>
+
+<span class="k">class</span> <span class="nc">OtherEnum</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Holder of constants for the other section</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;other&#39;</span>
+
+    <span class="c1"># options</span>
+    <span class="n">result_location</span> <span class="o">=</span> <span class="s1">&#39;result_location&#39;</span>
+    <span class="n">test_name</span> <span class="o">=</span> <span class="s1">&#39;test_name&#39;</span>
+    <span class="n">ping</span> <span class="o">=</span><span class="s1">&#39;ping&#39;</span>
+    <span class="n">repetitions</span> <span class="o">=</span> <span class="s1">&#39;repetitions&#39;</span>
+    <span class="n">recovery_time</span> <span class="o">=</span> <span class="s1">&#39;recovery_time&#39;</span>
+
+    <span class="c1">#defaults</span>
+    <span class="n">default_result_location</span> <span class="o">=</span> <span class="s1">&#39;output_folder&#39;</span>
+    <span class="n">default_test_name</span> <span class="o">=</span> <span class="s1">&#39;rate_vs_range&#39;</span>
+    <span class="n">default_repetitions</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">default_recovery_time</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1"># end other Enum</span>
+
+<span class="k">class</span> <span class="nc">TrafficEnum</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A holder of iperf traffic constants</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;iperf&#39;</span>
+    <span class="n">old_section</span> <span class="o">=</span> <span class="s1">&#39;traffic&#39;</span>
+
+    <span class="c1"># directions</span>
+    <span class="n">upstream</span> <span class="o">=</span> <span class="n">IperfConstants</span><span class="o">.</span><span class="n">up</span>
+    <span class="n">downstream</span> <span class="o">=</span> <span class="n">IperfConstants</span><span class="o">.</span><span class="n">down</span>
+    <span class="n">both</span> <span class="o">=</span> <span class="s1">&#39;both&#39;</span>
+
+    <span class="c1"># options</span>
+    <span class="n">direction</span> <span class="o">=</span> <span class="s1">&#39;direction&#39;</span>
+
+    <span class="c1"># defaults</span>
+    <span class="n">default_direction</span> <span class="o">=</span> <span class="n">both</span>
+
+    <span class="n">false</span> <span class="o">=</span> <span class="s1">&#39;no false off&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<div class="viewcode-block" id="optionalsection"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.rvrconfiguration.optionalsection.html#cameraobscura.plugins.rvrplugin.optionalsection">[docs]</a><span class="k">def</span> <span class="nf">optionalsection</span><span class="p">(</span><span class="n">method</span><span class="p">,</span>  <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    function to use as a method decorator (expects ``self`` as one of the arguments)</span>
+
+<span class="sd">    Also expects that the object has logger attributes</span>
+
+<span class="sd">    :param:</span>
+
+<span class="sd">     - `method`: method instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">wrapped</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ConfigParser</span><span class="o">.</span><span class="n">NoSectionError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapped</span></div>
+
+<div class="viewcode-block" id="RVRConfiguration"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.html#cameraobscura.plugins.rvrplugin.RVRConfiguration">[docs]</a><span class="k">class</span> <span class="nc">RVRConfiguration</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A holder of the RVR Configuration</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="RVRConfiguration.__init__"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.html#cameraobscura.plugins.rvrplugin.RVRConfiguration.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        RVRConfiguration constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `configuration`: a ConfigurationAdapter with the configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RVRConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">configuration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_attenuation</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_other</span> <span class="o">=</span> <span class="bp">None</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dut</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_server</span> <span class="o">=</span> <span class="bp">None</span>       
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_traffic</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_query</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dump</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ping</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: A logging object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;{0}.{1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__module__</span><span class="p">,</span>
+                                  <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">attenuation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        An Attenuation Section Configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_attenuation</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_attenuation</span> <span class="o">=</span> <span class="n">AttenuationConfiguration</span><span class="p">(</span><span class="n">configuration</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_attenuation</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_attenuation</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">ConfigurationError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_attenuation</span><span class="o">.</span><span class="n">example</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_attenuation</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dump</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A dump-composite configuration</span>
+
+<span class="sd">        :return: DumpConfiguration or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dump</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">has_section</span><span class="p">(</span><span class="n">DumpConstants</span><span class="o">.</span><span class="n">section</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_dump</span> <span class="o">=</span> <span class="n">DumpConfiguration</span><span class="p">(</span><span class="n">configuration</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dump</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_dump</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dump</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A ping configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ping</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">has_section</span><span class="p">(</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">section</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_ping</span> <span class="o">=</span><span class="n">PingConfiguration</span><span class="p">(</span><span class="n">configuration</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ping</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_ping</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ping</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A Query configuration</span>
+
+<span class="sd">        :return: QueryConfiguration or None if not given</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">has_section</span><span class="p">(</span><span class="n">QueryEnum</span><span class="o">.</span><span class="n">section</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_query</span> <span class="o">=</span> <span class="n">QueryConfiguration</span><span class="p">(</span><span class="n">configuration</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_query</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_query</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dut</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The client&#39;s configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dut</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dut</span> <span class="o">=</span> <span class="n">HostConfiguration</span><span class="p">(</span><span class="n">configuration</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">,</span>
+                                            <span class="n">section</span><span class="o">=</span><span class="n">DutEnum</span><span class="o">.</span><span class="n">section</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dut</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dut</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dut</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">server</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The server&#39;s configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_server</span> <span class="o">=</span> <span class="n">HostConfiguration</span><span class="p">(</span><span class="n">configuration</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">,</span>
+                                               <span class="n">section</span><span class="o">=</span><span class="n">ServerEnum</span><span class="o">.</span><span class="n">section</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">other</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the Other Configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_other</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_other</span> <span class="o">=</span> <span class="n">OtherConfiguration</span><span class="p">(</span><span class="n">configuration</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_other</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_other</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_other</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">traffic</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The Traffic Configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_traffic</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_traffic</span> <span class="o">=</span> <span class="n">IperfConfiguration</span><span class="p">(</span><span class="n">configuration</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
+            <span class="c1"># a temporary kludge while I figure out where it should fail</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_traffic</span><span class="o">.</span><span class="n">client_settings</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="s2">&quot;Not set&quot;</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_traffic</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_traffic</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+            
+            <span class="c1"># so it will fail if no one sets it later</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_traffic</span><span class="o">.</span><span class="n">client_settings</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_traffic</span>
+    
+<div class="viewcode-block" id="RVRConfiguration.reset"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.rvrconfiguration.RVRConfiguration.reset.html#cameraobscura.plugins.rvrplugin.RVRConfiguration.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resets the attributes to None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attenuation</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dut</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">other</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">traffic</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="k">return</span></div></div>
+<span class="c1"># end class RVRConfiguration</span>
+
+<div class="viewcode-block" id="AttenuationConfiguration"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.html#cameraobscura.plugins.rvrplugin.AttenuationConfiguration">[docs]</a><span class="k">class</span> <span class="nc">AttenuationConfiguration</span><span class="p">(</span><span class="n">BaseConfiguration</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Configuration for the Attenuation settings</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="AttenuationConfiguration.__init__"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.html#cameraobscura.plugins.rvrplugin.AttenuationConfiguration.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        AttenuationConfiguration constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `configuration`: a loaded configuration adapter</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AttenuationConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_start</span>  <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_control_ip</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_step_sizes</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_step_change_thresholds</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_step_list</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reversal_limit</span> <span class="o">=</span> <span class="bp">None</span>        
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">example</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        An example attenuation section</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_example</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_example</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            [{section}]</span>
+<span class="s2">            # if an option is commented out it has the default setting you see</span>
+
+<span class="s2">            # &#39;start&#39; is the attenuation value to use when the testing starts</span>
+<span class="s2">            </span>
+<span class="s2">            #start = {start}</span>
+<span class="s2">            </span>
+<span class="s2">            # &#39;stop&#39; is the maximum attenuation to try before stopping</span>
+<span class="s2">            </span>
+<span class="s2">            #stop = {stop}</span>
+
+<span class="s2">            # &#39;name&#39; is the name of the attenuator</span>
+<span class="s2">            # not case-sensitive, but spelling counts</span>
+<span class="s2">            # valid names : {attenuators}</span>
+<span class="s2">            </span>
+<span class="s2">            #name = {name}</span>
+
+<span class="s2">            # &#39;control_ip&#39; is the address of the attenuator</span>
+<span class="s2">            control_ip = 192.168.10.53</span>
+
+<span class="s2">            # &#39;step_sizes&#39; is a space-separated list of step-sizes</span>
+<span class="s2">            # (each attenuation increases by the current step-size at each repetition)</span>
+<span class="s2">            </span>
+<span class="s2">            #step_sizes = {step_sizes}</span>
+
+<span class="s2">            # &#39;step_change_thresholds&#39; is a space-separated list of thresholds which </span>
+<span class="s2">            # when reached trigger a change to the next &#39;step-size&#39;</span>
+<span class="s2">            # there should always be one less threshold than step-sizes</span>
+<span class="s2">            # if you don&#39;t want to change, comment out or remove the line</span>
+<span class="s2">            </span>
+<span class="s2">            #step_change_thresholds =</span>
+
+<span class="s2">            # as an example, the next two lines would cause</span>
+<span class="s2">            # the attenuation to increase by 1 until 10 is reached</span>
+<span class="s2">            # then it will increase by 5 until 100 then it will increase by 10</span>
+<span class="s2">            # until the end of the test</span>
+<span class="s2">            </span>
+<span class="s2">            # step_sizes = 1 5 10</span>
+<span class="s2">            # step_change_thresholds = 10 100</span>
+
+<span class="s2">            # `reversal_limit` is the maximum number of times to reverse directions</span>
+<span class="s2">            # reversal_limit = {reversals}</span>
+
+<span class="s2">            # `step_list` a list of attenuations to use instead of calculating a range</span>
+<span class="s2">            # this overrides step_sizes, start, stop, etc.</span>
+<span class="s2">            # e.g. to run only attenuations 10, 20, 30,:</span>
+<span class="s2">            # step_list = 10 20 30 </span>
+<span class="s2">            # step_list = </span>
+<span class="s2">            &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                       <span class="n">start</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">default_start</span><span class="p">,</span>
+                       <span class="n">attenuators</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">attenuation_definitions</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+                <span class="n">stop</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">default_stop</span><span class="p">,</span>
+                <span class="n">step_sizes</span> <span class="o">=</span> <span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">default_step_sizes</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">default_attenuator</span><span class="p">,</span>
+                <span class="n">reversals</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">default_reversal_limit</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_example</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">section</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The section name in the configuration file [attenuation]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_section</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_section</span> <span class="o">=</span> <span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">section</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_section</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the maximum attenuation from the config-file</span>
+
+<span class="sd">        Instead of returning None, returns sys.maxint so users can use min()</span>
+<span class="sd">        to compare this and attenuator&#39;s given maximum attenuation</span>
+
+<span class="sd">        :section: attenuator</span>
+<span class="sd">        :option: stop</span>
+<span class="sd">        :return: integer or sys.maxint</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                   <span class="n">option</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span>
+                                                   <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                   <span class="n">default</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">default_stop</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">ATTENUATION_LOG_STRING</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;stop&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">step_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets a list of steps to take</span>
+
+<span class="sd">        :return: list of ints or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_step_list</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_step_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                         <span class="n">option</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">step_list</span><span class="p">,</span>
+                                                         <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                         <span class="n">converter</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_step_list</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">reversal_limit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        number of times to change attenuation direction</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reversal_limit</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_reversal_limit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                             <span class="n">option</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">reversal_limit</span><span class="p">,</span>
+                                                             <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                             <span class="n">default</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">default_reversal_limit</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reversal_limit</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the name of the Attenuator for the AttenuatorFactory</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                <span class="n">option</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                                <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                <span class="n">default</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">default_attenuator</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">ATTENUATION_LOG_STRING</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">control_ip</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The old option was `interface` so it will try that if `control_ip` is missing.</span>
+
+<span class="sd">        :return: hostname of the attenuator</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_control_ip</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_control_ip</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                      <span class="n">option</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">control_ip</span><span class="p">,</span>
+                                                      <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_control_ip</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_control_ip</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                          <span class="n">option</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">interface</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">ATTENUATION_LOG_STRING</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;control_ip&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_control_ip</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_control_ip</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The starting attenuation value</span>
+<span class="sd">        </span>
+<span class="sd">        :section: attenuation</span>
+<span class="sd">        :option: start</span>
+<span class="sd">        :return: integer attenuation start</span>
+<span class="sd">        :default: 0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                    <span class="n">option</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">start</span><span class="p">,</span>
+                                                    <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                    <span class="n">default</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">default_start</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">ATTENUATION_LOG_STRING</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">step_sizes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The amounts to increase the attenuation with each pass.</span>
+
+<span class="sd">        :return: list of integers</span>
+<span class="sd">        :default: [1]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_step_sizes</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_step_sizes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                          <span class="n">option</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">step_sizes</span><span class="p">,</span>
+                                                          <span class="n">delimiter</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">delimiter</span><span class="p">,</span>
+                                                          <span class="n">converter</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+                                                          <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="c1"># handle the legacy option</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_step_sizes</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_step_sizes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                              <span class="n">option</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">step</span><span class="p">,</span>
+                                                              <span class="n">delimiter</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">delimiter</span><span class="p">,</span>
+                                                              <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                              <span class="n">converter</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+                                                              <span class="n">default</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">default_step_sizes</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">ATTENUATION_LOG_STRING</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;step_sizes&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_step_sizes</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_step_sizes</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">step_change_thresholds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The thresholds which if exceeded triggers a change in step-size</span>
+
+<span class="sd">        :return: list of integer thresholds or None (the default)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># this uses False so it won&#39;t query the configuration repeatedly</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_step_change_thresholds</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_step_change_thresholds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                                      <span class="n">option</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">step_change_thresholds</span><span class="p">,</span>
+                                                                      <span class="n">delimiter</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">delimiter</span><span class="p">,</span>
+                                                                      <span class="n">converter</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+                                                                      <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="c1"># legacy option</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_step_change_thresholds</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_step_change_thresholds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                                          <span class="n">option</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">stepchange</span><span class="p">,</span>
+                                                                          <span class="n">delimiter</span><span class="o">=</span><span class="n">AttenuationEnum</span><span class="o">.</span><span class="n">delimiter</span><span class="p">,</span>
+                                                                          <span class="n">converter</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+                                                                          <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">ATTENUATION_LOG_STRING</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="s1">&#39;step_change_thresholds&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_step_change_thresholds</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_step_change_thresholds</span>
+
+<div class="viewcode-block" id="AttenuationConfiguration.reset"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.html#cameraobscura.plugins.rvrplugin.AttenuationConfiguration.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the attributes to None (except step_change_thresholds which is set to False)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Resetting the AttenuationConfiguration&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_control_ip</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_start</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_step_sizes</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_step_change_thresholds</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_step_list</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reversal_limit</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="AttenuationConfiguration.check_rep"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.rvrconfiguration.AttenuationConfiguration.html#cameraobscura.plugins.rvrplugin.AttenuationConfiguration.check_rep">[docs]</a>    <span class="k">def</span> <span class="nf">check_rep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Tries to find inconsistencies in the values</span>
+
+<span class="sd">        :raise: AssertionError if value-error is found</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AttenuationConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># is the name a known attenuator? This seems fragile, but what the hell</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">attenuation_definitions</span><span class="p">,</span> <span class="s2">&quot;Configuration -- Section: [attenuation] Option: name={n}&#39; not a known attenuator&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="c1"># is stop greater or equal to start?</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="s2">&quot;stop: {stop} not greater than or equal to start: {start}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">stop</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span>
+                                                                                                               <span class="n">start</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AssertionError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">ConfigurationError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="k">return</span></div></div>
+<span class="c1"># end class AttenuationConfiguration</span>
+
+<div class="viewcode-block" id="OtherConfiguration"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration.html#cameraobscura.plugins.rvrplugin.OtherConfiguration">[docs]</a><span class="k">class</span> <span class="nc">OtherConfiguration</span><span class="p">(</span><span class="n">BaseConfiguration</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A holder of leftover parts</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="OtherConfiguration.__init__"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration.html#cameraobscura.plugins.rvrplugin.OtherConfiguration.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        OtherConfiguration constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `configuration`: a loaded configuration-adapter</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">OtherConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># attributes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_result_location</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_name</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_repetitions</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_recovery_time</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">example</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        An example other-section</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_example</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_example</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            #[{section}]</span>
+<span class="s2">            # a sub-folder name to save the output files in</span>
+<span class="s2">            # also used for the final csv</span>
+<span class="s2">            # add {{timestamp}}  to get a timestamp            </span>
+<span class="s2">            # e.g. result_location = rvr_{{timestamp}}</span>
+<span class="s2">            </span>
+<span class="s2">            #result_location = {result_location}</span>
+
+<span class="s2">            # identifier for the test </span>
+<span class="s2">            #test_name = {test_name}</span>
+
+<span class="s2">            # to run the same test multiple times</span>
+<span class="s2">            # repetitions = {repetitions}</span>
+
+<span class="s2">            # there is currently a sleep between directions (up and down)</span>
+<span class="s2">            # use this next setting to change it if it&#39;s too long or short</span>
+<span class="s2">            #recovery_time = {recovery_time}</span>
+<span class="s2">            &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                       <span class="n">result_location</span><span class="o">=</span><span class="n">OtherEnum</span><span class="o">.</span><span class="n">default_result_location</span><span class="p">,</span>
+                       <span class="n">test_name</span><span class="o">=</span><span class="n">OtherEnum</span><span class="o">.</span><span class="n">default_test_name</span><span class="p">,</span>
+                       <span class="n">repetitions</span><span class="o">=</span><span class="n">OtherEnum</span><span class="o">.</span><span class="n">default_repetitions</span><span class="p">,</span>
+                       <span class="n">recovery_time</span><span class="o">=</span><span class="n">OtherEnum</span><span class="o">.</span><span class="n">default_recovery_time</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_example</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">section</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Name of the section in the configuration file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_section</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_section</span> <span class="o">=</span> <span class="n">OtherEnum</span><span class="o">.</span><span class="n">section</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_section</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">result_location</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The name of the output folder (default = &#39;output_files&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_result_location</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_result_location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                           <span class="n">option</span><span class="o">=</span><span class="n">OtherEnum</span><span class="o">.</span><span class="n">result_location</span><span class="p">,</span>
+                                                           <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                           <span class="n">default</span><span class="o">=</span><span class="n">OtherEnum</span><span class="o">.</span><span class="n">default_result_location</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Using Result Location: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_result_location</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_result_location</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">test_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The name to use for the test.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_test_name</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_test_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                     <span class="n">option</span><span class="o">=</span><span class="n">OtherEnum</span><span class="o">.</span><span class="n">test_name</span><span class="p">,</span>
+                                                     <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                     <span class="n">default</span><span class="o">=</span><span class="n">OtherEnum</span><span class="o">.</span><span class="n">default_test_name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Using Test Name: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_test_name</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_test_name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">repetitions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets number of times to repeat the same test</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_repetitions</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_repetitions</span> <span class="o">=</span> <span class="n">OtherEnum</span><span class="o">.</span><span class="n">default_repetitions</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_repetitions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                           <span class="n">option</span><span class="o">=</span><span class="n">OtherEnum</span><span class="o">.</span><span class="n">repetitions</span><span class="p">,</span>
+                                                           <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                           <span class="n">default</span><span class="o">=</span><span class="n">OtherEnum</span><span class="o">.</span><span class="n">default_repetitions</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_repetitions</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">recovery_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Number of seconds to sleep between test directions</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recovery_time</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_recovery_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                            <span class="n">option</span><span class="o">=</span><span class="n">OtherEnum</span><span class="o">.</span><span class="n">recovery_time</span><span class="p">,</span>
+                                                            <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                            <span class="n">default</span><span class="o">=</span><span class="n">OtherEnum</span><span class="o">.</span><span class="n">default_recovery_time</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recovery_time</span>
+    
+<div class="viewcode-block" id="OtherConfiguration.reset"><a class="viewcode-back" href="../../../ratevsrange/api/cameraobscura.ratevsrange.rvrconfiguration.OtherConfiguration.html#cameraobscura.plugins.rvrplugin.OtherConfiguration.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the attributes to None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;resetting the attributes to None&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_result_location</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_recovery_time</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_name</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ping</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_repetitions</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@optionalsection</span>
+    <span class="k">def</span> <span class="nf">check_rep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks the representation</span>
+
+<span class="sd">        :raise: Attenuator Error if something bad found</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">OtherConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">repetitions</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+        <span class="k">except</span> <span class="ne">AssertionError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">TestsuiteError</span><span class="p">(</span><span class="s2">&quot;test repetitions must be non-negative, not {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">repetitions</span><span class="p">))</span>
+        <span class="k">return</span></div>
+<span class="c1"># end class OtherConfiguration</span>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

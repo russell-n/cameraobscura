@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>paramiko.client &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for paramiko.client</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (C) 2006-2007  Robey Pointer &lt;robeypointer@gmail.com&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of paramiko.</span>
+<span class="c1">#</span>
+<span class="c1"># Paramiko is free software; you can redistribute it and/or modify it under the</span>
+<span class="c1"># terms of the GNU Lesser General Public License as published by the Free</span>
+<span class="c1"># Software Foundation; either version 2.1 of the License, or (at your option)</span>
+<span class="c1"># any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># Paramiko is distributed in the hope that it will be useful, but WITHOUT ANY</span>
+<span class="c1"># WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR</span>
+<span class="c1"># A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more</span>
+<span class="c1"># details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU Lesser General Public License</span>
+<span class="c1"># along with Paramiko; if not, write to the Free Software Foundation, Inc.,</span>
+<span class="c1"># 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">SSH client &amp; key policies</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">binascii</span> <span class="kn">import</span> <span class="n">hexlify</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">errno</span> <span class="kn">import</span> <span class="n">ECONNREFUSED</span><span class="p">,</span> <span class="n">EHOSTUNREACH</span>
+
+<span class="kn">from</span> <span class="nn">paramiko.agent</span> <span class="kn">import</span> <span class="n">Agent</span>
+<span class="kn">from</span> <span class="nn">paramiko.common</span> <span class="kn">import</span> <span class="n">DEBUG</span>
+<span class="kn">from</span> <span class="nn">paramiko.config</span> <span class="kn">import</span> <span class="n">SSH_PORT</span>
+<span class="kn">from</span> <span class="nn">paramiko.dsskey</span> <span class="kn">import</span> <span class="n">DSSKey</span>
+<span class="kn">from</span> <span class="nn">paramiko.ecdsakey</span> <span class="kn">import</span> <span class="n">ECDSAKey</span>
+<span class="kn">from</span> <span class="nn">paramiko.hostkeys</span> <span class="kn">import</span> <span class="n">HostKeys</span>
+<span class="kn">from</span> <span class="nn">paramiko.py3compat</span> <span class="kn">import</span> <span class="n">string_types</span>
+<span class="kn">from</span> <span class="nn">paramiko.resource</span> <span class="kn">import</span> <span class="n">ResourceManager</span>
+<span class="kn">from</span> <span class="nn">paramiko.rsakey</span> <span class="kn">import</span> <span class="n">RSAKey</span>
+<span class="kn">from</span> <span class="nn">paramiko.ssh_exception</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SSHException</span><span class="p">,</span> <span class="n">BadHostKeyException</span><span class="p">,</span> <span class="n">NoValidConnectionsError</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">paramiko.transport</span> <span class="kn">import</span> <span class="n">Transport</span>
+<span class="kn">from</span> <span class="nn">paramiko.util</span> <span class="kn">import</span> <span class="n">retry_on_signal</span><span class="p">,</span> <span class="n">ClosingContextManager</span>
+
+
+<div class="viewcode-block" id="SSHClient"><a class="viewcode-back" href="../../utilities/api/paramiko.SSHClient.html#paramiko.SSHClient">[docs]</a><span class="k">class</span> <span class="nc">SSHClient</span> <span class="p">(</span><span class="n">ClosingContextManager</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A high-level representation of a session with an SSH server.  This class</span>
+<span class="sd">    wraps `.Transport`, `.Channel`, and `.SFTPClient` to take care of most</span>
+<span class="sd">    aspects of authenticating and opening channels.  A typical use case is::</span>
+
+<span class="sd">        client = SSHClient()</span>
+<span class="sd">        client.load_system_host_keys()</span>
+<span class="sd">        client.connect(&#39;ssh.example.com&#39;)</span>
+<span class="sd">        stdin, stdout, stderr = client.exec_command(&#39;ls -l&#39;)</span>
+
+<span class="sd">    You may pass in explicit overrides for authentication and server host key</span>
+<span class="sd">    checking.  The default mechanism is to try to use local key files or an</span>
+<span class="sd">    SSH agent (if one is running).</span>
+
+<span class="sd">    Instances of this class may be used as context managers.</span>
+
+<span class="sd">    .. versionadded:: 1.6</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SSHClient.__init__"><a class="viewcode-back" href="../../utilities/api/paramiko.SSHClient.html#paramiko.SSHClient.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new SSHClient.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_system_host_keys</span> <span class="o">=</span> <span class="n">HostKeys</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_host_keys</span> <span class="o">=</span> <span class="n">HostKeys</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_host_keys_filename</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log_channel</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_policy</span> <span class="o">=</span> <span class="n">RejectPolicy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_transport</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_agent</span> <span class="o">=</span> <span class="bp">None</span></div>
+
+<div class="viewcode-block" id="SSHClient.load_system_host_keys"><a class="viewcode-back" href="../../utilities/api/paramiko.SSHClient.html#paramiko.SSHClient.load_system_host_keys">[docs]</a>    <span class="k">def</span> <span class="nf">load_system_host_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load host keys from a system (read-only) file.  Host keys read with</span>
+<span class="sd">        this method will not be saved back by `save_host_keys`.</span>
+
+<span class="sd">        This method can be called multiple times.  Each new set of host keys</span>
+<span class="sd">        will be merged with the existing set (new replacing old if there are</span>
+<span class="sd">        conflicts).</span>
+
+<span class="sd">        If ``filename`` is left as ``None``, an attempt will be made to read</span>
+<span class="sd">        keys from the user&#39;s local &quot;known hosts&quot; file, as used by OpenSSH,</span>
+<span class="sd">        and no exception will be raised if the file can&#39;t be read.  This is</span>
+<span class="sd">        probably only useful on posix.</span>
+
+<span class="sd">        :param str filename: the filename to read, or ``None``</span>
+
+<span class="sd">        :raises IOError:</span>
+<span class="sd">            if a filename was provided and the file could not be read</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># try the user&#39;s .ssh key file, and mask exceptions</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.ssh/known_hosts&#39;</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_system_host_keys</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_system_host_keys</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SSHClient.load_host_keys"><a class="viewcode-back" href="../../utilities/api/paramiko.SSHClient.html#paramiko.SSHClient.load_host_keys">[docs]</a>    <span class="k">def</span> <span class="nf">load_host_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load host keys from a local host-key file.  Host keys read with this</span>
+<span class="sd">        method will be checked after keys loaded via `load_system_host_keys`,</span>
+<span class="sd">        but will be saved back by `save_host_keys` (so they can be modified).</span>
+<span class="sd">        The missing host key policy `.AutoAddPolicy` adds keys to this set and</span>
+<span class="sd">        saves them, when connecting to a previously-unknown server.</span>
+
+<span class="sd">        This method can be called multiple times.  Each new set of host keys</span>
+<span class="sd">        will be merged with the existing set (new replacing old if there are</span>
+<span class="sd">        conflicts).  When automatically saving, the last hostname is used.</span>
+
+<span class="sd">        :param str filename: the filename to read</span>
+
+<span class="sd">        :raises IOError: if the filename could not be read</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_host_keys_filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_host_keys</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SSHClient.save_host_keys"><a class="viewcode-back" href="../../utilities/api/paramiko.SSHClient.html#paramiko.SSHClient.save_host_keys">[docs]</a>    <span class="k">def</span> <span class="nf">save_host_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save the host keys back to a file.  Only the host keys loaded with</span>
+<span class="sd">        `load_host_keys` (plus any added directly) will be saved -- not any</span>
+<span class="sd">        host keys loaded with `load_system_host_keys`.</span>
+
+<span class="sd">        :param str filename: the filename to save to</span>
+
+<span class="sd">        :raises IOError: if the file could not be written</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># update local host keys from file (in case other SSH clients</span>
+        <span class="c1"># have written to the known_hosts file meanwhile.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_host_keys_filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_host_keys</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_host_keys_filename</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">keys</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_host_keys</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">keytype</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">keytype</span><span class="p">,</span> <span class="n">key</span><span class="o">.</span><span class="n">get_base64</span><span class="p">()))</span></div>
+
+<div class="viewcode-block" id="SSHClient.get_host_keys"><a class="viewcode-back" href="../../utilities/api/paramiko.SSHClient.html#paramiko.SSHClient.get_host_keys">[docs]</a>    <span class="k">def</span> <span class="nf">get_host_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the local `.HostKeys` object.  This can be used to examine the</span>
+<span class="sd">        local host keys or change them.</span>
+
+<span class="sd">        :return: the local host keys as a `.HostKeys` object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_host_keys</span></div>
+
+<div class="viewcode-block" id="SSHClient.set_log_channel"><a class="viewcode-back" href="../../utilities/api/paramiko.SSHClient.html#paramiko.SSHClient.set_log_channel">[docs]</a>    <span class="k">def</span> <span class="nf">set_log_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the channel for logging.  The default is ``&quot;paramiko.transport&quot;``</span>
+<span class="sd">        but it can be set to anything you want.</span>
+
+<span class="sd">        :param str name: new channel name for logging</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log_channel</span> <span class="o">=</span> <span class="n">name</span></div>
+
+<div class="viewcode-block" id="SSHClient.set_missing_host_key_policy"><a class="viewcode-back" href="../../utilities/api/paramiko.SSHClient.html#paramiko.SSHClient.set_missing_host_key_policy">[docs]</a>    <span class="k">def</span> <span class="nf">set_missing_host_key_policy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">policy</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the policy to use when connecting to a server that doesn&#39;t have a</span>
+<span class="sd">        host key in either the system or local `.HostKeys` objects.  The</span>
+<span class="sd">        default policy is to reject all unknown servers (using `.RejectPolicy`).</span>
+<span class="sd">        You may substitute `.AutoAddPolicy` or write your own policy class.</span>
+
+<span class="sd">        :param .MissingHostKeyPolicy policy:</span>
+<span class="sd">            the policy to use when receiving a host key from a</span>
+<span class="sd">            previously-unknown server</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_policy</span> <span class="o">=</span> <span class="n">policy</span></div>
+
+    <span class="k">def</span> <span class="nf">_families_and_addresses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Yield pairs of address families and addresses to try for connecting.</span>
+
+<span class="sd">        :param str hostname: the server to connect to</span>
+<span class="sd">        :param int port: the server port to connect to</span>
+<span class="sd">        :returns: Yields an iterable of ``(family, address)`` tuples</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">guess</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">addrinfos</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">AF_UNSPEC</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">family</span><span class="p">,</span> <span class="n">socktype</span><span class="p">,</span> <span class="n">proto</span><span class="p">,</span> <span class="n">canonname</span><span class="p">,</span> <span class="n">sockaddr</span><span class="p">)</span> <span class="ow">in</span> <span class="n">addrinfos</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">socktype</span> <span class="o">==</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">family</span><span class="p">,</span> <span class="n">sockaddr</span>
+                <span class="n">guess</span> <span class="o">=</span> <span class="bp">False</span>
+
+        <span class="c1"># some OS like AIX don&#39;t indicate SOCK_STREAM support, so just guess. :(</span>
+        <span class="c1"># We only do this if we did not get a single result marked as socktype == SOCK_STREAM.</span>
+        <span class="k">if</span> <span class="n">guess</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">family</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">sockaddr</span> <span class="ow">in</span> <span class="n">addrinfos</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">family</span><span class="p">,</span> <span class="n">sockaddr</span>
+
+<div class="viewcode-block" id="SSHClient.connect"><a class="viewcode-back" href="../../utilities/api/paramiko.SSHClient.html#paramiko.SSHClient.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">hostname</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="n">SSH_PORT</span><span class="p">,</span>
+        <span class="n">username</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">pkey</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">key_filename</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">allow_agent</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">look_for_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">compress</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">sock</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">gss_auth</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">gss_kex</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">gss_deleg_creds</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">gss_host</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">banner_timeout</span><span class="o">=</span><span class="bp">None</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Connect to an SSH server and authenticate to it.  The server&#39;s host key</span>
+<span class="sd">        is checked against the system host keys (see `load_system_host_keys`)</span>
+<span class="sd">        and any local host keys (`load_host_keys`).  If the server&#39;s hostname</span>
+<span class="sd">        is not found in either set of host keys, the missing host key policy</span>
+<span class="sd">        is used (see `set_missing_host_key_policy`).  The default policy is</span>
+<span class="sd">        to reject the key and raise an `.SSHException`.</span>
+
+<span class="sd">        Authentication is attempted in the following order of priority:</span>
+
+<span class="sd">            - The ``pkey`` or ``key_filename`` passed in (if any)</span>
+<span class="sd">            - Any key we can find through an SSH agent</span>
+<span class="sd">            - Any &quot;id_rsa&quot;, &quot;id_dsa&quot; or &quot;id_ecdsa&quot; key discoverable in</span>
+<span class="sd">              ``~/.ssh/``</span>
+<span class="sd">            - Plain username/password auth, if a password was given</span>
+
+<span class="sd">        If a private key requires a password to unlock it, and a password is</span>
+<span class="sd">        passed in, that password will be used to attempt to unlock the key.</span>
+
+<span class="sd">        :param str hostname: the server to connect to</span>
+<span class="sd">        :param int port: the server port to connect to</span>
+<span class="sd">        :param str username:</span>
+<span class="sd">            the username to authenticate as (defaults to the current local</span>
+<span class="sd">            username)</span>
+<span class="sd">        :param str password:</span>
+<span class="sd">            a password to use for authentication or for unlocking a private key</span>
+<span class="sd">        :param .PKey pkey: an optional private key to use for authentication</span>
+<span class="sd">        :param str key_filename:</span>
+<span class="sd">            the filename, or list of filenames, of optional private key(s) to</span>
+<span class="sd">            try for authentication</span>
+<span class="sd">        :param float timeout:</span>
+<span class="sd">            an optional timeout (in seconds) for the TCP connect</span>
+<span class="sd">        :param bool allow_agent:</span>
+<span class="sd">            set to False to disable connecting to the SSH agent</span>
+<span class="sd">        :param bool look_for_keys:</span>
+<span class="sd">            set to False to disable searching for discoverable private key</span>
+<span class="sd">            files in ``~/.ssh/``</span>
+<span class="sd">        :param bool compress: set to True to turn on compression</span>
+<span class="sd">        :param socket sock:</span>
+<span class="sd">            an open socket or socket-like object (such as a `.Channel`) to use</span>
+<span class="sd">            for communication to the target host</span>
+<span class="sd">        :param bool gss_auth:</span>
+<span class="sd">            ``True`` if you want to use GSS-API authentication</span>
+<span class="sd">        :param bool gss_kex:</span>
+<span class="sd">            Perform GSS-API Key Exchange and user authentication</span>
+<span class="sd">        :param bool gss_deleg_creds: Delegate GSS-API client credentials or not</span>
+<span class="sd">        :param str gss_host:</span>
+<span class="sd">            The targets name in the kerberos database. default: hostname</span>
+<span class="sd">        :param float banner_timeout: an optional timeout (in seconds) to wait</span>
+<span class="sd">            for the SSH banner to be presented.</span>
+
+<span class="sd">        :raises BadHostKeyException: if the server&#39;s host key could not be</span>
+<span class="sd">            verified</span>
+<span class="sd">        :raises AuthenticationException: if authentication failed</span>
+<span class="sd">        :raises SSHException: if there was any other error connecting or</span>
+<span class="sd">            establishing an SSH session</span>
+<span class="sd">        :raises socket.error: if a socket error occurred while connecting</span>
+
+<span class="sd">        .. versionchanged:: 1.15</span>
+<span class="sd">            Added the ``banner_timeout``, ``gss_auth``, ``gss_kex``,</span>
+<span class="sd">            ``gss_deleg_creds`` and ``gss_host`` arguments.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">sock</span><span class="p">:</span>
+            <span class="n">errors</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="c1"># Try multiple possible address families (e.g. IPv4 vs IPv6)</span>
+            <span class="n">to_try</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_families_and_addresses</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">af</span><span class="p">,</span> <span class="n">addr</span> <span class="ow">in</span> <span class="n">to_try</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">af</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">sock</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+                        <span class="k">except</span><span class="p">:</span>
+                            <span class="k">pass</span>
+                    <span class="n">retry_on_signal</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">addr</span><span class="p">))</span>
+                    <span class="c1"># Break out of the loop on success</span>
+                    <span class="k">break</span>
+                <span class="k">except</span> <span class="n">socket</span><span class="o">.</span><span class="n">error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="c1"># Raise anything that isn&#39;t a straight up connection error</span>
+                    <span class="c1"># (such as a resolution error)</span>
+                    <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">errno</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="n">ECONNREFUSED</span><span class="p">,</span> <span class="n">EHOSTUNREACH</span><span class="p">):</span>
+                        <span class="k">raise</span>
+                    <span class="c1"># Capture anything else so we know how the run looks once</span>
+                    <span class="c1"># iteration is complete. Retain info about which attempt</span>
+                    <span class="c1"># this was.</span>
+                    <span class="n">errors</span><span class="p">[</span><span class="n">addr</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span>
+
+            <span class="c1"># Make sure we explode usefully if no address family attempts</span>
+            <span class="c1"># succeeded. We&#39;ve no way of knowing which error is the &quot;right&quot;</span>
+            <span class="c1"># one, so we construct a hybrid exception containing all the real</span>
+            <span class="c1"># ones, of a subclass that client code should still be watching for</span>
+            <span class="c1"># (socket.error)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">to_try</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">NoValidConnectionsError</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
+
+        <span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transport</span> <span class="o">=</span> <span class="n">Transport</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">gss_kex</span><span class="o">=</span><span class="n">gss_kex</span><span class="p">,</span> <span class="n">gss_deleg_creds</span><span class="o">=</span><span class="n">gss_deleg_creds</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">use_compression</span><span class="p">(</span><span class="n">compress</span><span class="o">=</span><span class="n">compress</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">gss_kex</span> <span class="ow">and</span> <span class="n">gss_host</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">t</span><span class="o">.</span><span class="n">set_gss_host</span><span class="p">(</span><span class="n">hostname</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gss_kex</span> <span class="ow">and</span> <span class="n">gss_host</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">t</span><span class="o">.</span><span class="n">set_gss_host</span><span class="p">(</span><span class="n">gss_host</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_channel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">t</span><span class="o">.</span><span class="n">set_log_channel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_channel</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">banner_timeout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">t</span><span class="o">.</span><span class="n">banner_timeout</span> <span class="o">=</span> <span class="n">banner_timeout</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">start_client</span><span class="p">()</span>
+        <span class="n">ResourceManager</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+
+        <span class="n">server_key</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">get_remote_server_key</span><span class="p">()</span>
+        <span class="n">keytype</span> <span class="o">=</span> <span class="n">server_key</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">port</span> <span class="o">==</span> <span class="n">SSH_PORT</span><span class="p">:</span>
+            <span class="n">server_hostkey_name</span> <span class="o">=</span> <span class="n">hostname</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">server_hostkey_name</span> <span class="o">=</span> <span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">]:</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+
+        <span class="c1"># If GSS-API Key Exchange is performed we are not required to check the</span>
+        <span class="c1"># host key, because the host is authenticated via GSS-API / SSPI as</span>
+        <span class="c1"># well as our client.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transport</span><span class="o">.</span><span class="n">use_gss_kex</span><span class="p">:</span>
+            <span class="n">our_server_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_system_host_keys</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">server_hostkey_name</span><span class="p">,</span>
+                                                         <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">keytype</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">our_server_key</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">our_server_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_host_keys</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">server_hostkey_name</span><span class="p">,</span>
+                                                     <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">keytype</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">our_server_key</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="c1"># will raise exception if the key is rejected; let that fall out</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_policy</span><span class="o">.</span><span class="n">missing_host_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">server_hostkey_name</span><span class="p">,</span>
+                                              <span class="n">server_key</span><span class="p">)</span>
+                <span class="c1"># if the callback returns, assume the key is ok</span>
+                <span class="n">our_server_key</span> <span class="o">=</span> <span class="n">server_key</span>
+
+            <span class="k">if</span> <span class="n">server_key</span> <span class="o">!=</span> <span class="n">our_server_key</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">BadHostKeyException</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">server_key</span><span class="p">,</span> <span class="n">our_server_key</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">username</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">username</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">key_filename</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">key_filenames</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key_filename</span><span class="p">,</span> <span class="n">string_types</span><span class="p">):</span>
+            <span class="n">key_filenames</span> <span class="o">=</span> <span class="p">[</span><span class="n">key_filename</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">key_filenames</span> <span class="o">=</span> <span class="n">key_filename</span>
+        <span class="k">if</span> <span class="n">gss_host</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">gss_host</span> <span class="o">=</span> <span class="n">hostname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_auth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">pkey</span><span class="p">,</span> <span class="n">key_filenames</span><span class="p">,</span> <span class="n">allow_agent</span><span class="p">,</span>
+                   <span class="n">look_for_keys</span><span class="p">,</span> <span class="n">gss_auth</span><span class="p">,</span> <span class="n">gss_kex</span><span class="p">,</span> <span class="n">gss_deleg_creds</span><span class="p">,</span> <span class="n">gss_host</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SSHClient.close"><a class="viewcode-back" href="../../utilities/api/paramiko.SSHClient.html#paramiko.SSHClient.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Close this SSHClient and its underlying `.Transport`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transport</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_transport</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_transport</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_agent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_agent</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_agent</span> <span class="o">=</span> <span class="bp">None</span></div>
+
+<div class="viewcode-block" id="SSHClient.exec_command"><a class="viewcode-back" href="../../utilities/api/paramiko.SSHClient.html#paramiko.SSHClient.exec_command">[docs]</a>    <span class="k">def</span> <span class="nf">exec_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="n">bufsize</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">get_pty</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Execute a command on the SSH server.  A new `.Channel` is opened and</span>
+<span class="sd">        the requested command is executed.  The command&#39;s input and output</span>
+<span class="sd">        streams are returned as Python ``file``-like objects representing</span>
+<span class="sd">        stdin, stdout, and stderr.</span>
+
+<span class="sd">        :param str command: the command to execute</span>
+<span class="sd">        :param int bufsize:</span>
+<span class="sd">            interpreted the same way as by the built-in ``file()`` function in</span>
+<span class="sd">            Python</span>
+<span class="sd">        :param int timeout:</span>
+<span class="sd">            set command&#39;s channel timeout. See `Channel.settimeout`.settimeout</span>
+<span class="sd">        :return:</span>
+<span class="sd">            the stdin, stdout, and stderr of the executing command, as a</span>
+<span class="sd">            3-tuple</span>
+
+<span class="sd">        :raises SSHException: if the server fails to execute the command</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">chan</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transport</span><span class="o">.</span><span class="n">open_session</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">get_pty</span><span class="p">:</span>
+            <span class="n">chan</span><span class="o">.</span><span class="n">get_pty</span><span class="p">()</span>
+        <span class="n">chan</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="n">chan</span><span class="o">.</span><span class="n">exec_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+        <span class="n">stdin</span> <span class="o">=</span> <span class="n">chan</span><span class="o">.</span><span class="n">makefile</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">,</span> <span class="n">bufsize</span><span class="p">)</span>
+        <span class="n">stdout</span> <span class="o">=</span> <span class="n">chan</span><span class="o">.</span><span class="n">makefile</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">bufsize</span><span class="p">)</span>
+        <span class="n">stderr</span> <span class="o">=</span> <span class="n">chan</span><span class="o">.</span><span class="n">makefile_stderr</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">bufsize</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span></div>
+
+<div class="viewcode-block" id="SSHClient.invoke_shell"><a class="viewcode-back" href="../../utilities/api/paramiko.SSHClient.html#paramiko.SSHClient.invoke_shell">[docs]</a>    <span class="k">def</span> <span class="nf">invoke_shell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term</span><span class="o">=</span><span class="s1">&#39;vt100&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">width_pixels</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                     <span class="n">height_pixels</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Start an interactive shell session on the SSH server.  A new `.Channel`</span>
+<span class="sd">        is opened and connected to a pseudo-terminal using the requested</span>
+<span class="sd">        terminal type and size.</span>
+
+<span class="sd">        :param str term:</span>
+<span class="sd">            the terminal type to emulate (for example, ``&quot;vt100&quot;``)</span>
+<span class="sd">        :param int width: the width (in characters) of the terminal window</span>
+<span class="sd">        :param int height: the height (in characters) of the terminal window</span>
+<span class="sd">        :param int width_pixels: the width (in pixels) of the terminal window</span>
+<span class="sd">        :param int height_pixels: the height (in pixels) of the terminal window</span>
+<span class="sd">        :return: a new `.Channel` connected to the remote shell</span>
+
+<span class="sd">        :raises SSHException: if the server fails to invoke a shell</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">chan</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transport</span><span class="o">.</span><span class="n">open_session</span><span class="p">()</span>
+        <span class="n">chan</span><span class="o">.</span><span class="n">get_pty</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width_pixels</span><span class="p">,</span> <span class="n">height_pixels</span><span class="p">)</span>
+        <span class="n">chan</span><span class="o">.</span><span class="n">invoke_shell</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">chan</span></div>
+
+<div class="viewcode-block" id="SSHClient.open_sftp"><a class="viewcode-back" href="../../utilities/api/paramiko.SSHClient.html#paramiko.SSHClient.open_sftp">[docs]</a>    <span class="k">def</span> <span class="nf">open_sftp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Open an SFTP session on the SSH server.</span>
+
+<span class="sd">        :return: a new `.SFTPClient` session object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transport</span><span class="o">.</span><span class="n">open_sftp_client</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="SSHClient.get_transport"><a class="viewcode-back" href="../../utilities/api/paramiko.SSHClient.html#paramiko.SSHClient.get_transport">[docs]</a>    <span class="k">def</span> <span class="nf">get_transport</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the underlying `.Transport` object for this SSH connection.</span>
+<span class="sd">        This can be used to perform lower-level tasks, like opening specific</span>
+<span class="sd">        kinds of channels.</span>
+
+<span class="sd">        :return: the `.Transport` for this connection</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transport</span></div>
+
+    <span class="k">def</span> <span class="nf">_auth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">pkey</span><span class="p">,</span> <span class="n">key_filenames</span><span class="p">,</span> <span class="n">allow_agent</span><span class="p">,</span>
+              <span class="n">look_for_keys</span><span class="p">,</span> <span class="n">gss_auth</span><span class="p">,</span> <span class="n">gss_kex</span><span class="p">,</span> <span class="n">gss_deleg_creds</span><span class="p">,</span> <span class="n">gss_host</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Try, in order:</span>
+
+<span class="sd">            - The key passed in, if one was passed in.</span>
+<span class="sd">            - Any key we can find through an SSH agent (if allowed).</span>
+<span class="sd">            - Any &quot;id_rsa&quot;, &quot;id_dsa&quot; or &quot;id_ecdsa&quot; key discoverable in ~/.ssh/</span>
+<span class="sd">              (if allowed).</span>
+<span class="sd">            - Plain username/password auth, if a password was given.</span>
+
+<span class="sd">        (The password might be needed to unlock a private key, or for</span>
+<span class="sd">        two-factor authentication [for which it is required].)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">saved_exception</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">two_factor</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">allowed_types</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">two_factor_types</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="s1">&#39;keyboard-interactive&#39;</span><span class="p">,</span><span class="s1">&#39;password&#39;</span><span class="p">])</span>
+
+        <span class="c1"># If GSS-API support and GSS-PI Key Exchange was performed, we attempt</span>
+        <span class="c1"># authentication with gssapi-keyex.</span>
+        <span class="k">if</span> <span class="n">gss_kex</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transport</span><span class="o">.</span><span class="n">gss_kex_used</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_transport</span><span class="o">.</span><span class="n">auth_gssapi_keyex</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">saved_exception</span> <span class="o">=</span> <span class="n">e</span>
+
+        <span class="c1"># Try GSS-API authentication (gssapi-with-mic) only if GSS-API Key</span>
+        <span class="c1"># Exchange is not performed, because if we use GSS-API for the key</span>
+        <span class="c1"># exchange, there is already a fully established GSS-API context, so</span>
+        <span class="c1"># why should we do that again?</span>
+        <span class="k">if</span> <span class="n">gss_auth</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_transport</span><span class="o">.</span><span class="n">auth_gssapi_with_mic</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">gss_host</span><span class="p">,</span>
+                                                     <span class="n">gss_deleg_creds</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">saved_exception</span> <span class="o">=</span> <span class="n">e</span>
+
+        <span class="k">if</span> <span class="n">pkey</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="p">(</span><span class="n">DEBUG</span><span class="p">,</span> <span class="s1">&#39;Trying SSH key </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">hexlify</span><span class="p">(</span><span class="n">pkey</span><span class="o">.</span><span class="n">get_fingerprint</span><span class="p">()))</span>
+                <span class="n">allowed_types</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transport</span><span class="o">.</span><span class="n">auth_publickey</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">pkey</span><span class="p">))</span>
+                <span class="n">two_factor</span> <span class="o">=</span> <span class="p">(</span><span class="n">allowed_types</span> <span class="o">&amp;</span> <span class="n">two_factor_types</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">two_factor</span><span class="p">:</span>
+                    <span class="k">return</span>
+            <span class="k">except</span> <span class="n">SSHException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">saved_exception</span> <span class="o">=</span> <span class="n">e</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">two_factor</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">key_filename</span> <span class="ow">in</span> <span class="n">key_filenames</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">pkey_class</span> <span class="ow">in</span> <span class="p">(</span><span class="n">RSAKey</span><span class="p">,</span> <span class="n">DSSKey</span><span class="p">,</span> <span class="n">ECDSAKey</span><span class="p">):</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">key</span> <span class="o">=</span> <span class="n">pkey_class</span><span class="o">.</span><span class="n">from_private_key_file</span><span class="p">(</span><span class="n">key_filename</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="p">(</span><span class="n">DEBUG</span><span class="p">,</span> <span class="s1">&#39;Trying key </span><span class="si">%s</span><span class="s1"> from </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">hexlify</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">get_fingerprint</span><span class="p">()),</span> <span class="n">key_filename</span><span class="p">))</span>
+                        <span class="n">allowed_types</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transport</span><span class="o">.</span><span class="n">auth_publickey</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">key</span><span class="p">))</span>
+                        <span class="n">two_factor</span> <span class="o">=</span> <span class="p">(</span><span class="n">allowed_types</span> <span class="o">&amp;</span> <span class="n">two_factor_types</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">two_factor</span><span class="p">:</span>
+                            <span class="k">return</span>
+                        <span class="k">break</span>
+                    <span class="k">except</span> <span class="n">SSHException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                        <span class="n">saved_exception</span> <span class="o">=</span> <span class="n">e</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">two_factor</span> <span class="ow">and</span> <span class="n">allow_agent</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_agent</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>
+
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_agent</span><span class="o">.</span><span class="n">get_keys</span><span class="p">():</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="p">(</span><span class="n">DEBUG</span><span class="p">,</span> <span class="s1">&#39;Trying SSH agent key </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">hexlify</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">get_fingerprint</span><span class="p">()))</span>
+                    <span class="c1"># for 2-factor auth a successfully auth&#39;d key password will return an allowed 2fac auth method</span>
+                    <span class="n">allowed_types</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transport</span><span class="o">.</span><span class="n">auth_publickey</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">key</span><span class="p">))</span>
+                    <span class="n">two_factor</span> <span class="o">=</span> <span class="p">(</span><span class="n">allowed_types</span> <span class="o">&amp;</span> <span class="n">two_factor_types</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">two_factor</span><span class="p">:</span>
+                        <span class="k">return</span>
+                    <span class="k">break</span>
+                <span class="k">except</span> <span class="n">SSHException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">saved_exception</span> <span class="o">=</span> <span class="n">e</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">two_factor</span><span class="p">:</span>
+            <span class="n">keyfiles</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">rsa_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.ssh/id_rsa&#39;</span><span class="p">)</span>
+            <span class="n">dsa_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.ssh/id_dsa&#39;</span><span class="p">)</span>
+            <span class="n">ecdsa_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.ssh/id_ecdsa&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">rsa_key</span><span class="p">):</span>
+                <span class="n">keyfiles</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">RSAKey</span><span class="p">,</span> <span class="n">rsa_key</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dsa_key</span><span class="p">):</span>
+                <span class="n">keyfiles</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">DSSKey</span><span class="p">,</span> <span class="n">dsa_key</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">ecdsa_key</span><span class="p">):</span>
+                <span class="n">keyfiles</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">ECDSAKey</span><span class="p">,</span> <span class="n">ecdsa_key</span><span class="p">))</span>
+            <span class="c1"># look in ~/ssh/ for windows users:</span>
+            <span class="n">rsa_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/ssh/id_rsa&#39;</span><span class="p">)</span>
+            <span class="n">dsa_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/ssh/id_dsa&#39;</span><span class="p">)</span>
+            <span class="n">ecdsa_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/ssh/id_ecdsa&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">rsa_key</span><span class="p">):</span>
+                <span class="n">keyfiles</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">RSAKey</span><span class="p">,</span> <span class="n">rsa_key</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dsa_key</span><span class="p">):</span>
+                <span class="n">keyfiles</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">DSSKey</span><span class="p">,</span> <span class="n">dsa_key</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">ecdsa_key</span><span class="p">):</span>
+                <span class="n">keyfiles</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">ECDSAKey</span><span class="p">,</span> <span class="n">ecdsa_key</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">look_for_keys</span><span class="p">:</span>
+                <span class="n">keyfiles</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">for</span> <span class="n">pkey_class</span><span class="p">,</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">keyfiles</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">key</span> <span class="o">=</span> <span class="n">pkey_class</span><span class="o">.</span><span class="n">from_private_key_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="p">(</span><span class="n">DEBUG</span><span class="p">,</span> <span class="s1">&#39;Trying discovered key </span><span class="si">%s</span><span class="s1"> in </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">hexlify</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">get_fingerprint</span><span class="p">()),</span> <span class="n">filename</span><span class="p">))</span>
+                    <span class="c1"># for 2-factor auth a successfully auth&#39;d key will result in [&#39;password&#39;]</span>
+                    <span class="n">allowed_types</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transport</span><span class="o">.</span><span class="n">auth_publickey</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">key</span><span class="p">))</span>
+                    <span class="n">two_factor</span> <span class="o">=</span> <span class="p">(</span><span class="n">allowed_types</span> <span class="o">&amp;</span> <span class="n">two_factor_types</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">two_factor</span><span class="p">:</span>
+                        <span class="k">return</span>
+                    <span class="k">break</span>
+                <span class="k">except</span> <span class="p">(</span><span class="n">SSHException</span><span class="p">,</span> <span class="ne">IOError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">saved_exception</span> <span class="o">=</span> <span class="n">e</span>
+
+        <span class="k">if</span> <span class="n">password</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_transport</span><span class="o">.</span><span class="n">auth_password</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">except</span> <span class="n">SSHException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">saved_exception</span> <span class="o">=</span> <span class="n">e</span>
+        <span class="k">elif</span> <span class="n">two_factor</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_transport</span><span class="o">.</span><span class="n">auth_interactive_dumb</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">except</span> <span class="n">SSHException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">saved_exception</span> <span class="o">=</span> <span class="n">e</span>
+
+        <span class="c1"># if we got an auth-failed exception earlier, re-raise it</span>
+        <span class="k">if</span> <span class="n">saved_exception</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">saved_exception</span>
+        <span class="k">raise</span> <span class="n">SSHException</span><span class="p">(</span><span class="s1">&#39;No authentication methods available&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_transport</span><span class="o">.</span><span class="n">_log</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span></div>
+
+
+<span class="k">class</span> <span class="nc">MissingHostKeyPolicy</span> <span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Interface for defining the policy that `.SSHClient` should use when the</span>
+<span class="sd">    SSH server&#39;s hostname is not in either the system host keys or the</span>
+<span class="sd">    application&#39;s keys.  Pre-made classes implement policies for automatically</span>
+<span class="sd">    adding the key to the application&#39;s `.HostKeys` object (`.AutoAddPolicy`),</span>
+<span class="sd">    and for automatically rejecting the key (`.RejectPolicy`).</span>
+
+<span class="sd">    This function may be used to ask the user to verify the key, for example.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">missing_host_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when an `.SSHClient` receives a server key for a server that</span>
+<span class="sd">        isn&#39;t in either the system or local `.HostKeys` object.  To accept</span>
+<span class="sd">        the key, simply return.  To reject, raised an exception (which will</span>
+<span class="sd">        be passed to the calling application).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">AutoAddPolicy</span> <span class="p">(</span><span class="n">MissingHostKeyPolicy</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Policy for automatically adding the hostname and new host key to the</span>
+<span class="sd">    local `.HostKeys` object, and saving it.  This is used by `.SSHClient`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">missing_host_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">_host_keys</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">key</span><span class="o">.</span><span class="n">get_name</span><span class="p">(),</span> <span class="n">key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">client</span><span class="o">.</span><span class="n">_host_keys_filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">client</span><span class="o">.</span><span class="n">save_host_keys</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">_host_keys_filename</span><span class="p">)</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">_log</span><span class="p">(</span><span class="n">DEBUG</span><span class="p">,</span> <span class="s1">&#39;Adding </span><span class="si">%s</span><span class="s1"> host key for </span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span>
+                    <span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">get_name</span><span class="p">(),</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">hexlify</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">get_fingerprint</span><span class="p">())))</span>
+
+
+<span class="k">class</span> <span class="nc">RejectPolicy</span> <span class="p">(</span><span class="n">MissingHostKeyPolicy</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Policy for automatically rejecting the unknown hostname &amp; key.  This is</span>
+<span class="sd">    used by `.SSHClient`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">missing_host_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">_log</span><span class="p">(</span><span class="n">DEBUG</span><span class="p">,</span> <span class="s1">&#39;Rejecting </span><span class="si">%s</span><span class="s1"> host key for </span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span>
+                    <span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">get_name</span><span class="p">(),</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">hexlify</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">get_fingerprint</span><span class="p">())))</span>
+        <span class="k">raise</span> <span class="n">SSHException</span><span class="p">(</span><span class="s1">&#39;Server </span><span class="si">%r</span><span class="s1"> not found in known_hosts&#39;</span> <span class="o">%</span> <span class="n">hostname</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">WarningPolicy</span> <span class="p">(</span><span class="n">MissingHostKeyPolicy</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Policy for logging a Python-style warning for an unknown host key, but</span>
+<span class="sd">    accepting it. This is used by `.SSHClient`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">missing_host_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Unknown </span><span class="si">%s</span><span class="s1"> host key for </span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span>
+                      <span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">get_name</span><span class="p">(),</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">hexlify</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">get_fingerprint</span><span class="p">())))</span>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

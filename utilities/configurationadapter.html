@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The ConfigurationAdapter &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../index.html" />
+    <link rel="up" title="Utility Modules" href="index.html" />
+    <link rel="next" title="cameraobscura.utilities.configurationadapter.ConfigurationAdapter" href="api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.html" />
+    <link rel="prev" title="cameraobscura.utilities.composite.TheComposite.__call__" href="api/cameraobscura.utilities.composite.TheComposite.__call__.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The ConfigurationAdapter</a><ul>
+<li><a class="reference internal" href="#configurationadapter">ConfigurationAdapter</a></li>
+<li><a class="reference internal" href="#the-get-methods">The <cite>get</cite> Methods</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="api/cameraobscura.utilities.composite.TheComposite.__call__.html" title="Previous Chapter: cameraobscura.utilities.composite.TheComposite.__call__"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; cameraobscura...</span>
+    </a>
+  </li>
+  <li>
+    <a href="api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.html" title="Next Chapter: cameraobscura.utilities.configurationadapter.ConfigurationAdapter"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">cameraobscura... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/utilities/configurationadapter.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="the-configurationadapter">
+<h1>The ConfigurationAdapter<a class="headerlink" href="#the-configurationadapter" title="Permalink to this headline">¶</a></h1>
+<p id="configuration-adapter">Since the <cite>Test</cite> class is getting values from the configuration-parser, I&#8217;m creating an adapter to add methods to allow optional values. To make it easier not all of the ConfigParser methods will be implemented, the rest will be passed onto the ConfigParser object.</p>
+<div class="section" id="configurationadapter">
+<span id="configuration-adapter-class"></span><h2>ConfigurationAdapter<a class="headerlink" href="#configurationadapter" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img src="../_images/plantuml-7c48ecf326a6ae48b9153ab0424f4063b62b85e7.png" alt="ConfigurationAdapter : String get(section, option)
+ConfigurationAdapter : Integer getint(section, option)
+ConfigurationAdapter : Boolean getboolean(section, option)
+ConfigurationAdapter : List getlist(section, option)
+ConfigurationAdapter : Float getfloat(secton, option)
+ConfigurationAdapter o- ConfigParser" />
+</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.html#cameraobscura.utilities.configurationadapter.ConfigurationAdapter" title="cameraobscura.utilities.configurationadapter.ConfigurationAdapter"><code class="xref py py-obj docutils literal"><span class="pre">ConfigurationAdapter</span></code></a>(config_parser)</td>
+<td>An adapter to the ConfigParser to add optional-value methods</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.get.html#cameraobscura.utilities.configurationadapter.ConfigurationAdapter.get" title="cameraobscura.utilities.configurationadapter.ConfigurationAdapter.get"><code class="xref py py-obj docutils literal"><span class="pre">ConfigurationAdapter.get</span></code></a>(section,&nbsp;option[,&nbsp;...])</td>
+<td>Similar to the ConfigParser.get, but changed so getint and getboolean will match</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getint.html#cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getint" title="cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getint"><code class="xref py py-obj docutils literal"><span class="pre">ConfigurationAdapter.getint</span></code></a>(section,&nbsp;option)</td>
+<td>Gets a value from the configuration and tries to cast it to an integer.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getfloat.html#cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getfloat" title="cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getfloat"><code class="xref py py-obj docutils literal"><span class="pre">ConfigurationAdapter.getfloat</span></code></a>(section,&nbsp;option)</td>
+<td>Gets a value from the configuration and tries to cast it to an integer.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getboolean.html#cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getboolean" title="cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getboolean"><code class="xref py py-obj docutils literal"><span class="pre">ConfigurationAdapter.getboolean</span></code></a>(section,&nbsp;option)</td>
+<td>Gets value and casts to a boolean</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getlist.html#cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getlist" title="cameraobscura.utilities.configurationadapter.ConfigurationAdapter.getlist"><code class="xref py py-obj docutils literal"><span class="pre">ConfigurationAdapter.getlist</span></code></a>(section,&nbsp;option)</td>
+<td>gets a string and converts it into a list</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.section_dict.html#cameraobscura.utilities.configurationadapter.ConfigurationAdapter.section_dict" title="cameraobscura.utilities.configurationadapter.ConfigurationAdapter.section_dict"><code class="xref py py-obj docutils literal"><span class="pre">ConfigurationAdapter.section_dict</span></code></a>(section)</td>
+<td>A convenience function to return the section option=value pairs as option:value dict</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.utilities.configurationadapter.ConfigurationAdapter.__getattr__.html#cameraobscura.utilities.configurationadapter.ConfigurationAdapter.__getattr__" title="cameraobscura.utilities.configurationadapter.ConfigurationAdapter.__getattr__"><code class="xref py py-obj docutils literal"><span class="pre">ConfigurationAdapter.__getattr__</span></code></a>(attribute)</td>
+<td>A pass-through to the config parser for all the methods I don&#8217;t implement</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-get-methods">
+<span id="configuration-get-methods"></span><h2>The <cite>get</cite> Methods<a class="headerlink" href="#the-get-methods" title="Permalink to this headline">¶</a></h2>
+<p>The ConfigParser <cite>get</cite> method will let you pass in a dictionary called <cite>vars</cite> to set default values for an option, but this wasn&#8217;t done for the other &#8216;get&#8217; methods (like <cite>getint</cite>) so I&#8217;m adapting all of them to have (mostly) the same interface.</p>
+<table border="1" class="docutils" id="id1">
+<caption><span class="caption-text">Common <cite>get</cite> Parameters</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><cite>section</cite></td>
+<td>Section with option (i.e. <cite>[SECTION]</cite> header)</td>
+</tr>
+<tr class="row-odd"><td><cite>option</cite></td>
+<td>Option in section whose value to return (&lt;option&gt;=&lt;value&gt;)</td>
+</tr>
+<tr class="row-even"><td><cite>optional</cite></td>
+<td>If True returns <cite>default</cite> for missing options or sections</td>
+</tr>
+<tr class="row-odd"><td><cite>default</cite></td>
+<td>Value to return if <cite>optional</cite> and no option found in configuration</td>
+</tr>
+</tbody>
+</table>
+<p>Because they all behave more or less the same, the other <cite>get</cite> methods are just calling the new <cite>get</cite> method behind the scenes. To differentiate between the different types of <cite>get&lt;type&gt;</cite> methods, the <cite>get</cite> method takes a string <cite>method</cite> that matches the specific <cite>get</cite> method to use (e.g. <cite>getint</cite> or <cite>getboolean</cite>) and calls the ConfigParser&#8217;s implementation of the method. The only time the behavior of these methods differs from the ConfigParser&#8217;s versions is if <cite>optional</cite> is set to True, in which case it traps the ConfigParser.NoSectionError and ConfigParser.NoOptionError and returns the <cite>default</cite> argument instead. The default <cite>default</cite> is None, so something more sensible can be passed in if a value is known, otherwise the user of this class can check for <cite>None</cite> as the return value to see of the user put the option in the configuration file.</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

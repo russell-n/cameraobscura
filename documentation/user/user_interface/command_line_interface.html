@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Command Line Interface &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../index.html" />
+    <link rel="up" title="The User Interface" href="index.html" />
+    <link rel="next" title="The Configuration Files" href="configuration_files.html" />
+    <link rel="prev" title="The User Interface" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The Command Line Interface</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#the-rvr-options">The <code class="docutils literal"><span class="pre">rvr</span></code> Options</a></li>
+<li><a class="reference internal" href="#the-run-sub-command">The <code class="docutils literal"><span class="pre">run</span></code> Sub-Command</a><ul>
+<li><a class="reference internal" href="#specifying-files">Specifying Files</a></li>
+<li><a class="reference internal" href="#using-globs">Using Globs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-fetch-subcommand">The <code class="docutils literal"><span class="pre">fetch</span></code> Subcommand</a><ul>
+<li><a class="reference internal" href="#fetching-a-sample-configuration">Fetching a Sample Configuration</a></li>
+<li><a class="reference internal" href="#fetching-sections-within-the-sample-configuration">Fetching Sections Within the Sample Configuration</a></li>
+<li><a class="reference internal" href="#grepping-the-section-headers">Grepping the Section Headers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="index.html" title="Previous Chapter: The User Interface"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; The User Inte...</span>
+    </a>
+  </li>
+  <li>
+    <a href="configuration_files.html" title="Next Chapter: The Configuration Files"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">The Configura... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../../_sources/documentation/user/user_interface/command_line_interface.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="the-command-line-interface">
+<h1>The Command Line Interface<a class="headerlink" href="#the-command-line-interface" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<span id="user-documentation-cli-introduction"></span><h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The user runs the program in the shell (e.g. bash) via a command line interface (CLI) that has three main purposes &#8211; to get sample configurations, to run tests, and to help with debugging. It&#8217;s similar in operation to most unix commands, although it also uses sub-commands which may seem a little odd if you&#8217;ve never used them before, but since most of the settings for the program are done in a configuration file, the CLI is minimal enough that they shouldn&#8217;t prove difficult to understand. With the exception of getting help, all commands take the form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="p">[</span><span class="n">options</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">sub</span><span class="o">-</span><span class="n">command</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">sub</span><span class="o">-</span><span class="n">command</span> <span class="n">options</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The help option helps remind you of what the options are:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="o">--</span><span class="n">help</span>
+</pre></div>
+</div>
+<p>Entering that at the command-line should give you an output that looks something like this:</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">rvr</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">v</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">pudb</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">pdb</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">debug</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">silent</span><span class="p">]</span> <span class="p">{</span><span class="n">fetch</span><span class="p">,</span><span class="n">run</span><span class="p">}</span>
+<span class="o">...</span>
+
+<span class="n">RVR</span> <span class="n">Runner</span>
+
+<span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="p">{</span><span class="n">fetch</span><span class="p">,</span><span class="n">run</span><span class="p">}</span>    <span class="n">RVR</span> <span class="n">Sub</span><span class="o">-</span><span class="n">Commands</span>
+
+<span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>     <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">-</span><span class="n">v</span><span class="p">,</span> <span class="o">--</span><span class="n">version</span>  <span class="n">Display</span> <span class="n">the</span> <span class="n">version</span> <span class="n">number</span> <span class="ow">and</span> <span class="n">quit</span>
+  <span class="o">--</span><span class="n">pudb</span>         <span class="n">Enable</span> <span class="n">the</span> <span class="n">PUDB</span> <span class="n">debugger</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="o">.</span>
+  <span class="o">--</span><span class="n">pdb</span>          <span class="n">Enable</span> <span class="n">the</span> <span class="n">python</span> <span class="n">debugger</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="o">.</span>
+  <span class="o">--</span><span class="n">debug</span>        <span class="n">Enable</span> <span class="n">debugging</span> <span class="n">messages</span> <span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span>
+  <span class="o">--</span><span class="n">silent</span>       <span class="n">Turn</span> <span class="n">off</span> <span class="n">non</span><span class="o">-</span><span class="n">error</span> <span class="n">logging</span> <span class="n">messages</span> <span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>The first line <code class="docutils literal"><span class="pre">usage:</span> <span class="pre">...</span></code> gives the command (<code class="docutils literal"><span class="pre">rvr</span></code>), its options in square brackets (<code class="docutils literal"><span class="pre">-h,</span> <span class="pre">-v,</span> <span class="pre">--pudb,</span> <span class="pre">--debug</span></code> and <code class="docutils literal"><span class="pre">--silent</span></code>) and the sub-commands in curly brackets (<code class="docutils literal"><span class="pre">fetch</span></code> and <code class="docutils literal"><span class="pre">run</span></code>). At the bottom of the output is a brief explanation of the options. We&#8217;ll cover the options next and then go over the what the two sub-commands are and how to use them.</p>
+</div>
+<div class="section" id="the-rvr-options">
+<span id="user-documentation-cli-rvr-options"></span><h2>The <code class="docutils literal"><span class="pre">rvr</span></code> Options<a class="headerlink" href="#the-rvr-options" title="Permalink to this headline">¶</a></h2>
+<p>Other than the <code class="docutils literal"><span class="pre">-h</span></code> option,  the options passed to the <code class="docutils literal"><span class="pre">rvr</span></code> command (<code class="docutils literal"><span class="pre">version,</span> <span class="pre">pudb,</span> <span class="pre">debug</span></code>, and <code class="docutils literal"><span class="pre">silent</span></code>) are primarily meant for debugging problems so hopefully you won&#8217;t ever need to use them. To get the version you would enter:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<p>I&#8217;m using the date of the most recent change as the version number, but it isn&#8217;t being dynamically set, so it might not be completely up-to-date. If you have the <a class="reference external" href="https://pypi.python.org/pypi/pudb">python urwid debugger (pudb)</a> installed and want to step through the code as it runs you can use the option:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="o">--</span><span class="n">pudb</span> <span class="o">&lt;</span><span class="n">subcommand</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">subcommand</span> <span class="n">options</span><span class="o">&gt;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The last two options are there so you can change the logging output level. By default all logging goes to the log file <cite>rate_vs_range.log</cite> in the output folder that holds the test-data while only info-level output is sent to the screen. To see all the output you would use something like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="o">--</span><span class="n">debug</span> <span class="n">run</span> <span class="n">rvr_configuration</span><span class="o">.</span><span class="n">ini</span>
+</pre></div>
+</div>
+<p>To turn off all the output except errors:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="o">--</span><span class="n">silent</span> <span class="n">run</span> <span class="n">rvr_configuration</span><span class="o">.</span><span class="n">ini</span>
+</pre></div>
+</div>
+<p>I&#8217;ll cover the <code class="docutils literal"><span class="pre">run</span> <span class="pre">rvr_configuration.ini</span></code> part of that command in the next section.</p>
+</div>
+<div class="section" id="the-run-sub-command">
+<span id="user-documentation-cli-run"></span><h2>The <code class="docutils literal"><span class="pre">run</span></code> Sub-Command<a class="headerlink" href="#the-run-sub-command" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">run</span></code> sub-command is the main sub-command for this code. It tells the program to run the test specified in the configuration file(s) it&#8217;s given. As a sub-command it also accepts the <code class="docutils literal"><span class="pre">help</span></code> flag:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="n">run</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+<p>Which should output:</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">rvr</span> <span class="n">run</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="n">configurations</span> <span class="p">[</span><span class="n">configurations</span> <span class="o">...</span><span class="p">]]</span>
+
+<span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="n">configurations</span>  <span class="n">Configuration</span> <span class="n">file</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">to</span> <span class="n">use</span><span class="o">.</span>
+                  <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;rvr_configuration.ini&#39;</span><span class="p">]</span>
+
+<span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>      <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+</pre></div>
+</div>
+<div class="section" id="specifying-files">
+<h3>Specifying Files<a class="headerlink" href="#specifying-files" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">configurations</span></code> option is a positional argument (you don&#8217;t specify an option name, just give the parameter-values) that expects a space-separated list. There are a few ways you can use it. First, it has as it&#8217;s default value a list of a single file named <cite>rvr_configuration.ini</cite> so if you give your configuration file the same name as the default you can ignore the parameter:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="n">run</span>
+</pre></div>
+</div>
+<p>If you have a single configuration file with a different name you need to specify it at the end:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="n">run</span> <span class="n">other_configuration</span><span class="o">.</span><span class="n">ini</span>
+</pre></div>
+</div>
+<p>If you want to run multiple configurations you can pass in a space-separated list:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="n">run</span> <span class="n">config_1</span><span class="o">.</span><span class="n">ini</span> <span class="n">config_2</span><span class="o">.</span><span class="n">ini</span> <span class="n">config_3</span><span class="o">.</span><span class="n">ini</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-globs">
+<h3>Using Globs<a class="headerlink" href="#using-globs" title="Permalink to this headline">¶</a></h3>
+<p>Or, if the configurations are the only ones that have a certain sub-string (in this example we&#8217;ll assume they all end in <cite>.ini</cite>), then you can use a glob:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="n">run</span> <span class="o">*</span><span class="n">ini</span>
+</pre></div>
+</div>
+<p>If there are certain sets of configurations that get run one thing you could do is put tokens in their names that help you filter them using file-globbing. Say you have a folder in your home directory named &#8216;configurations&#8217; and within it is set of configurations that you want to run one after the other that all have the token <cite>netgear</cite> in their name, then to run them you could use the following:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="n">run</span> <span class="o">~/</span><span class="n">configurations</span><span class="o">/*</span><span class="n">netgear</span><span class="o">*</span>
+</pre></div>
+</div>
+<p>Because of the extra setup needed for chamber-related work this may not be a common use-case, but it also illustrates the fact that the <cite>configurations</cite> parameter doesn&#8217;t have to point to a file in your current working directory. If you have frequently used configurations you can keep them somewhere more convenient and use the full path (or relative path) to point the <code class="docutils literal"><span class="pre">rvr</span> <span class="pre">run</span></code> command to them.</p>
+</div>
+</div>
+<div class="section" id="the-fetch-subcommand">
+<span id="user-documentation-cli-fetch"></span><h2>The <code class="docutils literal"><span class="pre">fetch</span></code> Subcommand<a class="headerlink" href="#the-fetch-subcommand" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">fetch</span></code> sub-command has two main purposes &#8211; to get a sample configuration which you can edit to configure a test and to provide a quick reference to check while editing or creating a configuration. You can check the <code class="docutils literal"><span class="pre">fetch</span></code> options:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="n">fetch</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">rvr</span> <span class="n">fetch</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">s</span> <span class="n">SECTION</span><span class="p">]</span>
+
+<span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">-</span><span class="n">s</span> <span class="n">SECTION</span><span class="p">,</span> <span class="o">--</span><span class="n">section</span> <span class="n">SECTION</span>
+                        <span class="n">Section</span> <span class="n">name</span> <span class="n">to</span> <span class="n">retrieve</span> <span class="p">(</span><span class="n">defaults</span> <span class="n">to</span> <span class="nb">all</span>
+<span class="n">sections</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="fetching-a-sample-configuration">
+<h3>Fetching a Sample Configuration<a class="headerlink" href="#fetching-a-sample-configuration" title="Permalink to this headline">¶</a></h3>
+<p>Rather than copying a file over to your current working directory the <code class="docutils literal"><span class="pre">fetch</span></code> prints the sample(s) to the screen. So, if you want to inspect the sample, you can pipe it to less (or grep if there&#8217;s a specific line you want to see):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="n">fetch</span> <span class="o">|</span> <span class="n">less</span>
+</pre></div>
+</div>
+<p>If you want to have a sample configuration to edit, you should redirect the output to a file:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="n">fetch</span> <span class="o">&gt;</span> <span class="n">rvr_configuration</span><span class="o">.</span><span class="n">ini</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fetching-sections-within-the-sample-configuration">
+<h3>Fetching Sections Within the Sample Configuration<a class="headerlink" href="#fetching-sections-within-the-sample-configuration" title="Permalink to this headline">¶</a></h3>
+<p>The configuration is composed of sections (denoted by names within square brackets (e.g. <code class="docutils literal"><span class="pre">[attenuation]</span></code>)). If you only want to see a specific section you can name it as an option. Using the <code class="docutils literal"><span class="pre">attenuation</span></code> section as an example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="n">fetch</span> <span class="o">--</span><span class="n">section</span> <span class="n">attenuation</span>
+</pre></div>
+</div>
+<p>This will send only the <code class="docutils literal"><span class="pre">attenuation</span></code> configuration to the screen. This can be used to add any missing sections to an existing configuration file as well. Suppose you got rid of the <code class="docutils literal"><span class="pre">query</span></code> section to make the configuration file cleaner but now want to add it. To add the sample for editing you could use redirection and append it to the end of the file:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="n">fetch</span> <span class="o">-</span><span class="n">s</span> <span class="n">query</span> <span class="o">&gt;&gt;</span> <span class="n">rvr_configuration</span><span class="o">.</span><span class="n">ini</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="grepping-the-section-headers">
+<h3>Grepping the Section Headers<a class="headerlink" href="#grepping-the-section-headers" title="Permalink to this headline">¶</a></h3>
+<p>To get a list of the sections you can use grep. To get a list of required sections:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="n">fetch</span> <span class="o">|</span> <span class="n">grep</span> <span class="s2">&quot;^\[&quot;</span>
+</pre></div>
+</div>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">attenuation</span><span class="p">]</span>
+<span class="p">[</span><span class="n">dut</span><span class="p">]</span>
+<span class="p">[</span><span class="n">server</span><span class="p">]</span>
+<span class="p">[</span><span class="n">iperf</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To get a list of optional sections:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="n">fetch</span> <span class="o">|</span> <span class="n">grep</span> <span class="s2">&quot;^#\[&quot;</span>
+</pre></div>
+</div>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="c1">#[ping]</span>
+<span class="c1">#[query]</span>
+<span class="c1">#[dump]</span>
+<span class="c1">#[other]</span>
+</pre></div>
+</div>
+<p>To get all the sections:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rvr</span> <span class="n">fetch</span> <span class="o">|</span> <span class="n">grep</span> <span class="s2">&quot;^#\[\|^\[&quot;</span>
+</pre></div>
+</div>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">attenuation</span><span class="p">]</span>
+<span class="p">[</span><span class="n">dut</span><span class="p">]</span>
+<span class="p">[</span><span class="n">server</span><span class="p">]</span>
+<span class="p">[</span><span class="n">iperf</span><span class="p">]</span>
+<span class="c1">#[ping]</span>
+<span class="c1">#[query]</span>
+<span class="c1">#[dump]</span>
+<span class="c1">#[other]</span>
+</pre></div>
+</div>
+<p>If that last regex is too much trouble to remember just grep for the square brackets <code class="docutils literal"><span class="pre">grep</span> <span class="pre">&quot;\[&quot;</span></code> and ignore any extra lines that don&#8217;t look like section headers. Also note that the first section &#8220;[QUEMANAGER]&#8221; is there for historical reasons and you won&#8217;t be able to fetch it by itself.</p>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>We have covered the main points you need to know about when using the <code class="docutils literal"><span class="pre">rvr</span></code> command. Most of the time you will only be using the <code class="docutils literal"><span class="pre">rvr</span> <span class="pre">run</span></code> sub-command, which makes it easy to forget how to set up the configuration files. Using the <code class="docutils literal"><span class="pre">rvr</span> <span class="pre">fetch</span></code> will hopefully provide enough of a reminder of the basic configuration-file form so that you can create or edit them whenever you need to. To get a more detailed explanation of what goes into the configuration file, check the <a class="reference internal" href="configuration_files.html#user-documentation-configuration-files"><span class="std std-ref">Configuration Files</span></a> documentation.</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

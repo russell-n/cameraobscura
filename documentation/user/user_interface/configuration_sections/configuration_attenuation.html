@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Attenuation Section &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The Attenuation Section</a><ul>
+<li><a class="reference internal" href="#start-option"><code class="docutils literal"><span class="pre">start</span></code> Option</a></li>
+<li><a class="reference internal" href="#stop-option"><code class="docutils literal"><span class="pre">stop</span></code> Option</a></li>
+<li><a class="reference internal" href="#name-option"><code class="docutils literal"><span class="pre">name</span></code> Option</a></li>
+<li><a class="reference internal" href="#control-ip"><code class="docutils literal"><span class="pre">control_ip</span></code></a></li>
+<li><a class="reference internal" href="#step-sizes-and-step-change-thresholds"><code class="docutils literal"><span class="pre">step_sizes</span></code> and <code class="docutils literal"><span class="pre">step_change_thresholds</span></code></a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../../../_sources/documentation/user/user_interface/configuration_sections/configuration_attenuation.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="the-attenuation-section">
+<h1>The Attenuation Section<a class="headerlink" href="#the-attenuation-section" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal"><span class="pre">attenuation</span></code> section is where you set parameters for the Attenuator and how it will be set during the test. The default sample (with comments removed):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">attenuation</span><span class="p">]</span>
+<span class="c1">#start = 0</span>
+<span class="c1">#stop = 9223372036854775807</span>
+<span class="c1">#name = WeinschelP</span>
+<span class="n">control_ip</span> <span class="o">=</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">10.53</span>
+<span class="c1">#step_sizes = [1]</span>
+<span class="c1">#step_change_thresholds =</span>
+</pre></div>
+</div>
+<p>The options that are commented out have default values so you don&#8217;t need to specify them if you don&#8217;t want to (and the defaults work for you).</p>
+<div class="section" id="start-option">
+<h2><code class="docutils literal"><span class="pre">start</span></code> Option<a class="headerlink" href="#start-option" title="Permalink to this headline">¶</a></h2>
+<p>This is the attenuation value to use at the start of the testing. It&#8217;s optional with a default value of 0.</p>
+</div>
+<div class="section" id="stop-option">
+<h2><code class="docutils literal"><span class="pre">stop</span></code> Option<a class="headerlink" href="#stop-option" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">stop</span></code> option is where you set the maximum attenuation you want to try. If you don&#8217;t set it the value will be retrieved from the attenuator (the program will ask it what the maximum attenuation setting is and take the smaller value of what&#8217;s set here and what the attenuator allows). The default is the largest integer python allows, which guarantees tha what the attenuator says is its maximum will be less than or equal to the default.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the testing will stop if the device in the chamber can&#8217;t ping the traffic server (if this option is set) or iperf traffic can&#8217;t be run so this value will in most cases not be reached, assuming it is set high enough.</p>
+</div>
+</div>
+<div class="section" id="name-option">
+<h2><code class="docutils literal"><span class="pre">name</span></code> Option<a class="headerlink" href="#name-option" title="Permalink to this headline">¶</a></h2>
+<p>This is where you set the name of the attenuator that you are using (this isn&#8217;t case-sensitive). It has to match the name of a class within the program that was created to control the attenuator. It has a default setting (see below) so if that matches the attenuator that you are using, then you can leave this option out.</p>
+<p>The currently available values you can use are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>MockAttenuator</li>
+<li>AdeptNCustomPath</li>
+<li>WeinschelP</li>
+<li>AdeptN</li>
+</ul>
+</div></blockquote>
+<p>The Default Attenuator is <strong>WeinschelP</strong>.</p>
+<p>The <strong>MockAttenuator</strong> is a debugging tool. If you want to check other parts of the testing but you don&#8217;t need the attenuator then set it to that and it will echo the commands it gets to the screen but not do anything else.</p>
+</div>
+<div class="section" id="control-ip">
+<h2><code class="docutils literal"><span class="pre">control_ip</span></code><a class="headerlink" href="#control-ip" title="Permalink to this headline">¶</a></h2>
+<p>This is the IP Address to reach the attenuator (or the PC controlling the attenuator).</p>
+</div>
+<div class="section" id="step-sizes-and-step-change-thresholds">
+<h2><code class="docutils literal"><span class="pre">step_sizes</span></code> and <code class="docutils literal"><span class="pre">step_change_thresholds</span></code><a class="headerlink" href="#step-sizes-and-step-change-thresholds" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">step_sizes</span></code> sets the sizes of the attenuation changes. It takes a space-separated list. The default is to increment the attenuations by 1 so if this is what you want, you don&#8217;t need to define this option. If you want a constant increase between each test that isn&#8217;t 1, you can set the value and ignore the fact that it expects a list:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">step_sizes</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p>If you want there to be a change in the amount the attenuation is increased as the test progresses, you need to set the <code class="docutils literal"><span class="pre">step_sizes</span></code> to the attenuation increments you want and then set the <code class="docutils literal"><span class="pre">step_change_thresholds</span></code> to a space-separated list of the trigger-values that prompt the change in increments.</p>
+<p>Let&#8217;s say you want the attenuations to initially increment by 1 and then start to increment by 2 once the attenuation has reached 10(or greater). You would set the values to these:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">step_sizes</span> <span class="o">=</span> <span class="mi">1</span> <span class="mi">2</span>
+<span class="n">step_change_thresholds</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>There is no logic built in to check the values you set so you can make as many changes as you want, but there always has to be one fewer <code class="docutils literal"><span class="pre">step_change_thresholds</span></code> value than there are <code class="docutils literal"><span class="pre">step_sizes</span></code> values or it will raise an error. This, for instance:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">step_sizes</span> <span class="o">=</span> <span class="mi">1</span> <span class="mi">10</span> <span class="mi">1</span>
+<span class="n">step_change_thresholds</span> <span class="o">=</span> <span class="mi">5</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p>Will initially increase by 1 until it reaches 5 then increase by 10 until it reaches 100 at which point it will drop back to increments of 1. This, on the other hand:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">step_sizes</span> <span class="o">=</span> <span class="mi">1</span> <span class="mi">10</span> <span class="mi">5</span>
+<span class="n">step_change_thresholds</span> <span class="o">=</span> <span class="mi">10</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>Will increment by 1, then increment by 10 once and then increment by 5 the rest of the time (because you were already past the final threshold of 2  when the first threshold was reached so it gets triggered as soon as the threshold value is checked again).</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

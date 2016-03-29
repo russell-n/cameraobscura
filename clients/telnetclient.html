@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Telnet Client &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../index.html" />
+    <link rel="up" title="Client Connections" href="index.html" />
+    <link rel="next" title="telnetlib.Telnet" href="api/telnetlib.Telnet.html" />
+    <link rel="prev" title="paramiko.client.SSHClient.exec_command" href="api/paramiko.client.SSHClient.exec_command.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The Telnet Client</a><ul>
+<li><a class="reference internal" href="#the-telnetclient-class">The TelnetClient Class</a></li>
+<li><a class="reference internal" href="#the-telnetoutput-class">The TelnetOutput Class</a></li>
+<li><a class="reference internal" href="#the-connect">The Connect</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="api/paramiko.client.SSHClient.exec_command.html" title="Previous Chapter: paramiko.client.SSHClient.exec_command"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; paramiko.clie...</span>
+    </a>
+  </li>
+  <li>
+    <a href="api/telnetlib.Telnet.html" title="Next Chapter: telnetlib.Telnet"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">telnetlib.Telnet &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/clients/telnetclient.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="the-telnet-client">
+<h1>The Telnet Client<a class="headerlink" href="#the-telnet-client" title="Permalink to this headline">¶</a></h1>
+<p>The Telnet Client is an adapter that provides an interface that matches the <a class="reference internal" href="simpleclient.html#id1"><span class="std std-ref">SimpleClient</span></a> but using python&#8217;s Telnet class.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/telnetlib.Telnet.html#telnetlib.Telnet" title="telnetlib.Telnet"><code class="xref py py-obj docutils literal"><span class="pre">telnetlib.Telnet</span></code></a>([host,&nbsp;port,&nbsp;timeout])</td>
+<td>Telnet interface class.</td>
+</tr>
+</tbody>
+</table>
+<p>Contents:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#telnet-client"><span class="std std-ref">Telnet Client</span></a></li>
+<li><a class="reference internal" href="#telnet-client-telnet-output"><span class="std std-ref">Telnet Output</span></a></li>
+<li><a class="reference internal" href="#telnet-connect"><span class="std std-ref">About the Connect Method</span></a></li>
+</ul>
+</div></blockquote>
+<div class="section" id="the-telnetclient-class">
+<span id="telnet-client"></span><h2>The TelnetClient Class<a class="headerlink" href="#the-telnetclient-class" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.clients.telnetclient.TelnetClient.html#cameraobscura.clients.telnetclient.TelnetClient" title="cameraobscura.clients.telnetclient.TelnetClient"><code class="xref py py-obj docutils literal"><span class="pre">TelnetClient</span></code></a>([prompt,&nbsp;password,&nbsp;...])</td>
+<td>A TelnetClient Adapts the telnetlib.Telnet to match the SimpleClient</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.clients.telnetclient.TelnetClient.client.html#cameraobscura.clients.telnetclient.TelnetClient.client" title="cameraobscura.clients.telnetclient.TelnetClient.client"><code class="xref py py-obj docutils literal"><span class="pre">TelnetClient.client</span></code></a></td>
+<td>Tries to login before returning.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.clients.telnetclient.TelnetClient.exec_command.html#cameraobscura.clients.telnetclient.TelnetClient.exec_command" title="cameraobscura.clients.telnetclient.TelnetClient.exec_command"><code class="xref py py-obj docutils literal"><span class="pre">TelnetClient.exec_command</span></code></a>(command[,&nbsp;timeout])</td>
+<td>The main interface.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.clients.telnetclient.TelnetClient.writeline.html#cameraobscura.clients.telnetclient.TelnetClient.writeline" title="cameraobscura.clients.telnetclient.TelnetClient.writeline"><code class="xref py py-obj docutils literal"><span class="pre">TelnetClient.writeline</span></code></a>([message])</td>
+<td><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">param:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.clients.telnetclient.TelnetClient.__del__.html#cameraobscura.clients.telnetclient.TelnetClient.__del__" title="cameraobscura.clients.telnetclient.TelnetClient.__del__"><code class="xref py py-obj docutils literal"><span class="pre">TelnetClient.__del__</span></code></a>()</td>
+<td>Closes the client (if it exists)</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.clients.telnetclient.TelnetClient.__str__.html#cameraobscura.clients.telnetclient.TelnetClient.__str__" title="cameraobscura.clients.telnetclient.TelnetClient.__str__"><code class="xref py py-obj docutils literal"><span class="pre">TelnetClient.__str__</span></code></a>()</td>
+<td>creates the string representation</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-telnetoutput-class">
+<span id="telnet-client-telnet-output"></span><h2>The TelnetOutput Class<a class="headerlink" href="#the-telnetoutput-class" title="Permalink to this headline">¶</a></h2>
+<p>This tries to mimic the stdout objects that the SSHClient returns. It is using <cite>expect</cite> to search for the prompt or end of line so it&#8217;s important that they both be correct.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.clients.telnetclient.TelnetOutput.html#cameraobscura.clients.telnetclient.TelnetOutput" title="cameraobscura.clients.telnetclient.TelnetOutput"><code class="xref py py-obj docutils literal"><span class="pre">TelnetOutput</span></code></a>(client[,&nbsp;prompt,&nbsp;end_of_line,&nbsp;...])</td>
+<td>The TelnetOutput converts the telnet output to a file-like object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.clients.telnetclient.TelnetOutput.readline.html#cameraobscura.clients.telnetclient.TelnetOutput.readline" title="cameraobscura.clients.telnetclient.TelnetOutput.readline"><code class="xref py py-obj docutils literal"><span class="pre">TelnetOutput.readline</span></code></a>()</td>
+<td>Reads a single line of output</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.clients.telnetclient.TelnetOutput.next.html#cameraobscura.clients.telnetclient.TelnetOutput.next" title="cameraobscura.clients.telnetclient.TelnetOutput.next"><code class="xref py py-obj docutils literal"><span class="pre">TelnetOutput.next</span></code></a>()</td>
+<td>A generator of output lines</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.clients.telnetclient.TelnetOutput.readlines.html#cameraobscura.clients.telnetclient.TelnetOutput.readlines" title="cameraobscura.clients.telnetclient.TelnetOutput.readlines"><code class="xref py py-obj docutils literal"><span class="pre">TelnetOutput.readlines</span></code></a>()</td>
+<td>Reads all the lines</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.clients.telnetclient.TelnetOutput.read.html#cameraobscura.clients.telnetclient.TelnetOutput.read" title="cameraobscura.clients.telnetclient.TelnetOutput.read"><code class="xref py py-obj docutils literal"><span class="pre">TelnetOutput.read</span></code></a>()</td>
+<td>Same as readlines but joins the lines into a string</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.clients.telnetclient.TelnetOutput.__iter__.html#cameraobscura.clients.telnetclient.TelnetOutput.__iter__" title="cameraobscura.clients.telnetclient.TelnetOutput.__iter__"><code class="xref py py-obj docutils literal"><span class="pre">TelnetOutput.__iter__</span></code></a>()</td>
+<td>The main interface, traverses output line by line</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-connect">
+<span id="telnet-connect"></span><h2>The Connect<a class="headerlink" href="#the-connect" title="Permalink to this headline">¶</a></h2>
+<p>One of the things that makes the telnet and serial interfaces hard to work with is their lack of a file-like output. The <a class="reference internal" href="#telnet-client-telnet-output"><span class="std std-ref">TelnetOutput</span></a> tries to get around some of that but ultimately there is a problem in needing to search for the prompt to see if the device is ready for input. Either the user has to set the prompt correctly (and it has to be unique enough that it won&#8217;t show up in any command&#8217;s output) or the code has to set it to something it knows. I decided to let the user set it if they want and then to set it to a random string if it isn&#8217;t set. To do this I&#8217;m assuming that the shell support setting the <cite>PS1</cite> environment variable. One wrinkle I ran into was that the shell I use (<a class="reference external" href="http://fishshell.com/">fish</a>) uses functions instead of environment variables. I can&#8217;t see supporting that, though, so for now only shells that use <cite>PS1</cite> will work with the prompt-mangling. Otherwise the prompt has to be passed in to the TelnetClient before it tries to connect to the server.</p>
+<div class="figure align-center">
+<img src="../_images/telnet_connect_activities.svg" /></div>
+<p>The diagram is probably more complicated than you would normally expect for a telnet connection but I am expecting to use this to work with forwarded serial connections as well, and they tend to be a little... difficult.</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

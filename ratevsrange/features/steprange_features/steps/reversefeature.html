@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Reverse Method &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../../index.html" />
+    <link rel="up" title="Step Implementations" href="index.html" />
+    <link rel="next" title="Reversible Property" href="reversiblefeature.html" />
+    <link rel="prev" title="List Directions Property" href="listdirections.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Reverse Method</a><ul>
+<li><a class="reference internal" href="#scenario-reverse-called-and-not-reversible">Scenario: reverse called and not reversible</a></li>
+<li><a class="reference internal" href="#scenario-reverse-called-and-is-reversible">Scenario: reverse called and is reversible</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="listdirections.html" title="Previous Chapter: List Directions Property"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; List Directio...</span>
+    </a>
+  </li>
+  <li>
+    <a href="reversiblefeature.html" title="Next Chapter: Reversible Property"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Reversible Pr... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../../../_sources/ratevsrange/features/steprange_features/steps/reversefeature.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="reverse-method">
+<h1>Reverse Method<a class="headerlink" href="#reverse-method" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-gherkin"><div class="highlight"><pre><span></span><span class="k">Feature:</span><span class="nf"> Reverse direction method</span>
+<span class="nf"> </span><span class="k">Scenario:</span><span class="nf"> reverse called and not reversible</span>
+<span class="k">   Given </span><span class="nf">a StepRange that isn&#39;t reversible</span>
+<span class="nf">   </span><span class="k">When </span><span class="nf">StepRange.reverse is called</span>
+<span class="nf">   </span><span class="k">Then </span><span class="nf">the StepRange.current_value is set to stop</span>
+
+<span class="nf"> </span><span class="k">Scenario:</span><span class="nf"> reverse called and is reversible</span>
+<span class="k">   Given </span><span class="nf">a reversible StepRange</span>
+<span class="nf">   </span><span class="k">When </span><span class="nf">StepRange.reverse is called</span>
+<span class="nf">   </span><span class="k">Then </span><span class="nf">StepRange.reversals is incremented</span>
+<span class="nf">   </span><span class="k">And </span><span class="nf">StepRange start and stop are swapped</span>
+<span class="nf">   </span><span class="k">And </span><span class="nf">_threshold is None</span>
+<span class="nf">   </span><span class="k">And </span><span class="nf">current_step_index is incremented</span>
+<span class="nf">   </span><span class="k">And </span><span class="nf">current_change_index is incremented</span>
+<span class="nf">   </span><span class="k">And </span><span class="nf">compare and threshold_compare are swapped</span>
+<span class="nf">   </span><span class="k">And </span><span class="nf">direction and list direction are negative</span>
+</pre></div>
+</div>
+<div class="section" id="scenario-reverse-called-and-not-reversible">
+<h2>Scenario: reverse called and not reversible<a class="headerlink" href="#scenario-reverse-called-and-not-reversible" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;a StepRange that isn&#39;t reversible&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">irreversible</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">iterator</span> <span class="o">=</span> <span class="n">StepRange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">53</span><span class="p">)</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@when</span><span class="p">(</span><span class="s2">&quot;StepRange.reverse is called&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">reverse_call</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;the StepRange.current_value is set to stop&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">current_is_stop</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">current_value</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">stop</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scenario-reverse-called-and-is-reversible">
+<h2>Scenario: reverse called and is reversible<a class="headerlink" href="#scenario-reverse-called-and-is-reversible" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span> <span class="nd">@given</span><span class="p">(</span><span class="s2">&quot;a reversible StepRange&quot;</span><span class="p">)</span>
+ <span class="k">def</span> <span class="nf">reversible</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+     <span class="n">context</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="mi">9</span>
+     <span class="n">context</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="mi">71</span>
+     <span class="n">context</span><span class="o">.</span><span class="n">iterator</span> <span class="o">=</span> <span class="n">StepRange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">start</span><span class="p">,</span>
+                                  <span class="n">stop</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span>
+                                  <span class="n">step_sizes</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+                                  <span class="n">step_change_thresholds</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>
+
+                                  <span class="n">reversal_limit</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+     <span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">step_size</span>
+     <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">reversals</span><span class="p">,</span>
+                 <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+     <span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">current_value</span> <span class="o">=</span> <span class="mi">10</span>
+     <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">step_size</span><span class="p">,</span>
+                 <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+     <span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">current_value</span> <span class="o">=</span> <span class="mi">30</span>
+     <span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">step_size</span>
+     <span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">threshold</span>
+     <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">current_change_index</span><span class="p">,</span>
+                 <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+     <span class="k">return</span>
+
+
+
+<span class="n">When</span> <span class="n">StepRange</span><span class="o">.</span><span class="n">reverse</span> <span class="ow">is</span> <span class="n">called</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;StepRange.reversals is incremented&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">reversals_incremented</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">reversals</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;StepRange start and stop are swapped&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">start_stop_swap</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">start</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">stop</span><span class="p">)))</span>
+
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">start</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;_threshold is None&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">reset_properties</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">_threshold</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;current_step_index is incremented&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">increment_current_step_index</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">current_step_index</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;current_change_index is incremented&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">increment_current_change_index</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">current_change_index</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;compare and threshold_compare are swapped&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">compare_swap</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">compare</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">same_instance</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">ge</span><span class="p">)))</span>
+
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">threshold_compare</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">same_instance</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">le</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@then</span><span class="p">(</span><span class="s2">&quot;direction and list direction are negative&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">direction_negation</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">direction</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+    <span class="n">assert_that</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">list_direction</span><span class="p">,</span>
+                <span class="n">is_</span><span class="p">(</span><span class="n">equal_to</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

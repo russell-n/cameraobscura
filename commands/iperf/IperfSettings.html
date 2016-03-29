@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>IperfSettings &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../index.html" />
+    <link rel="up" title="Iperf Things" href="index.html" />
+    <link rel="prev" title="Iperf Things" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">IperfSettings</a><ul>
+<li><a class="reference internal" href="#iperf-settings">IperfSettings</a></li>
+<li><a class="reference internal" href="#iperf-settings-constants">Iperf Settings Constants</a></li>
+<li><a class="reference internal" href="#iperf-base-settings">Iperf Base Settings</a></li>
+<li><a class="reference internal" href="#general-iperf-constants">General Iperf Constants</a></li>
+<li><a class="reference internal" href="#general-iperf-settings">General Iperf Settings</a></li>
+<li><a class="reference internal" href="#iperf-composite-base">Iperf Composite Base</a></li>
+<li><a class="reference internal" href="#iperf-server-settings">Iperf Server Settings</a></li>
+<li><a class="reference internal" href="#iperf-client-constants">Iperf Client Constants</a></li>
+<li><a class="reference internal" href="#iperf-client-settings">Iperf Client Settings</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="index.html" title="Previous Chapter: Iperf Things"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Iperf Things</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../_sources/commands/iperf/IperfSettings.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="iperfsettings">
+<h1>IperfSettings<a class="headerlink" href="#iperfsettings" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="iperf-settings">
+<span id="id1"></span><h2>IperfSettings<a class="headerlink" href="#iperf-settings" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">To make it more transparent these settings don&#8217;t assume any overridden defaults the way the old IperfSettings did. If you don&#8217;t set any of them the iperf defaults are used. This way, hopefully, referring to the man page should be enough for the user to know what the code is doing.</p>
+</div>
+<p>The two classes that are meant to be used directly are the <a class="reference internal" href="iperfsettings.html#iperf-server-settings"><span class="std std-ref">Iperf Server Settings</span></a> and the <a class="reference internal" href="iperfsettings.html#iperf-client-settings"><span class="std std-ref">Iperf Client Settings</span></a>, the other classes are support for those two classes. There are three ways to set their parameters:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>pass them in to the constructor</li>
+<li>set them (e.g. <code class="docutils literal"><span class="pre">config.interval</span> <span class="pre">=</span> <span class="pre">1</span></code>)</li>
+<li>pass in a dictionary of attribute-name:value pairs to the <code class="docutils literal"><span class="pre">update</span></code> method</li>
+</ol>
+</div></blockquote>
+<p>My original thinking was that the constructor would be the main way to set things up and then updates and changes could be made by assigning to the attributes, but once I started trying to integrate it and set the classes up using <cite>ConfigParser</cite> I realised that it would be difficult so the <code class="docutils literal"><span class="pre">update</span></code> method is intended to be the main way to set up the configurations.</p>
+<p>Once the configuration is set up, the intended way to use it is by casting it to a string. If you have a paramiko-like connection to each host you could do something like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># I&#39;ll show all three ways to set the properties</span>
+<span class="c1"># in practice it might not make sense to use all of them</span>
+
+<span class="n">server</span> <span class="o">=</span> <span class="n">IperfServerSettings</span><span class="p">(</span><span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">IperfClientSettings</span><span class="p">()</span>
+<span class="n">client</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;interval&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span> <span class="s1">&#39;parallel&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">})</span>
+<span class="n">client</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="s1">&#39;192.168.20.103&#39;</span>
+<span class="n">serverin</span><span class="p">,</span> <span class="n">serverout</span><span class="p">,</span> <span class="n">servererr</span> <span class="o">=</span> <span class="n">dut</span><span class="o">.</span><span class="n">exec_command</span><span class="p">(</span><span class="s1">&#39;iperf </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">server</span><span class="p">))</span>
+<span class="n">clientin</span><span class="p">,</span> <span class="n">clientout</span><span class="p">,</span> <span class="n">clienterror</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">exec_command</span><span class="p">(</span><span class="s1">&#39;iperf </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">client</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">clientout</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="n">clientout</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="iperf-settings-constants">
+<span id="id2"></span><h2>Iperf Settings Constants<a class="headerlink" href="#iperf-settings-constants" title="Permalink to this headline">¶</a></h2>
+<p>A place for common constants.</p>
+</div>
+<div class="section" id="iperf-base-settings">
+<span id="id3"></span><h2>Iperf Base Settings<a class="headerlink" href="#iperf-base-settings" title="Permalink to this headline">¶</a></h2>
+<p>This is the base class for all the settings.</p>
+<p class="plantuml">
+<img src="../../_images/plantuml-93479d79aa93e99812c0a6382421d8312d331633.png" alt="BaseClass &lt;|-- IperfBaseSettings" />
+</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfBaseSettings</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfBaseSettings.set_boolean</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfBaseSettings.set_number</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfBaseSettings.set_bytes</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="general-iperf-constants">
+<span id="iperf-general-constants"></span><h2>General Iperf Constants<a class="headerlink" href="#general-iperf-constants" title="Permalink to this headline">¶</a></h2>
+<p>The constants are exploding so I&#8217;ll start breaking them apart instead of using the one IperfConstants class.</p>
+</div>
+<div class="section" id="general-iperf-settings">
+<span id="iperf-settings-common"></span><h2>General Iperf Settings<a class="headerlink" href="#general-iperf-settings" title="Permalink to this headline">¶</a></h2>
+<p>This is to hold the settings common to both the client and server (See the <strong>General Options</strong> section in the iperf man page).</p>
+<p class="plantuml">
+<img src="../../_images/plantuml-ebcdf04c82e9a9e0f8f94553aef3dee99bc34f8b.png" alt="IperfBaseSettings &lt;|-- IperfGeneralSettings" />
+</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfGeneralSettings</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfGeneralSettings.format</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfGeneralSettings.interval</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfGeneralSettings.len</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfGeneralSettings.print_mss</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfGeneralSettings.output</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfGeneralSettings.port</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfGeneralSettings.udp</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfGeneralSettings.window</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfGeneralSettings.compatibility</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfGeneralSettings.mss</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfGeneralSettings.nodelay</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfGeneralSettings.version</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfGeneralSettings.IPv6Version</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfGeneralSettings.reportexclude</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfGeneralSettings.reportstyle</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfGeneralSettings.update</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="iperf-composite-base">
+<span id="id4"></span><h2>Iperf Composite Base<a class="headerlink" href="#iperf-composite-base" title="Permalink to this headline">¶</a></h2>
+<p>A base-class for the client and server settings specifically.</p>
+<p class="plantuml">
+<img src="../../_images/plantuml-007f8e41261581053852339a8b8d26b9a2b21324.png" alt="IperfBaseSettings &lt;|-- IperfCompositeBase
+IperfCompositeBase o- IperfGeneralSettings" />
+</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfCompositeBase</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfCompositeBase.prefix</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfCompositeBase.set</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfCompositeBase.get</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfCompositeBase.update</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfCompositeBase.__str__</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="iperf-server-settings">
+<span id="id5"></span><h2>Iperf Server Settings<a class="headerlink" href="#iperf-server-settings" title="Permalink to this headline">¶</a></h2>
+<p>The server-side settings &#8211; see <strong>Server Specific Options</strong> in the iperf man page.</p>
+<p class="plantuml">
+<img src="../../_images/plantuml-759fb44ee20f2fe6c65fe3a47edfa4518cb55f88.png" alt="IperfCompositeBase &lt;|- IperfServerSettings" />
+</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfServerSettings</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfServerSettings.prefix</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfServerSettings.daemon</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfServerSettings.single_udp</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="iperf-client-constants">
+<span id="id6"></span><h2>Iperf Client Constants<a class="headerlink" href="#iperf-client-constants" title="Permalink to this headline">¶</a></h2>
+<p>Constants for the client (mostly to try and get rid of my spelling errors).</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IperfClientConstants</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constants for the IperfClientSettings</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;udp&#39;</span><span class="p">,</span> <span class="s1">&#39;bandwidth&#39;</span><span class="p">,</span> <span class="s1">&#39;dualtest&#39;</span><span class="p">,</span> <span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="s1">&#39;tradeoff&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;fileinput&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;stdin&#39;</span><span class="p">,</span> <span class="s1">&#39;listenport&#39;</span><span class="p">,</span> <span class="s1">&#39;parallel&#39;</span><span class="p">,</span> <span class="s1">&#39;ttl&#39;</span><span class="p">)</span>
+
+    <span class="c1"># attributes</span>
+    <span class="n">bandwidth</span> <span class="o">=</span> <span class="s1">&#39;_bandwidth&#39;</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="s1">&#39;_num&#39;</span>
+    <span class="n">tradeoff</span> <span class="o">=</span> <span class="s1">&#39;_tradeoff&#39;</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="s1">&#39;_time&#39;</span>
+    <span class="n">stdin</span> <span class="o">=</span> <span class="s1">&#39;_stdin&#39;</span>
+    <span class="n">listenport</span> <span class="o">=</span> <span class="s1">&#39;_listenport&#39;</span>
+    <span class="n">parallel</span> <span class="o">=</span> <span class="s1">&#39;_parallel&#39;</span>
+    <span class="n">ttl</span> <span class="o">=</span> <span class="s1">&#39;_ttl&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="iperf-client-settings">
+<span id="id7"></span><h2>Iperf Client Settings<a class="headerlink" href="#iperf-client-settings" title="Permalink to this headline">¶</a></h2>
+<p>The client-side options &#8211; see <strong>Client Specific Options</strong> in the iperf man page.</p>
+<p class="plantuml">
+<img src="../../_images/plantuml-387a05e312c999c74072c36e5ca67f892bf0f6ee.png" alt="IperfCompositeBase &lt;|-- IperfClientSettings" />
+</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfClientSettings</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfClientSettings.prefix</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfClientSettings.server</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfClientSettings.bandwidth</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfClientSettings.dualtest</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfClientSettings.num</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfClientSettings.tradeoff</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfClientSettings.time</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfClientSettings.fileinput</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfClientSettings.stdin</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfClientSettings.listenport</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfClientSettings.parallel</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfClientSettings.ttl</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfClientSettings.linux_congestion</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">IperfClientSettings.__str__</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

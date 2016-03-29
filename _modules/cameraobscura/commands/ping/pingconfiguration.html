@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cameraobscura.commands.ping.pingconfiguration &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for cameraobscura.commands.ping.pingconfiguration</h1><div class="highlight"><pre>
+<span></span>
+<span class="c1"># this package</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.common.baseconfiguration</span> <span class="kn">import</span> <span class="n">BaseConfiguration</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.commands.ping.ping</span> <span class="kn">import</span> <span class="n">PingConstants</span>
+
+<div class="viewcode-block" id="PingConfiguration"><a class="viewcode-back" href="../../../../commands/ping/api/cameraobscura.commands.ping.pingconfiguration.PingConfiguration.html#cameraobscura.commands.ping.pingconfiguration.PingConfiguration">[docs]</a><span class="k">class</span> <span class="nc">PingConfiguration</span><span class="p">(</span><span class="n">BaseConfiguration</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class to hold configuration for the ping</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="PingConfiguration.__init__"><a class="viewcode-back" href="../../../../commands/ping/api/cameraobscura.commands.ping.pingconfiguration.PingConfiguration.html#cameraobscura.commands.ping.pingconfiguration.PingConfiguration.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        PingConfiguration constructor</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PingConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_target</span> <span class="o">=</span> <span class="bp">None</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time_limit</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_threshold</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_arguments</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_operating_system</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_expression</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_trap_errors</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The address or hostname to ping</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_target</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                  <span class="n">option</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">target</span><span class="p">,</span>
+                                                  <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_target</span>
+
+    <span class="nd">@target.setter</span>
+    <span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_target</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        sets the ping target</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `new_target`: address to ping (or None)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_target</span> <span class="o">=</span> <span class="n">new_target</span>
+        <span class="k">return</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">time_limit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The number of seconds to try to ping the target</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time_limit</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_time_limit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                           <span class="n">option</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">time_limit</span><span class="p">,</span>
+                                                           <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                           <span class="n">default</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">default_time_limit</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time_limit</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Number of consecutive pings to consider a success</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_threshold</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                        <span class="n">option</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">threshold</span><span class="p">,</span>
+                                                        <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                        <span class="n">default</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">default_threshold</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">arguments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        String of arguments for the ping command (uses linux as default)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_arguments</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_arguments</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                     <span class="n">option</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">arguments</span><span class="p">,</span>
+                                                     <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                     <span class="n">default</span><span class="o">=</span><span class="n">PingConstants</span><span class="o">.</span><span class="n">linux_one_repetition</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_arguments</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">operating_system</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The operating system used to chose the form of the ping command</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operating_system</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_operating_system</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                            <span class="n">option</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">operating_system</span><span class="p">,</span>
+                                                            <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                            <span class="n">default</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">default_os</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operating_system</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The readline timeout for the connection</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                        <span class="n">option</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span>
+                                                        <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                        <span class="n">default</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">default_timeout</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">data_expression</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A regular expression to match a successful ping</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_expression</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data_expression</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                           <span class="n">option</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">data_expression</span><span class="p">,</span>
+                                                           <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                           <span class="n">default</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">default_data_expression</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_expression</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">trap_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Boolean to indicate if socket errors should be fatal or not</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trap_errors</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_trap_errors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                                              <span class="n">option</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">trap_errors</span><span class="p">,</span>
+                                                              <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                              <span class="n">default</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">default_trap_errors</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trap_errors</span>
+    
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">example</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        An example configuration string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">#[{section}]</span>
+<span class="s2"># &#39;target&#39; (default: None) is the IP address or name to ping (RVR will use the traffic server if not given)</span>
+<span class="s2"># {t} = www.google.com</span>
+
+<span class="s2"># &#39;time_limit&#39;  is number of seconds to try to ping before giving up</span>
+<span class="s2"># time_limit = {time_limit}</span>
+
+<span class="s2"># &#39;threshold&#39; is the number of consecutive pings needed for a success</span>
+<span class="s2"># threshold = {threshold}</span>
+
+<span class="s2"># &#39;arguments&#39; are the arguments to give the ping command</span>
+<span class="s2"># arguments = {args}</span>
+
+<span class="s2"># &#39;operating_system&#39; is used to chose the arguments for the ping</span>
+<span class="s2"># operating_system = {os}</span>
+
+<span class="s2"># &#39;timeout&#39; is the seconds to wait for socket readlines (try to keep above 1 second)</span>
+<span class="s2"># timeout = {timeout}</span>
+
+<span class="s2"># &#39;data_expression&#39; is the regular expression to extract the round-trip time (used to check success)</span>
+<span class="s2"># data_expression = {dexpression}</span>
+
+<span class="s2"># &#39;trap_errors&#39;  if False, will raise an error if there is a socket error</span>
+<span class="s2"># otherwise it will just log it</span>
+<span class="s2">#trap_errors = {dtrap}&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                 <span class="n">t</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">target</span><span class="p">,</span>
+                               <span class="n">time_limit</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">default_time_limit</span><span class="p">,</span>
+                               <span class="n">threshold</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">default_threshold</span><span class="p">,</span>
+                               <span class="n">args</span><span class="o">=</span><span class="n">PingConstants</span><span class="o">.</span><span class="n">linux_one_repetition</span><span class="p">,</span>
+                               <span class="n">os</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">default_os</span><span class="p">,</span>
+                               <span class="n">timeout</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">default_timeout</span><span class="p">,</span>
+                               <span class="n">dexpression</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">default_data_expression</span><span class="p">,</span>
+                               <span class="n">dtrap</span><span class="o">=</span><span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">default_trap_errors</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">section</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The name for this section in the configuration file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_section</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_section</span> <span class="o">=</span> <span class="n">PingConfigurationConstants</span><span class="o">.</span><span class="n">section</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_section</span>
+    
+<div class="viewcode-block" id="PingConfiguration.check_rep"><a class="viewcode-back" href="../../../../commands/ping/api/cameraobscura.commands.ping.pingconfiguration.PingConfiguration.html#cameraobscura.commands.ping.pingconfiguration.PingConfiguration.check_rep">[docs]</a>    <span class="k">def</span> <span class="nf">check_rep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check the representation for inconsistancies</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PingConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="PingConfiguration.reset"><a class="viewcode-back" href="../../../../commands/ping/api/cameraobscura.commands.ping.pingconfiguration.PingConfiguration.html#cameraobscura.commands.ping.pingconfiguration.PingConfiguration.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reset the values to None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_target</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time_limit</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_threshold</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_arguments</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_operating_system</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_expression</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_trap_errors</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div></div>
+<span class="c1"># end class PingConfiguration</span>
+
+<span class="k">class</span> <span class="nc">PingConfigurationConstants</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Holder of constant values for PingConfiguration</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;ping&#39;</span>
+
+    <span class="c1"># options</span>
+    <span class="n">data_expression</span> <span class="o">=</span> <span class="s1">&#39;data_expression&#39;</span>
+    <span class="n">trap_errors</span> <span class="o">=</span> <span class="s1">&#39;trap_errors&#39;</span>
+    <span class="n">timeout</span> <span class="o">=</span> <span class="s1">&#39;timeout&#39;</span>
+    <span class="n">operating_system</span> <span class="o">=</span> <span class="s1">&#39;operating_system&#39;</span>
+    <span class="n">arguments</span> <span class="o">=</span> <span class="s1">&#39;arguments&#39;</span>
+    <span class="n">threshold</span> <span class="o">=</span> <span class="s1">&#39;threshold&#39;</span>
+    <span class="n">time_limit</span> <span class="o">=</span> <span class="s1">&#39;time_limit&#39;</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="s1">&#39;target&#39;</span>
+
+    <span class="c1"># defaults</span>
+    <span class="n">default_trap_errors</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">default_timeout</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">default_data_expression</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">default_os</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">default_threshold</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">default_time_limit</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="c1"># end PingConfigurationConstants</span>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

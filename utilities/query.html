@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Query &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../index.html" />
+    <link rel="up" title="Utility Modules" href="index.html" />
+    <link rel="next" title="csv.writer" href="api/csv.writer.html" />
+    <link rel="prev" title="cameraobscura.utilities.noop.NoOp" href="api/cameraobscura.utilities.noop.NoOp.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The Query</a><ul>
+<li><a class="reference internal" href="#the-query-class">The Query Class</a></li>
+<li><a class="reference internal" href="#responsibilities">Responsibilities</a></li>
+<li><a class="reference internal" href="#collaborators">Collaborators</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#main-path">Main Path</a></li>
+<li><a class="reference internal" href="#query-class-implementation">The Query Class</a></li>
+<li><a class="reference internal" href="#the-call">The Call</a></li>
+<li><a class="reference internal" href="#the-queryconfiguration">The QueryConfiguration</a></li>
+<li><a class="reference internal" href="#the-query-builder">The Query Builder</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="api/cameraobscura.utilities.noop.NoOp.html" title="Previous Chapter: cameraobscura.utilities.noop.NoOp"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; cameraobscura...</span>
+    </a>
+  </li>
+  <li>
+    <a href="api/csv.writer.html" title="Next Chapter: csv.writer"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">csv.writer &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/utilities/query.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="the-query">
+<h1>The Query<a class="headerlink" href="#the-query" title="Permalink to this headline">¶</a></h1>
+<p>To accomodate the almost arbitrary ways to get device-state information from a DUT, a general <cite>Query</cite> class is created to let user&#8217;s specify commands to send and expressions to extract information from their output.</p>
+<div class="section" id="the-query-class">
+<h2>The Query Class<a class="headerlink" href="#the-query-class" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="responsibilities">
+<span id="query-class-responsibilities"></span><h2>Responsibilities<a class="headerlink" href="#responsibilities" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Maintains list of <cite>fields</cite> to use as headers for the files</li>
+<li>Maintains <cite>commands</cite> to send to the device</li>
+<li>Maintains <cite>expressions</cite> (regular) to parse the output</li>
+<li>Maintains a csv-writer so save the output</li>
+<li>Maintains a connection to the device</li>
+<li>Traverses the fields, sending commands, checking output, and writing the results to the csv-writer</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="collaborators">
+<span id="query-class-collaborators"></span><h2>Collaborators<a class="headerlink" href="#collaborators" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>csv.DictWriter</li>
+<li>paramiko.SSHClient (or equivalent)</li>
+</ul>
+</div></blockquote>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/csv.writer.html#csv.writer" title="csv.writer"><code class="xref py py-obj docutils literal"><span class="pre">csv.writer</span></code></a></td>
+<td>csv_writer = csv.writer(fileobj [, dialect=&#8217;excel&#8217;]</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/csv.DictWriter.html#csv.DictWriter" title="csv.DictWriter"><code class="xref py py-obj docutils literal"><span class="pre">csv.DictWriter</span></code></a>(f,&nbsp;fieldnames[,&nbsp;restval,&nbsp;...])</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/paramiko.SSHClient.html#paramiko.SSHClient" title="paramiko.SSHClient"><code class="xref py py-obj docutils literal"><span class="pre">SSHClient</span></code></a>()</td>
+<td>A high-level representation of a session with an SSH server.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="main-path">
+<span id="query-class-path"></span><h2>Main Path<a class="headerlink" href="#main-path" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><blockquote>
+<div><ol class="arabic">
+<li><p class="first">Check if csv-output has been opened.
+1.1. Open csv-output if not opened
+1.2. Write header if output just opened</p>
+</li>
+<li><p class="first">Traverse fields
+2.1. Send field&#8217;s command to connection
+2.2. traverse lines of output from connection</p>
+<blockquote>
+<div><p>2.2.1. check if field&#8217;s expression matches line and add match to output-dictionary if it does
+2.2.2. If no match, continue to next line</p>
+</div></blockquote>
+<p>2.2. If no match made, add not-available token to output-dictionary</p>
+</li>
+</ol>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Send output-dictionary to csv-output</li>
+</ol>
+</div></blockquote>
+<div class="figure align-center" id="id2">
+<img src="../_images/query_activity_diagram.svg" /><p class="caption"><span class="caption-text">Activity Diagram for Query call</span></p>
+</div>
+</div>
+<div class="section" id="query-class-implementation">
+<span id="id1"></span><h2>The Query Class<a class="headerlink" href="#query-class-implementation" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img src="../_images/plantuml-dbcdff9f3ee077811774d01a007fef22476b68d2.png" alt="Query : File output_file
+Query : SSHClient connection
+Query : List fields
+Query : Dict commands
+Query : Dict expressions
+Query : DictWriter writer
+Query : String not_available
+Query : __call__()
+Query o- csv.DictWriter
+Query o- client
+Query o- TheCommand" />
+</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.utilities.query.Query.html#cameraobscura.utilities.query.Query" title="cameraobscura.utilities.query.Query"><code class="xref py py-obj docutils literal"><span class="pre">Query</span></code></a>(output_filename,&nbsp;fields,&nbsp;commands)</td>
+<td>A querier of devices</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.utilities.query.Query.output_file.html#cameraobscura.utilities.query.Query.output_file" title="cameraobscura.utilities.query.Query.output_file"><code class="xref py py-obj docutils literal"><span class="pre">Query.output_file</span></code></a></td>
+<td>Writeable output file for the DictWriter</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">Query.expressions</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.utilities.query.Query.writer.html#cameraobscura.utilities.query.Query.writer" title="cameraobscura.utilities.query.Query.writer"><code class="xref py py-obj docutils literal"><span class="pre">Query.writer</span></code></a></td>
+<td>A DictWriter that writes the query data to a csv-file</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.utilities.query.Query.close.html#cameraobscura.utilities.query.Query.close" title="cameraobscura.utilities.query.Query.close"><code class="xref py py-obj docutils literal"><span class="pre">Query.close</span></code></a>()</td>
+<td>Closes the output-file</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.utilities.query.Query.__call__.html#cameraobscura.utilities.query.Query.__call__" title="cameraobscura.utilities.query.Query.__call__"><code class="xref py py-obj docutils literal"><span class="pre">Query.__call__</span></code></a>([extra_data])</td>
+<td>The main interface, traverses commands and saves output to csv</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.utilities.query.Query.check_rep.html#cameraobscura.utilities.query.Query.check_rep" title="cameraobscura.utilities.query.Query.check_rep"><code class="xref py py-obj docutils literal"><span class="pre">Query.check_rep</span></code></a>()</td>
+<td>Checks that</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.utilities.query.Query.__del__.html#cameraobscura.utilities.query.Query.__del__" title="cameraobscura.utilities.query.Query.__del__"><code class="xref py py-obj docutils literal"><span class="pre">Query.__del__</span></code></a>()</td>
+<td>Closes the file</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-call">
+<h2>The Call<a class="headerlink" href="#the-call" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<img src="../_images/query_activity_diagram.svg" /></div>
+<p>The call builds a dictionary of data output from the Query&#8217;s commands. It always starts with a timestamp, then adds any &#8216;extra_data&#8217; that was passed in to the call before calling each command. After calling each command once it writes the output as a row in the (csv) output-file.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">QueryEnum</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;query&#39;</span>
+
+    <span class="c1"># special options</span>
+    <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39;delimiter&#39;</span>
+    <span class="n">not_available</span> <span class="o">=</span> <span class="s1">&#39;not_available&#39;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;filename&#39;</span>
+    <span class="n">timeout</span> <span class="o">=</span> <span class="s1">&#39;timeout&#39;</span>
+    <span class="n">trap_errors</span> <span class="o">=</span> <span class="s1">&#39;trap_errors&#39;</span>
+
+    <span class="c1"># reserved names</span>
+    <span class="n">reserved</span> <span class="o">=</span> <span class="p">(</span><span class="n">delimiter</span><span class="p">,</span> <span class="n">not_available</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span>
+                <span class="n">trap_errors</span><span class="p">)</span>
+
+    <span class="c1"># defaults</span>
+    <span class="n">default_delimiter</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span>
+    <span class="n">default_not_available</span> <span class="o">=</span> <span class="s1">&#39;NA&#39;</span>
+    <span class="n">default_filename</span> <span class="o">=</span> <span class="s1">&#39;query.csv&#39;</span>
+    <span class="n">default_timeout</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">default_trap_errors</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-queryconfiguration">
+<span id="query-configuration"></span><h2>The QueryConfiguration<a class="headerlink" href="#the-queryconfiguration" title="Permalink to this headline">¶</a></h2>
+<p class="plantuml">
+<img src="../_images/plantuml-f1964e746fd2765a843f0f36cd103c49572bfbea.png" alt="BaseConfiguration &lt;|-- QueryConfiguration
+QueryConfiguration : String delimiter
+QueryConfiguration : List fields
+QueryConfiguration : List commands" />
+</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.utilities.query.QueryConfiguration.html#cameraobscura.utilities.query.QueryConfiguration" title="cameraobscura.utilities.query.QueryConfiguration"><code class="xref py py-obj docutils literal"><span class="pre">QueryConfiguration</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>A holder of query configurations</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.utilities.query.QueryConfiguration.delimiter.html#cameraobscura.utilities.query.QueryConfiguration.delimiter" title="cameraobscura.utilities.query.QueryConfiguration.delimiter"><code class="xref py py-obj docutils literal"><span class="pre">QueryConfiguration.delimiter</span></code></a></td>
+<td>The delimiter separating the &lt;command&gt; and &lt;expression&gt; for each field.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.utilities.query.QueryConfiguration.not_available.html#cameraobscura.utilities.query.QueryConfiguration.not_available" title="cameraobscura.utilities.query.QueryConfiguration.not_available"><code class="xref py py-obj docutils literal"><span class="pre">QueryConfiguration.not_available</span></code></a></td>
+<td>The symbol to use if the command fails to retrieve a value.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.utilities.query.QueryConfiguration.fields.html#cameraobscura.utilities.query.QueryConfiguration.fields" title="cameraobscura.utilities.query.QueryConfiguration.fields"><code class="xref py py-obj docutils literal"><span class="pre">QueryConfiguration.fields</span></code></a></td>
+<td>List of field names (options from the section) for commands</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.utilities.query.QueryConfiguration.commands.html#cameraobscura.utilities.query.QueryConfiguration.commands" title="cameraobscura.utilities.query.QueryConfiguration.commands"><code class="xref py py-obj docutils literal"><span class="pre">QueryConfiguration.commands</span></code></a></td>
+<td>Dictionary of field:command</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.utilities.query.QueryConfiguration.expressions.html#cameraobscura.utilities.query.QueryConfiguration.expressions" title="cameraobscura.utilities.query.QueryConfiguration.expressions"><code class="xref py py-obj docutils literal"><span class="pre">QueryConfiguration.expressions</span></code></a></td>
+<td>Dictionary of field:expression</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.utilities.query.QueryConfiguration.filename.html#cameraobscura.utilities.query.QueryConfiguration.filename" title="cameraobscura.utilities.query.QueryConfiguration.filename"><code class="xref py py-obj docutils literal"><span class="pre">QueryConfiguration.filename</span></code></a></td>
+<td>The name of a file to use for the csv data</td>
+</tr>
+</tbody>
+</table>
+<p>Example Configuration:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">query</span><span class="p">]</span>
+<span class="n">delimiter</span> <span class="o">=</span> <span class="p">;</span>
+<span class="n">not_available</span> <span class="o">=</span> <span class="n">nunya</span>
+<span class="n">rssi</span> <span class="o">=</span> <span class="n">iwconfig</span> <span class="n">wlan2</span><span class="p">;</span> <span class="n">Signal</span>\<span class="n">slevel</span><span class="o">=</span><span class="p">(</span><span class="o">-</span>\<span class="n">d</span><span class="o">+</span>\<span class="n">s</span><span class="o">+</span><span class="n">dBm</span><span class="p">)</span>
+</pre></div>
+</div>
+<table border="1" class="docutils" id="id3">
+<caption><span class="caption-text">QueryConfiguration defaults</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">value</th>
+<th class="head">default</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>delimiter</td>
+<td>,</td>
+</tr>
+<tr class="row-odd"><td>not_available</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td>filename</td>
+<td>query.csv</td>
+</tr>
+</tbody>
+</table>
+<p>The Example configuration:</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="c1">#[query]</span>
+<span class="c1"># these are arbitrary commands that will be called in between attenuations</span>
+<span class="c1"># it&#39;s original use-case is to get RSSI and other monitoring information</span>
+<span class="c1"># but since it&#39;s free-form you can pass in whatever you like</span>
+<span class="c1"># the commands are issued on the DUT, not the traffic-server</span>
+
+<span class="c1"># delimiter separating command and expression</span>
+<span class="c1"># this is provided so that if the command or expression has a comma in it</span>
+<span class="c1"># you can use an alternative</span>
+
+<span class="c1">#delimiter =  ,</span>
+
+<span class="c1"># if you want to specify a filename set the filename option</span>
+<span class="c1"># filename = query.csv</span>
+
+<span class="c1"># to change the readline timeout</span>
+<span class="c1"># timeout = 10</span>
+
+<span class="c1"># to have it crash instead of trap socket errors</span>
+<span class="c1"># trap_errors = trap_errors</span>
+
+<span class="c1"># everything else is of the format:</span>
+<span class="c1"># &lt;column-header&gt; = &lt;command&gt;&lt;delimiter&gt;&lt;regular expression&gt;</span>
+<span class="c1"># the column-header will be used in the csv-file</span>
+<span class="c1"># the regular expression has to have a group &#39;()&#39; or it will raise an error</span>
+<span class="c1"># the contents of the group is what will be saved to the file</span>
+
+<span class="c1">#some examples:</span>
+<span class="c1">#rssi = iwconfig wlan0,Signal\slevel=(-\d+\sdBm)</span>
+<span class="c1">#noise = wl noise, (.*)</span>
+<span class="c1">#bitrate = iwconfig wlan0, Bit\sRate=(\d+\.*\d*\sMb/s)</span>
+<span class="c1">#counters = wl counters, (rxcrsglitch [0-9]* )</span>
+<span class="c1">#rtt_min/rtt_avg/rtt_max/rtt_mdev = ping -c 2 192.168.103.17,rtt\s+min.*=\s*(.*)\s+ms</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-query-builder">
+<h2>The Query Builder<a class="headerlink" href="#the-query-builder" title="Permalink to this headline">¶</a></h2>
+<p>This is a first builder. The intent is that for each high-level component there will be a <cite>Class - Configuration - Builder</cite> troika. The configurations are already in place for most cases but the AutomatedRVR is this huge class, at least in part because it is acting as a builder of its parts as well as an executor of its test. As with the configurations it would be better to have an RVRBuilder (or some sensibly-named thing) and each part would have its own builder. This might not alway seem to be necessary, but in the case of things like TheCommand or TheQuery where they are expecting a connection to a remote device, it seems like there&#8217;d be too much redundant code to specify the connections every time. The Builder thus acts to defer the building of the components until the master-builder has built the connection. Each builder should know how to build its object, but defer to another builder if it needs something that is not unique to it.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Configurations map config-files to parameters needed to build a component</li>
+<li>Builders map configurations and built-objects to built components</li>
+</ul>
+</div></blockquote>
+<p class="plantuml">
+<img src="../_images/plantuml-ac5e7eebe346478c573f636d3d5c59d71f6ed127.png" alt="QueryBuilder : TheQuery product
+QueryBuilder : TheHost connection
+QueryBuilder : QueryConfiguration configuration" />
+</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/cameraobscura.utilities.query.QueryBuilder.html#cameraobscura.utilities.query.QueryBuilder" title="cameraobscura.utilities.query.QueryBuilder"><code class="xref py py-obj docutils literal"><span class="pre">QueryBuilder</span></code></a>(connection,&nbsp;configuration)</td>
+<td>A builder of queries</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/cameraobscura.utilities.query.QueryBuilder.product.html#cameraobscura.utilities.query.QueryBuilder.product" title="cameraobscura.utilities.query.QueryBuilder.product"><code class="xref py py-obj docutils literal"><span class="pre">QueryBuilder.product</span></code></a></td>
+<td>Query built from the connection and configuration</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

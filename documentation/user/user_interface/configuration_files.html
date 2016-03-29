@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Configuration Files &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../index.html" />
+    <link rel="up" title="The User Interface" href="index.html" />
+    <link rel="next" title="Developer Documentation" href="../../developer/index.html" />
+    <link rel="prev" title="The Command Line Interface" href="command_line_interface.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">The Configuration Files</a><ul>
+<li><a class="reference internal" href="#the-attenuation-section">The Attenuation Section</a><ul>
+<li><a class="reference internal" href="#start-option"><code class="docutils literal"><span class="pre">start</span></code> Option</a></li>
+<li><a class="reference internal" href="#stop-option"><code class="docutils literal"><span class="pre">stop</span></code> Option</a></li>
+<li><a class="reference internal" href="#name-option"><code class="docutils literal"><span class="pre">name</span></code> Option</a></li>
+<li><a class="reference internal" href="#control-ip"><code class="docutils literal"><span class="pre">control_ip</span></code></a></li>
+<li><a class="reference internal" href="#step-sizes-and-step-change-thresholds"><code class="docutils literal"><span class="pre">step_sizes</span></code> and <code class="docutils literal"><span class="pre">step_change_thresholds</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#other-configuration">Other Configuration</a><ul>
+<li><a class="reference internal" href="#result-location"><code class="docutils literal"><span class="pre">result_location</span></code></a></li>
+<li><a class="reference internal" href="#test-name"><code class="docutils literal"><span class="pre">test_name</span></code></a></li>
+<li><a class="reference internal" href="#repetitions"><code class="docutils literal"><span class="pre">repetitions</span></code></a></li>
+<li><a class="reference internal" href="#recovery-time"><code class="docutils literal"><span class="pre">recovery_time</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iperf-configuration">Iperf Configuration</a><ul>
+<li><a class="reference internal" href="#direction"><code class="docutils literal"><span class="pre">direction</span></code></a></li>
+<li><a class="reference internal" href="#client-and-server">Client and Server</a></li>
+<li><a class="reference internal" href="#everything-else">Everything Else</a></li>
+<li><a class="reference internal" href="#special-considerations">Special Considerations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dut-and-server-configuration">DUT and Server Configuration</a><ul>
+<li><a class="reference internal" href="#connection-settings">Connection Settings</a></li>
+<li><a class="reference internal" href="#connection-type"><code class="docutils literal"><span class="pre">connection_type</span></code></a></li>
+<li><a class="reference internal" href="#operating-system"><code class="docutils literal"><span class="pre">operating_system</span></code></a></li>
+<li><a class="reference internal" href="#prefix"><code class="docutils literal"><span class="pre">prefix</span></code></a></li>
+<li><a class="reference internal" href="#id1">Everything Else</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#query-configuration">Query Configuration</a><ul>
+<li><a class="reference internal" href="#delimiter"><code class="docutils literal"><span class="pre">delimiter</span></code></a></li>
+<li><a class="reference internal" href="#filename"><code class="docutils literal"><span class="pre">filename</span></code></a></li>
+<li><a class="reference internal" href="#timeout"><code class="docutils literal"><span class="pre">timeout</span></code></a></li>
+<li><a class="reference internal" href="#trap-errors"><code class="docutils literal"><span class="pre">trap_errors</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dump-configuration">Dump Configuration</a><ul>
+<li><a class="reference internal" href="#id2"><code class="docutils literal"><span class="pre">timeout</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ping-configuration">Ping Configuration</a><ul>
+<li><a class="reference internal" href="#target"><code class="docutils literal"><span class="pre">target</span></code></a></li>
+<li><a class="reference internal" href="#time-limit"><code class="docutils literal"><span class="pre">time_limit</span></code></a></li>
+<li><a class="reference internal" href="#threshold"><code class="docutils literal"><span class="pre">threshold</span></code></a></li>
+<li><a class="reference internal" href="#arguments"><code class="docutils literal"><span class="pre">arguments</span></code></a></li>
+<li><a class="reference internal" href="#id3"><code class="docutils literal"><span class="pre">operating_system</span></code></a></li>
+<li><a class="reference internal" href="#id4"><code class="docutils literal"><span class="pre">timeout</span></code></a></li>
+<li><a class="reference internal" href="#data-expression"><code class="docutils literal"><span class="pre">data_expression</span></code></a></li>
+<li><a class="reference internal" href="#id5"><code class="docutils literal"><span class="pre">trap_errors</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="command_line_interface.html" title="Previous Chapter: The Command Line Interface"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; The Command L...</span>
+    </a>
+  </li>
+  <li>
+    <a href="../../developer/index.html" title="Next Chapter: Developer Documentation"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Developer Doc... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../../_sources/documentation/user/user_interface/configuration_files.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="the-configuration-files">
+<h1>The Configuration Files<a class="headerlink" href="#the-configuration-files" title="Permalink to this headline">¶</a></h1>
+<p id="user-documentation-configuration-files">The bulk of the parameters that can be set at run time are passed to the <cite>CameraObscura</cite> program via an <a class="reference external" href="http://en.wikipedia.org/wiki/INI_file">ini-formatted file</a>. We&#8217;ll walk through each of the sections and try to add enough explanation to the meaning of the options that you will be able to create a configuration that will suit your needs. Many of the settings are optional. If a section in the sample is commented out the whole section is optional. If an option is commented out the example value is the default. See the <a class="reference internal" href="command_line_interface.html#user-documentation-cli-fetch"><span class="std std-ref">fetch</span></a> instructions to see a list of the sections and how to get sample configurations.</p>
+<p>Contents:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#user-documentation-configuration-attenuation"><span class="std std-ref">The Attenuation Section</span></a></li>
+<li><a class="reference internal" href="#user-documentation-configuration-other"><span class="std std-ref">The Other Section</span></a></li>
+<li><a class="reference internal" href="#user-documentation-configuration-iperf"><span class="std std-ref">The Iperf Section</span></a></li>
+<li><a class="reference internal" href="#user-documentation-configuration-dut-server"><span class="std std-ref">The DUT and Server Sections</span></a></li>
+<li><a class="reference internal" href="#user-documentation-configuration-query"><span class="std std-ref">The Query Section</span></a></li>
+<li><a class="reference internal" href="#user-documentation-configuration-dump"><span class="std std-ref">The Dump Section</span></a></li>
+<li><a class="reference internal" href="#user-documentation-configuration-ping"><span class="std std-ref">The Ping Section</span></a></li>
+</ul>
+</div></blockquote>
+<div class="section" id="the-attenuation-section">
+<span id="user-documentation-configuration-attenuation"></span><h2>The Attenuation Section<a class="headerlink" href="#the-attenuation-section" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">attenuation</span></code> section is where you set parameters for the Attenuator and how it will be set during the test. The default sample (with comments removed):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">attenuation</span><span class="p">]</span>
+<span class="c1">#start = 0</span>
+<span class="c1">#stop = 9223372036854775807</span>
+<span class="c1">#name = WeinschelP</span>
+<span class="n">control_ip</span> <span class="o">=</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">10.53</span>
+<span class="c1">#step_sizes = [1]</span>
+<span class="c1">#step_change_thresholds =</span>
+</pre></div>
+</div>
+<p>The options that are commented out have default values so you don&#8217;t need to specify them if you don&#8217;t want to (and the defaults work for you).</p>
+<div class="section" id="start-option">
+<h3><code class="docutils literal"><span class="pre">start</span></code> Option<a class="headerlink" href="#start-option" title="Permalink to this headline">¶</a></h3>
+<p>This is the attenuation value to use at the start of the testing. It&#8217;s optional with a default value of 0.</p>
+</div>
+<div class="section" id="stop-option">
+<h3><code class="docutils literal"><span class="pre">stop</span></code> Option<a class="headerlink" href="#stop-option" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">stop</span></code> option is where you set the maximum attenuation you want to try. If you don&#8217;t set it the value will be retrieved from the attenuator (the program will ask it what the maximum attenuation setting is and take the smaller value of what&#8217;s set here and what the attenuator allows). The default is the largest integer python allows, which guarantees tha what the attenuator says is its maximum will be less than or equal to the default.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the testing will stop if the device in the chamber can&#8217;t ping the traffic server (if this option is set) or iperf traffic can&#8217;t be run so this value will in most cases not be reached, assuming it is set high enough.</p>
+</div>
+</div>
+<div class="section" id="name-option">
+<h3><code class="docutils literal"><span class="pre">name</span></code> Option<a class="headerlink" href="#name-option" title="Permalink to this headline">¶</a></h3>
+<p>This is where you set the name of the attenuator that you are using (this isn&#8217;t case-sensitive). It has to match the name of a class within the program that was created to control the attenuator. It has a default setting (see below) so if that matches the attenuator that you are using, then you can leave this option out.</p>
+<p>The currently available values you can use are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>MockAttenuator</li>
+<li>AdeptNCustomPath</li>
+<li>WeinschelP</li>
+<li>AdeptN</li>
+</ul>
+</div></blockquote>
+<p>The Default Attenuator is <strong>WeinschelP</strong>.</p>
+<p>The <strong>MockAttenuator</strong> is a debugging tool. If you want to check other parts of the testing but you don&#8217;t need the attenuator then set it to that and it will echo the commands it gets to the screen but not do anything else.</p>
+</div>
+<div class="section" id="control-ip">
+<h3><code class="docutils literal"><span class="pre">control_ip</span></code><a class="headerlink" href="#control-ip" title="Permalink to this headline">¶</a></h3>
+<p>This is the IP Address to reach the attenuator (or the PC controlling the attenuator).</p>
+</div>
+<div class="section" id="step-sizes-and-step-change-thresholds">
+<h3><code class="docutils literal"><span class="pre">step_sizes</span></code> and <code class="docutils literal"><span class="pre">step_change_thresholds</span></code><a class="headerlink" href="#step-sizes-and-step-change-thresholds" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">step_sizes</span></code> sets the sizes of the attenuation changes. It takes a space-separated list. The default is to increment the attenuations by 1 so if this is what you want, you don&#8217;t need to define this option. If you want a constant increase between each test that isn&#8217;t 1, you can set the value and ignore the fact that it expects a list:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">step_sizes</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p>If you want there to be a change in the amount the attenuation is increased as the test progresses, you need to set the <code class="docutils literal"><span class="pre">step_sizes</span></code> to the attenuation increments you want and then set the <code class="docutils literal"><span class="pre">step_change_thresholds</span></code> to a space-separated list of the trigger-values that prompt the change in increments.</p>
+<p>Let&#8217;s say you want the attenuations to initially increment by 1 and then start to increment by 2 once the attenuation has reached 10(or greater). You would set the values to these:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">step_sizes</span> <span class="o">=</span> <span class="mi">1</span> <span class="mi">2</span>
+<span class="n">step_change_thresholds</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>There is no logic built in to check the values you set so you can make as many changes as you want, but there always has to be one fewer <code class="docutils literal"><span class="pre">step_change_thresholds</span></code> value than there are <code class="docutils literal"><span class="pre">step_sizes</span></code> values or it will raise an error. This, for instance:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">step_sizes</span> <span class="o">=</span> <span class="mi">1</span> <span class="mi">10</span> <span class="mi">1</span>
+<span class="n">step_change_thresholds</span> <span class="o">=</span> <span class="mi">5</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p>Will initially increase by 1 until it reaches 5 then increase by 10 until it reaches 100 at which point it will drop back to increments of 1. This, on the other hand:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">step_sizes</span> <span class="o">=</span> <span class="mi">1</span> <span class="mi">10</span> <span class="mi">5</span>
+<span class="n">step_change_thresholds</span> <span class="o">=</span> <span class="mi">10</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>Will increment by 1, then increment by 10 once and then increment by 5 the rest of the time (because you were already past the final threshold of 2  when the first threshold was reached so it gets triggered as soon as the threshold value is checked again).</p>
+</div>
+</div>
+<div class="section" id="other-configuration">
+<span id="user-documentation-configuration-other"></span><h2>Other Configuration<a class="headerlink" href="#other-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">other</span></code> section is an optional section that leftover items ended up getting stuffed into. Here is the default (comments removed).</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#[other]</span>
+<span class="c1">#result_location = output_folder</span>
+<span class="c1">#test_name = rate_vs_range</span>
+<span class="c1"># repetitions = 1</span>
+<span class="c1">#recovery_time = 10</span>
+</pre></div>
+</div>
+<div class="section" id="result-location">
+<h3><code class="docutils literal"><span class="pre">result_location</span></code><a class="headerlink" href="#result-location" title="Permalink to this headline">¶</a></h3>
+<p>The result location is the name of the sub-folder you want to use to contain the generated data files. The folder will be created in whatever directory the program is run in unless you set the full path:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">result_location</span> <span class="o">=</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">data_folder</span>
+</pre></div>
+</div>
+<p>I didn&#8217;t set up tilde expansion so if you do the following:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">result_location</span> <span class="o">=</span> <span class="o">~/</span><span class="n">Data</span><span class="o">/</span><span class="n">data_folder</span>
+</pre></div>
+</div>
+<p>It will ignore your setting and use the default. Actually I tested this and it created a directory called &#8216;~&#8217; <strong>which is a very bad thing</strong>. So just don&#8217;t do this.</p>
+</div>
+<div class="section" id="test-name">
+<h3><code class="docutils literal"><span class="pre">test_name</span></code><a class="headerlink" href="#test-name" title="Permalink to this headline">¶</a></h3>
+<p>This is an identifier used to name output files that don&#8217;t have a special name of their own. I think. I didn&#8217;t make it, it was in the original version of this code. I would ignore it.</p>
+</div>
+<div class="section" id="repetitions">
+<h3><code class="docutils literal"><span class="pre">repetitions</span></code><a class="headerlink" href="#repetitions" title="Permalink to this headline">¶</a></h3>
+<p>Sets the number of times to re-run the same configuration.</p>
+</div>
+<div class="section" id="recovery-time">
+<h3><code class="docutils literal"><span class="pre">recovery_time</span></code><a class="headerlink" href="#recovery-time" title="Permalink to this headline">¶</a></h3>
+<p>The amount of time in seconds that the program will sleep between tests in case there is some kind of condition where it needs it.</p>
+</div>
+</div>
+<div class="section" id="iperf-configuration">
+<span id="user-documentation-configuration-iperf"></span><h2>Iperf Configuration<a class="headerlink" href="#iperf-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">iperf</span></code> section is where you set the iperf settings.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#[other]</span>
+<span class="c1">#result_location = output_folder</span>
+<span class="c1">#test_name = rate_vs_range</span>
+<span class="c1"># repetitions = 1</span>
+<span class="c1">#recovery_time = 10</span>
+</pre></div>
+</div>
+<div class="section" id="direction">
+<h3><code class="docutils literal"><span class="pre">direction</span></code><a class="headerlink" href="#direction" title="Permalink to this headline">¶</a></h3>
+<p>This is the only non-iperf flag. It looks at the first letter of the setting and decides which direction to send traffic. This assumes that traffic is alternating and is oriented to the device sitting in the chamber (called <cite>dut</cite> here).</p>
+<table border="1" class="docutils" id="id6">
+<caption><span class="caption-text">Iperf Directions</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">First Letter</th>
+<th class="head">Full Name</th>
+<th class="head">Meaning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>u</td>
+<td>upstream</td>
+<td>Traffic is sent from the DUT to the traffic server (simulated upload)</td>
+</tr>
+<tr class="row-odd"><td>d</td>
+<td>downstream</td>
+<td>Traffic is sent to the DUT from the traffic server (simulated download)</td>
+</tr>
+<tr class="row-even"><td>b</td>
+<td>both</td>
+<td>Traffic alternates between upstream and downstream</td>
+</tr>
+</tbody>
+</table>
+<p>So, to run testing only from the DUT to the traffic server:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">direction</span> <span class="o">=</span> <span class="n">up</span>
+</pre></div>
+</div>
+<p>To run direction only from the traffic server to the DUT:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">directly</span> <span class="o">=</span> <span class="n">down</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="client-and-server">
+<h3>Client and Server<a class="headerlink" href="#client-and-server" title="Permalink to this headline">¶</a></h3>
+<p>Although there are iperf options to determine the direction of the traffic (<code class="docutils literal"><span class="pre">-c,</span> <span class="pre">--client</span></code> and <code class="docutils literal"><span class="pre">-s,</span> <span class="pre">server</span></code>) these are set within the program based on the <code class="docutils literal"><span class="pre">direction</span></code> setting and the IP addresses taken from the <code class="docutils literal"><span class="pre">server</span></code> and <code class="docutils literal"><span class="pre">dut</span></code> sections so you shouldn&#8217;t try and set them (it should crash the program).</p>
+</div>
+<div class="section" id="everything-else">
+<h3>Everything Else<a class="headerlink" href="#everything-else" title="Permalink to this headline">¶</a></h3>
+<p>All the other settings are taken form the long option-names used by iperf:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">iperf</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">iperf</span> <span class="p">[</span><span class="o">-</span><span class="n">s</span><span class="o">|-</span><span class="n">c</span> <span class="n">host</span><span class="p">]</span> <span class="p">[</span><span class="n">options</span><span class="p">]</span>
+       <span class="n">iperf</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="o">|--</span><span class="n">help</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">v</span><span class="o">|--</span><span class="n">version</span><span class="p">]</span>
+
+<span class="n">Client</span><span class="o">/</span><span class="n">Server</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">f</span><span class="p">,</span> <span class="o">--</span><span class="nb">format</span>    <span class="p">[</span><span class="n">kmKM</span><span class="p">]</span>   <span class="nb">format</span> <span class="n">to</span> <span class="n">report</span><span class="p">:</span> <span class="n">Kbits</span><span class="p">,</span> <span class="n">Mbits</span><span class="p">,</span> <span class="n">KBytes</span><span class="p">,</span> <span class="n">MBytes</span>
+  <span class="o">-</span><span class="n">i</span><span class="p">,</span> <span class="o">--</span><span class="n">interval</span>  <span class="c1">#        seconds between periodic bandwidth reports</span>
+  <span class="o">-</span><span class="n">l</span><span class="p">,</span> <span class="o">--</span><span class="nb">len</span>       <span class="c1">#[KM]    length of buffer to read or write (default 8 KB)</span>
+  <span class="o">-</span><span class="n">m</span><span class="p">,</span> <span class="o">--</span><span class="n">print_mss</span>          <span class="nb">print</span> <span class="n">TCP</span> <span class="n">maximum</span> <span class="n">segment</span> <span class="n">size</span> <span class="p">(</span><span class="n">MTU</span> <span class="o">-</span> <span class="n">TCP</span><span class="o">/</span><span class="n">IP</span> <span class="n">header</span><span class="p">)</span>
+  <span class="o">-</span><span class="n">o</span><span class="p">,</span> <span class="o">--</span><span class="n">output</span>    <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span> <span class="n">output</span> <span class="n">the</span> <span class="n">report</span> <span class="ow">or</span> <span class="n">error</span> <span class="n">message</span> <span class="n">to</span> <span class="n">this</span> <span class="n">specified</span> <span class="n">file</span>
+  <span class="o">-</span><span class="n">p</span><span class="p">,</span> <span class="o">--</span><span class="n">port</span>      <span class="c1">#        server port to listen on/connect to</span>
+  <span class="o">-</span><span class="n">u</span><span class="p">,</span> <span class="o">--</span><span class="n">udp</span>                <span class="n">use</span> <span class="n">UDP</span> <span class="n">rather</span> <span class="n">than</span> <span class="n">TCP</span>
+  <span class="o">-</span><span class="n">w</span><span class="p">,</span> <span class="o">--</span><span class="n">window</span>    <span class="c1">#[KM]    TCP window size (socket buffer size)</span>
+  <span class="o">-</span><span class="n">B</span><span class="p">,</span> <span class="o">--</span><span class="n">bind</span>      <span class="o">&lt;</span><span class="n">host</span><span class="o">&gt;</span>   <span class="n">bind</span> <span class="n">to</span> <span class="o">&lt;</span><span class="n">host</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">an</span> <span class="n">interface</span> <span class="ow">or</span> <span class="n">multicast</span> <span class="n">address</span>
+  <span class="o">-</span><span class="n">C</span><span class="p">,</span> <span class="o">--</span><span class="n">compatibility</span>      <span class="k">for</span> <span class="n">use</span> <span class="k">with</span> <span class="n">older</span> <span class="n">versions</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">sent</span> <span class="n">extra</span> <span class="n">msgs</span>
+  <span class="o">-</span><span class="n">M</span><span class="p">,</span> <span class="o">--</span><span class="n">mss</span>       <span class="c1">#        set TCP maximum segment size (MTU - 40 bytes)</span>
+  <span class="o">-</span><span class="n">N</span><span class="p">,</span> <span class="o">--</span><span class="n">nodelay</span>            <span class="nb">set</span> <span class="n">TCP</span> <span class="n">no</span> <span class="n">delay</span><span class="p">,</span> <span class="n">disabling</span> <span class="n">Nagle</span><span class="s1">&#39;s Algorithm</span>
+  <span class="o">-</span><span class="n">V</span><span class="p">,</span> <span class="o">--</span><span class="n">IPv6Version</span>        <span class="n">Set</span> <span class="n">the</span> <span class="n">domain</span> <span class="n">to</span> <span class="n">IPv6</span>
+
+<span class="n">Server</span> <span class="n">specific</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">s</span><span class="p">,</span> <span class="o">--</span><span class="n">server</span>             <span class="n">run</span> <span class="ow">in</span> <span class="n">server</span> <span class="n">mode</span>
+  <span class="o">-</span><span class="n">U</span><span class="p">,</span> <span class="o">--</span><span class="n">single_udp</span>         <span class="n">run</span> <span class="ow">in</span> <span class="n">single</span> <span class="n">threaded</span> <span class="n">UDP</span> <span class="n">mode</span>
+  <span class="o">-</span><span class="n">D</span><span class="p">,</span> <span class="o">--</span><span class="n">daemon</span>             <span class="n">run</span> <span class="n">the</span> <span class="n">server</span> <span class="k">as</span> <span class="n">a</span> <span class="n">daemon</span>
+
+<span class="n">Client</span> <span class="n">specific</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">b</span><span class="p">,</span> <span class="o">--</span><span class="n">bandwidth</span> <span class="c1">#[KM]    for UDP, bandwidth to send at in bits/sec</span>
+                           <span class="p">(</span><span class="n">default</span> <span class="mi">1</span> <span class="n">Mbit</span><span class="o">/</span><span class="n">sec</span><span class="p">,</span> <span class="n">implies</span> <span class="o">-</span><span class="n">u</span><span class="p">)</span>
+  <span class="o">-</span><span class="n">c</span><span class="p">,</span> <span class="o">--</span><span class="n">client</span>    <span class="o">&lt;</span><span class="n">host</span><span class="o">&gt;</span>   <span class="n">run</span> <span class="ow">in</span> <span class="n">client</span> <span class="n">mode</span><span class="p">,</span> <span class="n">connecting</span> <span class="n">to</span> <span class="o">&lt;</span><span class="n">host</span><span class="o">&gt;</span>
+  <span class="o">-</span><span class="n">d</span><span class="p">,</span> <span class="o">--</span><span class="n">dualtest</span>           <span class="n">Do</span> <span class="n">a</span> <span class="n">bidirectional</span> <span class="n">test</span> <span class="n">simultaneously</span>
+  <span class="o">-</span><span class="n">n</span><span class="p">,</span> <span class="o">--</span><span class="n">num</span>       <span class="c1">#[KM]    number of bytes to transmit (instead of -t)</span>
+  <span class="o">-</span><span class="n">r</span><span class="p">,</span> <span class="o">--</span><span class="n">tradeoff</span>           <span class="n">Do</span> <span class="n">a</span> <span class="n">bidirectional</span> <span class="n">test</span> <span class="n">individually</span>
+  <span class="o">-</span><span class="n">t</span><span class="p">,</span> <span class="o">--</span><span class="n">time</span>      <span class="c1">#        time in seconds to transmit for (default 10 secs)</span>
+  <span class="o">-</span><span class="n">F</span><span class="p">,</span> <span class="o">--</span><span class="n">fileinput</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span>   <span class="nb">input</span> <span class="n">the</span> <span class="n">data</span> <span class="n">to</span> <span class="n">be</span> <span class="n">transmitted</span> <span class="kn">from</span> <span class="nn">a</span> <span class="n">file</span>
+  <span class="o">-</span><span class="n">I</span><span class="p">,</span> <span class="o">--</span><span class="n">stdin</span>              <span class="nb">input</span> <span class="n">the</span> <span class="n">data</span> <span class="n">to</span> <span class="n">be</span> <span class="n">transmitted</span> <span class="kn">from</span> <span class="nn">stdin</span>
+  <span class="o">-</span><span class="n">L</span><span class="p">,</span> <span class="o">--</span><span class="n">listenport</span> <span class="c1">#       port to receive bidirectional tests back on</span>
+  <span class="o">-</span><span class="n">P</span><span class="p">,</span> <span class="o">--</span><span class="n">parallel</span>  <span class="c1">#        number of parallel client threads to run</span>
+  <span class="o">-</span><span class="n">T</span><span class="p">,</span> <span class="o">--</span><span class="n">ttl</span>       <span class="c1">#        time-to-live, for multicast (default 1)</span>
+  <span class="o">-</span><span class="n">Z</span><span class="p">,</span> <span class="o">--</span><span class="n">linux</span><span class="o">-</span><span class="n">congestion</span> <span class="o">&lt;</span><span class="n">algo</span><span class="o">&gt;</span>  <span class="nb">set</span> <span class="n">TCP</span> <span class="n">congestion</span> <span class="n">control</span> <span class="n">algorithm</span> <span class="p">(</span><span class="n">Linux</span> <span class="n">only</span><span class="p">)</span>
+
+<span class="n">Miscellaneous</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="o">--</span><span class="n">reportexclude</span> <span class="p">[</span><span class="n">CDMSV</span><span class="p">]</span>   <span class="n">exclude</span> <span class="n">C</span><span class="p">(</span><span class="n">connection</span><span class="p">)</span> <span class="n">D</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="n">M</span><span class="p">(</span><span class="n">multicast</span><span class="p">)</span> <span class="n">S</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span> <span class="n">V</span><span class="p">(</span><span class="n">server</span><span class="p">)</span> <span class="n">reports</span>
+  <span class="o">-</span><span class="n">y</span><span class="p">,</span> <span class="o">--</span><span class="n">reportstyle</span> <span class="n">C</span>      <span class="n">report</span> <span class="k">as</span> <span class="n">a</span> <span class="n">Comma</span><span class="o">-</span><span class="n">Separated</span> <span class="n">Values</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>               <span class="nb">print</span> <span class="n">this</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">quit</span>
+  <span class="o">-</span><span class="n">v</span><span class="p">,</span> <span class="o">--</span><span class="n">version</span>            <span class="nb">print</span> <span class="n">version</span> <span class="n">information</span> <span class="ow">and</span> <span class="n">quit</span>
+
+<span class="p">[</span><span class="n">KM</span><span class="p">]</span> <span class="n">Indicates</span> <span class="n">options</span> <span class="n">that</span> <span class="n">support</span> <span class="n">a</span> <span class="n">K</span> <span class="ow">or</span> <span class="n">M</span> <span class="n">suffix</span> <span class="k">for</span> <span class="n">kilo</span><span class="o">-</span> <span class="ow">or</span> <span class="n">mega</span><span class="o">-</span>
+
+<span class="n">The</span> <span class="n">TCP</span> <span class="n">window</span> <span class="n">size</span> <span class="n">option</span> <span class="n">can</span> <span class="n">be</span> <span class="nb">set</span> <span class="n">by</span> <span class="n">the</span> <span class="n">environment</span> <span class="n">variable</span>
+<span class="n">TCP_WINDOW_SIZE</span><span class="o">.</span> <span class="n">Most</span> <span class="n">other</span> <span class="n">options</span> <span class="n">can</span> <span class="n">be</span> <span class="nb">set</span> <span class="n">by</span> <span class="n">an</span> <span class="n">environment</span> <span class="n">variable</span>
+<span class="n">IPERF_</span><span class="o">&lt;</span><span class="n">long</span> <span class="n">option</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">such</span> <span class="k">as</span> <span class="n">IPERF_BANDWIDTH</span><span class="o">.</span>
+
+<span class="n">Report</span> <span class="n">bugs</span> <span class="n">to</span> <span class="o">&lt;</span><span class="n">iperf</span><span class="o">-</span><span class="n">users</span><span class="nd">@lists</span><span class="o">.</span><span class="n">sourceforge</span><span class="o">.</span><span class="n">net</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>So, for instance, to set it to run upstream and downstream with 6 parallel threads for 5 minutes, with values output at 1 second intervals and a TCP window-size of 256K you would use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">iperf</span><span class="p">]</span>
+<span class="n">direction</span> <span class="o">=</span> <span class="n">both</span>
+
+<span class="n">parallel</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">interval</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">time</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">window</span> <span class="o">=</span> <span class="mi">256</span><span class="n">K</span>
+</pre></div>
+</div>
+<p>For flags that don&#8217;t take values (e.g. <code class="docutils literal"><span class="pre">--udp</span></code>) set use &#8216;true&#8217; as the value:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">udp</span> <span class="o">=</span> <span class="n">true</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="special-considerations">
+<h3>Special Considerations<a class="headerlink" href="#special-considerations" title="Permalink to this headline">¶</a></h3>
+<p>Here are some miscellaneous things I thought of while re-doing this code.</p>
+<blockquote>
+<div><ul class="simple">
+<li>If you use a serial connection (via telnet) the code isn&#8217;t currently breaking the server-side connection, so if you want TCP you should set the <code class="docutils literal"><span class="pre">--daemon</span></code> flag</li>
+<li>If you set the <code class="docutils literal"><span class="pre">--daemon</span></code> flag, you won&#8217;t  get the server-side output so you can get the server&#8217;s final response (via the client output) but not second by second output</li>
+<li>The iperf-parser in here is pretty fragile, I crashed it pretty easily, but the raw-iperf files are there in the data folder</li>
+<li>Iperf seems to have arbitrarily truncated some words &#8211; they use <cite>window</cite> but shortened <cite>length</cite> to <cite>len</cite>... make sure to check what they should be</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="dut-and-server-configuration">
+<span id="user-documentation-configuration-dut-server"></span><h2>DUT and Server Configuration<a class="headerlink" href="#dut-and-server-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">dut</span></code> and <code class="docutils literal"><span class="pre">server</span></code> sections are there to set up the connections to the nodes at either end of the <code class="docutils literal"><span class="pre">iperf</span></code> session. Within the program they are being passed to the same code (but with the different settings) so the only difference between the sections is their names &#8211; all the options are the same (kind of &#8211; see the <em>Everything Else</em> section at the end).</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">dut</span><span class="p">]</span>
+<span class="n">username</span> <span class="o">=</span> <span class="n">admin</span>
+<span class="c1">#password = root</span>
+<span class="n">control_ip</span> <span class="o">=</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">10.34</span>
+<span class="c1">#connection_type = telnet</span>
+<span class="n">test_ip</span> <span class="o">=</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">20.34</span>
+<span class="c1">#timeout=10</span>
+<span class="c1">#prefix = PATH=/opt:$PATH; adb shell</span>
+<span class="c1"># operating_system = cygwin</span>
+<span class="c1"># port=52686</span>
+
+<span class="p">[</span><span class="n">server</span><span class="p">]</span>
+<span class="n">username</span> <span class="o">=</span> <span class="n">admin</span>
+<span class="c1">#password = root</span>
+<span class="n">control_ip</span> <span class="o">=</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">10.34</span>
+<span class="c1">#connection_type = telnet</span>
+<span class="n">test_ip</span> <span class="o">=</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">20.34</span>
+<span class="c1">#timeout=10</span>
+<span class="c1">#prefix = PATH=/opt:$PATH; adb shell</span>
+<span class="c1"># operating_system = cygwin</span>
+<span class="c1"># port=52686</span>
+</pre></div>
+</div>
+<div class="section" id="connection-settings">
+<h3>Connection Settings<a class="headerlink" href="#connection-settings" title="Permalink to this headline">¶</a></h3>
+<p>The following are used to connect to and log into the device.</p>
+<table border="1" class="docutils" id="id7">
+<caption><span class="caption-text">Connection Settings</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Option</th>
+<th class="head">Meaning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>username</td>
+<td>the account username (e.g. <em>root</em>)</td>
+</tr>
+<tr class="row-odd"><td>password</td>
+<td>login password</td>
+</tr>
+<tr class="row-even"><td>control_ip</td>
+<td>address to send device commands to</td>
+</tr>
+<tr class="row-odd"><td>connection_type</td>
+<td>telnet or ssh</td>
+</tr>
+<tr class="row-even"><td>test_ip</td>
+<td>address to the interface to use for iperf traffic</td>
+</tr>
+<tr class="row-odd"><td>timeout</td>
+<td>seconds to try and login</td>
+</tr>
+</tbody>
+</table>
+<p>Currently only Telnet and SSH are supported. In the case of SSH, <code class="docutils literal"><span class="pre">hosts</span></code> files and public-keys are checked, so if you have them set up you can leave out the password and use the hostname:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="n">allion</span>
+<span class="n">control_ip</span> <span class="o">=</span> <span class="n">lancetfluke</span>
+</pre></div>
+</div>
+<p>If for some reason you don&#8217;t have a separate traffic server then you can use <cite>localhost</cite> as the <code class="docutils literal"><span class="pre">control_ip</span></code> and the Control PC will talk to itself.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For forwarded serial connections, the <code class="docutils literal"><span class="pre">control_ip</span></code> would be for the attached PC that&#8217;s forwarding the stream</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For android devices attached to a PC using a USB bridge, the login information would be for the attached PC while the <code class="docutils literal"><span class="pre">test_ip</span></code> would be for the android</p>
+</div>
+</div>
+<div class="section" id="connection-type">
+<h3><code class="docutils literal"><span class="pre">connection_type</span></code><a class="headerlink" href="#connection-type" title="Permalink to this headline">¶</a></h3>
+<p>As mentioned above, SSH and Telnet are supported. SSH is the default and should be preferred whenever it is available. If you have a device that only has a serial port you can set up a telnet connection to it by attaching a computer to it (via the serial port) and forwarding the connection over the PC&#8217;s ethernet connection using pyserial&#8217;s <a class="reference external" href="http://pyserial.sourceforge.net/examples.html#tcp-ip-serial-bridge">serial bridge</a>. Since the serial bridge doesn&#8217;t create a new PTY every time you connect to it this is much less flexible and possibly won&#8217;t work for every possible test (serial devices are hard to get so I can&#8217;t test it fully). As long as you stick to straight-forward TCP testing it should be okay.</p>
+</div>
+<div class="section" id="operating-system">
+<h3><code class="docutils literal"><span class="pre">operating_system</span></code><a class="headerlink" href="#operating-system" title="Permalink to this headline">¶</a></h3>
+<p>The defaults for the commands being used by the program assume that the device is running Linux (and is tested primarily with Ubuntu-based machines). For some things (particularly ping) the different operating systems have slightly different command flags and output. For the known cases you can set the operating system to clue the program into what it should expect. Right now &#8216;cygwin&#8217; is the only alternate.</p>
+</div>
+<div class="section" id="prefix">
+<h3><code class="docutils literal"><span class="pre">prefix</span></code><a class="headerlink" href="#prefix" title="Permalink to this headline">¶</a></h3>
+<p>Some devices just don&#8217;t have everything set up in such a way as to allow straight-forward execution of the commands. This particular setting was prompted by three cases that have been encountered before:</p>
+<blockquote>
+<div><ul class="simple">
+<li>command not in the non-interactive PATH variable</li>
+<li>android devices are controlled by an attached PC so they need &#8216;adb shell &#8216; before every command</li>
+<li>shared library not installed in the standard place</li>
+</ul>
+</div></blockquote>
+<p>To help with this the <code class="docutils literal"><span class="pre">prefix</span></code> takes a string that will be prepended to every command. For one case, some commands were in a folder called <cite>/opt/wifi</cite> which wasn&#8217;t in the PATH variable. To fix this you could add it to the PATH using the prefix:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>prefix = PATH=/opt/wifi:$PATH;
+</pre></div>
+</div>
+<p>Note that the prefix in this case has to end with a semi-colon so the shell will know that the command that follows it is a separate command. It might seem that we could have added the semi-colon in the program, but then the &#8216;adb shell&#8217;  prefix would have failed, because it can&#8217;t have a semi-colon between the prefix and the commands:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">prefix</span> <span class="o">=</span> <span class="n">adb</span> <span class="n">shell</span>
+</pre></div>
+</div>
+<p>In the case of the shared library, it&#8217;s similar to the PATH problem:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>prefix = LD_LIBRARY_PATH=/tmp:$LD_LIBRARY_PATH;
+</pre></div>
+</div>
+<p>Just remember that it&#8217;s added to every command (with a space in between the prefix and the command).</p>
+</div>
+<div class="section" id="id1">
+<h3>Everything Else<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The different connection types take different arguments when their code is called so it didn&#8217;t seem feasible to create a configuration file that works with every possible type (if serial or sub-process connections are added they will have completely different settings) so any arbitrary parameter that the connection libraries take on creation can be passed in. To know what&#8217;s valid will require looking at the signatures:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://docs.python.org/2/library/telnetlib.html#">Telnet</a></li>
+<li><a class="reference external" href="http://www.lag.net/paramiko/docs/paramiko.SSHClient-class.html#connect">SSH</a></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="query-configuration">
+<span id="user-documentation-configuration-query"></span><h2>Query Configuration<a class="headerlink" href="#query-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">query</span></code> section is an optional section that allows the user to make arbitrary queries to the device in the chamber (DUT) between tests. It was created because there appeared to be some unused code that did things like retrieve RSSI and similar information. Since it&#8217;s completely free-form it is simultaneously somewhat restricted &#8211; each command has to be accompanied by a regular expression that will extract the desired data using <a class="reference external" href="https://docs.python.org/2/howto/regex.html#grouping">groups</a>. This is because output is being put into a csv and different commands put out differing lines of output (and much of the interesting data is accessible through non-standard commands (e.g. <code class="docutils literal"><span class="pre">wl</span></code> vs <code class="docutils literal"><span class="pre">iw</span></code>...)).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The connection being used is being configured by the <cite>dut</cite> section. If you set the <code class="docutils literal"><span class="pre">prefix</span></code> in it, you don&#8217;t have to use the full path for the command here (if it&#8217;s not in the PATH). On the other hand, if these commands are in some strange place where only they are (i.e. not the same place as iperf or ping) then you can put the full path here and forget the <code class="docutils literal"><span class="pre">prefix</span></code> in the <code class="docutils literal"><span class="pre">dut</span></code> section. Either (or both) will work, but putting &#8216;adb shell&#8217; in both places won&#8217;t.</p>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#[query]</span>
+<span class="c1">#delimiter =  ,</span>
+<span class="c1"># filename = query.csv</span>
+<span class="c1"># timeout = 10</span>
+<span class="c1"># trap_errors = trap_errors</span>
+<span class="c1"># &lt;column-header&gt; = &lt;command&gt;&lt;delimiter&gt;&lt;regular expression&gt;</span>
+<span class="c1">#rssi = iwconfig wlan0,Signal\slevel=(-\d+\sdBm)</span>
+<span class="c1">#noise = wl noise, (.*)</span>
+<span class="c1">#bitrate = iwconfig wlan0, Bit\sRate=(\d+\.\d\sMb/s)</span>
+<span class="c1">#counters = wl counters, (rxcrsglitch [0-9]* )</span>
+</pre></div>
+</div>
+<p>The basic format for each &#8216;query&#8217; you want to make:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">identifier</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">command</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">regular</span> <span class="n">expression</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<table border="1" class="docutils" id="id8">
+<caption><span class="caption-text">Query Parts</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Part</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>identifier</td>
+<td>a string that will be used for the column header in the csv</td>
+</tr>
+<tr class="row-odd"><td>command</td>
+<td>a string that will be sent to the device to execute whatever is in it</td>
+</tr>
+<tr class="row-even"><td>regular expression</td>
+<td>a regular expression that will extract the data using a group</td>
+</tr>
+</tbody>
+</table>
+<p>As an example, here&#8217;s how to get RSSI, BitRate, and Link Quality from a device that uses <cite>iwconfig</cite>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>[query]
+
+rssi = iwconfig wlan0,Signal level=(-\d+)\s+dBm
+bitrate = iwconfig wlan0,Bit\sRate=(.+)\s[M]?b/s
+link_quality = iwconfig wlan0,Link\sQuality=(\d+/\d+)\s
+</pre></div>
+</div>
+<p>The program will also add the attenuation and a timestamp to the output file would have something like the following in it:</p>
+<table border="1" class="docutils" id="id9">
+<caption><span class="caption-text">Downstream Query</span><a class="headerlink" href="#id9" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">timestamp</th>
+<th class="head">rssi</th>
+<th class="head">bitrate</th>
+<th class="head">link_quality</th>
+<th class="head">attenuation</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>2014-05-02T15:43:34.993952</td>
+<td>-53</td>
+<td>1</td>
+<td>57/70</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>2014-05-02T15:43:42.900022</td>
+<td>-61</td>
+<td>39</td>
+<td>59/70</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="delimiter">
+<h3><code class="docutils literal"><span class="pre">delimiter</span></code><a class="headerlink" href="#delimiter" title="Permalink to this headline">¶</a></h3>
+<p>The default configuration expects the <cite>&lt;command&gt;</cite> and <cite>&lt;regular expression&gt;</cite> to be separated by a comma. In the event that either one of them requires a comma, you will need to change the delimiter to something that doesn&#8217;t conflict. Using the rssi example above (although it doesn&#8217;t have a comma in it, let&#8217;s just pretend):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">query</span><span class="p">]</span>
+<span class="n">delimiter</span> <span class="o">=</span> <span class="p">;</span>
+
+<span class="n">rssi</span> <span class="o">=</span> <span class="n">iwconfig</span> <span class="n">wlan0</span><span class="p">;</span><span class="n">Signal</span> <span class="n">level</span><span class="o">=</span><span class="p">(</span><span class="o">-</span>\<span class="n">d</span><span class="o">+</span><span class="p">)</span>\<span class="n">s</span><span class="o">+</span><span class="n">dBm</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="filename">
+<h3><code class="docutils literal"><span class="pre">filename</span></code><a class="headerlink" href="#filename" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">filename</span></code> is the name to use for the output file. In practice I decided it would be better to separate the upstream and downstream files so the <code class="docutils literal"><span class="pre">filename</span></code> acts as a suffix to which a direction prefix is added. Additionally, since there&#8217;s so many files they all get put into a sub-folder named <cite>queries</cite>.</p>
+</div>
+<div class="section" id="timeout">
+<h3><code class="docutils literal"><span class="pre">timeout</span></code><a class="headerlink" href="#timeout" title="Permalink to this headline">¶</a></h3>
+<p>This is a socket-timeout value (the number of seconds to wait while reading a line before giving up). Since the commands are arbitrary the initial assumption is that they are non-blocking and quick. If the response is too slow and it starts raising errors you can extentd the timeout to try and work around it.</p>
+</div>
+<div class="section" id="trap-errors">
+<h3><code class="docutils literal"><span class="pre">trap_errors</span></code><a class="headerlink" href="#trap-errors" title="Permalink to this headline">¶</a></h3>
+<p>The default behavior of the program is to trap errors raised by calling these commands (most likely socket-timeouts) so that they don&#8217;t kill the testing. If the data from the commands are critical or you want to troubleshoot failures, set this to &#8216;false&#8217; and the program will stop whenever a command fails.</p>
+</div>
+</div>
+<div class="section" id="dump-configuration">
+<span id="user-documentation-configuration-dump"></span><h2>Dump Configuration<a class="headerlink" href="#dump-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">dump</span></code> section is an optional section that will call the commands it&#8217;s given after testing is over and dumps standard out to a file. It is sort of similar to the <a class="reference internal" href="#user-documentation-configuration-query"><span class="std std-ref">queries</span></a> but is intended more for things like <code class="docutils literal"><span class="pre">logcat</span></code> or <code class="docutils literal"><span class="pre">dmesg</span></code> where you want everything and it doesn&#8217;t make sense to call them over and over.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#[dump]</span>
+<span class="c1"># timeout = 5</span>
+<span class="c1"># &lt;identifier_1&gt; = &lt;command_1&gt;</span>
+<span class="c1"># &lt;identifier_2&gt; = &lt;command_2&gt;</span>
+<span class="c1"># &lt;identifier_n&gt; = &lt;command_n&gt;</span>
+<span class="c1"># dump = dmesg -k</span>
+</pre></div>
+</div>
+<p>Each command line uses the form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">identifier</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">command</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The <cite>&lt;identifier&gt;</cite> will be used as the basename for the output file (with a <cite>.txt</cite> extension) which will be put in a sub-folder named <cite>dump</cite>. So in the above example the output of <cite>dmesg</cite> will be put in a file named <cite>dump.txt</cite>.</p>
+<div class="section" id="id2">
+<h3><code class="docutils literal"><span class="pre">timeout</span></code><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>This is the socket-timeout value. For some very large output dumps you will need to extend it. Although it&#8217;s ugly, you could also use this to grab non-terminating output (some logs don&#8217;t return an end-of-file character) by making it timeout (which it will do eventually anyway).</p>
+</div>
+</div>
+<div class="section" id="ping-configuration">
+<span id="user-documentation-configuration-ping"></span><h2>Ping Configuration<a class="headerlink" href="#ping-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">ping</span></code> section is an optional section to configure a connectivity-check from the DUT to the traffic server in between testing.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#[ping]</span>
+<span class="c1"># target = www.google.com</span>
+<span class="c1"># time_limit = 300</span>
+<span class="c1"># threshold = 5</span>
+<span class="c1"># arguments = -c 1 -W 1</span>
+<span class="c1"># operating_system = None</span>
+<span class="c1"># timeout = 10</span>
+<span class="c1"># data_expression = None</span>
+<span class="c1">#trap_errors = True</span>
+</pre></div>
+</div>
+<p>None of the options are required, but if the section as a whole is left out, then no pinging will be performed. This was added for a device whose ping implementation was broken.</p>
+<div class="section" id="target">
+<h3><code class="docutils literal"><span class="pre">target</span></code><a class="headerlink" href="#target" title="Permalink to this headline">¶</a></h3>
+<p>By default the address to ping will be taken from the <code class="docutils literal"><span class="pre">test_ip</span></code> option in the <code class="docutils literal"><span class="pre">server</span></code> setting. This option allows you to change this.</p>
+</div>
+<div class="section" id="time-limit">
+<h3><code class="docutils literal"><span class="pre">time_limit</span></code><a class="headerlink" href="#time-limit" title="Permalink to this headline">¶</a></h3>
+<p>This is the total number of seconds to try and ping the target before giving up.</p>
+</div>
+<div class="section" id="threshold">
+<h3><code class="docutils literal"><span class="pre">threshold</span></code><a class="headerlink" href="#threshold" title="Permalink to this headline">¶</a></h3>
+<p>This is the number of consecutive pings that constitute &#8216;success&#8217;.</p>
+</div>
+<div class="section" id="arguments">
+<h3><code class="docutils literal"><span class="pre">arguments</span></code><a class="headerlink" href="#arguments" title="Permalink to this headline">¶</a></h3>
+<p>The command-line arguments being passed to the ping command are being based on the operating system for the DUT. If they are different from what&#8217;s being used, you can override them here.</p>
+</div>
+<div class="section" id="id3">
+<h3><code class="docutils literal"><span class="pre">operating_system</span></code><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>This is redundant with the <cite>dut</cite> <cite>operating_system</cite>, it&#8217;s only here for completeness, I can&#8217;t think of a situation where you would need it.</p>
+</div>
+<div class="section" id="id4">
+<h3><code class="docutils literal"><span class="pre">timeout</span></code><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>The socket readline timeout.</p>
+</div>
+<div class="section" id="data-expression">
+<h3><code class="docutils literal"><span class="pre">data_expression</span></code><a class="headerlink" href="#data-expression" title="Permalink to this headline">¶</a></h3>
+<p>The <cite>ping</cite> follows the pattern set up by the <a class="reference internal" href="#user-documentation-configuration-query"><span class="std std-ref">query</span></a> (they share the same code) wherein a regular expression with a group is applied to the output to extract the data. A match will count as a successful ping and a failed match will correspond to a failed ping. If the output of the ping on the device is different than the default expression (there is a surprising amount of variation for ping output across operating systems) change the <code class="docutils literal"><span class="pre">data_expression</span></code> to one that would indicate a successful ping (don&#8217;t forget to put in group, indicated by parentheses).</p>
+</div>
+<div class="section" id="id5">
+<h3><code class="docutils literal"><span class="pre">trap_errors</span></code><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>This is another parameter shared with the <cite>queries</cite>. By default socket errors are assumed non-fatal (because it has to allow for a point where the attenuation has broken the connection). If you want to troubleshoot or just need it to crash on when socket errors arise, change this to <cite>false</cite>.</p>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>Given the number of parameters needed, the configuration file can become an unwieldy thing so I have tried to add as many defaults as I thought possible without accidentally covering up unintended values being used. The main goal of the renovation of this code was to make it so that the last-minute changes that plagued the old code resulting in an explosion of commented out and copied files could be avoided while the functionality was maintained using the configuration file instead. Unfortunately, as is always the case, generalization and optimization are opposing ideas. Hopefully the added flexibility has not come with the price of too much burden placed on the user.</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

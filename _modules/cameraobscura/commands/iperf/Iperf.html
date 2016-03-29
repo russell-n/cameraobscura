@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cameraobscura.commands.iperf.Iperf &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for cameraobscura.commands.iperf.Iperf</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+
+<span class="c1"># python standard library</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
+<span class="kn">import</span> <span class="nn">curses.ascii</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">distutils.util</span> <span class="kn">import</span> <span class="n">strtobool</span>
+
+<span class="c1"># third party</span>
+<span class="kn">from</span> <span class="nn">theape.parts.eventtimer</span> <span class="kn">import</span> <span class="n">EventTimer</span>
+<span class="kn">import</span> <span class="nn">iperflexer.iperfparser</span>
+<span class="kn">from</span> <span class="nn">iperflexer</span> <span class="kn">import</span> <span class="n">MAXIMUM_BANDWITH</span>
+
+<span class="c1"># this package</span>
+<span class="kn">from</span> <span class="nn">cameraobscura</span> <span class="kn">import</span> <span class="n">BLUE_BOLD_RESET</span>
+<span class="kn">from</span> <span class="nn">cameraobscura</span> <span class="kn">import</span> <span class="n">CameraobscuraError</span>
+<span class="kn">from</span> <span class="nn">iperfsettings</span> <span class="kn">import</span> <span class="n">IperfConstants</span><span class="p">,</span> <span class="n">IperfServerSettings</span><span class="p">,</span> <span class="n">IperfClientSettings</span>
+<span class="kn">import</span> <span class="nn">cameraobscura.utilities.file_writer</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.common.baseconfiguration</span> <span class="kn">import</span> <span class="n">BaseConfiguration</span>
+<span class="kn">from</span> <span class="nn">cameraobscura.common.errors</span> <span class="kn">import</span> <span class="n">ConfigurationError</span>
+
+<span class="n">UNDERSCORE</span> <span class="o">=</span> <span class="s1">&#39;_&#39;</span>
+<span class="n">WRITEABLE</span> <span class="o">=</span> <span class="s1">&#39;w&#39;</span>
+<span class="n">IPERF</span> <span class="o">=</span> <span class="s1">&#39;iperf {0}&#39;</span>
+<span class="n">CLIENT_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;client_&#39;</span>
+<span class="n">SERVER_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;server_&#39;</span>
+
+<span class="n">ClientServer</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;ClientServer&#39;</span><span class="p">,</span> <span class="s1">&#39;client server&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+
+<div class="viewcode-block" id="Iperf"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.Iperf.Iperf.html#cameraobscura.commands.iperf.Iperf.Iperf">[docs]</a><span class="k">class</span> <span class="nc">Iperf</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A runner of iperf tests</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Iperf.__init__"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.Iperf.Iperf.html#cameraobscura.commands.iperf.Iperf.Iperf.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dut</span><span class="p">,</span> <span class="n">traffic_server</span><span class="p">,</span> <span class="n">client_settings</span><span class="p">,</span> <span class="n">server_settings</span><span class="p">,</span>
+                 <span class="n">parser</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">summary</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Iperf Constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `dut`: something that implements a HostSSH-like interface to the DUT</span>
+<span class="sd">         - `traffic_server`: HostSSH-like interface to traffic server</span>
+<span class="sd">         - `client_settings`: IperfClientSettins instance</span>
+<span class="sd">         - `server_settings: an IperfServerSettings instance</span>
+<span class="sd">         - `parser`: parser for the iperf output</span>
+<span class="sd">         - `summary` : converter for bandwidths</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Iperf</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dut</span> <span class="o">=</span> <span class="n">dut</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">traffic_server</span> <span class="o">=</span> <span class="n">traffic_server</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client_settings</span> <span class="o">=</span> <span class="n">client_settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server_settings</span> <span class="o">=</span> <span class="n">server_settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client_server</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_udp</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_event_timer</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">parser</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client_summary</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server_summary</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="n">summary</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: A logging object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;{0}.{1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__module__</span><span class="p">,</span>
+                                  <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">event_timer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        An event-timer instance to help the server block the client</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_event_timer</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_event_timer</span> <span class="o">=</span> <span class="n">EventTimer</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server_settings</span><span class="o">.</span><span class="n">sleep</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;server_settings.sleep not given, using 1 second&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_event_timer</span> <span class="o">=</span> <span class="n">EventTimer</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_event_timer</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">client_server</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A dict with {direction:ClientServer} named tuples</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_server</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client_server</span> <span class="o">=</span> <span class="p">{</span><span class="n">IperfConstants</span><span class="o">.</span><span class="n">down</span><span class="p">:</span><span class="n">ClientServer</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">traffic_server</span><span class="p">,</span>
+                                                                                 <span class="n">server</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dut</span><span class="p">),</span>
+                                    <span class="n">IperfConstants</span><span class="o">.</span><span class="n">up</span><span class="p">:</span><span class="n">ClientServer</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dut</span><span class="p">,</span>
+                                                               <span class="n">server</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">traffic_server</span><span class="p">)}</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_server</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">udp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A check for the UDP flag in the settings</span>
+
+<span class="sd">        :return: boolean if this is a UDP session</span>
+<span class="sd">        :raise: CameraobscuraError if one setting has UDP and the other doesn&#39;t</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_udp</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># empty strings resolve to False so a boolean check is needed</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client_settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;udp&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">,</span>
+                     <span class="bp">self</span><span class="o">.</span><span class="n">server_settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;udp&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_udp</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_udp</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s2">&quot;Conflicting settings- Client: {0}, Server: {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client_settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;udp&#39;</span><span class="p">),</span>
+                                                                                              <span class="bp">self</span><span class="o">.</span><span class="n">server_settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;udp&#39;</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_udp</span>
+        
+<div class="viewcode-block" id="Iperf.__call__"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.Iperf.Iperf.__call__.html#cameraobscura.commands.iperf.Iperf.Iperf.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        the main interface</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `direction`: IperfConstants.up or IperfConstants.down (probably &#39;downstream&#39; or &#39;upstream&#39;)</span>
+<span class="sd">         - `filename`: path to use as basis for filename</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># get the client and server for the given directon</span>
+        <span class="n">client_server</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client_server</span><span class="p">[</span><span class="n">direction</span><span class="p">]</span>
+
+        <span class="c1"># this could be done with tuple-unpacking but I&#39;m trying to get rid of ordering mix-ups</span>
+        <span class="n">client</span><span class="p">,</span> <span class="n">server</span> <span class="o">=</span> <span class="n">client_server</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">client_server</span><span class="o">.</span><span class="n">server</span>
+        
+        <span class="c1"># try to kill all the iperf sessions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">BLUE_BOLD_RESET</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;** Killing Iperf Processes **&quot;</span><span class="p">))</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">kill_all</span><span class="p">(</span><span class="s1">&#39;iperf&#39;</span><span class="p">)</span>
+        <span class="n">server</span><span class="o">.</span><span class="n">kill_all</span><span class="p">(</span><span class="s1">&#39;iperf&#39;</span><span class="p">)</span>
+
+        <span class="c1"># add the direction and protocol to the filename</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">udp</span><span class="p">:</span>
+            <span class="n">protocol</span> <span class="o">=</span> <span class="s1">&#39;udp&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;UDP: Screen output will be from the server&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">protocol</span> <span class="o">=</span> <span class="s1">&#39;tcp&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;TCP: Screen output will be from the client&#39;</span><span class="p">)</span>
+        <span class="n">directory</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">UNDERSCORE</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">direction</span><span class="p">,</span> <span class="n">protocol</span><span class="p">,</span> <span class="n">filename</span><span class="p">]))</span>
+
+        <span class="c1"># set the server as the target for the client in the settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client_settings</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">testInterface</span>
+
+        <span class="c1"># run the server and client</span>
+        <span class="k">if</span> <span class="n">client</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">dut</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;DUT (client) -&gt; Traffic Server (iperf server)&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Traffic Server (client) -&gt; DUT (iperf server)&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">BLUE_BOLD_RESET</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;** Starting the Server **&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_server</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">BLUE_BOLD_RESET</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;** Starting the Client **&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_client</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+        <span class="c1"># for telnet, you can&#39;t send more input while the server is running</span>
+        <span class="c1"># you can run it in daemon mode, but then UDP output won&#39;t show up</span>
+        <span class="c1"># so, until a better idea comes up, I&#39;m closing the server&#39;s connection</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Closing the connection ({0}) so interactive connections won&#39;t block input&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">server</span><span class="p">))</span>
+
+        <span class="c1"># there seems to be a race condition with the telnet client running in a thread and the closing of the server</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;sleeping for 1 second to let the server output finish&#39;</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;sleeping for a second so the server finishes&#39;</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>        
+        <span class="n">server</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="Iperf.downstream"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.Iperf.Iperf.downstream.html#cameraobscura.commands.iperf.Iperf.Iperf.downstream">[docs]</a>    <span class="k">def</span> <span class="nf">downstream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This is slightly safer than using the call, since you don&#39;t need to know the direction string</span>
+
+<span class="sd">        (but underneath it all it uses __call__)</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `filename`: path to use as basis for output file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="p">(</span><span class="n">IperfConstants</span><span class="o">.</span><span class="n">down</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="Iperf.upstream"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.Iperf.Iperf.upstream.html#cameraobscura.commands.iperf.Iperf.Iperf.upstream">[docs]</a>    <span class="k">def</span> <span class="nf">upstream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Like `downstream` this is just a convenience pass-through to __call__</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `filename`: path to use as basis for iperf output file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="p">(</span><span class="n">IperfConstants</span><span class="o">.</span><span class="n">up</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="Iperf.run"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.Iperf.Iperf.run.html#cameraobscura.commands.iperf.Iperf.Iperf.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">settings</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Runs one-direction of traffic</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `host`: HostSSH or paramiko-like object</span>
+<span class="sd">         - `settings`: something whose __str__ resolves to iperf parameters</span>
+<span class="sd">         - `filename`: name to save raw output to</span>
+<span class="sd">         - `verbose`: if True, emit output as it appears</span>
+<span class="sd">         - `timeout`: readline timeout -- set to None for servers or it will raise an error</span>
+
+<span class="sd">        :raise: socket.timeout if the readline timeout is exceeded</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># the parser is created here so that the client and server don&#39;t clash with each other</span>
+        <span class="c1"># the IperfParser re-adds the threads -- this allows reporting the cases where a</span>
+        <span class="c1"># thread doesn&#39;t report back in time so iperf doesn&#39;t report the interval sum</span>
+        <span class="n">parser</span> <span class="o">=</span> <span class="n">iperflexer</span><span class="o">.</span><span class="n">iperfparser</span><span class="o">.</span><span class="n">IperfParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;Mbits&#39;</span><span class="p">,</span>
+                                                    <span class="n">maximum</span><span class="o">=</span><span class="n">MAXIMUM_BANDWITH</span><span class="p">,</span>
+                                                    <span class="n">threads</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client_settings</span><span class="o">.</span><span class="n">parallel</span><span class="p">))</span>
+
+        <span class="c1"># the SumParser uses the iperf sums and in this case is used to grab the last one</span>
+        <span class="c1"># (iperfs calculated rate for the whole transfer)</span>
+        <span class="c1"># this is used so that all the data is accounted for -- even the unreported</span>
+        <span class="c1"># thread intervals</span>
+        <span class="n">sums</span> <span class="o">=</span> <span class="n">iperflexer</span><span class="o">.</span><span class="n">sumparser</span><span class="o">.</span><span class="n">SumParser</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;Mbits&#39;</span><span class="p">,</span>
+                                              <span class="n">maximum</span><span class="o">=</span><span class="n">MAXIMUM_BANDWITH</span><span class="p">,</span>
+                                              <span class="n">threads</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client_settings</span><span class="o">.</span><span class="n">parallel</span><span class="p">))</span>
+    
+        <span class="n">folder</span><span class="p">,</span> <span class="n">base_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="bp">False</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">WRITEABLE</span><span class="p">)</span> <span class="k">as</span> <span class="n">opened</span><span class="p">:</span>
+            <span class="n">writer</span> <span class="o">=</span> <span class="n">cameraobscura</span><span class="o">.</span><span class="n">utilities</span><span class="o">.</span><span class="n">file_writer</span><span class="o">.</span><span class="n">LogWriter</span><span class="p">(</span><span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">,</span>
+                                                                    <span class="n">open_file</span><span class="o">=</span><span class="n">opened</span><span class="p">,</span>
+                                                                    <span class="n">expression</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+            <span class="n">command</span> <span class="o">=</span> <span class="n">IPERF</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+
+            <span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">host</span><span class="o">.</span><span class="n">exec_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">stdout</span><span class="p">:</span>
+                <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>                
+                <span class="n">bandwidth</span> <span class="o">=</span> <span class="n">parser</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">bandwidth</span> <span class="ow">and</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Bandwidth: {0} {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bandwidth</span><span class="p">,</span> <span class="n">parser</span><span class="o">.</span><span class="n">units</span><span class="p">))</span>
+                <span class="n">sums</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">:</span>
+                    <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>            
+                    <span class="k">break</span>
+
+        <span class="c1"># so many hacks...</span>
+        <span class="n">folder</span> <span class="o">=</span> <span class="n">folder</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;raw&#39;</span><span class="p">,</span> <span class="s1">&#39;parsed&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">folder</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+
+        <span class="n">output</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="s1">&#39;{0}.csv&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">base_filename</span><span class="p">))</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csv_output</span><span class="p">:</span>
+            <span class="n">bandwidths</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">bandwidth</span> <span class="ow">in</span> <span class="n">parser</span><span class="o">.</span><span class="n">bandwidths</span><span class="p">:</span>
+                <span class="n">csv_output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;{0}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bandwidth</span><span class="p">))</span>
+                <span class="n">bandwidths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bandwidth</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">:</span>
+            <span class="n">summary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">bandwidths</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">summary</span> <span class="o">=</span> <span class="n">sums</span><span class="o">.</span><span class="n">last_line_bandwidth</span>
+            
+        <span class="k">if</span> <span class="s2">&quot;Client&quot;</span> <span class="ow">in</span> <span class="n">settings</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client_summary</span> <span class="o">=</span> <span class="n">summary</span>
+        <span class="k">elif</span> <span class="s2">&quot;Server&quot;</span> <span class="ow">in</span> <span class="n">settings</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">server_summary</span> <span class="o">=</span> <span class="n">summary</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s1">&#39;unknown settings type: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">stderr</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
+                <span class="c1"># the killing of the server is causing this to dump errors</span>
+                <span class="c1"># so it&#39;s changed to debug until a solution is found</span>
+                <span class="c1"># (the errors are because closing the client doesn&#39;t seem to send a EOF)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Iperf.run ({0}) error: {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="Iperf.start_server"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.Iperf.Iperf.start_server.html#cameraobscura.commands.iperf.Iperf.Iperf.start_server">[docs]</a>    <span class="k">def</span> <span class="nf">start_server</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Starts the server in a thread so the client can run.</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `server`: paramiko-like thing to run iperf on</span>
+<span class="sd">         - `filename`: base-name for the file to save the raw output</span>
+
+<span class="sd">        :postcondition: self.server_thread is a thread with self.run running</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># add a prefix to identify the file</span>
+        <span class="n">path</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">SERVER_PREFIX</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
+
+        <span class="c1"># start the thread</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">,</span>
+                                              <span class="n">name</span><span class="o">=</span><span class="s1">&#39;server_thread&#39;</span><span class="p">,</span>
+                                              <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;host&#39;</span><span class="p">:</span><span class="n">server</span><span class="p">,</span>
+                                                      <span class="s1">&#39;settings&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">server_settings</span><span class="p">,</span>
+                                                      <span class="s1">&#39;filename&#39;</span><span class="p">:</span><span class="n">filename</span><span class="p">,</span>
+                                                      <span class="s1">&#39;verbose&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">udp</span><span class="p">,</span>
+                                                      <span class="s1">&#39;timeout&#39;</span><span class="p">:</span><span class="bp">None</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server_thread</span><span class="o">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+        <span class="c1"># block run_client for a short time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">event_timer</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="Iperf.run_client"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.Iperf.Iperf.run_client.html#cameraobscura.commands.iperf.Iperf.Iperf.run_client">[docs]</a>    <span class="k">def</span> <span class="nf">run_client</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Runs the client iperf session</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `client`: paramiko.SSHClient like object</span>
+<span class="sd">         - `filename`: name to save output to</span>
+
+<span class="sd">        :precondition: self.client_settings.server is set to the server hostname</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">CLIENT_PREFIX</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
+
+        <span class="c1"># run it</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">event_timer</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+        <span class="c1"># for slow connections (especially on telnet and serial -- the timeout has to be longer than the interval)</span>
+        <span class="c1"># but sometimes the user doesn&#39;t set it -- so this has gotten convoluted</span>
+        <span class="c1"># why doesn&#39;t everyone implement ssh?</span>
+        <span class="c1"># this is going to be very aggresive with the timeouts</span>
+        <span class="c1"># the last option (10) is the default for iperf</span>
+        <span class="c1">#timeout = max(self.client_settings.get(&#39;interval&#39;),</span>
+        <span class="c1">#              self.client_settings.get(&#39;time&#39;), 10) * 2</span>
+        <span class="n">interval</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">client_settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;interval&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">interval</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">timeout</span> <span class="o">=</span> <span class="n">interval</span> <span class="o">*</span> <span class="mi">4</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">timeout</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client_settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span><span class="mf">1.5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Setting client&#39;s readline timeout to {0} seconds&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">timeout</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">client</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+                 <span class="n">settings</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">client_settings</span><span class="p">,</span>
+                 <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+                 <span class="n">verbose</span><span class="o">=</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">udp</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="Iperf.version"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.Iperf.Iperf.version.html#cameraobscura.commands.iperf.Iperf.Iperf.version">[docs]</a>    <span class="k">def</span> <span class="nf">version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Runs iperf with the version flag</span>
+
+<span class="sd">        :return: whatever iperf outputs</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">exec_command</span><span class="p">(</span><span class="n">IPERF</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;--version&#39;</span><span class="p">))</span>
+
+        <span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">stdout</span><span class="p">])</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">stderr</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">error</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot; {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span></div></div>
+<span class="c1"># end class Iperf</span>
+
+<span class="k">class</span> <span class="nc">IperfEnum</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Iperf constants</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;iperf&#39;</span>
+    <span class="n">old_section</span> <span class="o">=</span> <span class="s1">&#39;traffic&#39;</span>
+    <span class="n">false</span> <span class="o">=</span> <span class="s1">&#39;off no false&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+    <span class="c1"># options</span>
+    <span class="n">direction</span> <span class="o">=</span> <span class="s1">&#39;direction&#39;</span>
+    <span class="n">upstream</span> <span class="o">=</span> <span class="s1">&#39;upstream&#39;</span>
+    <span class="n">downstream</span> <span class="o">=</span> <span class="s1">&#39;downstream&#39;</span>
+    <span class="n">both</span> <span class="o">=</span> <span class="s1">&#39;both&#39;</span>
+
+    <span class="c1"># defaults</span>
+    <span class="n">default_direction</span> <span class="o">=</span> <span class="n">both</span>
+
+<div class="viewcode-block" id="IperfConfiguration"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.Iperf.IperfConfiguration.html#cameraobscura.commands.iperf.Iperf.IperfConfiguration">[docs]</a><span class="k">class</span> <span class="nc">IperfConfiguration</span><span class="p">(</span><span class="n">BaseConfiguration</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A holder of iperf parameters</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="IperfConfiguration.__init__"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.Iperf.IperfConfiguration.html#cameraobscura.commands.iperf.Iperf.IperfConfiguration.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        IperfConfiguration constructor</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `configuration`: configuration adapter with iperf parameters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">IperfConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client_settings</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_server_settings</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exclusions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;assert_in&#39;</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">example</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: example iperf configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_example</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_example</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            [{section}]</span>
+<span class="s2">            # these are iperf options</span>
+<span class="s2">            # directions can be upstream, downstream or both (default : {direction})</span>
+<span class="s2">            # actually only checks the first letter so could also be ugly, dumb, or bunny too</span>
+<span class="s2">            direction = upstream</span>
+
+<span class="s2">            # everything else uses iperf long-option-names</span>
+<span class="s2">            # to get a list use `iperf -h` or `man iperf`</span>
+<span class="s2">            # the left-hand-side options are the iperf options without --</span>
+<span class="s2">            # for example, to set `--parallel 5`:</span>
+<span class="s2">            #parallel = 5</span>
+
+<span class="s2">            # if the flag takes no options, use True to set</span>
+<span class="s2">            #udp = True</span>
+
+<span class="s2">            # --client &lt;hostname&gt; and server are set automatically don&#39;t put them here</span>
+<span class="s2">            # put all the other settings in, though, and the client vs server stuff will get sorted out</span>
+<span class="s2">            &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                        <span class="n">direction</span><span class="o">=</span><span class="n">IperfEnum</span><span class="o">.</span><span class="n">default_direction</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_example</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">section</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The section name in the configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_section</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_section</span> <span class="o">=</span> <span class="n">IperfEnum</span><span class="o">.</span><span class="n">section</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_section</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the traffic direction (only uses the first letters (u, d, or b))</span>
+
+<span class="sd">        :section: traffic</span>
+<span class="sd">        :option: direction</span>
+<span class="sd">        :return: upstream, downstream, both</span>
+<span class="sd">        :raise: CameraobscuraError if direction doesn&#39;t start with valid letter</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">u</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">IperfEnum</span><span class="o">.</span><span class="n">upstream</span><span class="p">,</span> <span class="n">IperfEnum</span><span class="o">.</span><span class="n">downstream</span><span class="p">,</span> <span class="n">IperfEnum</span><span class="o">.</span><span class="n">both</span>
+            <span class="n">directions</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="s1">&#39;u d b&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">b</span><span class="p">)))</span>
+            <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span>
+                                               <span class="n">option</span><span class="o">=</span><span class="n">IperfEnum</span><span class="o">.</span><span class="n">direction</span><span class="p">,</span>
+                <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                <span class="n">default</span><span class="o">=</span><span class="n">IperfEnum</span><span class="o">.</span><span class="n">default_direction</span><span class="p">)</span>
+            <span class="n">direction</span> <span class="o">=</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span> <span class="o">=</span> <span class="n">directions</span><span class="p">[</span><span class="n">direction</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;[traffic] direction={0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">direction</span><span class="p">))</span>
+                <span class="k">raise</span> <span class="n">CameraobscuraError</span><span class="p">(</span><span class="s2">&quot;Unknown traffic direction: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">direction</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">client_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        An IperfClientSettings object</span>
+
+<span class="sd">        :return: IperfClientSettings built from the configuration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_settings</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client_settings</span> <span class="o">=</span> <span class="n">IperfClientSettings</span><span class="p">()</span>
+            <span class="n">parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_section_dict</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client_settings</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_settings</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">server_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        IperfServerSettings</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server_settings</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_section_dict</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_server_settings</span> <span class="o">=</span> <span class="n">IperfServerSettings</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_server_settings</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server_settings</span>
+
+<div class="viewcode-block" id="IperfConfiguration.get_section_dict"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.Iperf.IperfConfiguration.get_section_dict.html#cameraobscura.commands.iperf.Iperf.IperfConfiguration.get_section_dict">[docs]</a>    <span class="k">def</span> <span class="nf">get_section_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convenience method to get the section dict</span>
+
+<span class="sd">        :return: section-dictionary for this section</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">section_dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ConfigurationError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;exception caught&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+
+            <span class="c1"># try the old one</span>
+            <span class="n">parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">section_dict</span><span class="p">(</span><span class="n">IperfEnum</span><span class="o">.</span><span class="n">old_section</span><span class="p">)</span>
+
+        <span class="c1"># python resolves all strings to True</span>
+        <span class="c1"># try to keep the user from shooting himself in the foot</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">parameters</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>            
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">strtobool</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="k">return</span> <span class="n">parameters</span></div>
+
+<div class="viewcode-block" id="IperfConfiguration.reset"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.Iperf.IperfConfiguration.reset.html#cameraobscura.commands.iperf.Iperf.IperfConfiguration.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the properties to None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client_settings</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_server_settings</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="IperfConfiguration.check_rep"><a class="viewcode-back" href="../../../../commands/iperf/api/cameraobscura.commands.iperf.Iperf.IperfConfiguration.check_rep.html#cameraobscura.commands.iperf.Iperf.IperfConfiguration.check_rep">[docs]</a>    <span class="k">def</span> <span class="nf">check_rep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks the representation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">IperfConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">check_rep</span><span class="p">()</span>
+        <span class="k">return</span></div></div>
+<span class="c1"># end IperfConfiguration</span>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>iperflexer.coroutine &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for iperflexer.coroutine</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">FileType</span>
+
+
+<span class="n">COMMA</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span>
+<span class="n">NEWLINE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="n">COMMA_JOIN</span> <span class="o">=</span> <span class="s2">&quot;{0},{1}&quot;</span>
+<span class="n">WRITEABLE</span> <span class="o">=</span> <span class="s1">&#39;w&#39;</span>
+
+
+<div class="viewcode-block" id="coroutine"><a class="viewcode-back" href="../../iperflexer/api/iperflexer.coroutine.coroutine.html#iperflexer.coroutine.coroutine">[docs]</a><span class="k">def</span> <span class="nf">coroutine</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A decorator to start coroutines</span>
+
+<span class="sd">    :param:</span>
+<span class="sd">    </span>
+<span class="sd">     - `func`: A coroutine function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">wrap</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">coroutine_func</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">coroutine_func</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">coroutine_func</span>
+    <span class="k">return</span> <span class="n">wrap</span></div>
+
+
+<span class="nd">@coroutine</span>
+<div class="viewcode-block" id="broadcast"><a class="viewcode-back" href="../../iperflexer/api/iperflexer.coroutine.broadcast.html#iperflexer.coroutine.broadcast">[docs]</a><span class="k">def</span> <span class="nf">broadcast</span><span class="p">(</span><span class="n">targets</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A coroutine to broadcast input.</span>
+<span class="sd">    </span>
+<span class="sd">    :param:</span>
+
+<span class="sd">     - `targets`: A list of coroutines to send output to.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="p">(</span><span class="k">yield</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">targets</span><span class="p">:</span>
+            <span class="n">target</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">return</span></div>
+
+
+<span class="nd">@coroutine</span>
+<div class="viewcode-block" id="comma_join"><a class="viewcode-back" href="../../iperflexer/api/iperflexer.coroutine.comma_join.html#iperflexer.coroutine.comma_join">[docs]</a><span class="k">def</span> <span class="nf">comma_join</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">input_count</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This outputs the data in the opposite order that it&#39;s received.</span>
+<span class="sd">    This way the source of the data pipeline is output first.</span>
+<span class="sd">    </span>
+<span class="sd">    :param:</span>
+
+<span class="sd">     - `target`: A coroutine to send output to.</span>
+<span class="sd">     - `input_count`: number of inputs before creating line to send.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">input_count</span><span class="p">)</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">COMMA</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">reversed</span><span class="p">([(</span><span class="k">yield</span><span class="p">)</span> <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">]))</span>
+        <span class="n">target</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">return</span></div>
+
+
+<span class="nd">@coroutine</span>
+<div class="viewcode-block" id="output"><a class="viewcode-back" href="../../iperflexer/api/iperflexer.coroutine.output.html#iperflexer.coroutine.output">[docs]</a><span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="n">target_file</span><span class="p">):</span>    
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Writes input to the target file</span>
+<span class="sd">    </span>
+<span class="sd">    :param:</span>
+
+<span class="sd">     - `target_file`: A file-like object to write output to.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="p">(</span><span class="k">yield</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">NEWLINE</span><span class="p">):</span>
+            <span class="n">line</span> <span class="o">+=</span> <span class="n">NEWLINE</span>
+        <span class="n">target_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">return</span></div>
+
+
+<span class="nd">@coroutine</span>
+<div class="viewcode-block" id="comma_append"><a class="viewcode-back" href="../../iperflexer/api/iperflexer.coroutine.comma_append.html#iperflexer.coroutine.comma_append">[docs]</a><span class="k">def</span> <span class="nf">comma_append</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Joins a source stream output and incoming strings with commas</span>
+
+<span class="sd">    :param:</span>
+
+<span class="sd">     - `source`: iterable of strings</span>
+<span class="sd">     - `target`: target to send joined strings</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">source</span><span class="p">:</span>
+        <span class="n">line_2</span> <span class="o">=</span> <span class="p">(</span><span class="k">yield</span><span class="p">)</span>
+        <span class="n">target</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">COMMA_JOIN</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="n">NEWLINE</span><span class="p">),</span> <span class="n">line_2</span><span class="p">))</span>
+    <span class="k">return</span></div>
+
+
+<span class="nd">@coroutine</span>
+<span class="k">def</span> <span class="nf">file_output</span><span class="p">(</span><span class="n">file_object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Writes strings to a file, making sure there&#39;s a newline at the end</span>
+
+<span class="sd">    :param:</span>
+
+<span class="sd">     - `file_object`: opened, writable file or name of file to open</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">type</span><span class="p">(</span><span class="n">file_object</span><span class="p">)</span> <span class="ow">is</span> <span class="n">FileType</span><span class="p">:</span>
+        <span class="n">file_object</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_object</span><span class="p">,</span> <span class="n">WRITEABLE</span><span class="p">)</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="p">(</span><span class="k">yield</span><span class="p">)</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="n">NEWLINE</span><span class="p">)</span> <span class="o">+</span> <span class="n">NEWLINE</span>
+        <span class="n">file_object</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

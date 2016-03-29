@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>DUT and Server Configuration &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">DUT and Server Configuration</a><ul>
+<li><a class="reference internal" href="#connection-settings">Connection Settings</a></li>
+<li><a class="reference internal" href="#connection-type"><code class="docutils literal"><span class="pre">connection_type</span></code></a></li>
+<li><a class="reference internal" href="#operating-system"><code class="docutils literal"><span class="pre">operating_system</span></code></a></li>
+<li><a class="reference internal" href="#prefix"><code class="docutils literal"><span class="pre">prefix</span></code></a></li>
+<li><a class="reference internal" href="#everything-else">Everything Else</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../../../_sources/documentation/user/user_interface/configuration_sections/configuration_dut_server.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="dut-and-server-configuration">
+<h1>DUT and Server Configuration<a class="headerlink" href="#dut-and-server-configuration" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal"><span class="pre">dut</span></code> and <code class="docutils literal"><span class="pre">server</span></code> sections are there to set up the connections to the nodes at either end of the <code class="docutils literal"><span class="pre">iperf</span></code> session. Within the program they are being passed to the same code (but with the different settings) so the only difference between the sections is their names &#8211; all the options are the same (kind of &#8211; see the <em>Everything Else</em> section at the end).</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">dut</span><span class="p">]</span>
+<span class="n">username</span> <span class="o">=</span> <span class="n">admin</span>
+<span class="c1">#password = root</span>
+<span class="n">control_ip</span> <span class="o">=</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">10.34</span>
+<span class="c1">#connection_type = telnet</span>
+<span class="n">test_ip</span> <span class="o">=</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">20.34</span>
+<span class="c1">#timeout=10</span>
+<span class="c1">#prefix = PATH=/opt:$PATH; adb shell</span>
+<span class="c1"># operating_system = cygwin</span>
+<span class="c1"># port=52686</span>
+
+<span class="p">[</span><span class="n">server</span><span class="p">]</span>
+<span class="n">username</span> <span class="o">=</span> <span class="n">admin</span>
+<span class="c1">#password = root</span>
+<span class="n">control_ip</span> <span class="o">=</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">10.34</span>
+<span class="c1">#connection_type = telnet</span>
+<span class="n">test_ip</span> <span class="o">=</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">20.34</span>
+<span class="c1">#timeout=10</span>
+<span class="c1">#prefix = PATH=/opt:$PATH; adb shell</span>
+<span class="c1"># operating_system = cygwin</span>
+<span class="c1"># port=52686</span>
+</pre></div>
+</div>
+<div class="section" id="connection-settings">
+<h2>Connection Settings<a class="headerlink" href="#connection-settings" title="Permalink to this headline">¶</a></h2>
+<p>The following are used to connect to and log into the device.</p>
+<table border="1" class="docutils" id="id1">
+<caption><span class="caption-text">Connection Settings</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Option</th>
+<th class="head">Meaning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>username</td>
+<td>the account username (e.g. <em>root</em>)</td>
+</tr>
+<tr class="row-odd"><td>password</td>
+<td>login password</td>
+</tr>
+<tr class="row-even"><td>control_ip</td>
+<td>address to send device commands to</td>
+</tr>
+<tr class="row-odd"><td>connection_type</td>
+<td>telnet or ssh</td>
+</tr>
+<tr class="row-even"><td>test_ip</td>
+<td>address to the interface to use for iperf traffic</td>
+</tr>
+<tr class="row-odd"><td>timeout</td>
+<td>seconds to try and login</td>
+</tr>
+</tbody>
+</table>
+<p>Currently only Telnet and SSH are supported. In the case of SSH, <code class="docutils literal"><span class="pre">hosts</span></code> files and public-keys are checked, so if you have them set up you can leave out the password and use the hostname:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="n">allion</span>
+<span class="n">control_ip</span> <span class="o">=</span> <span class="n">lancetfluke</span>
+</pre></div>
+</div>
+<p>If for some reason you don&#8217;t have a separate traffic server then you can use <cite>localhost</cite> as the <code class="docutils literal"><span class="pre">control_ip</span></code> and the Control PC will talk to itself.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For forwarded serial connections, the <code class="docutils literal"><span class="pre">control_ip</span></code> would be for the attached PC that&#8217;s forwarding the stream</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For android devices attached to a PC using a USB bridge, the login information would be for the attached PC while the <code class="docutils literal"><span class="pre">test_ip</span></code> would be for the android</p>
+</div>
+</div>
+<div class="section" id="connection-type">
+<h2><code class="docutils literal"><span class="pre">connection_type</span></code><a class="headerlink" href="#connection-type" title="Permalink to this headline">¶</a></h2>
+<p>As mentioned above, SSH and Telnet are supported. SSH is the default and should be preferred whenever it is available. If you have a device that only has a serial port you can set up a telnet connection to it by attaching a computer to it (via the serial port) and forwarding the connection over the PC&#8217;s ethernet connection using pyserial&#8217;s <a class="reference external" href="http://pyserial.sourceforge.net/examples.html#tcp-ip-serial-bridge">serial bridge</a>. Since the serial bridge doesn&#8217;t create a new PTY every time you connect to it this is much less flexible and possibly won&#8217;t work for every possible test (serial devices are hard to get so I can&#8217;t test it fully). As long as you stick to straight-forward TCP testing it should be okay.</p>
+</div>
+<div class="section" id="operating-system">
+<h2><code class="docutils literal"><span class="pre">operating_system</span></code><a class="headerlink" href="#operating-system" title="Permalink to this headline">¶</a></h2>
+<p>The defaults for the commands being used by the program assume that the device is running Linux (and is tested primarily with Ubuntu-based machines). For some things (particularly ping) the different operating systems have slightly different command flags and output. For the known cases you can set the operating system to clue the program into what it should expect. Right now &#8216;cygwin&#8217; is the only alternate.</p>
+</div>
+<div class="section" id="prefix">
+<h2><code class="docutils literal"><span class="pre">prefix</span></code><a class="headerlink" href="#prefix" title="Permalink to this headline">¶</a></h2>
+<p>Some devices just don&#8217;t have everything set up in such a way as to allow straight-forward execution of the commands. This particular setting was prompted by three cases that have been encountered before:</p>
+<blockquote>
+<div><ul class="simple">
+<li>command not in the non-interactive PATH variable</li>
+<li>android devices are controlled by an attached PC so they need &#8216;adb shell &#8216; before every command</li>
+<li>shared library not installed in the standard place</li>
+</ul>
+</div></blockquote>
+<p>To help with this the <code class="docutils literal"><span class="pre">prefix</span></code> takes a string that will be prepended to every command. For one case, some commands were in a folder called <cite>/opt/wifi</cite> which wasn&#8217;t in the PATH variable. To fix this you could add it to the PATH using the prefix:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>prefix = PATH=/opt/wifi:$PATH;
+</pre></div>
+</div>
+<p>Note that the prefix in this case has to end with a semi-colon so the shell will know that the command that follows it is a separate command. It might seem that we could have added the semi-colon in the program, but then the &#8216;adb shell&#8217;  prefix would have failed, because it can&#8217;t have a semi-colon between the prefix and the commands:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">prefix</span> <span class="o">=</span> <span class="n">adb</span> <span class="n">shell</span>
+</pre></div>
+</div>
+<p>In the case of the shared library, it&#8217;s similar to the PATH problem:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>prefix = LD_LIBRARY_PATH=/tmp:$LD_LIBRARY_PATH;
+</pre></div>
+</div>
+<p>Just remember that it&#8217;s added to every command (with a space in between the prefix and the command).</p>
+</div>
+<div class="section" id="everything-else">
+<h2>Everything Else<a class="headerlink" href="#everything-else" title="Permalink to this headline">¶</a></h2>
+<p>The different connection types take different arguments when their code is called so it didn&#8217;t seem feasible to create a configuration file that works with every possible type (if serial or sub-process connections are added they will have completely different settings) so any arbitrary parameter that the connection libraries take on creation can be passed in. To know what&#8217;s valid will require looking at the signatures:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://docs.python.org/2/library/telnetlib.html#">Telnet</a></li>
+<li><a class="reference external" href="http://www.lag.net/paramiko/docs/paramiko.SSHClient-class.html#connect">SSH</a></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

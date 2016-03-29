@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Coroutines &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../index.html" />
+    <link rel="up" title="The Iperf Lexer" href="index.html" />
+    <link rel="next" title="iperflexer.coroutine.coroutine" href="api/iperflexer.coroutine.coroutine.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Coroutines</a><ul>
+<li><a class="reference internal" href="#coroutine-decorator">Coroutine Decorator</a></li>
+<li><a class="reference internal" href="#the-broadcast">The Broadcast</a></li>
+<li><a class="reference internal" href="#the-comma-join">The Comma Join</a></li>
+<li><a class="reference internal" href="#output-coroutine">Output Coroutine</a></li>
+<li><a class="reference internal" href="#comma-append">Comma Append</a></li>
+<li><a class="reference internal" href="#file-output-coroutine">File Output Coroutine</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="api/iperflexer.coroutine.coroutine.html" title="Next Chapter: iperflexer.coroutine.coroutine"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">iperflexer.co... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/iperflexer/coroutine.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="coroutines">
+<h1>Coroutines<a class="headerlink" href="#coroutines" title="Permalink to this headline">¶</a></h1>
+<p>A module for generic coroutines.</p>
+<div class="section" id="coroutine-decorator">
+<h2>Coroutine Decorator<a class="headerlink" href="#coroutine-decorator" title="Permalink to this headline">¶</a></h2>
+<p>This is a decorator used to start a coroutine.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.coroutine.coroutine.html#iperflexer.coroutine.coroutine" title="iperflexer.coroutine.coroutine"><code class="xref py py-obj docutils literal"><span class="pre">coroutine</span></code></a>(func)</td>
+<td>A decorator to start coroutines</td>
+</tr>
+</tbody>
+</table>
+<p>Example Use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@coroutine</span>
+<span class="k">def</span> <span class="nf">printer</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="p">(</span><span class="k">yield</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="n">output</span>
+        <span class="n">target</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
+<span class="nd">@coroutine</span>
+<span class="k">def</span> <span class="nf">sink</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">out_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="p">(</span><span class="k">yield</span><span class="p">)</span>
+        <span class="n">out_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">sink</span><span class="p">(</span><span class="s2">&quot;test.txt&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">printer</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-broadcast">
+<h2>The Broadcast<a class="headerlink" href="#the-broadcast" title="Permalink to this headline">¶</a></h2>
+<p>A coroutine to send the same input to multiple targets.</p>
+<img src="../_images/graphviz-60a0c774c6e49b43c793512057e2d01d019a0be3.png" alt="digraph broadcast {
+s -&gt; B
+B -&gt; t1
+B -&gt; t2
+B -&gt; t3
+}" />
+<p>Example Use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">s1</span> <span class="o">=</span> <span class="n">sink</span><span class="p">(</span><span class="s1">&#39;out_1.txt&#39;</span><span class="p">)</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="n">processor</span><span class="p">(</span><span class="s1">&#39;out_2.csv&#39;</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">broadcast</span><span class="p">((</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">))</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">printer</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">source</span><span class="p">:</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Here we re-use <cite>sink</cite> and <cite>printer</cite> from the previous example and assume the existence of a <cite>processor</cite> co-routine that transforms the input to comma-separated-values.</li>
+</ul>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.coroutine.broadcast.html#iperflexer.coroutine.broadcast" title="iperflexer.coroutine.broadcast"><code class="xref py py-obj docutils literal"><span class="pre">broadcast</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-comma-join">
+<h2>The Comma Join<a class="headerlink" href="#the-comma-join" title="Permalink to this headline">¶</a></h2>
+<p>This coroutine reads in a number of inputs before joining them with a comma and sending the string down the pipeline.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.coroutine.comma_join.html#iperflexer.coroutine.comma_join" title="iperflexer.coroutine.comma_join"><code class="xref py py-obj docutils literal"><span class="pre">comma_join</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<img src="../_images/graphviz-6968b1aaf65f42b2bd80bb3543f078f32781c9c8.png" alt="digraph comma_join {
+source -&gt; processor1
+source -&gt; processor2
+source -&gt; processor3
+processor1 -&gt; comma_join
+processor2 -&gt; comma_join
+processor3 -&gt; comma_join
+comma_join -&gt; target
+}" />
+<p>Although not evident from the graph, since this is a couroutine I assume that the processors are always called in the same order if the output needs it.</p>
+</div>
+<div class="section" id="output-coroutine">
+<h2>Output Coroutine<a class="headerlink" href="#output-coroutine" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.coroutine.output.html#iperflexer.coroutine.output" title="iperflexer.coroutine.output"><code class="xref py py-obj docutils literal"><span class="pre">output</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<img src="../_images/graphviz-986b91338ed703577118b336afcac5e6af2e0830.png" alt="digraph output {
+source -&gt; pipeline
+pipeline -&gt; output
+}" />
+<p>The <cite>output</cite> does not take a co-routine as an argument so it has to act as a sink.</p>
+</div>
+<div class="section" id="comma-append">
+<h2>Comma Append<a class="headerlink" href="#comma-append" title="Permalink to this headline">¶</a></h2>
+<p>Takes a stream of input strings and appends strings sent to it to each string (acting like a zip between a generator and an input stream).</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="api/iperflexer.coroutine.comma_append.html#iperflexer.coroutine.comma_append" title="iperflexer.coroutine.comma_append"><code class="xref py py-obj docutils literal"><span class="pre">comma_append</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="file-output-coroutine">
+<h2>File Output Coroutine<a class="headerlink" href="#file-output-coroutine" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>file_output</cite> acts much like the <code class="docutils literal"><span class="pre">output</span></code> co-routine but assumes that the target is a disk-file and will create it if passed a string instead of an open file.</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

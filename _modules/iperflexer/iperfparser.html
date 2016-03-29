@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>iperflexer.iperfparser &mdash; Camera Obscura 2014.04.01 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2014.04.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Camera Obscura 2014.04.01 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Camera Obscura</a>
+        <span class="navbar-text navbar-version pull-left"><b>2014.04.01</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/user/index.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/developer/index.html">Developer Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">The Camera Obscura (Read Me)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../set_logger.html">The Log Setter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../attenuators/index.html">Attenuators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../clients/index.html">Client Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../common/index.html">Common Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hosts/index.html">Hosts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iperflexer/index.html">The Iperf Lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../plugins/index.html">RVR Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ratevsrange/index.html">Rate-Vs-Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">Testing The Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utilities/index.html">Utility Modules</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for iperflexer.iperfparser</h1><div class="highlight"><pre>
+<span></span>
+<span class="c1">#python Standard Library</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># this code</span>
+<span class="kn">from</span> <span class="nn">iperflexer</span> <span class="kn">import</span> <span class="n">MAXIMUM_BANDWITH</span>
+<span class="kn">from</span> <span class="nn">baseclass</span> <span class="kn">import</span> <span class="n">BaseClass</span>
+
+<span class="kn">from</span> <span class="nn">iperfexpressions</span> <span class="kn">import</span> <span class="n">HumanExpression</span><span class="p">,</span> <span class="n">ParserKeys</span>
+<span class="kn">from</span> <span class="nn">iperfexpressions</span> <span class="kn">import</span> <span class="n">CsvExpression</span>
+<span class="kn">from</span> <span class="nn">unitconverter</span> <span class="kn">import</span> <span class="n">UnitConverter</span><span class="p">,</span> <span class="n">IperfbinaryConverter</span><span class="p">,</span> <span class="n">BinaryUnitNames</span>
+<span class="kn">from</span> <span class="nn">coroutine</span> <span class="kn">import</span> <span class="n">coroutine</span>
+
+
+<div class="viewcode-block" id="IperfParser"><a class="viewcode-back" href="../../iperflexer/api/iperflexer.iperfparser.IperfParser.html#iperflexer.iperfparser.IperfParser">[docs]</a><span class="k">class</span> <span class="nc">IperfParser</span><span class="p">(</span><span class="n">BaseClass</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The Iperf Parser extracts bandwidth and other information from the output</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="IperfParser.__init__"><a class="viewcode-back" href="../../iperflexer/api/iperflexer.iperfparser.IperfParser.html#iperflexer.iperfparser.IperfParser.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expected_interval</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">interval_tolerance</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s2">&quot;Mbits&quot;</span><span class="p">,</span>
+                 <span class="n">threads</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+                 <span class="n">maximum</span><span class="o">=</span><span class="n">MAXIMUM_BANDWITH</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        IperfParser Constructor</span>
+<span class="sd">        </span>
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `expected_interval`: the seconds between sample reports</span>
+<span class="sd">         - `interval_tolerance`: upper bound of difference between actual and expected</span>
+<span class="sd">         - `units`: desired output units (must match iperf output case - e.g. MBytes)</span>
+<span class="sd">         - `threads`: (number of threads) needed for coroutine and pipe</span>
+<span class="sd">         - `maximum`: the max value (after conversion) allowed (if exceeded converts to 0)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">IperfParser</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expected_interval</span> <span class="o">=</span> <span class="n">expected_interval</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interval_tolerance</span> <span class="o">=</span> <span class="n">interval_tolerance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">units</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threads</span> <span class="o">=</span> <span class="n">threads</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maximum</span> <span class="o">=</span> <span class="n">maximum</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_regex</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_human_regex</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_csv_regex</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_combined_regex</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">intervals</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transfer_intervals</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_threads</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bandwidths</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_transfers</span> <span class="o">=</span> <span class="bp">None</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">thread_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_thread</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conversion</span> <span class="o">=</span> <span class="n">UnitConverter</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binary_converter</span> <span class="o">=</span> <span class="n">IperfbinaryConverter</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_transfer_units</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">transfer_units</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        a hack to handle the fact that only the bandwidth units are being specified</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transfer_units</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">prefix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">suffix</span> <span class="o">=</span> <span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">iperf_bytes</span>
+            <span class="k">if</span> <span class="n">prefix</span> <span class="o">==</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_transfer_units</span> <span class="o">=</span> <span class="n">suffix</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_transfer_units</span> <span class="o">=</span> <span class="s2">&quot;{0}{1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span>
+                                                <span class="n">suffix</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transfer_units</span>
+
+<div class="viewcode-block" id="IperfParser.traverse"><a class="viewcode-back" href="../../iperflexer/api/iperflexer.iperfparser.IperfParser.html#iperflexer.iperfparser.IperfParser.traverse">[docs]</a>    <span class="k">def</span> <span class="nf">traverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intervals</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        traverses the intervals, infilling missing intervals</span>
+
+<span class="sd">        :param:</span>
+<span class="sd">          - `intervals`: default dict of interval:value</span>
+<span class="sd">        :yield: next value for the interval</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># this was created because I was going to infill zeros</span>
+        <span class="c1"># but studying the iperf reporting made me decide it</span>
+        <span class="c1"># is a bad idea</span>
+        <span class="k">for</span> <span class="n">actual</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">intervals</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">intervals</span><span class="p">[</span><span class="n">actual</span><span class="p">]</span>
+        <span class="k">return</span></div>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bandwidths</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Traverses self.interval&#39;s keys in sorted order and generates their bandwidths.</span>
+<span class="sd">        </span>
+<span class="sd">        :yield: self.interval&#39;s values in the sorted order of the intervals</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">traverse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">intervals</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">transfers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        generator of transfer values</span>
+
+<span class="sd">        :yield: converted transfer interval values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">traverse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transfer_intervals</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">regex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A dictionary holding the regular expressions for the 2 formats</span>
+<span class="sd">        </span>
+<span class="sd">        :return: format:regex dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_regex</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_regex</span> <span class="o">=</span> <span class="p">{</span><span class="n">ParserKeys</span><span class="o">.</span><span class="n">human</span><span class="p">:</span><span class="n">HumanExpression</span><span class="p">()</span><span class="o">.</span><span class="n">regex</span><span class="p">,</span>
+                           <span class="n">ParserKeys</span><span class="o">.</span><span class="n">csv</span><span class="p">:</span><span class="n">CsvExpression</span><span class="p">()</span><span class="o">.</span><span class="n">regex</span><span class="p">}</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_regex</span>
+
+<div class="viewcode-block" id="IperfParser.valid"><a class="viewcode-back" href="../../iperflexer/api/iperflexer.iperfparser.IperfParser.valid.html#iperflexer.iperfparser.IperfParser.valid">[docs]</a>    <span class="k">def</span> <span class="nf">valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `match`: a groupdict containing parsed iperf fields</span>
+
+<span class="sd">        :return: True if the end-start interval is valid (within tolerance)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="n">ParserKeys</span><span class="o">.</span><span class="n">start</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="n">ParserKeys</span><span class="o">.</span><span class="n">end</span><span class="p">])</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">expected_interval</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval_tolerance</span></div>
+
+<div class="viewcode-block" id="IperfParser.bandwidth"><a class="viewcode-back" href="../../iperflexer/api/iperflexer.iperfparser.IperfParser.bandwidth.html#iperflexer.iperfparser.IperfParser.bandwidth">[docs]</a>    <span class="k">def</span> <span class="nf">bandwidth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `match`: A parsed match group dictionary</span>
+
+<span class="sd">        :rtype: float</span>
+<span class="sd">        :return: the bandwidth in the self.units</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">units</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="n">ParserKeys</span><span class="o">.</span><span class="n">units</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="c1"># assume a csv-format</span>
+            <span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;bits&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># if the value is big enough vs the units it will be an int</span>
+            <span class="c1"># e.g. 113 MBytes is an int but 11.1 MBytes reports a float</span>
+            <span class="c1"># so favor an int</span>
+            <span class="n">bandwidth</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="n">ParserKeys</span><span class="o">.</span><span class="n">bandwidth</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="c1"># ints will raise an error if passed something with a decimal point</span>
+            <span class="n">bandwidth</span>  <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="n">ParserKeys</span><span class="o">.</span><span class="n">bandwidth</span><span class="p">])</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conversion</span><span class="p">[</span><span class="n">units</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">]</span> <span class="o">*</span> <span class="n">bandwidth</span>
+        <span class="k">if</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">maximum</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">0.0</span>
+        <span class="k">return</span> <span class="n">b</span></div>
+
+<div class="viewcode-block" id="IperfParser.transfer"><a class="viewcode-back" href="../../iperflexer/api/iperflexer.iperfparser.IperfParser.html#iperflexer.iperfparser.IperfParser.transfer">[docs]</a>    <span class="k">def</span> <span class="nf">transfer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `match`: A parsed match group dictionary</span>
+
+<span class="sd">        :rtype: float</span>
+<span class="sd">        :return: the transfer in the self.units</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">units</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="n">ParserKeys</span><span class="o">.</span><span class="n">transfer_units</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="c1"># assume a csv-format</span>
+            <span class="n">units</span> <span class="o">=</span> <span class="n">BinaryUnitNames</span><span class="o">.</span><span class="n">iperf_bytes</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">transfer</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="n">ParserKeys</span><span class="o">.</span><span class="n">transfer</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">transfer</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="n">ParserKeys</span><span class="o">.</span><span class="n">transfer</span><span class="p">])</span>
+        <span class="n">transfer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">binary_converter</span><span class="p">[</span><span class="n">units</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">transfer_units</span><span class="p">]</span> <span class="o">*</span> <span class="n">transfer</span>
+        <span class="k">if</span> <span class="n">transfer</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">maximum</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">transfer</span></div>
+
+<div class="viewcode-block" id="IperfParser.__call__"><a class="viewcode-back" href="../../iperflexer/api/iperflexer.iperfparser.IperfParser.__call__.html#iperflexer.iperfparser.IperfParser.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `line`: a line of iperf output</span>
+
+<span class="sd">        :return: bandwidth or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="n">bandwidth</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="n">match</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid</span><span class="p">(</span><span class="n">match</span><span class="p">):</span>
+            <span class="n">interval_start</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="n">ParserKeys</span><span class="o">.</span><span class="n">start</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">thread_count</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">thread_count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">threads</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">intervals</span><span class="p">[</span><span class="n">interval_start</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bandwidth</span><span class="p">(</span><span class="n">match</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">transfer_intervals</span><span class="p">[</span><span class="n">interval_start</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transfer</span><span class="p">(</span><span class="n">match</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">thread_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">current_thread</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="n">ParserKeys</span><span class="o">.</span><span class="n">start</span><span class="p">])</span>
+                <span class="n">bandwidth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">intervals</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_thread</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">bandwidth</span></div>
+    
+<div class="viewcode-block" id="IperfParser.search"><a class="viewcode-back" href="../../iperflexer/api/iperflexer.iperfparser.IperfParser.search.html#iperflexer.iperfparser.IperfParser.search">[docs]</a>    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `line`: a string of iperf output</span>
+<span class="sd">        :return: match dict or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">regex</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">]</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;{0} skipped, format not set&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">regex</span><span class="p">[</span><span class="n">ParserKeys</span><span class="o">.</span><span class="n">human</span><span class="p">]</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Matched: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>            
+            <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="n">ParserKeys</span><span class="o">.</span><span class="n">human</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Setting format to {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">match</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">regex</span><span class="p">[</span><span class="n">ParserKeys</span><span class="o">.</span><span class="n">csv</span><span class="p">]</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Matched: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="n">ParserKeys</span><span class="o">.</span><span class="n">csv</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Setting format to {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">match</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@coroutine</span>
+    <span class="k">def</span> <span class="nf">pipe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A coroutine to use in a pipeline</span>
+<span class="sd">        </span>
+<span class="sd">        :warnings:</span>
+
+<span class="sd">         - For bad connections with threads this might break (as the threads die)</span>
+<span class="sd">         - Use for good connections or live data only (use `bandwidths` and completed data for greater fidelity)</span>
+<span class="sd">         </span>
+<span class="sd">        :parameters:</span>
+
+<span class="sd">         - `target`: a target to send matched output to</span>
+
+<span class="sd">        :send:</span>
+
+<span class="sd">         - bandwidth converted to self.units as a float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">threads</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">thread_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">bandwidth</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="p">(</span><span class="k">yield</span><span class="p">)</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">match</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid</span><span class="p">(</span><span class="n">match</span><span class="p">):</span>
+                <span class="c1"># threads is a dict of interval:(thread_count, bandwidths)</span>
+                <span class="n">interval</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="n">ParserKeys</span><span class="o">.</span><span class="n">start</span><span class="p">]</span>
+                <span class="n">threads</span><span class="p">[</span><span class="n">interval</span><span class="p">][</span><span class="n">thread_count</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">threads</span><span class="p">[</span><span class="n">interval</span><span class="p">][</span><span class="n">bandwidth</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bandwidth</span><span class="p">(</span><span class="n">match</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="nb">min</span><span class="p">(</span><span class="n">threads</span><span class="p">)</span> <span class="ow">and</span> <span class="n">threads</span><span class="p">[</span><span class="n">interval</span><span class="p">][</span><span class="n">thread_count</span><span class="p">]</span><span class="o">==</span><span class="bp">self</span><span class="o">.</span><span class="n">threads</span><span class="p">:</span>
+                        <span class="n">target</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">threads</span><span class="p">[</span><span class="n">interval</span><span class="p">][</span><span class="n">bandwidth</span><span class="p">])</span>
+        <span class="k">return</span>
+    
+<div class="viewcode-block" id="IperfParser.reset"><a class="viewcode-back" href="../../iperflexer/api/iperflexer.iperfparser.IperfParser.reset.html#iperflexer.iperfparser.IperfParser.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resets the attributes set during parsing</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_interval_threads</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_thread_count</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_threads</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="IperfParser.filename"><a class="viewcode-back" href="../../iperflexer/api/iperflexer.iperfparser.IperfParser.html#iperflexer.iperfparser.IperfParser.filename">[docs]</a>    <span class="k">def</span> <span class="nf">filename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Changes the extension of the basename to .csv</span>
+<span class="sd">        </span>
+<span class="sd">        :param:</span>
+
+<span class="sd">         - `basename`: a the raw-iperf filename (without path)</span>
+
+<span class="sd">        :return: the filename with the extension changed to .csv</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">base</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">basename</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;{0}.csv&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">base</span><span class="p">)</span></div></div>
+<span class="c1"># end class IperfParser</span>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, russelln.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
