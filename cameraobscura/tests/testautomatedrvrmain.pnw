@@ -1,0 +1,60 @@
+Testing the Main Entrance Point
+===============================
+
+<<name='imports', echo=False>>=
+# python standard library
+import unittest
+import shlex
+
+# third-party
+from mock import mock_open, patch, MagicMock
+
+# this package
+from cameraobscura.ratevsrange.main import parse_args, ArgumentConstants, fetch_configuration
+from cameraobscura.tests.helpers import random_string_of_letters
+@
+.. currentmodule:: cameraobscura.ratevsrange.tests.testmain
+.. autosummary::
+   :toctree: api
+
+   TestParseArgs.test_configuration
+   TestParseArgs.test_fetch
+
+<<name='TestParseArgs', echo=False>>=
+class TestParseArgs(unittest.TestCase):
+    def test_configuration(self):
+        """
+        Does it set and get the config-file name?
+        """
+        # the default
+        arguments = ''.split()
+        #args = parse_args(arguments)       
+        #self.assertEqual(args.configuration, ArgumentConstants.default_configuration)
+
+        # short option
+        filename = "{0}.ini".format(random_string_of_letters())
+        arguments = shlex.split('-c {0}'.format(filename))
+        #args = parse_args(arguments)
+        #self.assertEqual(filename, args.configuration)
+
+        # long option
+        arguments = shlex.split('--configuration {0}'.format(filename))
+        #args  = parse_args(arguments)
+        #self.assertEqual(args.configuration, filename)
+        return
+
+    def test_fetch(self):
+        """
+        Does it get the sample ini file?
+        """
+        arguments = shlex.split('fetch')
+        args = parse_args(arguments)
+        self.assertEqual(args.func, fetch_configuration)
+        open_mock = mock_open()
+        with patch('__builtin__.open', open_mock):
+            args.func(args)
+        # this is getting silly, just test by hand
+        #open_mock.assert_called_with(ArgumentConstants.default_configuration)
+            
+        return
+@

@@ -1,0 +1,677 @@
+The Step Iterator
+=================
+<<name='future', echo=False>>=
+from __future__ import print_function
+@
+.. _step_iterator:
+
+This is a module to provide an iterator for attenuation steps. There was at one time a request to be able to change the size of the attenuation steps based on a threshold value (i.e. when the attenuation exceeds the threshold, increase the amount added to the attenuation on each execution of the loop). Looking at the configuration files being out in the wild it looks like this 'feature' isn't actively used, but since it was implemented this module is created to provide a more explicit implementation (as well as some documentation).
+
+.. '
+
+<<name='imports', echo=False>>=
+# python standard library
+import operator
+import logging
+
+# this package
+from cameraobscura import CameraobscuraError
+@
+
+<<name='constants', echo=False>>=
+FIRST_ITEM = 0
+UP = 1
+DOWN = -UP
+comparisons = dict(zip((UP, DOWN),
+                       (operator.le,
+                        operator.ge)))
+threshold_comparisons = dict(zip((DOWN, UP),
+                       (operator.le,
+                        operator.ge)))
+
+@
+
+Use Cases
+---------
+
+.. uml::
+
+   User -> (Requests only one step size)
+   User -> (Requests two step-sizes and one change in step)
+   User -> (Requests more than two step sizes)
+   User -> (Requests a list of steps)
+   User -> (Requests attenuations in both directions)
+
+The StepBase Class
+------------------
+
+In order to support the request from Brad to be able to specify values for the attenuations (as opposed to just the parameters making up a range of values) I'm  making a ``StepList`` class. Since there's a certain amount of overlap between the the two types of step-iterators, the ``StepBase`` will hold the common attributes.
+
+.. module:: cameraobscura.ratevsrange.stepiterator
+.. autosummary::
+   :toctree: api
+
+   StepBase   
+
+<<name='StepBase', echo=False>>=
+class StepBase(object):
+    """
+    Base-class for the step-iterators
+    """
+    def __init__(self, start=None, stop=None, reversal_limit=0):
+        """
+        StepBase Constructor
+
+        :param:
+
+         - ``reversal_limit``: maximum reversals allowed
+        """
+        super(StepBase, self).__init__()
+        self._logger = None
+        self.start = start
+        self.stop = stop
+        self.reversal_limit = reversal_limit
+        self.reversals = FIRST_ITEM
+        return
+
+    @property
+    def logger(self):
+        """
+        :return: A logging object.
+        """
+        if self._logger is None:
+            self._logger = logging.getLogger("{0}.{1}".format(self.__module__,
+                                  self.__class__.__name__))
+        return self._logger
+
+
+    
+    @property
+    def compare(self):
+        """
+        comparison function based on direction
+
+        :return: operator le or ge
+        """
+        return comparisons[self.direction]
+
+    @property
+    def direction(self):
+        """
+        Direction of steps (1 or -1)
+        """
+        try:
+            difference = self.stop - self.start
+            return difference/abs(difference)
+        except ZeroDivisionError as error:
+            self.logger.debug("Start ({0}) equals stop ({1})".format(self.start,
+                                                                     self.stop))
+        return UP
+
+    @property
+    def reversible(self):
+        """
+        :return: True if still reversible
+        """        
+        return self.reversals < self.reversal_limit
+@
+
+The StepList Class
+------------------
+
+The ``StepList`` was created to address a request to allow the users to run a second test with specified attenuation values rather than a range of values. Although a little arithmetic on the user's part would achieve the same thing, why force them to think?
+
+.. '
+
+.. uml::
+
+   StepBase <|-- StepList
+
+.. currentmodule:: cameraobscura.ratevsrange.stepiterator
+.. autosummary::
+   :toctree: api
+
+   StepList
+
+<<name='StepList', echo=False>>=
+class StepList(StepBase):
+    """
+    a list-based attenuation generator
+    """
+    def __init__(self, step_list, *args, **kwargs):
+        """
+        StepList constructor
+
+        :param:
+
+         - `step_list`: list of attenuations         
+        """
+        super(StepList, self).__init__(*args, **kwargs)
+        self.start = self.current_value = 0
+        self.step_list = step_list
+        self._stop = None
+        return
+
+    @property
+    def stop(self):
+        """
+        The end-index
+        """
+        if self._stop is None:
+            self._stop = len(self.step_list) - 1
+        return self._stop
+
+    @stop.setter
+    def stop(self, stopper):
+        """
+        Sets the stop (needed because the StepBase sets it)
+        """
+        self._stop = stopper
+        return
+    
+
+    def __iter__(self):
+        """
+        The main interface
+        """
+        while self.compare(self.current_value, self.stop):
+            yield self.step_list[self.current_value]
+            self.current_value += self.direction
+        return
+
+    def reset(self):
+        """
+        resets the start and stop values
+        """
+        self.start = self.current_value = 0
+        self._stop = None
+        self.reversals = 0
+        return
+
+    def reverse(self):
+        """
+        reverse directions
+
+        :precondition: self.stop has been set
+        """
+        if not self.reversible:
+            self.current_value = self.stop
+            return False
+        self.start, self._stop = self._stop, self.start
+        return True
+
+    def check_rep(self):
+        """
+        Does nothing
+        """
+        return
+# end class StepList
+@
+
+The StepRange Class
+-------------------
+
+.. currentmodule:: cameraobscura.ratevsrange.stepiterator
+.. autosummary::
+   :toctree: api
+
+   StepRange
+   StepRange.threshold
+   StepRange.step_size
+   StepRange.step_sizes
+   StepRange.update_threshold
+   StepRange.__iter__
+   StepRange.check_rep
+   StepRange.reversible
+   StepRange.direction
+   StepRange.list_direction
+   StepRange.compare
+   StepRange.threshold_compare
+   StepRange.increment_index
+   StepRange.reverse
+
+
+.. uml::
+
+   StepBase <|-- StepRange
+   StepRange : Integer start
+   StepRange : Integer stop
+   StepRange : List step_sizes
+   StepRange : List step_change_thresholds
+   StepRange : Integer current_value
+   StepRange : Integer step_size
+   StepRange : Integer threshold
+   StepRange : reverse()
+   StepRange : __iter__()
+   
+<<name='StepRange', echo=False>>=
+class StepRange(StepBase):
+    """
+    A stepped-iterator that generates a range of integers
+    """
+    def __init__(self, step_sizes=None,
+                       step_change_thresholds=None,
+                       *args, **kwargs):
+        """
+        StepRange constructor
+
+        :param:
+
+         - `start`: value to start with
+         - `stop`: maximum value
+         - `step_sizes`: list of step-sizes (in order)
+         - `step_change_thresholds`: list of step-thresholds (to trigger change in step-size)
+        """
+        super(StepRange, self).__init__(*args, **kwargs)
+        self._logger = None
+        self._step_sizes = None
+        self.step_sizes = step_sizes
+        self.step_change_thresholds = step_change_thresholds
+
+        # not obvious anymore, but the parent is setting this
+        self.current_value = self.start
+        
+        # properties
+        self._threshold = None
+        self._step_size = None
+
+        # these are used to keep track of positions in the lists
+        # so that they can be reset and the iterator re-used
+        self.current_step_index = FIRST_ITEM
+        self.current_change_index = FIRST_ITEM
+
+        # count of how many times we've reversed direction
+        self.reversals = FIRST_ITEM
+        return
+
+    @property
+    def list_direction(self):
+        """
+        Direction to traverse lists (e.g. step_sizes)
+
+        :return: UP or DOWN
+        """
+        # even means up, odd mean back down
+        if self.reversals % 2:
+            return DOWN
+        return UP
+
+    @property
+    def threshold_compare(self):
+        """
+        comparison function for changing step-size
+
+        :return: operator le or ge
+        """
+        return threshold_comparisons[self.direction]
+    
+    @property
+    def step_sizes(self):
+        """
+        List of step-sizes (default of 1)
+        """
+        if self._step_sizes is None:
+            self._step_sizes = [1]
+        return self._step_sizes
+
+    @step_sizes.setter
+    def step_sizes(self, sizes):
+        """
+        Casts the sizes to positive and sets step_sizes
+
+        :param:
+
+         - ``sizes``: list of integers for attenuation step-sizes
+        """
+        if sizes is not None:
+            sizes = [abs(size) for size in sizes]
+        self._step_sizes = sizes
+        return
+    
+    @property
+    def threshold(self):
+        """
+        The current threshold to test if the step-size should change
+        """
+        if self._threshold is None:
+            if self.step_change_thresholds is not None:
+                self._threshold = self.step_change_thresholds[self.current_change_index]
+                self.current_change_index = self.increment_index(self.current_change_index,
+                                                                 self.step_change_thresholds)
+            else:
+                self._threshold = self.stop
+            self.logger.debug("Initial threshold: {0}".format(self._threshold))
+        return self._threshold
+
+    @property
+    def step_size(self):
+        """
+        The amount to increase the current-value with each iteration.
+
+        .. warning:: this checks current_value > threshold and updates accordingly
+
+        :postcondition:
+
+         - step_size set to first step_size
+         - or step_size updated
+        """
+        if self._step_size is None or (self.threshold_compare(self.current_value,
+                                                                self.threshold)
+                                        and self.threshold != self.stop):
+            self._step_size = self.step_sizes[self.current_step_index] 
+            self.current_step_index = self.increment_index(self.current_step_index,
+                                                           self.step_sizes)
+            self.update_threshold()
+        return self._step_size
+
+    def update_threshold(self):
+        """
+        Updates the threshold if it has been exceeded
+        """
+        if (self.threshold_compare(self.current_value, self.threshold) and
+            self.step_change_thresholds is not None):
+                self._threshold = self.step_change_thresholds[self.current_change_index]
+                self.current_change_index = self.increment_index(self.current_change_index,
+                                                                 self.step_change_thresholds)
+        return    
+
+    def reset(self):
+        """
+        Sets the properties back to None
+        """
+        if self.reversals % 2:
+            self.start, self.stop = self.stop, self.start
+        self.reversals = FIRST_ITEM
+        self.current_value = self.start
+        self._step_size = None
+        self._threshold = None
+        self.current_step_index = FIRST_ITEM
+        self.current_change_index = FIRST_ITEM
+        return
+
+    def increment_index(self, index, container):
+        """
+        increments the index for the container
+
+        :param:
+
+         - `index`: current index for the container
+         - `container`: container to be indexed
+
+        :return: index incremented, bounded by container size
+        """
+        index += self.list_direction
+        index = min(index, len(container)-1)
+        # disallowing wrap-around
+        index = max(index, 0)
+        return index
+
+    def reverse(self):
+        """
+        changes the direction of the iteration
+        """
+        if not self.reversible:
+            self.current_value = self.stop
+            return False
+        
+        # reversals, start, and stop are used to check direction
+        # so they should be changed first
+        self.reversals += 1
+        self.start, self.stop = self.stop, self.start
+        
+        self._threshold = None
+        self.current_step_index = self.increment_index(self.current_step_index,
+                                                        self.step_sizes)
+        if self.step_change_thresholds is not None:
+            self.current_change_index = self.increment_index(self.current_change_index,
+                                                            self.step_change_thresholds)
+        return True
+
+    def check_rep(self):
+        """
+        Does nothing (to let the user decide what is valid and what is invalid)
+
+        """
+        #if self.step_change_thresholds is not None:
+        #    try:
+        #        assert (len(self.step_sizes) == len(self.step_change_thresholds) + 1 or
+        #                min(self.step_change_thresholds) > self.stop)
+        #    except AssertionError as error:
+        #        self.logger.debug(error)
+        #        raise CameraobscuraError(("Need exactly one more step_change_threshold than step_size"
+        #                                  "or stop must be less than smallest step_change_threshold")
+        return
+        
+
+    def __iter__(self):
+        """
+        Iterates over the values
+        """
+        while self.compare(self.current_value, self.stop):
+            yield self.current_value
+            self.current_value += self.step_size * self.direction
+        return
+
+    def __str__(self):
+        """
+        String of constructor parameters
+        """
+        return "start: {0}, stop: {1}, step_sizes: {2}, step_change_thresholds: {3}".format(self.start,
+                                                                                            self.stop,
+                                                                                            self.step_sizes,
+                                                                                            self.step_change_thresholds)
+# end class StepRange    
+@
+
+The Constructor Parameters
+--------------------------
+
+These are what should (or can be) passed in on constuction of the `StepRange`.
+
+start
+~~~~~
+
+This is the value that the iterator will start with (the first value that it will yield).
+
+stop
+~~~~
+
+This is the end-limit of the values that will be generated. It isn't necessarily the largest (or smallest) value since the step-sizes can be greater than 1, but the generator will stop anytime the next value would be greater than ``stop`` (if ascending, less than ``stop`` if descending, meaning start is greater than stop).
+
+.. note:: To match the behavior of the older code the stop-value is inclusive, rather than stopping prior to it in every case the way other python functions like `range` work.
+
+.. '
+
+step_sizes
+~~~~~~~~~~
+
+This is a list of step-sizes in the order that they are to be used.
+
+    * This list should always exceed the number of step_thresholds by 1.
+    * The StepRange is using indexing to get the sizes so it has to be a list or something that acts like a list.
+    * Since changes of direction are allowed they will be cast to positive integers (so the magnitude is all that counts)
+
+step_thresholds
+~~~~~~~~~~~~~~~
+
+A list of thresholds which when exceeded (:math:`currentValue > threshold`) will cause the current step-size to be changed to the next item in the ``step_sizes`` list. If no change in step-size is required, it should be set to ``None`` (the default).
+
+reversal_limit
+~~~~~~~~~~~~~~
+
+This is the number of times to allow the iteration to change directions. The intention is to allow the user to attenuate out until it kills the connection, then attenuate back in. If the ``reversal_limit`` is 0 (the default) then no reversals will be allowed, meaning that when ``reverse()`` is called, the current-value will be set to the stop-value so the generator will stop.
+
+The Attributes
+--------------
+
+current_value
+~~~~~~~~~~~~~
+
+The `current_value` attribute is a variable to hold the current value in the iteration. It is initialized with the `start` value and incremented with the `step_size` attribute with each iteration. This is what is being generated by the `__iter__` method.
+
+threshold
+~~~~~~~~~
+
+This is the current threshold to check if the step-size needs to be changed. If the `current_value` exceeds the ``threshold`` then the ``step_size`` and ``threshold`` are both be updated, if there are more of them.
+
+step_size
+~~~~~~~~~
+
+The `step_size` is the amount to increase the `current_value` with each iteration. If the `current_value` exceeds the `threshold` then the step-size should be increased to the next step-size (if there is one).
+
+reversals
+~~~~~~~~~
+
+This is a count of how many times the direction has been reversed (by calling the ``reverse`` method).
+
+direction
+~~~~~~~~~
+
+This is the direction that the values are going. If they are increasing then it is 1, if they are decreasing it is -1.
+
+list_direction
+~~~~~~~~~~~~~~
+
+This is the direction to traverse the ``step_sizes`` and ``step_change_thresholds`` lists. It reverses its sign whenever ``reverse`` is called.
+
+compare
+~~~~~~~
+
+This is the comparison done between the current value and the stop value to decide whether to stop or not. If the values are increasing, then it is :math:`\leq` (i.e. :math:`\textit{while current} \leq stop`) and if the values are decreasing then it is :math:`\geq`.
+
+threshold_compare
+~~~~~~~~~~~~~~~~~
+
+This is the comparison done between the current value and the threshold to see if the step-size should be changed. When the values are increasing, it is :math` \geq ` (i.e. :math:`\textit{if current value} \geq threshold`) and when the values are decreasing it is :math:`\leq`.
+
+reversible
+~~~~~~~~~~
+
+This is true if the ``reversals`` haven't reached the ``reversal_limit``.
+
+.. '
+
+The Methods
+-----------
+
+update_threshold
+~~~~~~~~~~~~~~~~
+
+This method was introduced because updating the step-size requires checking the threshold, so a separate method was required to control updating the threshold (if the update was made in the `threshold` property itself then checking it would always update it before the conditional was checked so it would never be exceeded). Specifically::
+
+    if self.current_value > self.threshold:
+        <do something>
+
+Would never become True because self.threshold would update itself because it detected it was greater than the current value. Anyway, it was needed.
+
+increment_index
+~~~~~~~~~~~~~~~
+
+This takes a list index (e.g. ``current_step_index``) and the list that it is for (e.g. ``step_sizes``) and 'increments' it. It actually decrements it if the values are going down. Additionally it bounds it on the upper side by the highest index in the list and on the lower side by 0. The index variable isn't changed in place, instead it's given as a returned value.
+
+reverse
+~~~~~~~
+
+This changes the direction of the iteration. If ``reversible`` is False, it sets the ``current_value`` to the ``stop`` value, otherwise it increments ``reversals``, swaps the start and stop values, resets ``threshold`` and increments the list-indices.
+
+__iter__
+~~~~~~~~
+
+The iterator is the main (really the only) way to use this class. it's expected that it will be used something like:
+
+.. '
+
+.. code::
+
+   for value in step_iterator:
+       do_something()
+
+Activity Diagram
+----------------
+
+.. figure:: figures/step_iterator_activity_diagram.svg
+   :align: center
+
+check_rep
+~~~~~~~~~
+
+This method checks the integrity of the parameters.
+
+    * Is the stop value greater than or equal to the stop value?
+
+StepIterator Class
+------------------
+
+.. uml::
+
+   StepIterator o- StepList
+   StepIterator o- StepRange
+
+<<name='StepIterator', wrap=False>>=
+class StepIterator(object):
+    """
+    An aggregator of step-iterators
+    """
+    def __init__(self, step_list=None,
+                 *args, **kwargs):
+        """
+        StepIterator constructor
+
+        :param:
+
+         - ``step_list``: collection of steps
+         - ``reversal_limit``: number of reversals allowed
+        """
+        self.args = args
+        self.kwargs = kwargs
+        self.step_list = step_list
+        self._iterator = None
+        return
+
+    @property
+    def iterator(self):
+        """
+        StepRange if step_list not set
+        """
+        if self._iterator is None:
+            if self.step_list is not None:
+                if 'reversal_limit' in self.kwargs:
+                    reversal_limit = self.kwargs['reversal_limit']
+                else:
+                    reversal_limit = 0
+                self._iterator = StepList(step_list=self.step_list,
+                                          reversal_limit=reversal_limit)
+            else:
+                self._iterator = StepRange(*self.args, **self.kwargs)
+        return self._iterator
+
+    def __iter__(self):
+        """
+        traverses the iterator
+
+        :yield: next step
+        """
+        for step in self.iterator:
+            yield step
+        return
+
+    def __getattr__(self, name):
+        """
+        A pass-through to the iterator
+        """
+        return getattr(self.iterator, name)
+@
+
+
+<<name='debug', echo=False>>=
+if __name__ == "__main__":
+    iterator = StepRange(start=0,
+                            stop=10,
+                            step_sizes=[1,2],
+                            step_change_thresholds=[5])
+    import pudb
+    pudb.set_trace()
+    for value in iterator:
+        print(value)
+@
+

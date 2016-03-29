@@ -1,0 +1,30 @@
+A Place for Shared Errors
+=========================
+
+<<name='imports', echo=False>>=
+from cameraobscura import CameraobscuraError
+@
+
+.. _configuration-error:
+
+ConfigurationError
+------------------
+
+This error is created so that users can trap it if needed.
+
+.. currentmodule:: cameraobscura.common.errors
+.. autosummary::
+   :toctree: api
+
+   ConfigurationError
+
+.. uml::
+
+   CameraobscuraError <|-- ConfigurationError
+
+<<name='ConfigurationError'>>=
+class ConfigurationError(CameraobscuraError):
+    """
+    An error to raise if a configuration error is caught
+    """
+@

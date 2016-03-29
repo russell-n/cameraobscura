@@ -1,0 +1,14 @@
+Commands
+========
+
+<<name='imports', echo=False>>=
+# this package
+from cameraobscura import create_toctree
+@
+
+These are commands to send to devices whose input and output have been defined in a way specific to the way it is being used in this code (e.g. not just sending a string to the device and logging the output).
+
+<<name='toctree', echo=False, results='sphinx'>>=
+create_toctree()
+@
+

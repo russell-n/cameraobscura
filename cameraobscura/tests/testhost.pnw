@@ -1,0 +1,322 @@
+Testing The Host
+================
+
+<<name='imports', echo=False>>=
+# python standard library
+import unittest
+import random
+import ConfigParser
+import textwrap
+import io
+
+# third-party
+from mock import MagicMock
+
+# this package
+from cameraobscura import CameraobscuraError
+from cameraobscura.hosts.host import TheHost
+from cameraobscura.tests.helpers import random_string_of_letters
+from cameraobscura.clients.simpleclient import SimpleClient
+from cameraobscura.clients.telnetclient import TelnetClient 
+from cameraobscura.utilities.configurationadapter import ConfigurationAdapter
+from cameraobscura.hosts.host import HostConfiguration, HostEnum
+@
+
+.. currentmodule:: cameraobscura.hosts.tests.testhost
+.. autosummary::
+   :toctree: api
+
+   TestHost.test_constructor
+   TestHost.test_client
+   TestHost.test_client_constructors
+   TestHost.test_exec_command
+   TestHost.test_close   
+
+<<name='TestHost', echo=False>>=
+class TestHost(unittest.TestCase):
+    def setUp(self):
+        self.hostname = random_string_of_letters()
+        self.username = random_string_of_letters()
+        self.timeout = random.randrange(10)
+        self.prefix = random_string_of_letters()
+        self.operating_system = random_string_of_letters()
+        self.connection_type = random.choice('ssh telnet'.split())
+        self.prompt = random_string_of_letters()
+        self.test_interface = random_string_of_letters(5)
+        self.host = TheHost(hostname=self.hostname,
+                            username=self.username,
+                            timeout=self.timeout,
+                            prefix=self.prefix,
+                            operating_system=self.operating_system,
+                            test_interface = self.test_interface,
+                            connection_type=self.connection_type,
+            prompt=self.prompt)
+        return
+    
+    def test_constructor(self):
+        """
+        Does it build correctly?
+        """
+        self.assertEqual(self.hostname, self.host.hostname)
+        self.assertEqual(self.username, self.host.username)
+        self.assertEqual(self.timeout, self.host.timeout)
+        self.assertEqual(self.prefix, self.host.prefix)
+        self.assertEqual(self.operating_system, self.host.operating_system)
+        self.assertEqual(self.connection_type, self.host.connection_type)
+        self.assertEqual(self.prompt, self.host.kwargs['prompt'])
+        self.assertEqual(self.test_interface, self.host.test_interface)
+        return
+
+    def test_client(self):
+        """
+        Does it get the right client builder?
+        """
+        ssh_definition = MagicMock()
+        ssh_instance = MagicMock()
+        ssh_definition.return_value = ssh_instance
+        self.host.connection_type = 'ssh'
+        self.host._client_constructors = {'ssh': ssh_definition}
+        client = self.host.client
+        self.assertEqual(client, ssh_instance)
+        ssh_definition.assert_called_with(hostname=self.hostname,
+                                          username=self.username,
+                                          timeout=self.timeout,
+                                          prompt=self.prompt)
+        return
+
+    def test_client_constructors(self):
+        """
+        Does it set up the client class dictionary correctly?
+        """
+        definitions = self.host.client_constructors
+        expected = dict(zip('ssh telnet'.split(), (SimpleClient, TelnetClient)))
+        self.assertDictEqual(definitions, expected)
+        return
+
+    def test_exec_command(self):
+        """
+        Does it send the right command to the client?        
+        """
+        self.host._client = MagicMock()
+        command = random_string_of_letters()
+        timeout = random.randrange(10)
+        self.host.exec_command(command, timeout=timeout)
+        self.host._client.exec_command.assert_called_with("{0} {1}".format(self.prefix,
+                                                                           command),
+                                                                           timeout=timeout)
+        return
+
+    def test_close(self):
+        """
+        Does it close and remove the client?
+        """
+        client = MagicMock()
+        self.host._client = client
+        self.host.close()
+        client.close.assert_called_with()
+        self.assertIsNone(self.host._client)
+        return
+# end TestHost    
+@
+
+
+Testing the Host Configuration
+------------------------------
+
+.. autosummary::
+   :toctree: api
+
+   TestHostConfiguration.test_constructor
+   TestHostConfiguration.test_control_ip
+   TestHostConfiguration.test_username
+   TestHostConfiguration.test_password
+   TestHostConfiguration.test_test_ip
+   TestHostConfiguration.test_prefix
+   TestHostConfiguration.test_operating_system
+   TestHostConfiguration.test_timeout
+   TestHostConfiguration.test_connection_type
+   TestHostConfiguration.test_kwargs
+   TestHostConfiguration.test_port
+
+<<name='TestHostConfiguration', echo=False>>=
+class TestHostConfiguration(unittest.TestCase):
+    def setUp(self):
+        self.config_parser = MagicMock()
+        self.config_adapter = ConfigurationAdapter(self.config_parser)
+        self.section = 'device'
+        self.configuration = HostConfiguration(configuration = self.config_adapter,
+                                                 section='device')
+        self.configuration._logger = MagicMock()
+        return
+        
+    def test_constructor(self):
+        """
+        Does it raise an error (because it has an abstract property)? 
+        """
+        self.assertEqual(self.config_adapter, self.configuration.configuration)
+        self.assertEqual(self.section, self.configuration.section)
+        return
+
+    def test_timeout(self):
+        """
+        Does it get the (optional) timeout?
+        """
+        # user sets a timeout
+        timeout = random.uniform(0, 10000)
+        self.config_parser.getfloat.return_value = timeout
+        self.assertEqual(timeout, self.configuration.timeout)
+
+        # user doesn't set timeout (use 1 second)
+        self.configuration.reset()
+        self.config_parser.getfloat.side_effect = ConfigParser.NoOptionError("timeout",
+                                                                             'device')
+        self.assertEqual(self.configuration.timeout, 1)
+        return
+
+    def test_operating_system(self):
+        """
+        Does it get the operating system?
+        """
+        # user sets an operating system
+        expected = random_string_of_letters()
+        self.config_parser.get.return_value = expected
+        self.assertEqual(expected, self.configuration.operating_system)
+
+        # user leaves it to the default
+        self.configuration.reset()
+        self.config_parser.get.side_effect = ConfigParser.NoOptionError("operating_system",
+                                                                        'device')
+        self.assertEqual(self.configuration.operating_system, HostEnum.default_operating_system)
+        return
+
+    def test_control_ip(self):
+        """
+        Does it get the (optional) control ip?
+        """
+        # user gives the hostname
+        expected ='www.google.com'
+        self.config_parser.get.return_value = expected
+        self.assertEqual(expected, self.configuration.control_ip)
+        self.config_parser.get.assert_called_with(self.section,
+                                                   'control_ip')
+
+        # user does'nt give the hostname
+        self.configuration.reset()
+        self.config_parser.get.side_effect = ConfigParser.NoOptionError('control_ip',
+                                                                         self.section)
+        self.assertIsNone(self.configuration.control_ip)
+        return
+
+    def test_password(self):
+        """
+        Does it get the device's (optional) password?
+        """
+        # user gives the password
+        expected = 'arsenic'
+        self.config_parser.get.return_value = expected
+        self.assertEqual(expected, self.configuration.password)
+        self.config_parser.get.assert_called_with(self.section,
+                                                  'password')
+
+        # user doesn't give the password
+        self.configuration.reset()
+        self.config_parser.get.side_effect = ConfigParser.NoOptionError('password',
+                                                                        self.section)
+        self.assertIsNone(self.configuration.password)
+        return
+
+    def test_connection_type(self):
+        """
+        Does it get the connection type?
+        """
+        # user sets it to telnet
+        value = 'telnet'
+        self.config_parser.get.return_value = value
+        self.assertEqual(value, self.configuration.connection_type)
+        self.config_parser.get.assert_called_with(self.section,
+                                                         'connection_type')
+        # user doesn't set it
+        self.configuration.reset()
+        self.config_parser.get.side_effect = ConfigParser.NoOptionError('connection_type',
+                                                                               self.section)
+        self.assertEqual(HostEnum.default_type, self.configuration.connection_type)
+        return
+
+    def test_test_ip(self):
+        """
+        Does it get the hostname for the test interface (this should be optional...)
+        """
+        # user sets it
+        expected = '192.168.10.1'
+        self.config_parser.get.return_value = expected
+        self.assertEqual(expected, self.configuration.test_ip)
+        self.config_parser.get.assert_called_with(self.section,
+                                                  'test_ip')
+
+        # user doesn't set it
+        self.configuration.reset()
+        self.config_parser.get.side_effect = ConfigParser.NoOptionError(self.section,
+                                                                        'test_ip')
+        with self.assertRaises(CameraobscuraError):
+            self.configuration.test_ip
+        return
+
+    def test_username(self):
+        """
+        Does it get the login username? 
+        """
+        # user sets it
+        expected = 'bob'
+        self.config_parser.get.return_value = expected
+        self.assertEqual(expected, self.configuration.username)
+        self.config_parser.get.assert_called_with(self.section,
+                                                  'username')
+
+        # user doesn't set it
+        self.configuration.reset()
+        self.config_parser.get.side_effect = ConfigParser.NoOptionError('username',
+                                                                        self.section)
+        with self.assertRaises(CameraobscuraError):
+            self.configuration.username
+        return
+
+    def test_prefix(self):
+        """
+        Does it get a string prefix to add to the command?
+        """
+        # user gives a prefix
+        expected = 'PATH=/opt/wifi:$PATH'
+        self.config_parser.get.return_value = expected
+        self.assertEqual(expected, self.configuration.prefix)
+
+        # user doesn't give one
+        self.configuration.reset()
+        self.config_parser.get.side_effect = ConfigParser.NoOptionError("prefix",
+                                                                        'device')
+        self.assertIsNone(self.configuration.prefix)
+        return
+
+    def test_kwargs(self):
+        """
+        Does it get a dictionary of extra parameters?
+        """
+        prompt = 'tester@fluke:~\$'
+        section = textwrap.dedent("""
+[device]
+username = albert
+control_ip = 192.168.10.3
+test_ip = 192.168.20.2
+operating_system = linux
+connection_type = telnet
+prompt = {0}
+""".format(prompt))
+        parser = ConfigParser.SafeConfigParser()
+        parser.readfp(io.BytesIO(section))
+        configuration = ConfigurationAdapter(parser)
+        self.configuration.configuration = configuration
+
+        self.assertDictEqual({'prompt':prompt},
+                             self.configuration.kwargs)
+        return
+# end TestHostConfiguration    
+@

@@ -1,0 +1,14 @@
+Developer Documentation
+=======================
+
+<<name='imports', echo=False>>=
+# this package
+from testsuites import create_toctree
+@
+
+This is meant to supplement the auto-generated documentation -- it's easier to maintain the auto-generated documentation so implementation details will most-likely remain with them. This documentation will instead deal with design considerations and perhaps concrete examples of integrating different components of the system.
+
+<<name='toctree', echo=False, results='sphinx'>>=
+create_toctree()
+@
+

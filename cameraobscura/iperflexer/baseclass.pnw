@@ -1,0 +1,55 @@
+The BaseClass
+=============
+
+A module for base classes that have common methods to inherit.
+
+Just logging for now.
+
+<<name='imports', echo=False>>=
+import logging
+@
+<<name='constants', echo=False>>=
+DOT_JOIN = "{0}.{1}"
+@
+
+.. ifconfig:: repository != 'rtfd'
+
+   .. uml::
+
+      BaseClass o-- logging.Logger
+      BaseClass : Logger
+
+.. autosummary::
+   :toctree: api
+
+   BaseClass
+
+Example Use::
+
+   class TestClass(BaseClass):
+       def __init__(self):
+           super(TestClass, self).__init__()
+
+   t = TestClass()
+   t.logger.info("This message will get sent to the logger as INFO")
+   
+<<name='BaseClass', echo=False>>=
+class BaseClass(object):
+    """
+    This class holds the minimum common features.
+    """
+    def __init__(self):
+        self._logger = None
+        return
+
+    @property
+    def logger(self):
+        """
+        :return: A logging object.
+        """
+        if self._logger is None:
+            self._logger = logging.getLogger(DOT_JOIN.format(self.__module__,
+                                  self.__class__.__name__))
+        return self._logger
+# end BaseClass
+@

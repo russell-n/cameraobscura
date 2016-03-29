@@ -1,0 +1,172 @@
+The Base Configuration
+======================
+
+<<name='imports', echo=False>>=
+# python standard library
+import abc
+from abc import abstractproperty, abstractmethod
+import logging
+@
+
+<<name='constants', echo=False>>=
+UNDERSCORE = '_'
+ONE = 1
+FIRST = 0
+LAST = -1
+@
+
+.. _rvrconfiguration-baseconfiguration:
+
+BaseConfiguration Class
+-----------------------
+
+The purpose of this class is to enforce some expected attributes and to provide an `unknown_options` method to children. Additionally, children will get a logger (assuming they initialize this parent class).
+
+.. uml::
+
+   BaseConfiguration o- ConfigurationAdapter
+   BaseConfiguration o- logging.Logger
+   BaseConfiguration : String section
+   BaseConfiguration : String example   
+   BaseConfiguration : List options
+   BaseConfiguration : List unknown_options
+   BaseConfiguration : List exclusions
+   BaseConfiguration : __init__(ConfigurationAdapter configuration)
+   BaseConfiguration : check_rep()
+   BaseConfiguration : reset()
+
+.. currentmodule:: cameraobscura.common.baseconfiguration
+.. autosummary::
+   :toctree: api
+
+   BaseConfiguration
+   BaseConfiguration.section
+   BaseConfiguration.options
+   BaseConfiguration.example
+   BaseConfiguration.unknown_options
+   BaseConfiguration.exclusions
+   BaseConfiguration.check_rep
+   BaseConfiguration.reset
+
+<<name='BaseConfiguration', echo=False>>=
+class BaseConfiguration(object):
+    """
+    An abstract base class for configurations
+    """
+    __metaclass__ = abc.ABCMeta
+    
+    def __init__(self, configuration):
+        """
+        Constructor for the BaseConfiguration
+
+        :param:
+
+         - `configuration`: a loaded Configuration Adapter
+        """
+        super(BaseConfiguration, self).__init__()
+        self._logger = None
+        self.configuration = configuration
+        self._section = None
+        self._example = None
+        self._exclusions = None
+        self._options = None
+        self._unknown_options = None
+        return
+
+    @property
+    def logger(self):
+        if self._logger is None:
+            self._logger = logging.getLogger("{0}.{1}".format(self.__module__,
+                                                             self.__class__.__name__))
+       
+        return self._logger
+
+    @property
+    def options(self):
+        """
+        A list of known options for the relevant section in the configuration
+
+        It's assumed that an option is:
+
+         - an attribute (leading underscore and in the __dict__.keys)
+         - not in the `exclusions` list
+        """
+        if self._options is None:
+            defaults = self.configuration.defaults().keys()
+            exclusions = defaults + self.exclusions
+            self._options = [option.lstrip(UNDERSCORE) for option in
+                             self.__dict__.keys() if
+                             option not in exclusions]
+        return self._options
+
+    @property
+    def unknown_options(self):
+        """
+        A list of options in the section that aren't recognized
+        """
+        if self._unknown_options is None:
+            exclusions = self.configuration.defaults().keys() + self.options
+            self._unknown_options = [option for option in self.configuration.options(self.section)
+                                     if option not in exclusions]
+        return self._unknown_options
+
+    @property
+    def exclusions(self):
+        """
+        A list of attributes that aren't options in the configuration
+
+        Override this if child has more to exclude
+        """
+        if self._exclusions is None:
+            self._exclusions = sorted(("_exclusions _logger _section "
+                                       "_example configuration _options _unknown_options").split())
+        return self._exclusions
+
+    @abstractproperty
+    def example(self):
+        """
+        An example configuration
+
+        :return: string with sample configuration
+        """
+        return
+
+    @abstractproperty
+    def section(self):
+        """
+        The Section name ([SECTION]) to get from the configuration
+        """
+        return
+
+    @abstractmethod
+    def check_rep(self):
+        """
+        Checks the values for validity
+
+        :raise: TestsuitesError if invalid configuration is found
+        """
+        if len(self.unknown_options):
+            self.logger.debug("Unused Options in section {s}: {o}".format(s=self.section,
+                                                                            o=self.options))
+        return
+    
+    @abstractmethod
+    def reset(self):
+        """
+        Sets the values (attributes) to None
+        """
+        return
+
+    def __str__(self):
+        """
+        Creates a replica of the configuration file section
+        """
+        header = "[{s}]\n".format(s=self.section)
+        body = ''.join(["{o}={v}\n".format(o=option,
+                                           v=getattr(self, option))
+                                           for option in self.options])
+        return header + body
+# end class BaseConfiguration    
+@
+
+   

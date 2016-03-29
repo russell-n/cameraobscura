@@ -1,0 +1,67 @@
+
+# python standard library
+import unittest
+import random
+
+# third-party
+from mock import Mock
+
+# this package
+from cameraobscura.commands.ping.pingbuilder import PingBuilder
+from cameraobscura.commands.ping.ping import Ping
+from cameraobscura.commands.ping.pingconfiguration import PingConfiguration
+from cameraobscura.tests.helpers import random_string_of_letters
+
+
+class TestPingBuilder(unittest.TestCase):
+    def setUp(self):
+        self.connection = Mock()
+        self.configuration = Mock(spec=PingConfiguration)
+        self.builder = PingBuilder(connection=self.connection,
+                                   configuration=self.configuration)
+        return
+
+    def test_constructor(self):
+        """
+        Does it build correctly?
+        """
+        self.assertEqual(self.connection, self.builder.connection)
+        self.assertEqual(self.configuration, self.builder.configuration)
+        return
+
+    def test_product(self):
+        """
+        Does it build the product correctly?
+        """
+        # the settings
+        target = random_string_of_letters(10)
+        self.configuration.target = target
+        timeout = random.randrange(1, 100)
+        self.configuration.timeout = timeout
+        threshold = random.randrange(1,10)
+        self.configuration.threshold = threshold
+        os = random_string_of_letters()
+        self.configuration.operating_system = os
+        time_limit = random.randrange(100)
+        self.configuration.time_limit = time_limit
+        arguments = random_string_of_letters()
+        self.configuration.arguments = arguments
+        data_expression = random_string_of_letters()
+        self.configuration.data_expression = data_expression
+        trap_errors = random.choice((False, True))
+        self.configuration.trap_errors = trap_errors
+        
+        pinger = self.builder.product
+        self.assertIsInstance(pinger, Ping)
+
+        self.assertEqual(pinger.target, target)
+        self.assertEqual(pinger.connection, self.connection)
+        self.assertEqual(pinger.timeout, timeout)
+        self.assertEqual(pinger.threshold, threshold)
+        self.assertEqual(pinger.operating_system, os)
+        self.assertEqual(pinger.time_limit, time_limit)
+        self.assertEqual(pinger.arguments, arguments)
+        self.assertEqual(pinger.data_expression, data_expression)
+        self.assertEqual(pinger.trap_errors, trap_errors)
+        return
+# end class TestPingBuilder    

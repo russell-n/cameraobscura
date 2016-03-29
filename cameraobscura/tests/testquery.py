@@ -1,0 +1,398 @@
+
+# python standard library
+import unittest
+import re
+import csv
+import ConfigParser
+
+# third party
+from mock import MagicMock, call, patch, Mock, mock_open
+
+# this package
+from cameraobscura.utilities.query import Query
+from cameraobscura import CameraobscuraError
+from cameraobscura.clients.simpleclient import ConnectionError
+from cameraobscura.tests.helpers import random_string_of_letters
+from cameraobscura.utilities.query import QueryConfiguration, QueryEnum, QueryBuilder
+
+from cameraobscura.utilities.configurationadapter import ConfigurationAdapter
+
+
+# a place to import command output
+IWCONFIG_OUTPUT = """wlan2     IEEE 802.11abgn  ESSID:"allionguest-5"  
+          Mode:Managed  Frequency:5.26 GHz  Access Point: 18:33:9D:F9:AB:7C   
+          Bit Rate=65 Mb/s   Tx-Power=15 dBm   
+          Retry  long limit:7   RTS thr:off   Fragment thr:off
+          Power Management:off
+          Link Quality=46/70  Signal level=-64 dBm  
+          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
+          Tx excessive retries:2  Invalid misc:155   Missed beacon:0
+""".split('\n')
+IFCONFIG_OUTPUT = """eth0      Link encap:Ethernet  HWaddr 00:14:d1:20:13:a0
+          inet addr:192.168.10.35  Bcast:192.168.10.255  Mask:255.255.255.0
+          inet6 addr: fe80::214:d1ff:fe20:13a0/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1305885 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:67382 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:215121185 (215.1 MB)  TX bytes:10152099 (10.1 MB)                                                                      
+""".split('\n')
+FIELDS = 'rssi hostname'.split()
+COMMAND_LIST = 'iwconfig wlan2, ifconfig wlan2'.split(',')
+EXPRESSION_LIST = r"Signal\s+level=(-\d+)\s+dBm inet\saddr:(\S+)".split()
+COMMANDS = dict(zip(FIELDS, COMMAND_LIST))
+EXPRESSIONS = dict(zip(FIELDS, EXPRESSION_LIST))
+OUTPUTS = '-64 192.168.10.35'.split()
+OUTPUT = {(COMMANDS['rssi'],): IWCONFIG_OUTPUT,
+            (COMMANDS['hostname']): IFCONFIG_OUTPUT,
+            COMMANDS['rssi']: IWCONFIG_OUTPUT,
+            COMMANDS['hostname']: IFCONFIG_OUTPUT}
+ERROR = ''
+def side_effects(*args, **kwargs):
+    try:
+        o = OUTPUT[args]
+    except KeyError:
+        o = OUTPUT[kwargs['command']]
+        return None, o, ERROR
+
+
+
+class TestQuery(unittest.TestCase):
+    def setUp(self):
+        self.filename = random_string_of_letters(5)
+        self.output_file = MagicMock()
+        self.connection = MagicMock()        
+        self.fields = 'rssi hostname'.split()
+        self.command_list = 'iwconfig wlan2, ifconfig wlan2'.split(',')
+        self.mock_commands = [Mock() for field in self.fields]
+        for index, command in enumerate(self.mock_commands):
+            command.return_value = OUTPUTS[index]
+        self.commands = dict(zip(self.fields, self.mock_commands))
+        self.expression_list = r"Signal\s+level=(-\d+)\s+dBm inet\saddr:(\S+)".split()
+
+        self.expressions = dict(zip(self.fields, self.expression_list))
+        self.querier = Query(output_filename=self.filename,
+                             connection=self.connection,
+                             fields=self.fields,
+                             commands=self.commands)
+        self.querier._output_file = self.output_file
+        return
+    
+    def test_constructor(self):
+        """
+        Does it build correctly?
+        """
+        self.assertEqual(self.querier.output_file, self.output_file)
+        self.assertEqual(self.querier.fields, self.fields)
+        self.assertEqual(self.querier.commands, self.commands)
+        return
+
+    def test_writer(self):
+        """
+        Does it create a dict-writer and write the fields to the header?
+        """
+        self.assertIsInstance(self.querier.writer, csv.DictWriter)
+        line_ending = self.querier.writer.writer.dialect.lineterminator
+        # adding a timestamp to the header
+        self.output_file.write.assert_called_with(','.join(['timestamp'] + self.fields) +
+                                                  line_ending)
+        return
+
+    def test_close(self):
+        """
+        Does it close the file?
+        """
+        self.querier.close()
+        self.output_file.close.assert_called_with()
+        return
+
+    def test_destructor(self):
+        """
+        Does it call the close?
+        """
+        del(self.querier)
+        self.output_file.close.assert_called_with()
+        return
+
+    def test_call(self):
+        """
+        Does it perform the expected activities?
+        """
+        timestamp = 'fake_timestamp'        
+        # does it call the commands?
+
+        date_mock = MagicMock()
+        isoformat = MagicMock(name='isoformat')
+        isoformat.isoformat.return_value = timestamp
+        date_mock.now.return_value = isoformat
+        with patch('datetime.datetime', date_mock):
+            self.querier()
+        for command in self.mock_commands:
+            command.assert_called_with()
+            
+        # does it write the output?
+        line_ending = self.querier.writer.writer.dialect.lineterminator
+        data = "{0},-64,192.168.10.35".format(timestamp) + line_ending
+        header = ','.join(['timestamp'] + self.fields) + line_ending
+
+        expected = [call(header), call(data)]
+
+        self.assertEqual(expected, self.output_file.write.mock_calls)        
+        return
+    
+    def test_change_file(self):
+        """
+        Does it properly swap out files?
+        """
+        writer = self.querier.writer
+        new_file = MagicMock()
+        new_filename = random_string_of_letters(6)
+        open_mock = mock_open()
+        open_mock.return_value = new_file
+        with patch('__builtin__.open', open_mock):
+            self.querier.output_filename = new_filename
+
+            self.assertEqual(new_file, self.querier.output_file)
+        open_mock.assert_called_with(new_filename, 'a')
+        self.output_file.close.assert_called_with()
+
+        self.assertIsNone(self.querier._writer)
+        return
+
+    def test_check_rep(self):
+        """
+        Does check_rep check that the keys of the dictionaries match?
+        """
+        self.querier.check_rep()
+        field = self.querier.fields.pop()
+        # extra command
+        with self.assertRaises(AssertionError):
+            self.querier.check_rep()
+        self.querier.fields.append(field)
+        self.querier.check_rep()
+        return
+
+    def test_add_data_call(self):
+        """
+        Does it work to add data?
+        """
+        # we are going to add an extra column
+        extra_field = random_string_of_letters()
+        extra_value = random_string_of_letters()
+        extra_data = {extra_field:extra_value}
+        
+        self.querier.fields.append(extra_field)
+        
+        timestamp = 'fake_timestamp'        
+        # does it call the commands?
+        date_mock = MagicMock()
+        isoformat = MagicMock(name='isoformat')
+        isoformat.isoformat.return_value = timestamp
+        date_mock.now.return_value = isoformat
+        with patch('datetime.datetime', date_mock):
+            self.querier(extra_data=extra_data)
+        
+        # does it write the output?
+        line_ending = self.querier.writer.writer.dialect.lineterminator
+        data = "{0},-64,192.168.10.35,{1}".format(timestamp, extra_value) + line_ending
+        header = ','.join(['timestamp'] + self.fields) + line_ending
+
+        expected = [call(header), call(data)]
+
+        self.assertEqual(expected, self.output_file.write.mock_calls)        
+
+        return
+# end TestQuery        
+
+
+SECTION = QueryEnum.section
+            
+FIELDS = 'rssi ip_address bitrate'.split()
+
+value = '{c}, {e}'
+        
+IWCONFIG = 'iwconfig wlan2'
+IFCONFIG = 'ifconfig wlan2'
+COMMANDS = (IWCONFIG, IFCONFIG, IWCONFIG)
+# expressions
+RSSI_EXPRESSION = r'Signal\slevel=(-\d+\s+dBm)'
+BITRATE_EXPRESSION = r"Bit\sRate=(\d+\s+[MK]b/s)"
+IP_ADDRESS_EXPRESSION = r'inet\saddr:(\d+\.\d+\.\d+\.\d+)'
+
+EXPRESSIONS = (RSSI_EXPRESSION, IP_ADDRESS_EXPRESSION, BITRATE_EXPRESSION)
+rssi_value = value.format(c=IWCONFIG, e=RSSI_EXPRESSION)
+bitrate_value = value.format(c=IWCONFIG, e=BITRATE_EXPRESSION)
+ip_address_value = value.format(c=IFCONFIG, e=IP_ADDRESS_EXPRESSION)
+
+
+
+ACTIONS = {(SECTION, 'rssi'):rssi_value,
+           (SECTION, 'bitrate'): bitrate_value,
+           (SECTION, 'ip_address'):ip_address_value}
+
+class TestQueryConfiguration(unittest.TestCase):
+    def setUp(self):
+        self.logger = MagicMock()
+        self.config_parser = MagicMock()
+        self.config_adapter = ConfigurationAdapter(self.config_parser)
+        self.configuration = QueryConfiguration(configuration=self.config_adapter)
+        return
+
+    def test_constructor(self):
+        """
+        Does it build?
+        """
+        self.assertEqual(self.config_adapter, self.configuration.configuration)
+        return
+
+    def test_delimiter(self):
+        """
+        Does it get the delimiter separating the <command> and <expression>?
+        """
+        # user gives a delimiter
+        expected = 'separator'
+        self.config_parser.get.return_value = expected
+        actual = self.configuration.delimiter
+        self.assertEqual(actual, expected)
+        self.config_parser.get.assert_called_with(QueryEnum.section,
+                                                  QueryEnum.delimiter)
+
+        # no delimiter given (use the default)
+        expected = QueryEnum.default_delimiter
+        self.config_parser.get.side_effect = ConfigParser.NoOptionError(QueryEnum.delimiter,
+                                                                        QueryEnum.section)
+        self.configuration.reset()
+        actual = self.configuration.delimiter
+        self.assertEqual(expected, actual)
+        return
+
+    def test_not_available(self):
+        """
+        Does it get a not-available symbol?
+        """
+        # user-specified
+        expected = 'NUNYA'
+        self.config_parser.get.return_value = expected
+        self.assertEqual(expected, self.configuration.not_available)
+        self.config_parser.get.assert_called_with(QueryEnum.section, QueryEnum.not_available)
+
+        # user takes default
+        self.configuration.reset()
+        self.config_parser.get.side_effect = ConfigParser.NoOptionError(QueryEnum.not_available,
+                                                                        QueryEnum.section)
+        self.assertEqual(QueryEnum.default_not_available, self.configuration.not_available)
+        return
+
+    def test_fields(self):
+        """
+        Does it create a list from the options?
+        """
+        options = 'anna banana chocobonbons'.split()
+        self.config_parser.options.return_value = options
+        fields = self.configuration.fields
+        self.config_parser.options.assert_called_with(self.configuration.section)
+        self.assertEqual(options, fields)
+        return
+
+    def test_commands(self):
+        """
+        Does it build a dictionary of commands to execute?
+        """
+        # the commands are built by splitting on the delimiter
+        # to avoid the extra call to check for a non-default delimiter
+        # set it here
+        self.configuration._delimiter = ','
+        def side_effect(*args):
+            return ACTIONS[args]
+        
+        expected = dict(zip(FIELDS, COMMANDS))
+        
+        self.config_parser.options.return_value = FIELDS
+        self.config_parser.get.side_effect = side_effect        
+        
+        self.assertEqual(expected,
+                         self.configuration.commands)
+        return
+
+    def test_expressions(self):
+        """
+        Does it get the regular expressions to parse the command output?
+        """
+        # re-using the test_commands values
+        self.configuration._delimiter = ','
+        def side_effect(*args):
+            return ACTIONS[args]
+        expected = dict(zip(FIELDS, EXPRESSIONS))
+        self.config_parser.options.return_value = FIELDS
+        self.config_parser.get.side_effect = side_effect
+
+        self.assertEqual(expected,
+                         self.configuration.expressions)
+        return
+
+    def test_output_filename(self):
+        """
+        Does it get the name to use to store the data?        
+        """
+        filename = random_string_of_letters(10)
+        self.config_parser.get.return_value = filename
+        self.assertEqual(self.configuration.filename, filename)
+        self.config_parser.get.assert_called_with('query', 'filename')
+
+        # user didn't set, use the default
+        self.configuration.reset()
+        self.config_parser.get.side_effect = ConfigParser.NoOptionError('filename',
+                                                                        'query')
+        self.assertEqual(self.configuration.filename, QueryEnum.default_filename)
+        return
+# end class TestQueryConfiguration    
+
+
+filename = random_string_of_letters(5)
+configuration = {('query', 'filename'): filename}
+
+
+def side_effect(*args):
+    return configuration[args]
+
+class TestQueryBuilder(unittest.TestCase):
+    def setUp(self):
+        self.connection = Mock()
+        self.configuration = MagicMock()
+        self.configuration.get.side_effect = side_effect
+        self.builder = QueryBuilder(connection=self.connection,
+                                    configuration=self.configuration)
+        return
+
+    def test_constructor(self):
+        """
+        Does it build?
+        """
+        self.assertEqual(self.connection, self.builder.connection)
+        self.assertEqual(self.configuration, self.builder.configuration)
+        return
+
+    def test_product(self):
+        """
+        Does it build the Query correctly?
+        """
+        fields = 'a b'.split()
+        self.configuration.fields = fields
+        
+        configuration = {('query', 'a'): 'apple,alpha',
+                         ('query', 'b'): 'banana,beta'}
+        
+        def side_effect(*args): return configuration[args]
+        self.configuration.get.side_effect = side_effect
+        
+        commands = [Mock(), Mock()]
+        def object_effect(*args): return command.pop()
+
+        #mock_commands =Mock()
+        #mock_commands.side_effect = object_effect
+        #expected = dict(zip(fields, commands))
+        #with patch('cameraobscura.commands.command.command.TheCommand', mock_commands):
+        #        self.assertIsInstance(self.builder.product, Query)
+        #self.assertDictEqual(expected, self.builder.product.commands)
+        return
+# end TestQueryBuilder    

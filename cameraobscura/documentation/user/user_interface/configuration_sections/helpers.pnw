@@ -1,0 +1,23 @@
+Configuration Documentation Helpers
+===================================
+
+I seem to be using the same code in the different configuration file documentation so this module is a place to gather them all up.
+
+<<name='imports', echo=False>>=
+# python standard library
+import subprocess
+import re
+@
+
+<<name='full_section', echo=True>>=
+expression = r"^\[|^#\[|.*=.*"
+def print_sample(section):
+    command = 'rvr fetch -s {0}'.format(section).split()
+    output = subprocess.check_output(command).split('\n')
+    for line in output:
+        if re.search(expression, line):
+            print line
+    return output
+@
+
+

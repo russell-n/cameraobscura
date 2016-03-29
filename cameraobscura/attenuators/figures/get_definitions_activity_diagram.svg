@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="51cm" height="35cm" viewBox="54 54 1004 684" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <ellipse style="fill: #000000" cx="66" cy="97.5" rx="10" ry="10"/>
+  <g>
+    <rect style="fill: #ffffff" x="124" y="71.5" width="85.65" height="52" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="124" y="71.5" width="85.65" height="52" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="166.825" y="93.4">
+      <tspan x="166.825" y="93.4">Create</tspan>
+      <tspan x="166.825" y="109.4">Dictionary</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="76,97.5 86,97.5 114,97.5 119.528,97.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="111.764,102.5 121.764,97.5 111.764,92.5 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="258" y="63.5" width="105.475" height="68" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="258" y="63.5" width="105.475" height="68" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="310.738" y="85.4">
+      <tspan x="310.738" y="85.4">Get path</tspan>
+      <tspan x="310.738" y="101.4">to Attenuator</tspan>
+      <tspan x="310.738" y="117.4">Classes</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="209.65,97.5 219.65,97.5 248,97.5 253.528,97.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="245.764,102.5 255.764,97.5 245.764,92.5 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="363.475,97.5 373.475,97.5 400,97.5 405.528,97.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="397.764,102.5 407.764,97.5 397.764,92.5 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="410" y="55.5" width="105" height="84" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="410" y="55.5" width="105" height="84" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="462.5" y="77.4">
+      <tspan x="462.5" y="77.4">Get</tspan>
+      <tspan x="462.5" y="93.4">Candidate</tspan>
+      <tspan x="462.5" y="109.4">Flie-names</tspan>
+      <tspan x="462.5" y="125.4">(python files)</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="515,97.5 525,97.5 579,97.5 584.528,97.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="576.764,102.5 586.764,97.5 576.764,92.5 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="731" y="71.5" width="122" height="52" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="731" y="71.5" width="122" height="52" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="792" y="93.4">
+      <tspan x="792" y="93.4">Import each</tspan>
+      <tspan x="792" y="109.4">file as a module</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="678.075,97.5 688.075,97.5 721,97.5 726.528,97.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="718.764,102.5 728.764,97.5 718.764,92.5 "/>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="772,241.793 792,221.793 812,241.793 792,261.793 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="772,241.793 792,221.793 812,241.793 792,261.793 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="792,123.5 792,133.5 792,211.793 792,217.321 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="787,209.557 792,219.557 797,209.557 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="734.966" y="360" width="114.069" height="68" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="734.966" y="360" width="114.069" height="68" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="792" y="381.9">
+      <tspan x="792" y="381.9">Get class</tspan>
+      <tspan x="792" y="397.9">definition from</tspan>
+      <tspan x="792" y="413.9">module</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="792,261.793 792,271.793 792,350 792,355.528 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="787,347.764 792,357.764 797,347.764 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="709" y="330">[module unchecked]</text>
+  </g>
+  <g>
+    <ellipse style="fill: #ffffff" cx="70" cy="241.793" rx="15" ry="15"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="70" cy="241.793" rx="15" ry="15"/>
+    <ellipse style="fill: #000000" cx="70" cy="241.793" rx="10" ry="10"/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="772,241.793 762,241.793 96.0078,241.793 90.4799,241.793 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="98.2439,236.793 88.2439,241.793 98.2439,246.793 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="419.004" y="231.793">[all modules checked]</text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="772,561 792,541 812,561 792,581 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="772,561 792,541 812,561 792,581 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="792,428 792,438 792,531 792,536.528 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="787,528.764 792,538.764 797,528.764 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="740.725" y="669" width="102.55" height="68" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="740.725" y="669" width="102.55" height="68" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="792" y="690.9">
+      <tspan x="792" y="690.9">Add</tspan>
+      <tspan x="792" y="706.9">Definition</tspan>
+      <tspan x="792" y="722.9">to Dictionary</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="792,581 792,591 792,659 792,664.528 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="787,656.764 792,666.764 797,656.764 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="890" y="609">[definition not in dictionary]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="812,561 911,561 911,241.793 816.472,241.793 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="824.236,236.793 814.236,241.793 824.236,246.793 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="987" y="504">[all definitions added]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="740.725,703 704.966,703 704.966,394 730.493,394 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="722.73,399 732.73,394 722.73,389 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="589" y="55.5" width="89.075" height="84" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="589" y="55.5" width="89.075" height="84" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="633.538" y="77.4">
+      <tspan x="633.538" y="77.4">Remove</tspan>
+      <tspan x="633.538" y="93.4">filename</tspan>
+      <tspan x="633.538" y="109.4">extensions</tspan>
+      <tspan x="633.538" y="125.4">(.pyc)</tspan>
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,104 @@
+StepRange Iterator
+==================
+
+.. literalinclude:: ../iterator.feature
+   :language: gherkin
+
+<<name='imports', echo=False>>=
+# python standard library
+from random import randrange
+
+# third party
+from behave import then, when, given
+from hamcrest import assert_that, contains
+
+# this package
+from cameraobscura.ratevsrange.stepiterator import StepRange
+@
+
+Scenario Outline: StepRange Iteration Up Only
+---------------------------------------------
+
+<<name='start_lt_stop', wrap=False>>=
+@given("StepRange start less than stop and no step thresholds")
+def start_lt_stop(context):
+    stop = randrange(-100, 100)
+    start = stop - randrange(abs(stop))
+    context.iterator = StepRange(start=start,
+                                 stop=stop)
+    return
+@
+
+<<name='step_traversal', wrap=False>>=
+@when("the StepRange is traversed")
+def step_traversal(context):
+    context.traversal = [step for step in context.iterator]
+    return
+@
+
+<<name='assert_range', wrap=False>>=
+@then("the StepRange output is a range from start to stop")
+def assert_range(context):
+    # the 'range' includes the last value
+    assert_that(context.traversal,
+                contains(*range(context.iterator.start,
+                                context.iterator.stop + 1,
+                                context.iterator.step_size)))
+    return
+@
+
+Scenario Outline: StepRange Iteration Up Only With Step Change
+--------------------------------------------------------------
+
+<<name='start_lt_stop', wrap=False>>=
+@given("StepRange start less than stop and one step thresholds")
+def start_lt_stop(context):
+    start = 0
+    stop = 10
+    step_sizes = (1, 2)
+    step_thresholds = [6]
+    context.iterator = StepRange(stop=stop,
+                                 start=start,
+                                 step_sizes=step_sizes,
+                                 step_change_thresholds=step_thresholds)
+    return
+@
+
+
+<<name='assert_range', wrap=False>>=
+@then("the StepRange output is a stepped range from start to stop")
+def assert_range(context):
+    # the 'range' includes the last value
+    expected = range(7) + [8, 10]
+    assert_that(context.traversal,
+                contains(*expected))
+    return
+@
+
+Scenario Outline: StepRange Iteration Down Only
+-----------------------------------------------
+
+<<name='start_gt_stop', wrap=False>>=
+@given("StepRange start greater than stop and no step thresholds")
+def start_gt_stop(context):
+    start = randrange(1, 100)
+    stop = 0
+
+    context.iterator = StepRange(stop=stop,
+                                 start=start)
+    return
+@
+
+
+<<name='assert_descending_range', wrap=False>>=
+@then("the StepRange output is a descending range from start to stop")
+def assert_range(context):
+    # the 'step-range' includes the last value
+    # so the python range has to be extended by one
+    expected = range(context.iterator.start,
+                     context.iterator.stop-1,
+                     -context.iterator.step_sizes[0])
+    assert_that(context.traversal,
+                contains(*expected))
+    return
+@

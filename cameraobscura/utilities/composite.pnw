@@ -1,0 +1,49 @@
+The Composite
+=============
+
+<<name='imports', echo=False>>=
+# this package
+from cameraobscura import BaseClass
+@
+
+The composite is an aggregator (composition) of callable objects that will be called in sequence.
+
+.. uml::
+
+   BaseClass <|-- TheComposite
+
+.. currentmodule:: cameraobscura.utilities.composite
+.. autosummary::
+   :toctree: api
+
+   TheComposite
+   TheComposite.__call__
+
+<<name='TheComposite', echo=False>>=
+class TheComposite(BaseClass):
+    """
+    The Composite aggregates callable objects
+    """
+    def __init__(self, components):
+        """
+        Composite constructor
+
+        :param:
+
+         - `components` : list of callable objects
+        """
+        super(TheComposite, self).__init__()
+        self.components = components
+        return
+
+    def __call__(self):
+        """
+        The main interface -- calls all the components
+        """
+        for component in self.components:
+            self.logger.info('Calling Component: {0}'.format(component))
+            component()
+        return
+# end class TheComposite
+@
+

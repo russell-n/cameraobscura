@@ -1,0 +1,77 @@
+Compare Property
+================
+
+.. literalinclude:: ../compare.feature
+   :language: gherkin
+
+<<name='imports', echo=False>>=
+# python standard library
+import random
+import operator
+
+# third-party
+from behave import then, when, given
+from hamcrest import assert_that, is_, same_instance
+
+# this package
+from cameraobscura.ratevsrange.stepiterator import StepRange
+@
+
+Scenario: compare when start = stop
+-----------------------------------
+
+<<name='start_equal_stop', wrap=False>>=
+@given("StepRange `start` is equal to `stop`")
+def start_equal_stop(context):
+    start = stop = random.randrange(-100, 100)
+    context.iterator = StepRange(start=start,
+                                 stop=stop)
+    return
+@
+
+<<name='check_compare', wrap=False>>=
+@when("the StepRange `compare` property is checked")
+def check_compare(context):
+    context.compare = context.iterator.compare
+    return
+@
+
+<<name='assert_le', wrap=False>>=
+@then("the StepRange `compare` is <=")
+def assert_le(context):
+    assert_that(context.compare,
+                is_(same_instance(operator.le)))
+    return
+@
+
+Scenario: compare when start < stop
+-----------------------------------
+
+<<name='start_less_than_stop', wrap=False>>=
+@given('StepRange `start` is less than `stop`')
+def start_less_than_stop(context):
+    stop = random.randrange(-100, 100)
+    start = stop - random.randrange(abs(stop))
+    context.iterator = StepRange(start=start,
+                              stop=stop)
+    return
+@
+
+Scenario: Compare when start > stop
+-----------------------------------
+
+<<name='start_greater_than_stop', wrap=False>>=
+@given('StepRange `start` is greater than `stop`')
+def start_greater_than_stop(context):
+    start = random.randrange(-100, 100)
+    stop = start - random.randrange(abs(start))
+    context.iterator = StepRange(start=start,
+                                 stop=stop)
+    return
+@
+
+<<name='assert_ge', wrap=False>>=
+@then('the StepRange `compare` is >=')
+def assert_ge(context):
+    return
+@

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="42cm" height="29cm" viewBox="74 106 839 574" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <ellipse style="fill: #000000" cx="90.5" cy="148.5" rx="10" ry="10"/>
+  <g>
+    <rect style="fill: #ffffff" x="192" y="114.5" width="80" height="68" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="192" y="114.5" width="80" height="68" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="232" y="136.4">
+      <tspan x="232" y="136.4">Create</tspan>
+      <tspan x="232" y="152.4">'output'</tspan>
+      <tspan x="232" y="168.4">dict</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="331" y="122.5" width="117.875" height="52" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="331" y="122.5" width="117.875" height="52" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="389.938" y="144.4">
+      <tspan x="389.938" y="144.4">Add timestamp</tspan>
+      <tspan x="389.938" y="160.4">to 'output'</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="560.975,148.5 580.975,128.5 600.975,148.5 580.975,168.5 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="560.975,148.5 580.975,128.5 600.975,148.5 580.975,168.5 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="788" y="122.5" width="124.5" height="52" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="788" y="122.5" width="124.5" height="52" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="850.25" y="144.4">
+      <tspan x="850.25" y="144.4">Add 'extra_data'</tspan>
+      <tspan x="850.25" y="160.4">to 'output'</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="100.5,148.5 110.5,148.5 182,148.5 187.528,148.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="179.764,153.5 189.764,148.5 179.764,143.5 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="272,148.5 282,148.5 321,148.5 326.528,148.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="318.764,153.5 328.764,148.5 318.764,143.5 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="448.875,148.5 458.875,148.5 550.975,148.5 556.503,148.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="548.739,153.5 558.739,148.5 548.739,143.5 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="600.975,148.5 610.975,148.5 778,148.5 783.528,148.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="775.764,153.5 785.764,148.5 775.764,143.5 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="684.488" y="138.5">['extra_data' not None]</text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="560.975,301 580.975,281 600.975,301 580.975,321 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="560.975,301 580.975,281 600.975,301 580.975,321 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="580.975,168.5 580.975,178.5 580.975,271 580.975,276.528 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="575.975,268.764 580.975,278.764 585.975,268.764 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="570.975" y="214.75">[else]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="850.25,174.5 850.25,301 605.447,301 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="613.211,296 603.211,301 613.211,306 "/>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="560.975,387.707 580.975,367.707 600.975,387.707 580.975,407.707 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="560.975,387.707 580.975,367.707 600.975,387.707 580.975,407.707 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="580.975,321 580.975,331 580.975,357.707 580.975,363.235 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="575.975,355.471 580.975,365.471 585.975,355.471 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="526" y="528" width="109.95" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="526" y="528" width="109.95" height="36" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="580.975" y="549.9">
+      <tspan x="580.975" y="549.9">call command</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="537.925" y="627" width="86.1" height="52" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="537.925" y="627" width="86.1" height="52" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="580.975" y="648.9">
+      <tspan x="580.975" y="648.9">add data</tspan>
+      <tspan x="580.975" y="664.9">to 'output'</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="580.975,407.707 580.975,476.5 580.975,476.5 580.975,523.528 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="575.975,515.764 580.975,525.764 585.975,515.764 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="570.975" y="466.5">[uncalled command in commands]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="580.975,564 580.975,574 580.975,617 580.975,622.528 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="575.975,614.764 580.975,624.764 585.975,614.764 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="624.025,653 654.025,653 654.025,387.707 605.447,387.707 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="613.211,382.707 603.211,387.707 613.211,392.707 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="349.938" y="353.707" width="80" height="68" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="349.938" y="353.707" width="80" height="68" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="389.938" y="375.607">
+      <tspan x="389.938" y="375.607">write</tspan>
+      <tspan x="389.938" y="391.607">'output'</tspan>
+      <tspan x="389.938" y="407.607">to writer</tspan>
+    </text>
+  </g>
+  <g>
+    <ellipse style="fill: #ffffff" cx="90.5" cy="387.707" rx="15" ry="15"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="90.5" cy="387.707" rx="15" ry="15"/>
+    <ellipse style="fill: #000000" cx="90.5" cy="387.707" rx="10" ry="10"/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="349.938,387.707 339.938,387.707 115.5,387.707 109.972,387.707 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="117.736,382.707 107.736,387.707 117.736,392.707 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="560.975,387.707 550.975,387.707 439.938,387.707 434.41,387.707 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="442.174,382.707 432.174,387.707 442.174,392.707 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="485.456" y="377.707">[else]</text>
+  </g>
+</svg>

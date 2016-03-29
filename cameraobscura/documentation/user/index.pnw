@@ -1,0 +1,12 @@
+User Documentation
+==================
+
+<<name='imports', echo=False>>=
+# this package
+from cameraobscura import create_toctree
+@
+
+<<name='toctree', echo=False, results='sphinx'>>=
+create_toctree()
+@
+

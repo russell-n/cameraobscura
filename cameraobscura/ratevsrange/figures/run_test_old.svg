@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="81cm" height="54cm" viewBox="34 -39 1606 1063" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <ellipse style="fill: #000000" cx="57.1772" cy="244.898" rx="10" ry="10"/>
+  <g>
+    <polygon style="fill: #ffffff" points="214.585,244.898 234.585,224.898 254.585,244.898 234.585,264.898 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="214.585,244.898 234.585,224.898 254.585,244.898 234.585,264.898 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="68.1826,244.898 78.1826,244.898 204.585,244.898 210.113,244.898 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="202.349,249.898 212.349,244.898 202.349,239.898 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="580.975" y="226.898" width="117.9" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="580.975" y="226.898" width="117.9" height="36" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="639.925" y="248.798">
+      <tspan x="639.925" y="248.798">Run Uplink Test</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="254.585,244.898 264.585,244.898 570.975,244.898 576.503,244.898 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="568.739,249.898 578.739,244.898 568.739,239.898 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="407.78" y="234.898">[traffic.direction in {upstream, both}]</text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="816.75,244.898 836.75,224.898 856.75,244.898 836.75,264.898 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="816.75,244.898 836.75,224.898 856.75,244.898 836.75,264.898 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="698.875,244.898 708.875,244.898 806.75,244.898 812.278,244.898 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="804.514,249.898 814.514,244.898 804.514,239.898 "/>
+  </g>
+  <g>
+    <ellipse style="fill: #ffffff" cx="61.0677" cy="81.2341" rx="15" ry="15"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="61.0677" cy="81.2341" rx="15" ry="15"/>
+    <ellipse style="fill: #000000" cx="61.0677" cy="81.2341" rx="10" ry="10"/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="836.75,224.898 836.75,214.898 836.75,111.234 836.75,105.706 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="841.75,113.47 836.75,103.47 831.75,113.47 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="795.069" y="159.486">[~success]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="856.75,244.898 858,244.898 858,244.898 976.528,244.898 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="968.764,249.898 978.764,244.898 968.764,239.898 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="895.078" y="226.094">[success]</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="981" y="226.898" width="148.85" height="36" rx="10" ry="10"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="981" y="226.898" width="148.85" height="36" rx="10" ry="10"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1055.42" y="248.798">
+      <tspan x="1055.42" y="248.798">Initialize RSSI String</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="214.585,370 234.585,350 254.585,370 234.585,390 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="214.585,370 234.585,350 254.585,370 234.585,390 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="234.585,264.898 234.585,274.898 234.585,340 234.585,345.528 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="229.585,337.764 234.585,347.764 239.585,337.764 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="258.585" y="291.199">[else]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1129.85,244.898 1159.85,244.898 1159.85,370 259.057,370 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="266.821,365 256.821,370 266.821,375 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="194.585" y="471.526" width="80" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="194.585" y="471.526" width="80" height="36" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="234.585" y="493.426">
+      <tspan x="234.585" y="493.426">sleep</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="234.585,390 234.585,430.763 234.585,430.763 234.585,467.054 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="229.585,459.29 234.585,469.29 239.585,459.29 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="303.719" y="431.983">[direction = both]</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="168.535" y="589.212" width="132.1" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="168.535" y="589.212" width="132.1" height="36" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="234.585" y="611.112">
+      <tspan x="234.585" y="611.112">check connection</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="234.585,507.526 234.585,517.526 234.585,579.212 234.585,584.739 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="229.585,576.976 234.585,586.976 239.585,576.976 "/>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="214.585,708.699 234.585,688.699 254.585,708.699 234.585,728.699 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="214.585,708.699 234.585,688.699 254.585,708.699 234.585,728.699 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="234.585,625.212 234.585,635.212 234.585,678.699 234.585,684.227 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="229.585,676.463 234.585,686.463 239.585,676.463 "/>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="214.585,896.398 234.585,876.398 254.585,896.398 234.585,916.398 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="214.585,896.398 234.585,876.398 254.585,896.398 234.585,916.398 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="234.585,728.699 234.585,791.625 234.585,791.625 234.585,871.926 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="229.585,864.162 234.585,874.162 239.585,864.162 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="183.585" y="763.25">[connected]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="214.585,370 44,370 44,896.398 210.113,896.398 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="202.349,901.398 212.349,896.398 202.349,891.398 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="170.144" y="358.063">[else]</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="360.109" y="878.398" width="126.8" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="360.109" y="878.398" width="126.8" height="36" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="423.509" y="900.298">
+      <tspan x="423.509" y="900.298">Save RSSI String</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="254.585,896.398 264.585,896.398 350.109,896.398 355.637,896.398 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="347.873,901.398 357.873,896.398 347.873,891.398 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="565.5" y="878.398" width="148.85" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="565.5" y="878.398" width="148.85" height="36" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="639.925" y="900.298">
+      <tspan x="639.925" y="900.298">Initialize RSSI String</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="486.909,896.398 496.909,896.398 555.5,896.398 561.028,896.398 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="553.264,901.398 563.264,896.398 553.264,891.398 "/>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="816.75,896.398 836.75,876.398 856.75,896.398 836.75,916.398 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="816.75,896.398 836.75,876.398 856.75,896.398 836.75,916.398 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="714.35,896.398 724.35,896.398 806.75,896.398 812.278,896.398 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="804.514,901.398 814.514,896.398 804.514,891.398 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1142.59" y="870.398" width="107.425" height="52" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1142.59" y="870.398" width="107.425" height="52" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1196.31" y="892.298">
+      <tspan x="1196.31" y="892.298">Run Downlink</tspan>
+      <tspan x="1196.31" y="908.298">Test</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="856.75,896.398 866.75,896.398 1132.59,896.398 1138.12,896.398 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1130.36,901.398 1140.36,896.398 1130.36,891.398 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="996.671" y="869.898">[direction in {downstream, both}]</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1303.54" y="690.699" width="125.3" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1303.54" y="690.699" width="125.3" height="36" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1366.19" y="712.599">
+      <tspan x="1366.19" y="712.599">Save RSSI string</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1291.77" y="589.212" width="148.85" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1291.77" y="589.212" width="148.85" height="36" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1366.19" y="611.112">
+      <tspan x="1366.19" y="611.112">Initialize RSSI String</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="1346.19,896.398 1366.19,876.398 1386.19,896.398 1366.19,916.398 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1346.19,896.398 1366.19,876.398 1386.19,896.398 1366.19,916.398 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1250.02,896.398 1260.02,896.398 1336.19,896.398 1341.72,896.398 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1333.95,901.398 1343.95,896.398 1333.95,891.398 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1366.19,876.398 1366.19,847.971 1366.19,847.971 1366.19,824.008 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1371.19,831.772 1366.19,821.772 1361.19,831.772 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1404.69" y="840.471">[success]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1386.19,896.398 1386.19,897.549 1618.12,897.549 1618.12,269.37 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1623.12,277.134 1618.12,267.134 1613.12,277.134 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1492.16" y="887.549">[~success]</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1304.68" y="471.526" width="123.025" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1304.68" y="471.526" width="123.025" height="36" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1366.19" y="493.426">
+      <tspan x="1366.19" y="493.426">Parse Iperf Data</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1299.65" y="349.646" width="133.075" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1299.65" y="349.646" width="133.075" height="36" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1366.19" y="371.546">
+      <tspan x="1366.19" y="371.546">Save Parsed Data</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1366.19,471.526 1366.19,461.526 1366.19,395.646 1366.19,390.118 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1371.19,397.882 1366.19,387.882 1361.19,397.882 "/>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="1346.19,244.898 1366.19,224.898 1386.19,244.898 1366.19,264.898 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1346.19,244.898 1366.19,224.898 1386.19,244.898 1366.19,264.898 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1366.19,349.646 1366.19,339.646 1366.19,274.898 1366.19,269.37 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1371.19,277.134 1366.19,267.134 1361.19,277.134 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1307.79" y="143.592" width="116.8" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1307.79" y="143.592" width="116.8" height="36" rx="20" ry="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1366.19" y="165.492">
+      <tspan x="1366.19" y="165.492">save config file</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1366.19,224.898 1366.19,202.245 1366.19,202.245 1366.19,184.064 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1371.19,191.828 1366.19,181.828 1361.19,191.828 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1311.36" y="208.927">[~SystemExit]</text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="1598.12,244.898 1618.12,224.898 1638.12,244.898 1618.12,264.898 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1598.12,244.898 1618.12,224.898 1638.12,244.898 1618.12,264.898 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1386.19,244.898 1396.19,244.898 1588.12,244.898 1593.65,244.898 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1585.89,249.898 1595.89,244.898 1585.89,239.898 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1482.16" y="234.898">[SystemExit]</text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="1176.31,81.2341 1196.31,61.2341 1216.31,81.2341 1196.31,101.234 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1176.31,81.2341 1196.31,61.2341 1216.31,81.2341 1196.31,101.234 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="254.585,708.699 1196.31,708.699 1196.31,105.706 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1201.31,113.47 1196.31,103.47 1191.31,113.47 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="330.953" y="691.351">[~connected]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1176.31,81.2341 1166.31,81.2341 866.75,81.2341 861.222,81.2341 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="868.986,76.2341 858.986,81.2341 868.986,86.2341 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1618.12,224.898 1618.12,81.2341 1390.66,81.2341 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1398.43,76.2341 1388.43,81.2341 1398.43,86.2341 "/>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="267.407,975.359 750.807,975.359 762.807,987.359 762.807,1009.36 267.407,1009.36 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="267.407,975.359 750.807,975.359 762.807,987.359 762.807,1009.36 267.407,1009.36 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="750.807,975.359 750.807,987.359 762.807,987.359 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="274.407" y="1000.26">
+      <tspan x="274.407" y="1000.26">This is reachable with no RSSI string existing or no RSSI data</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="234.585,934.634 234.585,992.359 267.407,992.359 "/>
+    <polygon style="fill: #ffffff" points="242.585,934.634 234.585,918.634 226.585,934.634 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="242.585,934.634 234.585,918.634 226.585,934.634 "/>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="1346.19,81.2341 1366.19,61.2341 1386.19,81.2341 1366.19,101.234 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1346.19,81.2341 1366.19,61.2341 1386.19,81.2341 1366.19,101.234 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1366.19,143.592 1366.19,133.592 1366.19,111.234 1366.19,105.706 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1371.19,113.47 1366.19,103.47 1361.19,113.47 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1346.19,81.2341 1336.19,81.2341 1226.31,81.2341 1220.78,81.2341 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1228.54,76.2341 1218.54,81.2341 1228.54,86.2341 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1450.13" y="736.74" width="150.6" height="60"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1450.13" y="736.74" width="150.6" height="60"/>
+    <rect style="fill: #ffffff" x="1450.13" y="718.74" width="30" height="18"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1450.13" y="718.74" width="30" height="18"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1456.13" y="754.64">
+      <tspan x="1456.13" y="754.64">This is reacheable</tspan>
+      <tspan x="1456.13" y="770.64">with no tests</tspan>
+      <tspan x="1456.13" y="786.64">run</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1404.43,799.536 1426.16,799.536 1426.16,766.74 1450.13,766.74 "/>
+    <polygon style="fill: #ffffff" points="1404.43,791.536 1388.43,799.536 1404.43,807.536 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1404.43,791.536 1388.43,799.536 1404.43,807.536 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1366.19,779.536 1366.19,769.536 1366.19,736.699 1366.19,731.171 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1371.19,738.935 1366.19,728.935 1361.19,738.935 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1366.19,690.699 1366.19,680.699 1366.19,635.212 1366.19,629.684 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1371.19,637.448 1366.19,627.448 1361.19,637.448 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1366.19,589.212 1366.19,579.212 1366.19,517.526 1366.19,511.998 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1371.19,519.762 1366.19,509.762 1361.19,519.762 "/>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="1346.19,799.536 1366.19,779.536 1386.19,799.536 1366.19,819.536 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1346.19,799.536 1366.19,779.536 1386.19,799.536 1366.19,819.536 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="836.75,876.398 836.75,799.536 1341.72,799.536 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1333.95,804.536 1343.95,799.536 1333.95,794.536 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="850.813" y="787.317">[else]</text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="1421.59,-37.4729 1566.19,-37.4729 1578.19,-25.4729 1578.19,12.5271 1421.59,12.5271 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1421.59,-37.4729 1566.19,-37.4729 1578.19,-25.4729 1578.19,12.5271 1421.59,12.5271 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="1566.19,-37.4729 1566.19,-25.4729 1578.19,-25.4729 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1428.59" y="-12.5729">
+      <tspan x="1428.59" y="-12.5729">On parser error</tspan>
+      <tspan x="1428.59" y="3.42709">this isn't reached</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1442.83,161.592 1499.89,161.592 1499.89,12.5271 "/>
+    <polygon style="fill: #ffffff" points="1442.83,153.592 1426.83,161.592 1442.83,169.592 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1442.83,153.592 1426.83,161.592 1442.83,169.592 "/>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="816.75,81.2341 836.75,61.2341 856.75,81.2341 836.75,101.234 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="816.75,81.2341 836.75,61.2341 856.75,81.2341 836.75,101.234 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="816.75,81.2341 806.75,81.2341 86.0677,81.2341 80.5399,81.2341 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="88.3038,76.2341 78.3038,81.2341 88.3038,86.2341 "/>
+  </g>
+</svg>

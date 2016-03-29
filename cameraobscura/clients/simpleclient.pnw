@@ -1,0 +1,265 @@
+SimpleClient
+============
+
+This is a wrapper around paramiko's `SSHClient` that sets some flags to avoid host-key errors. The following are roughly equivalent.
+
+.. '
+
+SSHClient::
+
+   c = SSHClient()
+   c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+   c.load_system_host_keys()
+   c.connect(hostname='192.168.10.24', username='allion')
+   stdin, stdout, stderror = c.exec_command('ls')
+
+SimpleClient::
+
+   c = SimpleClient(hostname='192.168.10.24', username='allion')
+   stdin, stdout, stderr = c.exec_command('ls')
+
+Contents:
+
+    * :ref:`Paramiko SSHClient <simpleclient-paramiko>`
+    * :ref:`ConnectionError <simpleclient-connectionerror>`
+    * :ref:`The SimpleClient <simpleclient>`
+
+.. _simpleclient-paramiko:   
+
+Paramiko's SSHClient
+--------------------
+
+This is some basic documentation for the SSHClient's methods. Only some of them are re-implemented by the SimpleClient (because it's simple), but the getattr is implemented so you can call the paramiko methods and they should work, but the errors will be different from the SimpleClient (they will be ``socket`` or ``paramiko`` errors) so you have to trap them.
+
+.. '
+
+.. currentmodule:: paramiko
+.. autosummary::
+   :toctree: api
+
+   paramiko.SSHClient
+   paramiko.SSHClient.close
+   paramiko.SSHClient.connect
+   paramiko.SSHClient.exec_command
+   paramiko.SSHClient.get_host_keys
+   paramiko.SSHClient.get_transport
+   paramiko.SSHClient.invoke_shell
+   paramiko.SSHClient.load_host_keys
+   paramiko.SSHClient.open_sftp
+   paramiko.SSHClient.save_host_keys
+   paramiko.SSHClient.set_log_channel
+   paramiko.SSHClient.set_missing_host_key_policy
+
+.. note:: set_missing_host_key_policy and load_system_host_keys is called when the client is created, so you shouldn't call it. The only extra methods you will likely ever use are ``invoke_shell`` and ``open_sftp``. Otherwise you might as well use the SSHClient directly. The purpose of this module was to make it easier, not to re-do everything.
+
+.. '   
+
+<<name='imports', echo=False>>=
+# python standard library
+import socket
+
+# third party
+import paramiko
+
+# this package
+from cameraobscura.clients.clientbase import BaseClient
+from cameraobscura import CameraobscuraError
+@
+
+.. _simpleclient-connectionerror:
+
+The ConnectionError
+-------------------
+
+This is just a sub-class of the `CameraobscuraError` so anything that traps that will catch it.
+
+.. uml::
+
+   CameraobscuraError <|-- ConnectionError
+
+.. currentmodule:: cameraobscura.clients.simpleclient
+.. autosummary::
+   :toctree: api
+
+   ConnectionError
+
+<<name='ConnectionError', echo=False>>=
+class ConnectionError(CameraobscuraError):
+    """
+    A CameraobscuraError child specific to connection errors
+    """
+# end ConnectionError    
+@
+
+.. _simpleclient:
+
+SimpleClient
+------------
+
+.. autosummary::
+   :toctree: api
+
+   SimpleClient
+   SimpleClient.exec_command
+   SimpleClient.client
+   SimpleClient.__getattr__
+   SimpleClient.__str__
+   SimpleClient.close
+
+.. uml::
+
+   SimpleClient -|> BaseClient
+   SimpleClient o-- SSHClient
+   SimpleClient : client
+   SimpleClient : hostname
+   SimpleClient : username
+   SimpleClient : password
+   SimpleClient : port
+   SimpleClient : timeout
+   SimpleClient : exec_command(command, timeout)
+   SimpleClient : __str__()
+   SimpleClient : close()
+
+<<name='constants', echo=False>>=
+PORT = 22
+TIMEOUT = 10
+NEWLINE = '\n'
+SPACE_JOIN = "{prefix} {command}"
+@
+
+.. warning:: I'm using *args, **kwargs when connecting to the client so anything other than hostname, username and timeout will be passed in that way, but the string representation (``__str__``) expects the kwargs dictionary to have 'port' and 'password' arguments -- to be safe use keyword arguments, not positional arguments when instantiating the SimpleClient.
+
+.. '
+
+<<name='SimpleClient', echo=False>>=
+class SimpleClient(BaseClient):
+    """
+    A simple wrapper around paramiko's SSHClient.
+
+    The only intended public interface is exec_command.
+    """
+    def __init__(self, *args, **kwargs):
+        """
+        :param:
+
+         - `hostname`: ip address or resolvable hostname.
+         - `username`: the login name.
+         - `timeout`: Time to give the client to connect
+         - `port`: TCP port of the server
+         - `args, kwargs`: anything else that the SSHClient.connect can use will be passed in to it
+        """
+        super(SimpleClient, self).__init__(*args, **kwargs)
+        self._client = None
+        return
+
+    @property
+    def client(self):
+        """
+        The main reason for this class
+
+        :rtype: paramiko.SSHClient
+        :return: An instance of SSHClient connected to remote host.
+        :raise: ClientError if the connection fails.
+        """
+        if self._client is None:
+            self._client = paramiko.SSHClient()
+            self._client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            self._client.load_system_host_keys()
+            try:
+                self._client.connect(hostname=self.hostname,
+                                     username=self.username,
+                                     timeout=self.timeout,
+                                     port=self.port,
+                                     **self.kwargs)
+
+            # these are fatal exceptions, no one but the main program should catch them
+            except paramiko.AuthenticationException as error:
+                self.logger.error(error)
+                raise CameraobscuraError("There is a problem with the ssh-keys or password for \n{0}".format(self))
+            
+            except paramiko.PasswordRequiredException as error:
+                self.logger.error(error)
+                self.logger.error("Private Keys Not Set Up, Password Required.")
+                raise CameraobscuraError("SSH Key Error :\n {0}".format(self))
+
+            except socket.timeout as error:
+                self.logger.error(error)
+                raise CameraobscuraError("Paramiko is unable to connect to \n{0}".format(self))
+            
+            except socket.error as error:
+                self.logger.error(error)
+                if 'Connection refused' in error: 
+                    raise CameraobscuraError("SSH Server Not responding: check setup:\n {0}".format(self))
+                raise CameraobscuraError("Problem with connection to:\n {0}".format(self))
+        return self._client
+
+    @property
+    def port(self):
+        """
+        The TCP port
+        """
+        if self._port is None:
+            self._port = 22
+        return self._port
+
+    @port.setter
+    def port(self, new_port):
+        """
+        Sets the port (I tried putting this in the base but you can't split the setter and property definitions)
+
+        :param:
+
+         - `new_port`: integer port number
+        :raise: CameraobscuraError if can't cast to int
+        """
+        if new_port is not None:
+            try:
+                self._port = int(new_port)
+            except ValueError as error:
+                self.logger.error(error)
+                raise CameraobscuraError("Unable to set port to : {0}".format(new_port))
+        else:
+            self._port = new_port
+        return
+
+    def exec_command(self, command, timeout=TIMEOUT):
+        """
+        A pass-through to the SSHClient's exec_command.
+
+        :param:
+
+         - `command`: A string to send to the client.
+         - `timeout`: Set non-blocking timeout.
+
+        :rtype: tuple
+        :return: stdin, stdout, stderr
+
+        :raise: ConnectionError for paramiko or socket exceptions
+        """
+        if not command.endswith(NEWLINE):
+            command += NEWLINE
+        try:
+            self.logger.debug("({0}) Sending to paramiko -- '{1}', timeout={2}".format(self,
+                                                                                       command,
+                                                                                       timeout))
+            return self.client.exec_command(command, timeout=timeout)
+
+        except socket.timeout:
+            self.logger.debug("socket timed out")
+            raise ConnectionError("Timed out -- Command: {0} Timeout: {1}".format(command,
+                                                                     timeout))
+        # this catches other socket errors so it should go after any other socket exceptions
+        except (socket.error, paramiko.SSHException, AttributeError) as error:
+            # the AttributeError is raised if no connection was actually made (probably the wrong IP address)
+            self._client = None
+            self.logger.error(error)
+            raise CameraobscuraError("Problem with connection to:\n {0}".format(self))
+        return
+# end class SimpleClient
+@
+
+<<name='debug', echo=False>>=
+if __name__ == '__main__':
+    import pudb;pudb.set_trace()
+    client = SimpleClient('abc', 'def')
+@

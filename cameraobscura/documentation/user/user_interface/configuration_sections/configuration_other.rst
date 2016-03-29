@@ -1,0 +1,51 @@
+Other Configuration
+-------------------
+
+
+
+The ``other`` section is an optional section that leftover items ended up getting stuffed into. Here is the default (comments removed).
+
+::
+
+    #[other]
+    #result_location = output_folder
+    #test_name = rate_vs_range
+    # repetitions = 1
+    #recovery_time = 10
+    
+    
+
+
+
+``result_location``
+~~~~~~~~~~~~~~~~~~~
+
+The result location is the name of the sub-folder you want to use to contain the generated data files. The folder will be created in whatever directory the program is run in unless you set the full path::
+
+    result_location = /home/Data/data_folder
+
+I didn't set up tilde expansion so if you do the following::
+
+    result_location = ~/Data/data_folder
+
+.. '
+
+It will ignore your setting and use the default. Actually I tested this and it created a directory called '~' **which is a very bad thing**. So just don't do this.
+
+.. '
+
+``test_name``
+~~~~~~~~~~~~~
+
+This is an identifier used to name output files that don't have a special name of their own. I think. I didn't make it, it was in the original version of this code. I would ignore it.
+
+``repetitions``
+~~~~~~~~~~~~~~~
+
+Sets the number of times to re-run the same configuration.
+
+``recovery_time``
+~~~~~~~~~~~~~~~~~
+
+The amount of time in seconds that the program will sleep between tests in case there is some kind of condition where it needs it.
+
