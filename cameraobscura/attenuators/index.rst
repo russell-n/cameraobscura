@@ -10,9 +10,8 @@ Attenuators
 .. toctree::
    :maxdepth: 1
 
-   Attenuator Base Class <Attenuator.rst>
-   The Attenuator Factory <AttenuatorFactory.rst>
-   The Weinschel Attenuator <Weinschel.rst>
+   Attenuator Base Class <attenuator.rst>
+   The Attenuator Builder <attenuator_builder.rst>
    A Mock Attenuator <mockattenuator.rst>
 
 .. toctree::

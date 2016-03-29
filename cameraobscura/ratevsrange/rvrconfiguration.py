@@ -19,7 +19,7 @@ from cameraobscura.commands.iperf.iperfsettings import  IperfClientSettings, Ipe
 
 from cameraobscura.hosts.host import HostConfiguration
 
-from cameraobscura.attenuators.AttenuatorFactory import get_definitions
+from cameraobscura.attenuators.attenuator_builder import get_definitions
 attenuation_definitions = get_definitions()
 
 from cameraobscura.utilities.configurationadapter import ConfigurationError
@@ -101,10 +101,11 @@ class OtherEnum(object):
     default_test_name = 'rate_vs_range'
     default_repetitions = 1
     default_recovery_time = 10
+# end other Enum
 
 class TrafficEnum(object):
     """
-    A holder of iperf traffic constant    
+    A holder of iperf traffic constants
     """
     __slots__ = ()
     section = 'iperf'

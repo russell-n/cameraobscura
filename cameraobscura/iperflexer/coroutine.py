@@ -1,12 +1,10 @@
 
 from types import FileType
 
-
 COMMA = ','
 NEWLINE = '\n'
 COMMA_JOIN = "{0},{1}"
 WRITEABLE = 'w'
-
 
 def coroutine(func):
     """
@@ -22,7 +20,6 @@ def coroutine(func):
         return coroutine_func
     return wrap
 
-
 @coroutine
 def broadcast(targets):
     """
@@ -37,7 +34,6 @@ def broadcast(targets):
         for target in targets:
             target.send(line)
     return
-
 
 @coroutine
 def comma_join(target, input_count):
@@ -56,7 +52,6 @@ def comma_join(target, input_count):
         target.send(line)
     return
 
-
 @coroutine
 def output(target_file):    
     """
@@ -73,7 +68,6 @@ def output(target_file):
         target_file.write(line)
     return
 
-
 @coroutine
 def comma_append(source, target):
     """
@@ -88,7 +82,6 @@ def comma_append(source, target):
         line_2 = (yield)
         target.send(COMMA_JOIN.format(line.rstrip(NEWLINE), line_2))
     return
-
 
 @coroutine
 def file_output(file_object):

@@ -9,19 +9,16 @@ import paramiko
 from cameraobscura.clients.clientbase import BaseClient
 from cameraobscura import CameraobscuraError
 
-
 class ConnectionError(CameraobscuraError):
     """
     A CameraobscuraError child specific to connection errors
     """
-# end ConnectionError    
-
+# end ConnectionError
 
 PORT = 22
 TIMEOUT = 10
 NEWLINE = '\n'
 SPACE_JOIN = "{prefix} {command}"
-
 
 class SimpleClient(BaseClient):
     """
@@ -147,7 +144,6 @@ class SimpleClient(BaseClient):
             raise CameraobscuraError("Problem with connection to:\n {0}".format(self))
         return
 # end class SimpleClient
-
 
 if __name__ == '__main__':
     import pudb;pudb.set_trace()

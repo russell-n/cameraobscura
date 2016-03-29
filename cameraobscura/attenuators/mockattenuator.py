@@ -1,5 +1,5 @@
 
-from Attenuator import Attenuator
+from attenuator import Attenuator
 
 class MockAttenuatorConstants(object):
     """

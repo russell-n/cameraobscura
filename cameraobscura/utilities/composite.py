@@ -1,7 +1,6 @@
 
 # this package
-from cameraobscura import BaseClass
-
+from cameraobscura.common.baseclass import BaseClass
 
 class TheComposite(BaseClass):
     """

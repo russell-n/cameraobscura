@@ -2,6 +2,10 @@ The Rye Mother
 ==============
 
 
+
+
+
+
 The `Rye Mother <http://www.pitt.edu/~dash/gerchange.html#GrimmRyeMother>`_ gathers children.
 
 .. figure:: figures/troll_changeling.jpg
@@ -147,4 +151,6 @@ The RyeMother Class
 .. note: In the event that the RyeMother needs to be used multiple time, the parameters can be set when it's constructed, but if they are passed into the call, then the passed-in parameters will override the instantiation parameters.
 
 .. '
+
+
 

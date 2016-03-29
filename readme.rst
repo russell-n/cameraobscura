@@ -65,7 +65,7 @@ Because there are so many options to the code, `ini formatted <http://en.wikiped
     
     # 'name' is the name of the attenuator
     # not case-sensitive, but spelling counts
-    # valid names : mockattenuator,weinschelp
+    # valid names : mockattenuator
     
     #name = WeinschelP
     
@@ -360,9 +360,11 @@ Here's a dump of the `documentation_requirements.txt` file.
 
 .. code::
 
-    Sphinx==1.2.3
-    alabaster==0.6.2
-    sphinxcontrib-plantuml==0.5
+    sphinx
+    sphinxcontrib-plantuml
+    sphinx_boostrap_theme
+    pweave
+    matplotlib
     
     
     
@@ -498,7 +500,6 @@ Here's a dump of the `testing_requirements.txt` file.
 
     PyHamcrest==1.8.1
     behave==1.2.4
-    mock==1.0.1
     
     
     

@@ -10,7 +10,7 @@ Iperf Things
 .. toctree::
    :maxdepth: 1
 
-   The Iperf <Iperf.rst>
+   IperfSettings <IperfSettings.rst>
    IperfSettings <iperfsettings.rst>
 
 .. toctree::

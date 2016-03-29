@@ -4,7 +4,7 @@ A Mock Attenuator
 A Mock for testing. This is meant to test the other code, see the specific mocks for attenuator-specific code.
 
 <<name='imports', echo=False>>=
-from Attenuator import Attenuator
+from attenuator import Attenuator
 @
 
 MockAttenuator Constants

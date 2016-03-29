@@ -4,12 +4,11 @@ from abc import abstractproperty, abstractmethod
 import socket
 
 # this package
-from cameraobscura import BaseClass, CameraobscuraError
-
+from theape import BaseClass
+from cameraobscura import CameraobscuraError
 
 COMMA = ','
 TIMEOUT = 10
-
 
 class BaseClient(BaseClass):
     """
@@ -108,7 +107,6 @@ class BaseClient(BaseClass):
         return getattr(self.client, method)
 # end BaseClient
 
-
 def handlesocketerrors(method,  *args, **kwargs):
     """
     function to use as a method decorator (expects ``self`` as one of the arguments)
@@ -128,7 +126,6 @@ def handlesocketerrors(method,  *args, **kwargs):
             self.logger.error(message)
             raise CameraobscuraError(message)
     return wrapped
-
 
 def suppresssocketerrors(method,  *args, **kwargs):
     """

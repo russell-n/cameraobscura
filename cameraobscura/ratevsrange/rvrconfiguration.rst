@@ -109,6 +109,7 @@ I started calling these enums a while back, but they're really constant-holders.
         default_test_name = 'rate_vs_range'
         default_repetitions = 1
         default_recovery_time = 10
+    # end other Enum
     
 
 
@@ -118,7 +119,7 @@ I started calling these enums a while back, but they're really constant-holders.
 
     class TrafficEnum(object):
         """
-        A holder of iperf traffic constant
+        A holder of iperf traffic constants
         """
         __slots__ = ()
         section = 'iperf'
@@ -176,6 +177,26 @@ RVRConfiguration Class
 .. uml::
 
    RVRConfiguration o- ConfigurationAdapter
+   RVRConfiguration o- AttenuationConfiguration
+   RVRConfiguration o- DumpConfiguration
+   RVRConfiguration o- QueryConfiguration
+   RVRConfiguration o- HostConfiguration
+   RVRConfiguration o- OtherConfiguration
+   RVRConfiguration o- IperfConfiguration
+
+The Configuration Properties
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For each of the required sub-configurations the RVRConfiguration has a property that builds it. For required sub-configurations the procedure is:
+
+    #. Create sub-configuration, passing in self.configuration to the constructor
+    #. Set property to sub-configuration
+    #. Cast the sub-configuration to a string and log it at the debug level
+    #. Call the sub-configuration's ``check_rep`` method
+
+If any check_rep fails it will raise a ``ConfigurationError``.
+
+For the optional sub-configurations (like the Query), the procedure above is preceded by a check to see if the configuration has the section-header it needs, if not it quits.
 
 
 

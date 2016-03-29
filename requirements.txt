@@ -8,7 +8,6 @@ Sphinx==1.2.3
 alabaster==0.6.2
 argparse==1.2.1
 behave==1.2.4
--e hg+ssh://hg@bitbucket.org/rallion/cameraobscura@28de78795c5e55a5eff57f025485ac5b3a3257eb#egg=cameraobscura-testsuites
 configobj==5.0.6
 docopt==0.6.2
 docutils==0.12

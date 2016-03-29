@@ -1,6 +1,7 @@
 The SSH Connection
 ==================
 
+
 .. _ssh-connection:
 
 This is the workhorse connection built around the `paramiko` SSHClient. Updates in paramiko's interface as well as a better understanding of how it works has lead me to re-start it as the basis for the other connection types. The main way to use it is meant to be with dot-notation. To do ``ls -a`` for instance, you would do something like::
@@ -56,6 +57,11 @@ There's also a lock so that if multiple pieces of code are using the same connec
 
 
 
+
+
+
+
+
 .. currentmodule:: cameraobscura.SSH.sshconnection
 .. autosummary::
    :toctree: api
@@ -106,6 +112,7 @@ The InOutError Named Tuple
 --------------------------
 
 To help prevent the mixing up of the different files returned (stdout, stdin, and stderr (not necessarily in that order)) the SSHConnection will returned a named tuple.
+
 
 
 

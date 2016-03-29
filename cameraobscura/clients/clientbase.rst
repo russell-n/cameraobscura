@@ -7,6 +7,10 @@ Since the SimpleClient and TelnetClient have started to share so much code I'm g
 
 
 
+
+
+
+
 .. _clients-base-client:
 
 The BaseClient
@@ -17,6 +21,7 @@ The BaseClient
    :toctree: api
 
    BaseClient
+
 
 
 
@@ -36,8 +41,11 @@ Since the connections raise socket errors which aren't always easy to interpret,
 
 
 
+
 .. autosummary::
    :toctree: api
 
    suppresssocketerrors
+
+
 

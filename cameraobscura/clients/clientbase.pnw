@@ -11,7 +11,8 @@ from abc import abstractproperty, abstractmethod
 import socket
 
 # this package
-from cameraobscura import BaseClass, CameraobscuraError
+from theape import BaseClass
+from cameraobscura import CameraobscuraError
 @
 
 <<name='constants', echo=False>>=

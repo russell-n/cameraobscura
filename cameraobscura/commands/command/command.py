@@ -5,8 +5,7 @@ import socket
 
 # this package
 from cameraobscura import CameraobscuraError
-from cameraobscura import BaseClass
-
+from theape import BaseClass
 
 START_OF_STRING = r'^'
 ANYTHING = r'.'
@@ -29,7 +28,6 @@ class CommandConstants(object):
     default_data_expression = EVERYTHING
     default_error_expression = NOTHING
 
-
 def socketerrors(method,  *args, **kwargs):
     """
     Traps errors if self.trap_errors is true, raises CameraobscuraErrors otherwise
@@ -51,7 +49,6 @@ def socketerrors(method,  *args, **kwargs):
                 raise CameraobscuraError("Problem with connection executing '{0}'".format(self.command_arguments))
             return self.not_available
     return wrapped
-
 
 class TheCommand(BaseClass):
     """

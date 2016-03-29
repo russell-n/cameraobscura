@@ -1,7 +1,6 @@
 
 import argparse
 
-
 class Arguments(object):
     """
     An adapter for the argparse.ArgumentParser

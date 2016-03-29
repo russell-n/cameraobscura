@@ -21,14 +21,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-
 # python standard library
 import os
 import importlib
 import inspect
 import pkg_resources
 import pkgutil
-
 
 class RyeMother(object):
     """
@@ -166,4 +164,4 @@ class RyeMother(object):
                 name = keyfunction(name)
                 children[name] = definition
         return children
-# end RyeMother    
+# end RyeMother

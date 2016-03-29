@@ -2,6 +2,10 @@ Ping Things
 ===========
 
 
+
+
+
+
 .. toctree::
    :maxdepth: 1
 
@@ -11,6 +15,9 @@ Ping Things
 
 .. toctree::
    :maxdepth: 1
+
+   Testing The Ping <tests/index.rst>
+
 
 
 

@@ -5,71 +5,8 @@ import re
 from abc import abstractproperty
 
 # this package
-from cameraobscura import BaseClass, CameraobscuraError
-
-
-class IperfSettings(object):
-    '''
-    A container for Iperf parameters that aren't changed as often (as compared to duration and client IP, for example.).
-    '''
-    def __init__(self, isTcp=True, tcpWindowSize="512K", udpDatarate="1M", packetLength="1472", port=5001, interval=1, pairs=1, format="m"):
-        '''
-        **Constructor**
-
-        :param:
-
-         - `isTcp: Boolean or String resolvable to a boolean (iperf: -u, --udp)
-         - `tcpWindowSize`: iperf: -w, --window; TCP window size.
-         - `udpDatarate`: iperf -b --bandwidth; Target bandwidth in bits/sec.
-         - `packetLength`:  iperf -l --len; Length of read/write buffer.
-         - `port`: iperf -p --port; Set server port.
-         - `interval`: iperf -i --interval; pause in seconds between reports.
-         - `pairs`: iperf -P --parallel; number of parallel client threads to run
-         - `format: iperf -f --format; format to report (k:kilobits, m:megabits, K:Kilobytes, M:Megabytes)
-        '''
-        self._isTcp = bool(isTcp)
-        self._tcpWindowSize = str(tcpWindowSize)
-        self._udpDatarate = str(udpDatarate)
-        self._packetLength = int(packetLength)
-        self._port = int(port)
-        self._interval = int(interval)
-        self._pairs = int(pairs)
-        self._format = str(format)
-        
-    
-    @property
-    def IsTcp(self):
-        return self._isTcp
-        
-    @property
-    def TcpWindowSize(self):
-        return self._tcpWindowSize
-    
-    @property
-    def UdpDatarate(self):
-        return self._udpDatarate
-    
-    @property
-    def PacketLength(self):
-        return self._packetLength
-    
-    @property
-    def Port(self):
-        return self._port
-    
-    @property
-    def Interval(self):
-        return self._interval
-    
-    @property
-    def Pairs(self):
-        return self._pairs
-    
-    @property
-    def Format(self):
-        return self._format
-# end class IperfSettings        
-
+from theape import BaseClass
+from cameraobscura import CameraobscuraError
 
 STRING_START = '^'
 STRING_END = '$'
@@ -114,7 +51,6 @@ class IperfConstants(object):
                                   OPTIONAL_DIGITS + '[kKmM]' + ZERO_OR_ONE + SPACES + STRING_END)
     no_whitespace_expression = re.compile(STRING_START + NOT_SPACES + STRING_END)
     reportexclude_expression = re.compile(STRING_START + '[cdmsvCDMSV]' + ONE_OR_MORE + STRING_END)
-
 
 class IperfBaseSettings(BaseClass):
     """
@@ -204,8 +140,7 @@ class IperfBaseSettings(BaseClass):
             raise CameraobscuraError("`{0}` must be of the form 'n[KM]', not {1}".format(attribute.lstrip("_"),
                                                                                       value))
         self.logger.debug("'{0}' set to {1}".format(attribute, getattr(self, attribute)))
-        return    
-
+        return
 
 class IperfGeneralConstants(object):
     """
@@ -223,7 +158,6 @@ class IperfGeneralConstants(object):
     udp = '_udp'
     port = '_port'
     mss = '_mss'
-
 
 class IperfGeneralSettings(IperfBaseSettings):
     """
@@ -645,7 +579,6 @@ class IperfGeneralSettings(IperfBaseSettings):
         #                                      v=getattr(self, option))
         return output
 
-
 class IperfCompositeBase(IperfBaseSettings):
     """
     A base class for the client and server settings
@@ -760,7 +693,6 @@ class IperfCompositeBase(IperfBaseSettings):
                            for option in self.attributes if getattr(self, option) is not None])
         return  self.prefix + options + str(self.general_settings)
 
-
 class IperfServerSettings(IperfCompositeBase):
     """
     A holder of settings for Iperf Servers
@@ -838,8 +770,7 @@ class IperfServerSettings(IperfCompositeBase):
         """
         self.set_boolean('_single_udp', turn_on)
         return
-# end class IperfServerSettings    
-
+# end class IperfServerSettings
 
 class IperfClientConstants(object):
     """
@@ -858,7 +789,6 @@ class IperfClientConstants(object):
     listenport = '_listenport'
     parallel = '_parallel'
     ttl = '_ttl'
-
 
 class IperfClientSettings(IperfCompositeBase):
     """
@@ -1207,8 +1137,7 @@ class IperfClientSettings(IperfCompositeBase):
         if self.linux_congestion is not None:
             output += " --linux-congestion {0}".format(self.linux_congestion)
         return output
-# end class IperfClientSettings    
-
+# end class IperfClientSettings
 
 if __name__ == '__main__':
     import pudb; pudb.set_trace()

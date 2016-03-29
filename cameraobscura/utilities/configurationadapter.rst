@@ -3,20 +3,9 @@ The ConfigurationAdapter
 
 .. _configuration-adapter:
 
-Since the `Test` class is getting values from the configuration-parser, I'm creating an adapter to add methods to allow optional values. To make it easier not all of the ConfigParser methods will be implemented, the rest will be passed onto the ConfigParse object.
+Since the `Test` class is getting values from the configuration-parser, I'm creating an adapter to add methods to allow optional values. To make it easier not all of the ConfigParser methods will be implemented, the rest will be passed onto the ConfigParser object.
 
 .. '
-
-.. _config-parser-api:
-
-ConfigParser API
-----------------
-
-.. currentmodule:: ConfigParser
-.. autosummary::
-   :toctree: api
-
-   ConfigParser.ConfigParser
 
 
 

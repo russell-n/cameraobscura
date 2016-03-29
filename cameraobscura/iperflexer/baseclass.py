@@ -1,9 +1,7 @@
 
 import logging
 
-
 DOT_JOIN = "{0}.{1}"
-
 
 class BaseClass(object):
     """

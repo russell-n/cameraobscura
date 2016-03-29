@@ -8,7 +8,8 @@ import re
 from abc import abstractproperty
 
 # this package
-from cameraobscura import BaseClass, CameraobscuraError
+from theape import BaseClass
+from cameraobscura import CameraobscuraError
 @
 
 .. _iperf-settings:

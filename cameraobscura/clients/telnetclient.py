@@ -7,16 +7,15 @@ import random
 import string
 
 # this package
-from cameraobscura import CameraobscuraError, BaseClass
+from theape import BaseClass
+from cameraobscura import CameraobscuraError
 from clientbase import BaseClient
-
 
 NEWLINE = '\n'
 EOF = EMPTY_STRING = ''
 TIMEOUT = -1
 MATCH = 0
 OUTPUT_STRING = 2
-
 
 class TelnetClient(BaseClient):
     """
@@ -249,11 +248,9 @@ class TelnetClient(BaseClient):
 
 # end class TelnetClient
 
-
 MATCH_INDEX = 0
 MATCHING_STRING = 2
 TIMEOUT_INDEX = -1
-
 
 class TelnetOutput(BaseClass):
     """

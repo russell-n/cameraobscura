@@ -3,7 +3,7 @@ The Composite
 
 <<name='imports', echo=False>>=
 # this package
-from cameraobscura import BaseClass
+from cameraobscura.common.baseclass import BaseClass
 @
 
 The composite is an aggregator (composition) of callable objects that will be called in sequence.

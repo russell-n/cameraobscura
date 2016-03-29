@@ -3,7 +3,6 @@
 import os
 import string
 
-
 RST_EXTENSION = '.rst'
 INDEX = 'index.rst'
 NEWLINE = '\n'
@@ -11,7 +10,6 @@ TOCTREE = NEWLINE + '.. toctree::'
 MAXDEPTH = '   :maxdepth: {0}' + NEWLINE
 HEADER = TOCTREE + NEWLINE + MAXDEPTH
 CONTENTS = '   {0} <{1}>'
-
 
 def grab_headline(filename):
     """
@@ -27,7 +25,6 @@ def grab_headline(filename):
         for line in f:
             if len(line.strip()):
                 return line.strip()
-
 
 def create_toctree(maxdepth=1, subfolders=None, add_headers=False):
     """
@@ -46,16 +43,15 @@ def create_toctree(maxdepth=1, subfolders=None, add_headers=False):
     filenames = (name for name in contents if name.endswith(RST_EXTENSION)
                  and name != INDEX)
 
-    print HEADER.format(maxdepth)
+    print( HEADER.format(maxdepth))
 
     sorted_names = sorted(((grab_headline(filename), filename) for filename in filenames))
     for pretty_name, filename in sorted_names:
-        print CONTENTS.format(pretty_name, filename)
+        print( CONTENTS.format(pretty_name, filename))
 
     subfolder_toctree(maxdepth, subfolders, add_headers)
-    print
+    print('')
     return
-
 
 def subfolder_toctree(maxdepth=1, subfolders=None, add_headers=False):
     """
@@ -75,23 +71,22 @@ def subfolder_toctree(maxdepth=1, subfolders=None, add_headers=False):
     if subfolders is None and add_headers:
         name_indices = ((name, join(name, INDEX)) for name in contents if exists(join(name, INDEX)))
         for name, index in name_indices:
-            print name + ":"
-            print HEADER.format(maxdepth)
+            print(name + ":")
+            print(HEADER.format(maxdepth))
             pretty_name = grab_headline(index)
-            print CONTENTS.format(pretty_name, index)
+            print(CONTENTS.format(pretty_name, index))
         return
     
-    print HEADER.format(maxdepth)
+    print(HEADER.format(maxdepth))
     if subfolders is not None:
         sub_indices = (join(subfolder, INDEX) for subfolder in subfolders)
     else:
         sub_indices = (join(name, INDEX) for name in contents if exists(join(name, INDEX)))
         for sub_index in sub_indices:
             pretty_name = grab_headline(sub_index)
-            print CONTENTS.format(pretty_name, sub_index)
+            print(CONTENTS.format(pretty_name, sub_index))
     
     return
-
 
 # python standard library
 import unittest
@@ -101,8 +96,7 @@ from StringIO import StringIO
 try:
     from mock import mock_open, patch, call, MagicMock
 except ImportError:
-    pass    
-
+    pass
 
 class TestIndexBuilder(unittest.TestCase):
     def setUp(self):
@@ -135,7 +129,7 @@ class TestIndexBuilder(unittest.TestCase):
             try:
                 self.open_mock.assert_called_with(filename)
             except AssertionError as error:
-                print self.open_mock.mock_calls
+                print(self.open_mock.mock_calls)
                 raise
             self.assertEqual(self.headline, grabbed)
 
@@ -150,4 +144,3 @@ class TestIndexBuilder(unittest.TestCase):
         with patch(open_name, self.open_mock):
             self.assertIsNone(grab_headline('aoeusnth'))
         return
-

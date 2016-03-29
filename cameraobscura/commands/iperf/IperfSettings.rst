@@ -1,7 +1,6 @@
 IperfSettings
 =============
 
-Originally created on Jun 22, 2010 by Chad.
 
 
 
@@ -9,18 +8,6 @@ Originally created on Jun 22, 2010 by Chad.
 
 IperfSettings
 -------------
-
-The old one.
-
-.. currentmodule:: cameraobscura.commands.iperf.IperfSettings
-.. autosummary::
-   :toctree: api
-
-   IperfSettings   
-
-
-
-.. note:: From here on out it's the new-style settings that uses the iperf man-page descriptions and names so that user's can read it to get an idea of what these settings are.
 
 .. warning:: To make it more transparent these settings don't assume any overridden defaults the way the old IperfSettings did. If you don't set any of them the iperf defaults are used. This way, hopefully, referring to the man page should be enough for the user to know what the code is doing.
 
@@ -55,6 +42,7 @@ A place for common constants.
 
 
 
+
 .. _iperf-base-settings:
 
 Iperf Base Settings
@@ -76,6 +64,7 @@ This is the base class for all the settings.
 
 
 
+
 .. _iperf-general-constants:
 
 General Iperf Constants
@@ -84,6 +73,7 @@ General Iperf Constants
 The constants are exploding so I'll start breaking them apart instead of using the one IperfConstants class.
 
 .. '
+
 
 
 
@@ -121,6 +111,7 @@ This is to hold the settings common to both the client and server (See the **Gen
 
 
 
+
 .. _iperf-composite-base:
 
 Iperf Composite Base
@@ -145,6 +136,7 @@ A base-class for the client and server settings specifically.
 
 
 
+
 .. _iperf-server-settings:
 
 Iperf Server Settings
@@ -166,6 +158,7 @@ The server-side settings -- see **Server Specific Options** in the iperf man pag
 
 
 
+
 .. _iperf-client-constants:
 
 Iperf Client Constants
@@ -173,7 +166,8 @@ Iperf Client Constants
 
 Constants for the client (mostly to try and get rid of my spelling errors).
 
-::
+
+.. code:: python
 
     class IperfClientConstants(object):
         """
@@ -227,3 +221,8 @@ The client-side options -- see **Client Specific Options** in the iperf man page
    IperfClientSettings.linux_congestion
    IperfClientSettings.__str__
    
+
+
+
+
+

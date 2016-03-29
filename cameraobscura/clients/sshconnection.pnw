@@ -83,7 +83,8 @@ import threading
 import paramiko
 
 # this package
-from cameraobscura import BaseClass, CameraobscuraError
+from theape import BaseClass
+from cameraobscura import CameraobscuraError
 @
 <<name='constants', echo=False>>=
 SEMICOLON_JOIN = "{0};{1}"

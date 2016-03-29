@@ -11,8 +11,8 @@ These are things that compose a rate-vs-range test.
 .. toctree::
    :maxdepth: 1
 
-   Rate Vs Range Throughput Test <AutomatedRVR.rst>
    The Main Entrance <main.rst>
+   Rate Vs Range Throughput Test <rate_vs_range.rst>
    The RVRConfiguration <rvrconfiguration.rst>
    The Step Iterator <stepiterator.rst>
 

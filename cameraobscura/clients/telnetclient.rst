@@ -19,6 +19,10 @@ Contents:
 
 
 
+
+
+
+
 .. _telnet-client:
 
 The TelnetClient Class
@@ -37,10 +41,12 @@ The TelnetClient Class
 
 
 
+
 .. _telnet-client-telnet-output:
 
 The TelnetOutput Class
 ----------------------
+
 
 
 
@@ -57,6 +63,7 @@ This tries to mimic the stdout objects that the SSHClient returns. It is using `
    TelnetOutput.readlines
    TelnetOutput.read
    TelnetOutput.__iter__
+
 
 
 

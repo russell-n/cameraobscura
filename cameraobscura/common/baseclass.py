@@ -2,9 +2,7 @@
 import logging
 import logging.handlers
 
-
 DOT_JOIN = "{0}.{1}"
-
 
 class BaseClass(object):
     """

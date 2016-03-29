@@ -1,11 +1,12 @@
 The BaseClass
 =============
 
-.. currentmodule:: iperflexer.baseclass
-
 A module for base classes that have common methods to inherit.
 
 Just logging for now.
+
+
+
 
 
 
@@ -30,3 +31,5 @@ Example Use::
    t = TestClass()
    t.logger.info("This message will get sent to the logger as INFO")
    
+
+

@@ -6,6 +6,7 @@ This module holds a set of regular expressions to help with lexing the iperf inp
 
 
 
+
 .. _iperfexpressions-expression-base:
 
 The ExpressionBase
@@ -26,6 +27,7 @@ The ``ExpressionBase`` is an Abstract Base Class that provides a logger for chil
 
    ExpressionBase
    
+
 
 
 The HumanExpression
@@ -57,7 +59,9 @@ The `expression` is composed of parts from :ref:`Oatbran <oatbran-expressions>` 
    bandwidth &\gets \mathbb{R} + SPACES + [`GKM'] + ? + (`bits'| `bytes') + `/sec'\\
    expression  &\gets threads + SPACES + interval + SPACES + transfer + SPACES + bandwidth\\
 
+.. '
    
+
 
 
 .. _iperfexpressions-csv-expression:
@@ -98,12 +102,14 @@ As with the above, the main regular expressions are defined in the :ref:`oatbran
 
 
 
+
 .. _iperfexpressions-combined-expression:
 
 CombinedExpression
 ------------------
 
 This does not look like it was actually implemented. I think it was a stillborn idea.
+
 
 
 
@@ -131,4 +137,6 @@ The `ParserKeys` holds the keys for the `re.match` group dictionaries.
 
        ParserKeys : human
        ParserKeys : csv
+
+
 

@@ -508,7 +508,6 @@ class IperfConfiguration(BaseConfiguration):
         # python resolves all strings to True
         # try to keep the user from shooting himself in the foot
         for key, value in parameters.iteritems():            
-            #if value.lower() in IperfEnum.false:
             try:
                 parameters[key] = strtobool(value)
             except ValueError:

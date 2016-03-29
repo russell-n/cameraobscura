@@ -6,6 +6,9 @@ A module for generic coroutines.
 
 
 
+
+
+
 Coroutine Decorator
 --------------------
 
@@ -39,6 +42,7 @@ Example Use::
             
 
 
+
 The Broadcast
 -------------
 
@@ -69,6 +73,7 @@ Example Use::
    
 
 
+
 The Comma Join
 --------------
 
@@ -93,6 +98,7 @@ Although not evident from the graph, since this is a couroutine I assume that th
 
 
 
+
 Output Coroutine
 ----------------
 
@@ -110,6 +116,7 @@ The `output` does not take a co-routine as an argument so it has to act as a sin
    
 
 
+
 Comma Append
 ------------
 
@@ -122,8 +129,11 @@ Takes a stream of input strings and appends strings sent to it to each string (a
 
 
 
+
 File Output Coroutine
 ---------------------
 
 The `file_output` acts much like the ``output`` co-routine but assumes that the target is a disk-file and will create it if passed a string instead of an open file.
+
+
 

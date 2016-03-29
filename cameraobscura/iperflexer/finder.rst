@@ -7,6 +7,9 @@ A set of functions to generate filenames, lines in files, lines in sub-sections 
 
 
 
+
+
+
 Find
 ----
 
@@ -18,6 +21,7 @@ The `find` takes a glob and finds all matching files.
    :toctree: api
 
    find
+
 
 
 
@@ -45,6 +49,7 @@ Example Use::
 
 
 
+
 Sections
 --------
 
@@ -57,6 +62,7 @@ The ``sections`` generator traverses lines from files matching the globs, yieldi
 
 
 
+
 Section Generator
 -----------------
 
@@ -64,8 +70,11 @@ The `section` generator generates a subset of lines from an iterator, stopping w
 
 
 
+
 Line Counter
 ------------
 
 Traverses a sections within lines, yielding the count of lines that match the `interesting` regular expression for each section.
+
+
 

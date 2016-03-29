@@ -8,7 +8,7 @@ import socket
 
 # this package
 from cameraobscura import CameraobscuraError
-from cameraobscura import BaseClass
+from theape import BaseClass
 @
 
 Contents:

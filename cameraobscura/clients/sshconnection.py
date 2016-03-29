@@ -21,7 +21,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-
 # python standard library
 from collections import namedtuple
 import threading
@@ -30,14 +29,13 @@ import threading
 import paramiko
 
 # this package
-from cameraobscura import BaseClass, CameraobscuraError
-
+from theape import BaseClass
+from cameraobscura import CameraobscuraError
 
 SEMICOLON_JOIN = "{0};{1}"
 SUDO = "sudo {0}"
 ADD_NEWLINE = "{0}\n"
 SPACE_JOIN = "{0} {1}"
-
 
 class SSHConnection(BaseClass):
     def __init__(self, hostname, username, prefix=None, password=None, port=22,
@@ -192,7 +190,6 @@ class SSHConnection(BaseClass):
         self.client.close()
         self._client = None
         return
-# end class SSHConnection    
-
+# end class SSHConnection
 
 InOutError = namedtuple('InOutError', 'input output error'.split())

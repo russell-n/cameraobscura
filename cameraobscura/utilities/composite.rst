@@ -3,6 +3,7 @@ The Composite
 
 
 
+
 The composite is an aggregator (composition) of callable objects that will be called in sequence.
 
 .. uml::
@@ -15,4 +16,7 @@ The composite is an aggregator (composition) of callable objects that will be ca
 
    TheComposite
    TheComposite.__call__
+
+
+
 

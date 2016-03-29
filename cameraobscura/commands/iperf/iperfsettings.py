@@ -60,10 +60,6 @@ class IperfBaseSettings(object):
         """
         IperfBaseSettings constructor
 
-        :param:
-
-         - `attributes`: list of class attributes (used by the __str__)
-         - `kwargs`: dict to build the IperfGeneralSettings
         """
         super(IperfBaseSettings, self).__init__()
         self._logger = None

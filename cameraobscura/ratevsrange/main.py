@@ -14,7 +14,7 @@ from cameraobscura import BOLD, RESET, RED
 import cameraobscura.set_logger
 from cameraobscura.set_logger import set_logger
 from cameraobscura.set_logger import EVENTLOG
-from AutomatedRVR import Test
+from rate_vs_range import RateVsRangeTest
 from cameraobscura import CameraobscuraError
 from rvrconfiguration import AttenuationConfiguration
 from rvrconfiguration import OtherConfiguration
@@ -33,7 +33,7 @@ class ArgumentConstants(object):
     version = '2014.12.19'
     # defaults
     default_configuration = 'rvr_configuration.ini'
-    default_path = 'AutomatedRVR'
+    default_path = 'rate_vs_range'
 
 def parse_arguments(arguments=None):
     """

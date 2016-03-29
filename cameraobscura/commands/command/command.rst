@@ -3,6 +3,7 @@ The Command
 
 
 
+
 Contents:
 
     * :ref:`Introduction <command-introduction>`
@@ -69,7 +70,8 @@ Command Constants
 
 A holder of constants for TheCommand.
 
-::
+
+.. code:: python
 
     START_OF_STRING = r'^'
     ANYTHING = r'.'
@@ -92,7 +94,6 @@ A holder of constants for TheCommand.
         default_data_expression = EVERYTHING
         default_error_expression = NOTHING
     
-    
 
 
 
@@ -110,6 +111,7 @@ This is a decorator to handle catching socket errors so the __call__ doesn't get
    :toctree: api
 
    socketerrors
+
 
 
 
@@ -163,3 +165,5 @@ The Call
 
 .. '
    
+
+

@@ -11,8 +11,10 @@ This is a place for code shared by other code but that isn't used directly by th
 .. toctree::
    :maxdepth: 1
 
+   The BaseClass <baseclass.rst>
    The Base Configuration <baseconfiguration.rst>
    A Place for Shared Errors <errors.rst>
+   The Rye Mother <ryemother.rst>
 
 .. toctree::
    :maxdepth: 1

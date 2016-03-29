@@ -56,6 +56,7 @@ This is some basic documentation for the SSHClient's methods. Only some of them 
 
 
 
+
 .. _simpleclient-connectionerror:
 
 The ConnectionError
@@ -72,6 +73,7 @@ This is just a sub-class of the `CameraobscuraError` so anything that traps that
    :toctree: api
 
    ConnectionError
+
 
 
 
@@ -106,7 +108,13 @@ SimpleClient
 
 
 
+
 .. warning:: I'm using *args, **kwargs when connecting to the client so anything other than hostname, username and timeout will be passed in that way, but the string representation (``__str__``) expects the kwargs dictionary to have 'port' and 'password' arguments -- to be safe use keyword arguments, not positional arguments when instantiating the SimpleClient.
 
 .. '
+
+
+
+
+
 

@@ -30,7 +30,7 @@ Parse Arguments
         version = '2014.12.19'
         # defaults
         default_configuration = 'rvr_configuration.ini'
-        default_path = 'AutomatedRVR'
+        default_path = 'rate_vs_range'
     
 
 

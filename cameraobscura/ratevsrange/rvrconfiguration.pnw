@@ -25,7 +25,7 @@ from cameraobscura.commands.iperf.iperfsettings import  IperfClientSettings, Ipe
 
 from cameraobscura.hosts.host import HostConfiguration
 
-from cameraobscura.attenuators.AttenuatorFactory import get_definitions
+from cameraobscura.attenuators.attenuator_builder import get_definitions
 attenuation_definitions = get_definitions()
 
 from cameraobscura.utilities.configurationadapter import ConfigurationError
